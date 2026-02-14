@@ -114,8 +114,6 @@ environment.plasma6.excludePackages = with pkgs.kdePackages; [
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  	kdePackages.konsole
-	kdePackages.dolphin
 	librewolf
 	vscodium	
 	element-desktop
@@ -123,8 +121,6 @@ environment.plasma6.excludePackages = with pkgs.kdePackages; [
 	javaPackages.compiler.openjdk25
 	geteduroam
 	git
-	nano
-
   ];
 
   nix.settings = {
