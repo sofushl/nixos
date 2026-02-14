@@ -59,7 +59,6 @@ services.displayManager.sddm = {
 
 environment.plasma6.excludePackages = with pkgs.kdePackages; [
 	discover
-	konsole
 	elisa
 	kwrited
 	kate
