@@ -92,7 +92,7 @@ services.pipewire = {
 # User account.
 users.users.sofushl = {
     isNormalUser = true;
-    description = "Sofus Højberg Lind";
+    description = "Sofus Lind";
     extraGroups = [ "networkmanager" "wheel" ];
 };
 
@@ -108,7 +108,7 @@ environment.systemPackages = with pkgs; [
 	openssh
 	javaPackages.compiler.openjdk25
 	geteduroam
-  discordo
+  discord
 	git
   libreoffice-fresh
 ];
