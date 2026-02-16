@@ -109,6 +109,7 @@ environment.systemPackages = with pkgs; [
 	javaPackages.compiler.openjdk25
 	geteduroam
 	git
+  libreoffice-fresh
 ];
 
 # Nix stuff?
