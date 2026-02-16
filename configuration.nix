@@ -104,7 +104,7 @@ nixpkgs.config.allowUnfree = true;
 environment.systemPackages = with pkgs; [
 	librewolf
 	vscodium	
-	matrix-commanders
+	element-desktop
 	openssh
 	javaPackages.compiler.openjdk25
 	geteduroam
