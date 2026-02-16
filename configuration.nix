@@ -104,10 +104,11 @@ nixpkgs.config.allowUnfree = true;
 environment.systemPackages = with pkgs; [
 	librewolf
 	vscodium	
-	element-desktop
+	matrix-commanders
 	openssh
 	javaPackages.compiler.openjdk25
 	geteduroam
+  discordo
 	git
   libreoffice-fresh
 ];
