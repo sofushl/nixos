@@ -111,6 +111,9 @@ environment.systemPackages = with pkgs; [
   discord
 	git
   libreoffice-fresh
+  fastfetch
+  nixpkgs-fmt
+  
 ];
 
 # Nix stuff?
