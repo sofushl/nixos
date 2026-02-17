@@ -112,6 +112,7 @@
     libreoffice-fresh
     fastfetch
     nixfmt
+    tinymist
   ];
 
   # Nix stuff?
