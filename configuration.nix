@@ -38,23 +38,45 @@
     LC_TIME = "nb_NO.UTF-8";
   };
 
-  # Plasma setup
-  services.desktopManager.plasma6.enable = true;
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
   };
 
-  # Remove "KDE Bloat"
+  # Plasma setup
+  services.desktopManager.plasma6.enable = true;
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
     discover
     elisa
-    kwrited
     kate
     gwenview
     okular
     khelpcenter
     kinfocenter
+
+  ];
+
+  # Enable the COSMIC desktop environment
+  services.desktopManager.cosmic.enable = true;
+  services.system76-scheduler.enable = true;
+  environment.cosmic.excludePackages = with pkgs; [
+    cosmic-edit
+    cosmic-applets
+    cosmic-applibrary
+    cosmic-bg
+    cosmic-files
+    config.services.displayManager.cosmic-greeter.package
+    cosmic-idle
+    cosmic-initial-setup
+    cosmic-panel
+    cosmic-player
+    cosmic-term
+    cosmic-wallpapers
+    hicolor-icon-theme
+    pop-icon-theme
+    pop-launcher
+    cosmic-store
+    flatpak
   ];
 
   # Keyboard config
