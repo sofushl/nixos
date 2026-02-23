@@ -56,7 +56,10 @@
 
   ];
 
-  programs.sway.enable = true;
+  # Hyprland
+  programs.hyprland.enable = true;
+  services.hypridle.enable = true;
+  programs.hyprlock.enable = true;
 
   # Keyboard config
   console.keyMap = "no";
@@ -115,6 +118,7 @@
     nixfmt
     tinymist
     scenebuilder
+    cosmic-launcher
   ];
 
   # Nix stuff?
