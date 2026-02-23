@@ -113,6 +113,7 @@
     nixfmt
     tinymist
     scenebuilder
+    graphviz
   ];
 
   # Nix stuff?
