@@ -66,8 +66,6 @@
     cosmic-bg
     cosmic-files
     config.services.displayManager.cosmic-greeter.package
-    cosmic-idle
-    cosmic-initial-setup
     cosmic-panel
     cosmic-player
     cosmic-term
