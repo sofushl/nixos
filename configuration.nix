@@ -113,6 +113,7 @@
     fastfetch
     nixfmt
     tinymist
+    scenebuilder
   ];
 
   # Nix stuff?
