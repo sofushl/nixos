@@ -114,6 +114,7 @@
     tinymist
     scenebuilder
     graphviz
+    spotify
   ];
 
   # Nix stuff?
