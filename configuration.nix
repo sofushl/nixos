@@ -37,31 +37,13 @@
     LC_TELEPHONE = "nb_NO.UTF-8";
     LC_TIME = "nb_NO.UTF-8";
   };
-
-  services.displayManager.sddm = {
-    enable = true;
-    wayland.enable = true;
-  };
-
-  # Plasma setup
-  services.desktopManager.plasma6.enable = true;
-  environment.plasma6.excludePackages = with pkgs.kdePackages; [
-    discover
-    elisa
-    kate
-    gwenview
-    okular
-    khelpcenter
-    kinfocenter
-    konsole
-  ];
-
+  services.displayManager.cosmic-greeter.enable = true;
   # Enable COSMIC session
   services.desktopManager.cosmic.enable = true;
   services.desktopManager.cosmic.showExcludedPkgsWarning = false;
 
   environment.cosmic.excludePackages = with pkgs; [
-    cosmic-files
+
     cosmic-edit
     cosmic-player
     cosmic-store
