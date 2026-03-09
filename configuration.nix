@@ -58,6 +58,8 @@
 
   # Enable COSMIC session
   services.desktopManager.cosmic.enable = true;
+  services.desktopManager.cosmic.showExcludedPkgsWarning = false;
+
   environment.cosmic.excludePackages = with pkgs; [
     cosmic-files
     cosmic-edit
@@ -68,7 +70,6 @@
     cosmic-bg
     cosmic-wallpapers
     flatpak
-    config.services.displayManager.cosmic-greeter.package
     pop-icon-theme
 
   ];
