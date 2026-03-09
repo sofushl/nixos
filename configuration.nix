@@ -43,19 +43,6 @@
     wayland.enable = true;
   };
 
-  # Plasma setup
-  services.desktopManager.plasma6.enable = true;
-  environment.plasma6.excludePackages = with pkgs.kdePackages; [
-    discover
-    elisa
-    kate
-    gwenview
-    okular
-    khelpcenter
-    kinfocenter
-    konsole
-  ];
-
   # Enable COSMIC session only
   services.desktopManager.cosmic.enable = true;
   environment.cosmic.excludePackages = with pkgs; [
@@ -68,15 +55,8 @@
     cosmic-bg
     cosmic-wallpapers
     flatpak
-
-    #cosmic-applets
-    #config.services.displayManager.cosmic-greeter.package
-    #cosmic-idle
-    #cosmic-initial-setup
-    #cosmic-panel
-    #hicolor-icon-theme
-    #pop-icon-theme
-    #pop-launcher
+    config.services.displayManager.cosmic-greeter.package # mark 2
+    pop-icon-theme
 
   ];
 
