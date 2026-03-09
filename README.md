@@ -1,5 +1,5 @@
-Nix configuration for Sofus H Lind
+Nix configuration for Sofus Lind,
 
-Simple plasma work setup for java programming with vscodium
+Excessively debloated COSMIC work setup for java programming with vscodium.
 
-Work in progress
+Will add NIRI config eventually...
