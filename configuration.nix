@@ -53,8 +53,35 @@
     okular
     khelpcenter
     kinfocenter
+    konsole
+  ];
+
+  # Enable COSMIC session only
+  services.desktopManager.cosmic.enable = true;
+  environment.cosmic.excludePackages = with pkgs; [
+    cosmic-files
+    cosmic-edit
+    cosmic-player
+    cosmic-store
+    cosmic-term
+    cosmic-applibrary
+    cosmic-bg
+    cosmic-wallpapers
+    flatpak
+
+    #cosmic-applets
+    #config.services.displayManager.cosmic-greeter.package
+    #cosmic-idle
+    #cosmic-initial-setup
+    #cosmic-panel
+    #hicolor-icon-theme
+    #pop-icon-theme
+    #pop-launcher
 
   ];
+
+  # Wayland support (COSMIC runs on Wayland)
+  hardware.graphics.enable = true;
 
   # Keyboard config
   console.keyMap = "no";
@@ -115,6 +142,7 @@
     scenebuilder
     graphviz
     spotify
+    alacritty
   ];
 
   # Nix stuff?
