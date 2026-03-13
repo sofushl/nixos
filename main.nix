@@ -53,9 +53,6 @@
     jack.enable = true;
   };
 
-  # For UV usage
-  programs.nix-ld.enable = true;
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
