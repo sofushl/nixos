@@ -19,5 +19,6 @@
     graphviz
     spotify
     alacritty
+    uv
   ];
 }
