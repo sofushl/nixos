@@ -14,6 +14,9 @@ Packages for java programming with vscodium.
 ### plasma.nix
 Just another plasma setup. (not in use)
 
+### alacritty.nix
+Alacritty terminal emulator installation and simplistic red and black .toml configuration.
+
 ### niri.nix
 Will add NIRI config eventually...
 
