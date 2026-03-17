@@ -16,6 +16,5 @@
     cosmic-wallpapers
     flatpak
     pop-icon-theme
-
   ];
 }

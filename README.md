@@ -14,11 +14,14 @@ Packages for java programming with vscodium.
 ### plasma.nix
 Just another plasma setup. (not in use)
 
-### facl.sh
-Simple shell command to make git work in the otherwise locked down /etc/nixos/ folder.
-
 ### niri.nix
 Will add NIRI config eventually...
 
-### configuration.nix
-Hidden with .gitignore with user.nix, so that they can easily be edited between computers.
+### Other information
+
+python.sh requires uv, but sets up a nix shell and syncs uv with a pyproject.toml
+
+Command for allowing git and other file changes to work without root in the /etc/nixos directory/
+sudo setfacl -R -m u:{YOUR_USERNAME}:rwx /etc/nixos/
+
+Nixos config is made in a ~/Documents/nixos, .gitignore includes user.nix which is the file used to import the .nix files I want to be active at a given moment
