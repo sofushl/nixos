@@ -41,14 +41,14 @@
 
         [window]
         decorations = "None"
-        padding = { x = 3, y = 3 }
+        padding = { x = 5, y = 0 }
         opacity = 1.0
 
         [scrolling]
         history = 3023
 
         [cursor]
-        style = { shape = "Block", blinking = "On" }
+        style = { shape = "Block", blinking = "Off" }
         unfocused_hollow = true
 
         [mouse]
