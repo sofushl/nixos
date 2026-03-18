@@ -25,8 +25,11 @@ Configuration that is mostly if not only stylistic:
 ### niri.nix
 WIP niri config, made in a minimalistic look with pastel red and dark color scheme
 
+### fuzzel.nix
+Fuzzel launcher with same appearance as niri
+
 ### alacritty.nix
-Alacritty terminal emulator installation with .toml configuration imported to make it a pastel red and dark color sceme.
+Alacritty terminal emulator with same appearance as niri.
 
 ## Other information
 

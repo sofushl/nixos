@@ -15,4 +15,8 @@
     flatpak
     pop-icon-theme
   ];
+
+  imports = [
+    ./dotfiles/alacritty.nix
+  ];
 }
