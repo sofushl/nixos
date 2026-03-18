@@ -14,13 +14,16 @@ Packages for java programming with vscodium.
 ### plasma.nix
 Just another plasma setup. (not in use)
 
+## /dotfiles
+Configuration that is mostly if not only stylistic:
+
 ### alacritty.nix
-Alacritty terminal emulator installation and simplistic red and black .toml configuration.
+Alacritty terminal emulator installation with .toml configuration imported to make it a pastel red and dark color sceme.
 
 ### niri.nix
-Will add NIRI config eventually...
+WIP niri config, made in a minimalistic look with pastel red and dark color scheme
 
-### Other information
+## Other information
 
 python.sh requires uv, but sets up a nix shell and syncs uv with a pyproject.toml
 
