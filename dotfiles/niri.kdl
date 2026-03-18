@@ -225,6 +225,8 @@ binds {
     Mod+C hotkey-overlay-title="Run an Application: Codium" { spawn "codium" "--ozone-platform=wayland"; }        
     Mod+E hotkey-overlay-title="Run an Application: Element" { spawn "element-desktop"; }
     Mod+B hotkey-overlay-title="Run an Application: Librewolf" { spawn "librewolf"; }
+    Mod+F hotkey-overlay-title="Run an Application: Comsic files" { spawn "cosmic-files"; }
+
     Mod+Space hotkey-overlay-title="Open launcher: cosmic" { spawn "cosmic-launcher"; }
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
@@ -415,7 +417,7 @@ binds {
     // Mod+R { switch-preset-column-width-back; }
     Mod+Shift+R { switch-preset-window-height; }
     Mod+Ctrl+R { reset-window-height; }
-    Mod+F { maximize-column; }
+    Mod+A { maximize-column; }
     Mod+Shift+F { fullscreen-window; }
 
     // While maximize-column leaves gaps and borders around the window,
