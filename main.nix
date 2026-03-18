@@ -6,7 +6,6 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  networking.hostName = "Acer";
 
   #cosmic greeter as displaymanager
   services.displayManager.cosmic-greeter.enable = true;
