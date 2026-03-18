@@ -8,6 +8,9 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
   networking.hostName = "Acer";
 
+  #cosmic greeter as displaymanager
+  services.displayManager.cosmic-greeter.enable = true;
+
   # Enable networking
   networking.networkmanager.enable = true;
 
@@ -33,7 +36,7 @@
   console.keyMap = "no";
   services.xserver.xkb = {
     layout = "no";
-    variant = "windows,";
+    variant = "winkeys";
   };
 
   # Enable CUPS to print documents.
@@ -66,6 +69,10 @@
 
   #SSH support
   services.openssh.enable = true;
+
+  programs.nix-ld.enable = true;
+
+  hardware.graphics.enable = true;
 
   # system version variable
   system.stateVersion = "25.11";
