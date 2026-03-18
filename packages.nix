@@ -9,11 +9,11 @@
     openssh
     javaPackages.compiler.openjdk25
     geteduroam
-    discord
     git
     libreoffice-fresh
     fastfetch
     nixfmt
+    vesktop
     tinymist
     scenebuilder
     graphviz

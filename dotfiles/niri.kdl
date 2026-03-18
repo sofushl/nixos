@@ -221,7 +221,7 @@ binds {
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
     //Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
-    Mod+D hotkey-overlay-title="Run an Application: Discord" { spawn "discord" "--ozone-platform=wayland"; }
+    Mod+D hotkey-overlay-title="Run an Application: Discord" { spawn "vesktop"; }
     Mod+C hotkey-overlay-title="Run an Application: Codium" { spawn "codium" "--ozone-platform=wayland"; }        
     Mod+E hotkey-overlay-title="Run an Application: Element" { spawn "element-desktop"; }
     Mod+B hotkey-overlay-title="Run an Application: Librewolf" { spawn "librewolf"; }

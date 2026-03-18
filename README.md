@@ -30,9 +30,17 @@ Alacritty terminal emulator installation with .toml configuration imported to ma
 
 ## Other information
 
-python.sh requires uv, but sets up a nix shell and syncs uv with a pyproject.toml
-
 Command for allowing git and other file changes to work without root in the /etc/nixos directory/
 sudo setfacl -R -m u:{YOUR_USERNAME}:rwx /etc/nixos/
 
 Nixos config is made in a ~/Documents/nixos directory, .gitignore includes user.nix 
+
+## /shellscripts
+
+#### python.sh 
+
+I use uv for python, and python.sh sets up a nix shell and syncs uv with a pyproject.toml, such that my python environment works with nix as a whole.
+
+#### cleanup.sh 
+
+On my computer I have a VERY small disk, and I had some storage space issues, cleanup.sh deletes a ton of stuff, rebuilds, and then (though excessively) tries to delete the same stuff again. (vibecoded)
