@@ -17,7 +17,6 @@ input {
         //drag stop delay
         drag-lock
         
-        natural-scroll
         scroll-method "two-finger"
     }
     warp-mouse-to-focus
@@ -223,7 +222,7 @@ binds {
     Mod+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
     //Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
     Mod+D hotkey-overlay-title="Run an Application: Discord" { spawn "discord"; }
-    Mod+C hotkey-overlay-title="Run an Application: Codium" { spawn "codium --ozone-platform=wayland"; }        
+    Mod+C hotkey-overlay-title="Run an Application: Codium" { spawn "codium" "--ozone-platform=wayland"; }        
     Mod+E hotkey-overlay-title="Run an Application: Element" { spawn "element-desktop"; }
     Mod+B hotkey-overlay-title="Run an Application: Librewolf" { spawn "librewolf"; }
     Mod+Space hotkey-overlay-title="Open launcher: cosmic" { spawn "cosmic-launcher"; }
