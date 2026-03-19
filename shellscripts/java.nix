@@ -21,6 +21,7 @@ let
     javaPackages.openjfx25
     maven
   ];
+
 in
 pkgs.mkShell {
   packages = [ customJava ] ++ javafxDeps;
