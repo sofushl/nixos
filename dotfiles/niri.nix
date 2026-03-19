@@ -7,12 +7,6 @@
     source = ./niri.kdl;
   };
 
-  environment.systemPackages = with pkgs; [
-    cosmic-files
-    bibata-cursors
-    xwayland-satellite
-  ];
-
   environment.variables = {
     XCURSOR_THEME = "Bibata-Modern-Classic";
     XCURSOR_SIZE = "20";
@@ -28,10 +22,31 @@
     ./alacritty.nix
   ];
 
+  # Waybar
   programs.waybar.enable = true;
 
   environment.etc."xdg/waybar" = {
     source = ./waybar;
   };
+
+  # Audio (PipeWire is standard on NixOS now)
+  services.pipewire = {
+    enable = true;
+    pulse.enable = true;
+    alsa.enable = true;
+  };
+
+  # Brightness control
+  programs.light.enable = true;
+
+  # Required tools
+  environment.systemPackages = with pkgs; [
+    pavucontrol
+    playerctl
+    brightnessctl
+    cosmic-files
+    bibata-cursors
+    xwayland-satellite
+  ];
 
 }
