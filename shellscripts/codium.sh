@@ -1,3 +1,3 @@
-nix-shell ~/Documents/nixos/shellscripts/java.nix
-# then inside the shell
-codium --ozone-platform=wayland
+nix-shell ~/Documents/nixos/shellscripts/java.nix --run \
+"codium --ozone-platform=wayland \
+--extensions-dir=$HOME/.vscode-oss/extensions"
