@@ -7,7 +7,6 @@
     vscodium
     element-desktop
     openssh
-    javaPackages.compiler.openjdk25
     geteduroam
     git
     libreoffice-fresh
@@ -20,5 +19,8 @@
     spotify
     uv
     kdlfmt
+    javaPackages.compiler.openjdk25
+    javaPackages.openjfx25
+    maven
   ];
 }

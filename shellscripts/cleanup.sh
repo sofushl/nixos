@@ -7,7 +7,7 @@ clean() {
     sudo find /var/tmp -mindepth 1 -delete  
     rm -rf ~/.cache/*
     sudo rm -rf /var/cache/*
-    sudo journalctl --vacuum-time=1d    
+    #sudo journalctl --vacuum-time=7d    
 }
 
 clean
