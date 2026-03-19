@@ -15,7 +15,8 @@ window#waybar {
 #cpu,
 #memory,
 #pulseaudio,
-#backlight {
+#backlight,
+#network {
     padding: 0 10px;
     margin: 4px 4px;
     background: #1E1E1E;
@@ -26,7 +27,8 @@ window#waybar {
 #pulseaudio:not(.muted),
 #backlight,
 #cpu,
-#memory {
+#memory,
+#network {
     border-bottom: 2px solid #DC6666;
 }
 

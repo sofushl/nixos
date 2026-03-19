@@ -41,18 +41,31 @@
   # Brightness control
   programs.light.enable = true;
 
+  # Enable networking
+  networking.networkmanager.enable = true;
+
   # USB management
   services.udisks2.enable = true;
   services.gvfs.enable = true;
 
   # Required tools
   environment.systemPackages = with pkgs; [
+
+    # Environment applications
+    cosmic-files
+
+    # Environment controllers
     pavucontrol
     playerctl
     brightnessctl
-    cosmic-files
+
+    # Customization
     bibata-cursors
+
+    # X11 support for niri
     xwayland-satellite
+
+    #USB disk management
     usbutils
     udiskie
   ];

@@ -1,7 +1,7 @@
 {
     "layer": "bottom",
     "position": "bottom",
-    "height": 15,
+    "height": 12,
     "margin-top": 0,
     "margin-left": 0,
     "margin-right": 0,
@@ -10,6 +10,7 @@
     ],
     "modules-center": [],
     "modules-right": [
+        "network",
         "pulseaudio",
         "backlight",
         "cpu",
@@ -34,5 +35,12 @@
     },
     "backlight": {
         "format": "BRT {percent}%"
+    },
+    "network": {
+        "format": "{essid} ({signalStrength}%)",
+        "format-disconnected": "OFFLINE",
+        "tooltip": false,
+        "enable-wireless": true,
+        "enable-wired": true
     }
 }
