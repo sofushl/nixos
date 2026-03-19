@@ -67,6 +67,10 @@
     ];
   };
 
+  environment.shellAliases = {
+    nixos-reset = "~/Documents/nixos/shellscripts/cleanup.sh";
+  };
+
   #SSH support
   services.openssh.enable = true;
 
