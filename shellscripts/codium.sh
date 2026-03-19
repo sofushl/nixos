@@ -1,1 +1,1 @@
-nix-shell /home/sofushl/Documents/nixos/shellscripts/java.nix --run "codium --ozone-platform=wayland"
+nix-shell ~/Documents/nixos/shellscripts/java.nix --run "codium --ozone-platform=wayland"
