@@ -41,6 +41,10 @@
   # Brightness control
   programs.light.enable = true;
 
+  # USB management
+  services.udisks2.enable = true;
+  services.gvfs.enable = true;
+
   # Required tools
   environment.systemPackages = with pkgs; [
     pavucontrol
@@ -49,6 +53,8 @@
     cosmic-files
     bibata-cursors
     xwayland-satellite
+    usbutils
+    udiskie
   ];
 
 }

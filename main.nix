@@ -1,19 +1,20 @@
 { config, pkgs, ... }:
 
 {
-  # Bootloader.
+  # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  #cosmic greeter as displaymanager
+  # Cosmic greeter as displaymanager
   services.displayManager.cosmic-greeter.enable = true;
 
   # Enable networking
   networking.networkmanager.enable = true;
 
-  # Set your time zone.
+  # Set time zone.
   time.timeZone = "Europe/Oslo";
 
   # Select internationalisation properties.
