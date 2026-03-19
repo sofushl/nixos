@@ -41,6 +41,7 @@
         "format-disconnected": "OFFLINE",
         "tooltip": false,
         "enable-wireless": true,
-        "enable-wired": true
+        "enable-wired": true,
+        "on-click": "~/bin/wifi-picker.sh"
     }
 }

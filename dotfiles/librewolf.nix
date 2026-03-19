@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  environment.systemPackages = [ pkgs.alacritty ];
+  environment.systemPackages = [ pkgs.librewolf ];
 
   environment.etc."librewolf/policies/policies.json".text = ''
     {
