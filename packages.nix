@@ -3,22 +3,28 @@
 {
   # Package set
   environment.systemPackages = with pkgs; [
+
+    # Applications
     librewolf
     vscodium
-    element-desktop
-    openssh
-    geteduroam
-    git
     libreoffice-fresh
-    fastfetch
-    nixfmt
     vesktop
-    tinymist
-    scenebuilder
-    graphviz
+    element-desktop
     spotify
-    uv
+    geteduroam
+    scenebuilder
+    fastfetch
+
+    # Dev tools
+    git
+    openssh
+    nixfmt
+    tinymist
     kdlfmt
+    graphviz
+    uv
+
+    # Java shit that doesn't work (javafx)
     javaPackages.compiler.openjdk25
     javaPackages.openjfx25
     maven
