@@ -20,6 +20,7 @@
   imports = [
     ./fuzzel.nix
     ./alacritty.nix
+    ./librewolf.nix
   ];
 
   # Waybar
