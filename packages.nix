@@ -28,5 +28,14 @@
     javaPackages.compiler.openjdk25
     javaPackages.openjfx25
     maven
+    gtk3
+    glib
+    mesa
+    libxxf86vm
+    libx11
+    libxext
+    libxrender
+    libxtst
+    libxi
   ];
 }

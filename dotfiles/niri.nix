@@ -25,6 +25,7 @@
 
   # Waybar
   programs.waybar.enable = true;
+  #https://man.archlinux.org/man/waybar.5
 
   environment.etc."xdg/waybar" = {
     source = ./waybar;
