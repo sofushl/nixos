@@ -23,19 +23,5 @@
     kdlfmt
     graphviz
     uv
-
-    # Java shit that doesn't work (javafx)
-    javaPackages.compiler.openjdk25
-    javaPackages.openjfx25
-    maven
-    gtk3
-    glib
-    mesa
-    libxxf86vm
-    libx11
-    libxext
-    libxrender
-    libxtst
-    libxi
   ];
 }
