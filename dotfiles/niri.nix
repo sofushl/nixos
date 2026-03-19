@@ -28,4 +28,10 @@
     ./alacritty.nix
   ];
 
+  programs.waybar.enable = true;
+
+  environment.etc."xdg/waybar" = {
+    source = ./waybar;
+  };
+
 }
