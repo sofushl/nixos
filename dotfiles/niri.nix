@@ -58,6 +58,7 @@
     pavucontrol
     playerctl
     brightnessctl
+    rofi
 
     # Customization
     bibata-cursors
