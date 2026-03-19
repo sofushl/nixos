@@ -1,7 +1,7 @@
 let
   pkgs = import <nixpkgs> { };
 
-  customJava = pkgs.jdk21;
+  customJava = pkgs.jdk25;
 
   javafxDeps = with pkgs; [
     gtk3
@@ -28,9 +28,6 @@ pkgs.mkShell {
   shellHook = ''
     export JAVA_HOME=${customJava}
     export PATH=$JAVA_HOME/bin:$PATH
-    export LD_LIBRARY_PATH="${
-      pkgs.lib.makeLibraryPath (filter (p: builtins.hasAttr "lib" p) javafxDeps)
-    }:$LD_LIBRARY_PATH"
-    export JAVAFX_LIB=${pkgs.javaPackages.openjfx25}/lib
+    export LD_LIBRARY_PATH="${pkgs.lib.makeLibraryPath javafxDeps}:$LD_LIBRARY_PATH"
   '';
 }
