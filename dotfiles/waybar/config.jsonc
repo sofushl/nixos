@@ -37,8 +37,9 @@
         "format": "BRT {percent}%"
     },
     "network": {
-        "format": "{essid} ({signalStrength}%)",
+        "format": "{essid}",
         "format-disconnected": "OFFLINE",
+        "format-disabled": "OFFLINE",
         "tooltip": false,
         "enable-wireless": true,
         "enable-wired": true,
