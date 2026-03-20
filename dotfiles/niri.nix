@@ -23,10 +23,7 @@
     ./librewolf.nix
   ];
 
-  # Waybar
-  programs.waybar.enable = true;
   #https://man.archlinux.org/man/waybar.5
-
   environment.etc."xdg/waybar" = {
     source = ./waybar;
   };
@@ -53,12 +50,13 @@
 
     # Environment applications
     cosmic-files
+    waybar
 
     # Environment controllers
     pavucontrol
     playerctl
     brightnessctl
-    rofi
+    networkmanagerapplet
 
     # Customization
     bibata-cursors

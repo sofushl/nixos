@@ -42,6 +42,6 @@
         "tooltip": false,
         "enable-wireless": true,
         "enable-wired": true,
-        "on-click": "~/Documents/nixos/dotfiles/waybar/applets/wifi-picker.sh"
+        "on-click": "nm-connection-editor"
     }
 }
