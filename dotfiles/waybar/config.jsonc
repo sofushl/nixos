@@ -18,15 +18,15 @@
     ],
     "clock": {
         "format": "{:%H:%M}",
-        "tooltip": false
+        "format-alt": "{:%d.%m.%y}"
     },
     "cpu": {
         "format": "CPU {usage}%",
-        "interval": 2
+        "interval": 1
     },
     "memory": {
         "format": "RAM {percentage}%",
-        "interval": 5
+        "interval": 1
     },
     "pulseaudio": {
         "format": "VOL {volume}%",
