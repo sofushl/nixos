@@ -12,11 +12,11 @@ window#waybar {
 }
 
 #clock,
-#cpu,
 #memory,
 #pulseaudio,
 #backlight,
-#network {
+#network,
+#battery {
     padding: 0 10px;
     margin: 4px 4px;
     background: #1E1E1E;
@@ -24,13 +24,11 @@ window#waybar {
 }
 
 /* Accent color used only for state changes */
-#pulseaudio:not(.muted),
+#pulseaudio,
 #backlight,
-#cpu,
 #memory,
-#network.wifi,
-#network.ethernet,
-#network.linked {
+#network,
+#battery {
     border-bottom: 2px solid #DC6666;
 }
 

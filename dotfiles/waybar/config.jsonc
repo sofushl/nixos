@@ -13,20 +13,30 @@
         "network",
         "pulseaudio",
         "backlight",
-        "cpu",
-        "memory"
+        "memory",
+        "battery"
     ],
     "clock": {
         "format": "{:%H:%M}",
         "format-alt": "{:%d.%m.%y}"
     },
-    "cpu": {
-        "format": "CPU {usage}%",
-        "interval": 1
+    "battery": {
+        "interval": 60,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "events": {
+            "on-discharging-warning": "notify-send -u normal 'Low Battery'",
+            "on-discharging-critical": "notify-send -u critical 'Very Low Battery'",
+            "on-charging-100": "notify-send -u normal 'Battery Full!'"
+        },
+        "format": "BAT {capacity}%",
+        "max-length": 25
     },
     "memory": {
         "format": "RAM {percentage}%",
-        "interval": 1
+        "interval": 5
     },
     "pulseaudio": {
         "format": "VOL {volume}%",
