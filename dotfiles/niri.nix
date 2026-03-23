@@ -23,7 +23,7 @@
   imports = [
     ./fuzzel.nix
     ./alacritty.nix
-    ./librewolf.nix
+    ./librewolf/librewolf.nix
   ];
 
   #https://man.archlinux.org/man/waybar.5

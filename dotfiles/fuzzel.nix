@@ -2,8 +2,6 @@
 
 {
   environment.systemPackages = [ pkgs.fuzzel ];
-  environment.etc."xdg/fuzzel/fuzzel.ini" = {
-    source = ./fuzzel.ini;
-  };
+  environment.etc."xdg/fuzzel/fuzzel.ini".source = ./fuzzel.ini;
 
 }
