@@ -3,12 +3,14 @@
 {
   programs.niri.enable = true;
 
+  # Display manager
   services.xserver.enable = true;
-  services.displayManager.defaultSession = "niri";
-  services.xserver.displayManager.lightdm = {
-    enable = true;
-    greeters.enso.enable = true;
-  };
+  services.greetd.enable = true;
+  #services.displayManager.defaultSession = "niri";
+  #services.xserver.displayManager.lightdm = {
+  #  enable = true;
+  #  greeters.enso.enable = true;
+  #};
 
   environment.etc."niri/config.kdl" = {
     source = ./niri.kdl;
