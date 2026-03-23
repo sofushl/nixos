@@ -16,7 +16,7 @@ window#waybar {
 #pulseaudio,
 #backlight,
 #network,
-#battery {
+#battery:not(.charged) {
     padding: 0 10px;
     margin: 4px 4px;
     background: #1E1E1E;
