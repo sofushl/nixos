@@ -8,9 +8,6 @@
   # Kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  # Cosmic greeter as displaymanager
-  services.displayManager.cosmic-greeter.enable = true;
-
   # Enable networking
   networking.networkmanager.enable = true;
 

@@ -3,19 +3,22 @@
 {
   programs.niri.enable = true;
 
+  services.xserver.enable = true;
+  services.xserver.displayManager.lightdm = {
+    enable = true;
+    greeters.enso.enable = true;
+  };
+
   environment.etc."niri/config.kdl" = {
     source = ./niri.kdl;
   };
 
   environment.variables = {
     XCURSOR_THEME = "Bibata-Modern-Classic";
-    XCURSOR_SIZE = "20";
+    XCURSOR_SIZE = "24";
   };
 
-  environment.sessionVariables = {
-    XCURSOR_THEME = "Bibata-Modern-Classic";
-    XCURSOR_SIZE = "20";
-  };
+  xdg.icons.fallbackCursorThemes = [ "Bibata-Modern-Classic" ];
 
   imports = [
     ./fuzzel.nix
@@ -45,6 +48,7 @@
   services.udisks2.enable = true;
   services.gvfs.enable = true;
 
+  programs.waybar.enable = true;
   # Required tools
   environment.systemPackages = with pkgs; [
 
