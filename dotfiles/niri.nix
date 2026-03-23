@@ -5,6 +5,11 @@
 
   # Display manager
   services.xserver.enable = true;
+  xdg.portal = {
+    wlr.enable = true;
+    enable = true;
+  }
+
   services.greetd = {
     enable = true;
     settings.default_session = {
