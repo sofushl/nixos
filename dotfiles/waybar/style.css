@@ -35,7 +35,8 @@ window#waybar {
 /* Muted audio = visually distinct */
 #pulseaudio.muted,
 #network.disabled,
-#network.disconnected {
+#network.disconnected,
+#battery.charged {
     color: #1E1E1E;
     background: #DC6666;
 }

@@ -17,6 +17,9 @@ let
     xorg.libXi
     xorg.libXcursor
     xorg.libXrandr
+    xorg.libXxf86vm
+    xorg.libXfixes
+    xorg.libXinerama
     javaPackages.compiler.openjdk25
     javaPackages.openjfx25
     maven

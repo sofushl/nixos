@@ -25,7 +25,10 @@
         "interval": 60,
         "format": "BAT {capacity}%",
         "on-click": "shutdown now",
-        "format-time": "{H}:{m}"
+        "format-time": "{H}:{m}",
+        "format-full": "CHARGED",
+        "format-charging": "POW {capacity}%",
+        "format-plugged": "POW {capacity}%"
     },
     "memory": {
         "format": "RAM {percentage}%",
