@@ -8,12 +8,15 @@
   xdg.portal = {
     wlr.enable = true;
     enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
   };
 
   services.greetd = {
     enable = true;
     settings.default_session = {
-      command = "${pkgs.niri}/bin/niri";
+      command = ''
+        ${pkgs.dbus}/bin/dbus-run-session ${pkgs.niri}/bin/niri
+      '';
       user = "sofushl";
     };
   };
