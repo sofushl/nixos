@@ -5,7 +5,13 @@
 
   # Display manager
   services.xserver.enable = true;
-  services.greetd.enable = true;
+  services.greetd = {
+    enable = true;
+    settings.default_session = {
+      command = "${pkgs.niri}/bin/niri";
+      user = "youruser";
+    };
+  };
   #services.displayManager.defaultSession = "niri";
   #services.xserver.displayManager.lightdm = {
   #  enable = true;
