@@ -1,27 +1,11 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}:
+{ config, pkgs, ... }:
 
 let
-  policies = {
-    ExtensionSettings = {
-      "minimal-dark-red@theme" = {
-        installation_mode = "force_installed";
-        install_url = "file://${myTheme}/theme.xpi";
-      };
-    };
-  };
-
-  policiesFile = pkgs.writeText "policies.json" (builtins.toJSON policies);
-
   myTheme = pkgs.stdenv.mkDerivation {
     name = "minimal-dark-red-theme";
     src = ./firefox-theme;
 
-    nativeBuildInputs = [ pkgs.zip ];
+    nativeBuildInputs = [ pkgs.zip ]; # <- required
 
     installPhase = ''
       mkdir -p $out
@@ -30,6 +14,7 @@ let
     '';
   };
 in
+
 {
   programs.firefox = {
     enable = true;
@@ -52,5 +37,5 @@ in
     };
   };
 
-  environment.etc."librewolf/policies/policies.json".source = policiesFile;
+  environment.etc."librewolf/policies/policies.json".source = /etc/firefox/policies/policies.json;
 }
