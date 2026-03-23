@@ -8,7 +8,7 @@
   xdg.portal = {
     wlr.enable = true;
     enable = true;
-  }
+  };
 
   services.greetd = {
     enable = true;
