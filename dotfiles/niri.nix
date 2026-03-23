@@ -4,6 +4,7 @@
   programs.niri.enable = true;
 
   services.xserver.enable = true;
+  services.displayManager.defaultSession = "niri";
   services.xserver.displayManager.lightdm = {
     enable = true;
     greeters.enso.enable = true;
