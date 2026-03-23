@@ -17,8 +17,8 @@ window#waybar {
 #backlight,
 #network,
 #battery {
-    padding: 0 10px;
-    margin: 4px 4px;
+    padding: 0 5px;
+    margin: 2px 3px;
     background: #1E1E1E;
     color: #E0E0E0;
 }
@@ -30,6 +30,7 @@ window#waybar {
 #network,
 #battery {
     border-bottom: 2px solid #DC6666;
+    min-width: 30px;
 }
 
 /* Muted audio = visually distinct */

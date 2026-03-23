@@ -1,7 +1,7 @@
 {
     "layer": "bottom",
     "position": "bottom",
-    "height": 10,
+    "height": 8,
     "margin-top": 0,
     "margin-left": 0,
     "margin-right": 0,
@@ -17,8 +17,8 @@
         "battery"
     ],
     "clock": {
-        "format": "{:%H:%M}",
-        "format-alt": "{:%d.%m.%y}",
+        "format": "{:%R - %d/%m/%y}",
+        "format-alt": "{:%R - %A %U}",
         "tooltip": false
     },
     "battery": {
