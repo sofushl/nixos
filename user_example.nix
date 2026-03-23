@@ -14,10 +14,8 @@
   networking.hostName = "Nixos";
 
   imports = [
-    ./cosmic.nix
     ./main.nix
     ./packages.nix
-    ./dotfiles/alacritty.nix
     ./dotfiles/niri.nix
   ];
 }
