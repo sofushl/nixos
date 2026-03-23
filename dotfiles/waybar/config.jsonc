@@ -18,25 +18,19 @@
     ],
     "clock": {
         "format": "{:%H:%M}",
-        "format-alt": "{:%d.%m.%y}"
+        "format-alt": "{:%d.%m.%y}",
+        "tooltip": false
     },
     "battery": {
         "interval": 60,
-        "states": {
-            "warning": 30,
-            "critical": 15
-        },
-        "events": {
-            "on-discharging-warning": "notify-send -u normal 'Low Battery'",
-            "on-discharging-critical": "notify-send -u critical 'Very Low Battery'",
-            "on-charging-100": "notify-send -u normal 'Battery Full!'"
-        },
         "format": "BAT {capacity}%",
-        "max-length": 25
+        "on-click": "shutdown now",
+        "format-time": "{H}:{m}"
     },
     "memory": {
         "format": "RAM {percentage}%",
-        "interval": 5
+        "interval": 5,
+        "on-click": "shutdown -r now"
     },
     "pulseaudio": {
         "format": "VOL {volume}%",
@@ -44,7 +38,10 @@
         "on-click": "pavucontrol"
     },
     "backlight": {
-        "format": "BRT {percent}%"
+        "format": "LUX {percent}%",
+        "on-click": "loginctl terminate-user $USER",
+        "min-brightness": 0.01,
+        "scroll-step": 0.1
     },
     "network": {
         "format": "{essid}",

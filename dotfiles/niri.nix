@@ -38,9 +38,6 @@
     alsa.enable = true;
   };
 
-  # Brightness control
-  programs.light.enable = true;
-
   # Enable networking
   networking.networkmanager.enable = true;
 
