@@ -33,6 +33,9 @@ in
     # Activate the theme by default
     preferences = {
       "extensions.activeThemeID" = "minimal-dark-red@theme";
+      "xpinstall.signatures.required" = false;
     };
   };
+
+  environment.etc."librewolf/policies/policies.json".source = /etc/firefox/policies/policies.json;
 }
