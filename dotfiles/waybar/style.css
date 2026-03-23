@@ -16,7 +16,7 @@ window#waybar {
 #pulseaudio,
 #backlight,
 #network,
-#battery:not(.charged) {
+#battery {
     padding: 0 10px;
     margin: 4px 4px;
     background: #1E1E1E;
@@ -36,7 +36,7 @@ window#waybar {
 #pulseaudio.muted,
 #network.disabled,
 #network.disconnected,
-#battery.charged {
+#battery.full {
     color: #1E1E1E;
     background: #DC6666;
 }
