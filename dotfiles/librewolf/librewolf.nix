@@ -19,6 +19,7 @@ in
   programs.firefox = {
     enable = true;
     package = pkgs.librewolf;
-  }
+  };
+
   environment.etc."librewolf/policies/policies.json".source = ./policies.json;
 }
