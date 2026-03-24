@@ -21,5 +21,5 @@ in
     package = pkgs.librewolf;
   };
 
-  environment.etc."librewolf/policies/policies.json".source = ./policies.json;
+  environment.etc."librewolf/policies/policies.json".source = ./policyfile.json;
 }

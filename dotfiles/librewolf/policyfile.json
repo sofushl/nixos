@@ -1,0 +1,21 @@
+{
+  "policies": {
+    "DisableAppUpdate": true,
+    "ExtensionSettings": {
+      "minimal-dark-red@theme": {
+        "install_url": "file:///nix/store/6ka3hgqrcrhpc1yla1c6qyanzb3agpik-minimal-dark-red-theme/theme.xpi",
+        "installation_mode": "force_installed"
+      }
+    },
+    "Preferences": {
+      "extensions.activeThemeID": {
+        "Status": "locked",
+        "Value": "minimal-dark-red@theme"
+      },
+      "xpinstall.signatures.required": {
+        "Status": "locked",
+        "Value": false
+      }
+    }
+  }
+}
