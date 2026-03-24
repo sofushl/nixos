@@ -8,7 +8,6 @@
      <nixos-wsl/modules>
     ./dotfiles/niri.nix
     ./main.nix
-    ./vscodium/vscodium.nix
     ./dotfiles/librewolf/librewolf.nix
   ];
 
@@ -16,7 +15,6 @@
   environment.systemPackages = with pkgs; [
 
     # Applications
-    scenebuilder
     fastfetch
 
     # Dev tools
