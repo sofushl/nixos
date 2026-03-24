@@ -233,7 +233,7 @@ binds {
     Mod+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
     //Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
     Mod+D hotkey-overlay-title="Run an Application: Discord" { spawn "vesktop"; }
-    Mod+C hotkey-overlay-title="Run an Application: Codium" { spawn "~/Documents/nixos/shellscripts/codium.sh"; }        
+    Mod+C hotkey-overlay-title="Run an Application: Codium" { spawn "codium-java"; }        
     Mod+E hotkey-overlay-title="Run an Application: Element" { spawn "element-desktop"; }
     Mod+B hotkey-overlay-title="Run an Application: Librewolf" { spawn "librewolf"; }
     Mod+F hotkey-overlay-title="Run an Application: Comsic files" { spawn "cosmic-files"; }

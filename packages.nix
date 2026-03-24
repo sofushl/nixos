@@ -1,12 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   # Package set
   environment.systemPackages = with pkgs; [
 
     # Applications
-    librewolf
-    vscodium
     libreoffice-fresh
     vesktop
     element-desktop
@@ -23,5 +21,10 @@
     kdlfmt
     graphviz
     uv
+  ];
+
+  imports = [
+    ./vscodium/vscodium.nix
+    ./dotfiles/librewolf/librewolf.nix
   ];
 }

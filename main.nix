@@ -1,15 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  # Bootloader
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  # Kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  # Enable networking
-  networking.networkmanager.enable = true;
+  # Bootloader defined in user.nix for wsl purposes, see user_example.nix
 
   # Set time zone.
   time.timeZone = "Europe/Oslo";
@@ -36,8 +28,8 @@
     variant = "winkeys";
   };
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
+  # Enable networking
+  networking.networkmanager.enable = true;
 
   # Enable bluetooth
   hardware.bluetooth.enable = true;
@@ -65,8 +57,19 @@
   };
 
   environment.shellAliases = {
-    nixos-reset = "~/Documents/nixos/shellscripts/cleanup.sh";
+    nixos-reset = "
+      sudo nixos-rebuild switch && \
+      sudo nix-collect-garbage -d && \
+      sudo rm -rf ~/.cache/* && \
+      sudo rm -rf /var/cache/* && \
+      sudo find /tmp -mindepth 1 -delete && \
+      sudo find /var/tmp -mindepth 1 -delete && \
+      sudo nix-store --optimise && \
+    ";
   };
+
+  # Enable CUPS to print documents.
+  services.printing.enable = true;
 
   #SSH support
   services.openssh.enable = true;
