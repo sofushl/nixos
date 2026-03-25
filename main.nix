@@ -64,7 +64,7 @@
       sudo rm -rf /var/cache/* && \
       sudo find /tmp -mindepth 1 -delete && \
       sudo find /var/tmp -mindepth 1 -delete && \
-      sudo nix-store --optimise && \
+      sudo nix-store --optimise 
     ";
   };
 
