@@ -21,5 +21,14 @@ in
     package = pkgs.librewolf;
   };
 
-  environment.etc."librewolf/policies/policies.json".source = ./policyfile.json;
+  environment.etc."librewolf/policies/policies.json".text = builtins.toJSON {
+    policies = {
+      ExtensionSettings = {
+        "minimal-dark-red@theme" = {
+          install_url = "file://${myTheme}/theme.xpi";
+          installation_mode = "force_installed";
+        };
+      };
+    };
+  };
 }
