@@ -26,10 +26,7 @@
             "toolbar_field_text_focus": "#E0E0E0",
             "toolbar_field_border_focus": "#DC6666",
             "toolbar_field_highlight": "#DC6666",
-            "toolbar_field_highlight_text": "#1E1E1E",
-            "sidebar": "#1E1E1E",
-            "sidebar_text": "#E0E0E0",
-            "sidebar_border": "#2A2A2A"
+            "toolbar_field_highlight_text": "#1E1E1E"
         }
     }
 }

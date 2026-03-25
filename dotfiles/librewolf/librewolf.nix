@@ -19,6 +19,11 @@ in
   programs.firefox = {
     enable = true;
     package = pkgs.librewolf;
+    # Activate the theme by default
+    preferences = {
+      "extensions.activeThemeID" = "minimal-dark-red@theme";
+      "xpinstall.signatures.required" = false;
+    };
   };
 
   environment.etc."librewolf/policies/policies.json".text = builtins.toJSON {
@@ -30,5 +35,6 @@ in
         };
       };
     };
+
   };
 }
