@@ -31,6 +31,14 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  networking.networkmanager.settings.connectivity = {
+    enabled = true;
+    uri = "http://connectivity-check.ubuntu.com/";
+    response = "NetworkManager is online";
+  };
+
+  programs.captive-browser.enable = true;
+
   # Enable bluetooth
   hardware.bluetooth.enable = true;
 

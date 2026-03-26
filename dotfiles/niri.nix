@@ -2,6 +2,9 @@
 
 {
   programs.niri.enable = true;
+  services.iio-niri.enable = true;
+  hardware.sensor.iio.enable = true;
+  programs.niri.useNautilus = true;
 
   # Display manager
   services.xserver.enable = true;
@@ -69,12 +72,16 @@
     # Environment applications
     cosmic-files
     waybar
+    swaylock-effects
+    swayidle
+    nirius
 
     # Environment controllers
     pavucontrol
     playerctl
     brightnessctl
     networkmanagerapplet
+    sunsetr
 
     # Customization
     bibata-cursors

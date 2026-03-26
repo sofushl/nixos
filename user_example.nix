@@ -19,6 +19,7 @@
   };
 
   networking.hostName = "Nixos";
+  programs.captive-browser.interface = "wlp0s20f3";
 
   imports = [
     # <nixos-wsl/modules>

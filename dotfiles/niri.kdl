@@ -159,6 +159,11 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 spawn-at-startup "waybar"
 
+// lock on startup
+//spawn-at-startup "swaylock" "--effect-blur" "7x5";
+
+// idle handling
+// spawn-at-startup "swayidle" "-w" "timeout" "300" "swaylock --effect-blur 7x5" "before-sleep" "swaylock --effect-blur 7x5"
 
 
 // Animation settings.
@@ -238,6 +243,8 @@ binds {
     Mod+B hotkey-overlay-title="Run an Application: Librewolf" { spawn "librewolf"; }
     Mod+F hotkey-overlay-title="Run an Application: Comsic files" { spawn "cosmic-files"; }
 
+    //Mod+semicolon { spawn "swaylock" "--effect-blur" "7x5"; }   
+    
     Mod+Space hotkey-overlay-title="Open launcher: fuzzel" { spawn "fuzzel"; }
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
