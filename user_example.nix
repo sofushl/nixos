@@ -28,6 +28,13 @@
     ./dotfiles/niri.nix
   ];
 
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 8 * 1024; # size in MB (here:84 GB)
+    }
+  ];
+
   # For wsl
   #wsl.enable = true;
   #wsl.startMenuLaunchers = true;
