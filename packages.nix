@@ -9,6 +9,7 @@
     vesktop
     element-desktop
     spotify
+    spicetify-cli
     geteduroam
     scenebuilder
     fastfetch

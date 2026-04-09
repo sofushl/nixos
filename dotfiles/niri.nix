@@ -44,6 +44,7 @@
     ./fuzzel.nix
     ./alacritty.nix
     ./librewolf/librewolf.nix
+    ./fastfetch.nix
   ];
 
   #https://man.archlinux.org/man/waybar.5
