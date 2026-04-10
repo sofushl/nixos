@@ -37,7 +37,7 @@
     response = "NetworkManager is online";
   };
 
-  programs.captive-browser.enable = true;
+  #programs.captive-browser.enable = true;
 
   # Enable bluetooth
   hardware.bluetooth.enable = true;

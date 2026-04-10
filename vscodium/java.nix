@@ -20,12 +20,10 @@ let
     xorg.libXxf86vm
     xorg.libXfixes
     xorg.libXinerama
-    javaPackages.compiler.openjdk25
     javaPackages.openjfx25
     maven
     nodejs_24
-    nodePackages.npm
-  ];
+    ];
 
 in
 pkgs.mkShell {
