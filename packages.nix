@@ -1,12 +1,14 @@
 { pkgs, config, ... }:
 
 {
+
   # Package set
   environment.systemPackages = with pkgs; [
 
     # Applications
     libreoffice-fresh
     vesktop
+    discordo
     element-desktop
     spotify
     spicetify-cli
@@ -26,6 +28,7 @@
 
   imports = [
     ./vscodium/vscodium.nix
-    ./dotfiles/librewolf/librewolf.nix
+    ./nvim/nvim.nix
+    ./niri/librewolf.nix
   ];
 }

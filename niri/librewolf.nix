@@ -3,7 +3,7 @@
 let
   myTheme = pkgs.stdenv.mkDerivation {
     name = "minimal-dark-red-theme";
-    src = ./firefox-theme;
+    src = ./config/librewolf/firefox-theme;
 
     nativeBuildInputs = [ pkgs.zip ]; # <- required
 
