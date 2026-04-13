@@ -1,36 +1,34 @@
 let
   pkgs = import <nixpkgs> { };
 
-  customJava = pkgs.jdk25;
-
   javafxDeps = with pkgs; [
-    gtk3
-    glib
-    libGL
-    libglvnd
-    libpulseaudio
-    libva
-    xorg.libX11
-    xorg.libXtst
-    xorg.libXrender
-    xorg.libXext
-    xorg.libXi
-    xorg.libXcursor
-    xorg.libXrandr
-    xorg.libXxf86vm
-    xorg.libXfixes
-    xorg.libXinerama
-    javaPackages.openjfx25
-    maven
-    nodejs_24
-    ];
+    pkgs.gtk3
+    pkgs.glib
+    pkgs.libGL
+    pkgs.libglvnd
+    pkgs.libpulseaudio
+    pkgs.libva
+    pkgs.xorg.libX11
+    pkgs.xorg.libXtst
+    pkgs.xorg.libXrender
+    pkgs.xorg.libXext
+    pkgs.xorg.libXi
+    pkgs.xorg.libXcursor
+    pkgs.xorg.libXrandr
+    pkgs.xorg.libXxf86vm
+    pkgs.xorg.libXfixes
+    pkgs.xorg.libXinerama
+    pkgs.javaPackages.openjfx25
+    pkgs.maven
+    pkgs.nodejs_24
+  ];
 
 in
 pkgs.mkShell {
-  packages = [ customJava ] ++ javafxDeps;
+  packages = [ pkgs.jdk25 ] ++ javafxDeps;
 
   shellHook = ''
-    export JAVA_HOME=${customJava}
+    export JAVA_HOME=${pkgs.jdk25}
     export PATH=$JAVA_HOME/bin:$PATH
     export LD_LIBRARY_PATH="${pkgs.lib.makeLibraryPath javafxDeps}:$LD_LIBRARY_PATH"
   '';
