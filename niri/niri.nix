@@ -14,6 +14,7 @@
     extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
   };
 
+  # Bad but nice automatic login greeter
   services.greetd = {
     enable = true;
     settings.default_session = {
@@ -34,6 +35,7 @@
     XCURSOR_SIZE = "24";
   };
 
+  # fallback for xwayland-sattelite
   xdg.icons.fallbackCursorThemes = [ "Bibata-Modern-Classic" ];
 
   # Audio (PipeWire is standard on NixOS now)
@@ -62,9 +64,6 @@
     # Environment applications
     cosmic-files
     waybar
-    swaylock-effects
-    swayidle
-    nirius
     fuzzel
     alacritty
     fastfetch
