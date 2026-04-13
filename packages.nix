@@ -27,8 +27,8 @@
   ];
 
   imports = [
-    ./vscodium/vscodium.nix
-    ./nvim/nvim.nix
+    ./applications/vscodium/vscodium.nix
+    ./applications/nvim/nvim.nix
     ./niri/librewolf.nix
   ];
 }
