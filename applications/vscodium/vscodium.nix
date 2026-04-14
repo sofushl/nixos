@@ -16,7 +16,7 @@
 
     (pkgs.writeShellScriptBin "codium-java" ''
       rm -rf ~/.config/VSCodium/Backups
-      nix-shell ~/Documents/nixos/vscodium/java.nix --run 'codium ~/Documents --ozone-platform=wayland --enable-native-access=javafx.graphics'
+      nix-shell ~/Documents/nixos/applications/vscodium/java.nix --run 'codium ~/Documents --ozone-platform=wayland --enable-native-access=javafx.graphics'
     '')
 
     # Dependencies for the shell java.nix

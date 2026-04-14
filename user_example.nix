@@ -25,7 +25,7 @@
     # <nixos-wsl/modules>
     ./main.nix
     ./packages.nix
-    ./dotfiles/niri.nix
+    ./niri/niri.nix
   ];
 
   swapDevices = [
