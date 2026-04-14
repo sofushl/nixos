@@ -24,6 +24,8 @@
     kdlfmt
     graphviz
     uv
+    jetbrains.idea-oss
+    btop
   ];
 
   imports = [
