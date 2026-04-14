@@ -12,11 +12,17 @@
 
   environment.systemPackages = [
     pkgs.vscodium
-    #pkgs.jdk25
+    pkgs.jetbrains.idea-oss
+
+    pkgs.jdk25
 
     (pkgs.writeShellScriptBin "codium-java" ''
       rm -rf ~/.config/VSCodium/Backups
       nix-shell ~/Documents/nixos/applications/vscodium/java.nix --run 'codium ~/Documents --ozone-platform=wayland --enable-native-access=javafx.graphics'
+    '')
+
+    (pkgs.writeShellScriptBin "idea" ''
+      nix-shell ~/Documents/nixos/applications/vscodium/java.nix --run 'idea-oss'
     '')
 
     # Dependencies for the shell java.nix

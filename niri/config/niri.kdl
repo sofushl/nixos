@@ -245,6 +245,8 @@ binds {
     Mod+B hotkey-overlay-title="Run an Application: Librewolf" { spawn "librewolf"; }
     Mod+F hotkey-overlay-title="Run an Application: Comsic files" { spawn "cosmic-files"; }
     Mod+S hotkey-overlay-title="Run an Application: Spotify" {spawn "spotify";}
+    Mod+Shift+C hotkey-overlay-title="Run an Application: Idea" {spawn "idea";}
+
 
     //Mod+semicolon { spawn "swaylock" "--effect-blur" "7x5"; }   
     
