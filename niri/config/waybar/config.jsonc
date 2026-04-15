@@ -49,10 +49,10 @@
     "network": {
         "format": "{essid}",
         "format-disconnected": "OFFLINE",
-        "format-disabled": "OFFLINE",
+        "format-disabled": "DISABLED",
         "tooltip": false,
         "enable-wireless": true,
         "enable-wired": true,
-        "on-click": "nm-connection-editor"
+        "on-click": "alacritty -e nmtui"
     }
 }
