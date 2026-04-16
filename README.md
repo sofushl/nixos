@@ -22,13 +22,13 @@ Attemt to rice librewolf, very much not working at the moment.
 ### /config
 Other file types than .nix files used to configure niri itself as well as waybar, alacritty, fuzzel and more...
 
-## Applications
+## Development
 
 ### vscodium
-Nix files that cofigure my vscodium with shellscripts and a java shell for development on nixos, /vsix includes vsix files that doesnt exist in the open source repo that vscodium uses.
+Nix files that cofigure my vscodium with shellscripts for coding on nixos, /vsix includes vsix files that doesnt exist in the open source repo that vscodium uses.
 
-### nvim
-WIP
+### nvim.nix
+Work in progress neovim config
 
 ## Desktop Environments
 

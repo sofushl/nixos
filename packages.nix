@@ -25,11 +25,13 @@
     graphviz
     uv
     btop
+    nodejs_24
   ];
 
   imports = [
-    ./applications/vscodium/vscodium.nix
-    ./applications/nvim/nvim.nix
+    ./development/vscodium/vscodium.nix
+    ./development/nvim.nix
+
     ./niri/librewolf.nix
   ];
 }

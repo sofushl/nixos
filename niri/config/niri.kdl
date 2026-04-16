@@ -240,12 +240,14 @@ binds {
     Mod+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
     //Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
     Mod+D hotkey-overlay-title="Run an Application: Discord" { spawn "vesktop"; }
-    Mod+C hotkey-overlay-title="Run an Application: Codium" { spawn "codium-java"; }        
+    Mod+C hotkey-overlay-title="Run an Application: Codium" { spawn "codium-inshell"; }        
     Mod+E hotkey-overlay-title="Run an Application: Element" { spawn "element-desktop"; }
     Mod+B hotkey-overlay-title="Run an Application: Librewolf" { spawn "librewolf"; }
     Mod+F hotkey-overlay-title="Run an Application: Comsic files" { spawn "cosmic-files"; }
     Mod+S hotkey-overlay-title="Run an Application: Spotify" {spawn "spotify";}
-    Mod+Shift+C hotkey-overlay-title="Run an Application: Idea" {spawn "idea";}
+    Mod+Shift+C hotkey-overlay-title="Run an Application: Idea" {spawn "idea-inshell";}
+    Mod+Shift+T hotkey-overlay-title="Run an Application: nvim" {spawn "vim-inshell";}
+
 
 
     //Mod+semicolon { spawn "swaylock" "--effect-blur" "7x5"; }   
