@@ -23,15 +23,11 @@
     curl
     ast-grep
     imagemagick
-    nvim-lspconfig
     nodejs_24
-    telescope-nvim
-    nvim-tree-lua
-    plenary-nvim
+    telescope
     stylua
 
     # LSP
-    nvim-lspconfig
     pyright
     lua-language-server
     nil
