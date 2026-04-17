@@ -6,10 +6,8 @@
   environment.systemPackages = with pkgs; [
 
     # Applications
-    libreoffice-fresh
+    onlyoffice-desktopeditors
     vesktop
-    discordo
-    element-desktop
     spotify
     spicetify-cli
     geteduroam
