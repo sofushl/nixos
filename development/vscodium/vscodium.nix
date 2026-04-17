@@ -23,5 +23,9 @@
       nix-shell ~/Documents/nixos/development/shell.nix --run 'idea-oss'
     '')
 
+    (pkgs.writeShellScriptBin "nvim-inshell" ''
+      nix-shell ~/Documents/nixos/development/shell.nix --run 'alacritty -e "nvim"'
+    '')
+
   ];
 }
