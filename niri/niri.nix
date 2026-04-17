@@ -1,10 +1,7 @@
-{ config, pkgs, ... }:
+{ config, pkgs, userconf, ... }:
 
 {
   programs.niri.enable = true;
-  services.iio-niri.enable = true;
-  hardware.sensor.iio.enable = true;
-  programs.niri.useNautilus = true;
 
   # Display manager
   services.xserver.enable = true;
@@ -21,9 +18,10 @@
       command = ''
         ${pkgs.dbus}/bin/dbus-run-session ${pkgs.niri}/bin/niri
       '';
-      user = "sofushl";
+      user = userconf.username;
     };
   };
+  
   #services.displayManager.defaultSession = "niri";
   #services.xserver.displayManager.lightdm = {
   #  enable = true;

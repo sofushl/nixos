@@ -1,4 +1,10 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  userconf,
+  ...
+}:
 
 {
   # Bootloader defined in user.nix for wsl purposes, see user_example.nix
@@ -27,6 +33,40 @@
     layout = "no";
     variant = "winkeys";
   };
+
+  # Bootloader
+  boot.loader.systemd-boot.enable = userconf.bootd; # false on WSL
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  # Kernel
+  boot.kernelPackages = pkgs.linuxPackages_zen;
+
+  # User account
+  users.users.${userconf.username} = {
+    isNormalUser = true;
+    description = userconf.fullname;
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
+  };
+
+  networking.hostName = userconf.hostname;
+  programs.captive-browser.interface = userconf.wifiboard;
+
+  imports = [
+    ./packages.nix
+    ./niri/niri.nix
+  ];
+
+  swapDevices = [
+    {
+      device = "/.swapfile";
+      size = userconf.swap * 1024;
+    }
+  ];
+
+  zramSwap.enable = true;
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -65,14 +105,22 @@
   };
 
   environment.shellAliases = {
-    nixos-reset = "
-      sudo nixos-rebuild switch && \
+    nixos-custom = "
+      sudo nixos-rebuild switch --flake /home/${userconf.username}/Documents/nixos#${userconf.hostname} --impure
+    ";
+    nixos-clean = "
+      nixos-custom
       sudo nix-collect-garbage -d && \
-      sudo rm -rf ~/.cache/* && \
-      sudo rm -rf /var/cache/* && \
-      sudo find /tmp -mindepth 1 -delete && \
-      sudo find /var/tmp -mindepth 1 -delete && \
-      sudo nix-store --optimise 
+      sudo nix store optimise && \
+      sudo fstrim -av && \
+      rm -rf ~/.cache/* ~/.local/share/Trash/* && \
+      sudo journalctl --vacuum-time=7d
+    ";
+    nixos-optimize = "
+      nixos-custom
+      sudo nix store optimise && \
+      sudo fstrim -av && \
+      sudo systemctl restart systemd-journald
     ";
   };
 
