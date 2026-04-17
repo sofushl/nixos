@@ -101,10 +101,10 @@ binds {
     // Workspaces
     Mod+J { focus-workspace-down; }
     Mod+K { focus-workspace-up; }
-
-    Mod+Shift+J { move-workspace-down; }
-    Mod+Shift+K { move-workspace-up; }
-
+    
+    Mod+Shift+J { move-column-to-workspace-down; }
+    Mod+Shift+K  { move-column-to-workspace-up; }
+    
     // Layout control
     Mod+R { switch-preset-column-width; }
     Mod+Shift+R { switch-preset-window-height; }
