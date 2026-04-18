@@ -2,8 +2,8 @@ input {
     keyboard { 
         xkb { 
             layout "no" 
-            } 
-            }
+        } 
+    }
 
     touchpad {
         tap
@@ -80,7 +80,7 @@ binds {
     Mod+D { spawn "vesktop"; }
     Mod+C { spawn "codium-inshell"; }
     Mod+Shift+C { spawn "idea-inshell"; }
-    Mod+Shift+T { spawn "vim-inshell"; }
+    Mod+Shift+T { spawn "nvim-inshell"; }
 
     Mod+E { spawn "element-desktop"; }
     Mod+B { spawn "librewolf"; }
@@ -115,7 +115,7 @@ binds {
     Mod+X { center-column; }
 
     Mod+Minus { set-column-width "-10%"; }
-    Mod+Equal { set-column-width "+10%"; }
+    Mod+Plus { set-column-width "+10%"; }
 
     // Floating / tiling
     Mod+Shift+V { toggle-window-floating; }
@@ -144,6 +144,4 @@ binds {
     XF86AudioStop        allow-when-locked=true { spawn-sh "playerctl stop"; }
     XF86AudioPrev        allow-when-locked=true { spawn-sh "playerctl previous"; }
     XF86AudioNext        allow-when-locked=true { spawn-sh "playerctl next"; }
-
-
 }

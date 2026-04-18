@@ -1,4 +1,9 @@
-{ config, pkgs, userconf, ... }:
+{
+  config,
+  pkgs,
+  userconf,
+  ...
+}:
 
 {
   programs.niri.enable = true;
@@ -21,7 +26,7 @@
       user = userconf.username;
     };
   };
-  
+
   #services.displayManager.defaultSession = "niri";
   #services.xserver.displayManager.lightdm = {
   #  enable = true;
@@ -57,9 +62,32 @@
   environment.etc."fastfetch".source = ./config/fastfetch;
   # doesnt work: environment.etc."sunsetr/sunsetr.toml".source = ./config/sunsetr.toml;
 
+  # Makes right alt into a secondary super/mod/windows button
+  services.keyd = {
+    enable = true;
+
+    keyboards.default = {
+      ids = [ "*" ];
+
+      settings = {
+        main = {
+          rightalt = "layer(nav)";
+          rightcontrol = "leftmeta";
+        };
+
+        nav = {
+          h = "left";
+          j = "down";
+          k = "up";
+          l = "right";
+        };
+      };
+    };
+  };
   environment.systemPackages = with pkgs; [
 
     # Environment applications
+    keyd
     cosmic-files
     waybar
     fuzzel
@@ -83,5 +111,4 @@
     usbutils
     udiskie
   ];
-
 }
