@@ -39,7 +39,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Kernel
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # User account
   users.users.${userconf.username} = {
@@ -135,5 +135,5 @@
   hardware.graphics.enable = true;
 
   # system version variable
-  system.stateVersion = "25.11";
+  system.stateVersion = userconf.state;
 }

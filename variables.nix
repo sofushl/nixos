@@ -7,4 +7,5 @@
   wifiboard = "wlp0s20f3";
   bootd = true;
   swap = 8;
+  state = "25.11"
 }
