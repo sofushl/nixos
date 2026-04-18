@@ -2,6 +2,9 @@ let
   pkgs = import <nixpkgs> { };
 
   javaFxDeps = with pkgs; [
+
+    javaPackages.openjfx25
+
     gtk3
     glib
     libGL
@@ -18,7 +21,10 @@ let
     xorg.libXxf86vm
     xorg.libXfixes
     xorg.libXinerama
-    javaPackages.openjfx25
+
+    wayland
+    libxkbcommon
+    vulkan-loader
   ];
 
   javaEnv = with pkgs; [
@@ -26,55 +32,43 @@ let
     maven
   ];
 
-  rustEnv = with pkgs; [
-    rustup
-    rustc
-    cargo
-    rustfmt
-    clippy
-    rust-analyzer
-
-    # Critical: wayland libraries for runtime
-    wayland
-    wayland-protocols
-    wayland-scanner
+  dlopenLibraries = with pkgs; [
     libxkbcommon
 
-    # X11 support
-    xorg.libX11
-    xorg.libXcursor
-    xorg.libXrandr
-    xorg.libXi
-
-    # Graphics
-    mesa
-    libglvnd
+    # GPU backend
     vulkan-loader
-    egl-wayland
+    # libGL
+
+    # Window system
+    wayland
+    # xorg.libX11
+    # xorg.libXcursor
+    # xorg.libXi
   ];
 
-  allPackages = javaEnv ++ javaFxDeps; # rust not included currently
+  allPackages = javaEnv ++ javaFxDeps;
 
 in
 pkgs.mkShell {
   packages = allPackages;
+
+  nativeBuildInputs = with pkgs; [
+    cargo
+    rustc
+  ];
+
+  # additional libraries that your project
+  # links to at build time, e.g. OpenSSL
+  buildInputs = [ ];
+
+  env.RUSTFLAGS = "-C link-arg=-Wl,-rpath,${pkgs.lib.makeLibraryPath dlopenLibraries}";
 
   shellHook = ''
     export JAVA_HOME=${pkgs.jdk25}
     export PATH="$JAVA_HOME/bin:$PATH"
 
     # Critical: Set library path for ALL dependencies including wayland/x11
-    export LD_LIBRARY_PATH="${
-      pkgs.lib.makeLibraryPath (
-        allPackages
-        ++ [
-          pkgs.wayland
-          pkgs.libxkbcommon
-          pkgs.mesa
-          pkgs.vulkan-loader
-        ]
-      )
-    }:$LD_LIBRARY_PATH"
+    export LD_LIBRARY_PATH="${pkgs.lib.makeLibraryPath (allPackages)}:$LD_LIBRARY_PATH"
 
     export TMPDIR=$PWD/.tmp
     mkdir -p $TMPDIR
