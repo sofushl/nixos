@@ -71,7 +71,7 @@
 
       settings = {
         main = {
-          rightalt = "layer(nav)";
+          compose = "layer(nav)";
           rightcontrol = "leftmeta";
         };
 

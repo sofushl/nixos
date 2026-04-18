@@ -63,11 +63,11 @@ pkgs.mkShell {
 
   env.RUSTFLAGS = "-C link-arg=-Wl,-rpath,${pkgs.lib.makeLibraryPath dlopenLibraries}";
 
+  env.JAVA_HOME = pkgs.jdk25;
+
   shellHook = ''
-    export JAVA_HOME=${pkgs.jdk25}
     export PATH="$JAVA_HOME/bin:$PATH"
 
-    # Critical: Set library path for ALL dependencies including wayland/x11
     export LD_LIBRARY_PATH="${pkgs.lib.makeLibraryPath (allPackages)}:$LD_LIBRARY_PATH"
 
     export TMPDIR=$PWD/.tmp
