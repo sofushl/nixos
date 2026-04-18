@@ -11,7 +11,11 @@
   };
 
   outputs =
-    { nixpkgs, home-manager, ... }:
+    {
+      nixpkgs,
+      home-manager,
+      ...
+    }:
     let
       system = "x86_64-linux";
 
@@ -33,7 +37,7 @@
           {
 
             home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = false;
+            home-manager.useUserPackages = true;
 
             home-manager.users.${userconf.username} = {
               imports = [
