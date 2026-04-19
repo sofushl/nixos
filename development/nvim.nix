@@ -88,6 +88,7 @@
     wget
     gcc
     tree-sitter
+    vimPlugins.nvim-treesitter
     curl
     ast-grep
     imagemagick
@@ -107,3 +108,4 @@
     javascript-typescript-langserver
   ];
 }
+  g
