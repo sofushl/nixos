@@ -1,13 +1,21 @@
 { config, pkgs, ... }:
 
 {
-
   environment.shellAliases = {
     python-venv = "
     nix-shell -p python314 uv --run ' \
     uv venv --python \$(which python) \
-    uv sync '
-";
+    uv sync'
+    ";
+    nvim-clean = "
+      rm -rf ~/.config/nvim && \
+      rm -rf ~/.cache/nvim && \
+      rm -rf ~/.local/share/nvim
+    ";
+    nvim-cache = "
+      rm -rf ~/.cache/nvim && \
+      rm -rf ~/.local/share/nvim
+    ";
   };
 
   environment.systemPackages = [

@@ -10,18 +10,18 @@
     enable = true;
     defaultEditor = true;
 
-    plugins = [
-      pkgs.nvim-lspconfig
-      pkgs.vimPlugins.nvim-treesitter.withAllGrammars
-      pkgs.plenary-nvim
-      pkgs.gruvbox-material
-      pkgs.mini-nvim
+    plugins = with pkgs.vimPlugins; [
+      nvim-lspconfig
+      nvim-treesitter.withAllGrammars
+      plenary-nvim
+      gruvbox-material
+      mini-nvim
 
     ];
 
-    extraLuaConfig = ''
+    initLua = ''
       require('nvim-treesitter.configs').setup {
-        highlight = {
+        highlight {
           enable = true,
         },
         indent = {
