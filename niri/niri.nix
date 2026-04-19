@@ -80,6 +80,8 @@
           j = "down";
           k = "up";
           l = "right";
+          rightalt = "compose";
+          rightcontrol = "rightcontrol";
         };
       };
     };

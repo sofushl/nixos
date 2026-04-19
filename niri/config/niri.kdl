@@ -61,6 +61,11 @@ spawn-at-startup "/run/current-system/sw/bin/sunsetr"
 
 animations { }
 
+hotkey-overlay {
+    skip-at-startup
+    hide-not-bound
+}
+
 window-rule {
     match app-id=r#"^org\.wezfurlong\.wezterm$"#
     default-column-width {}

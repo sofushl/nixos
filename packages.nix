@@ -13,6 +13,7 @@
     geteduroam
     scenebuilder
     fastfetch
+    helix
 
     # Dev tools
     git
