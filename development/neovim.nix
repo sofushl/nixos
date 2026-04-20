@@ -6,28 +6,110 @@
 }:
 
 {
+
+  home.packages = with pkgs; [
+    nodejs_24
+    python315
+    lua
+    rustc
+    telescope
+    stylua
+    pyright
+    lua-language-server
+    nil
+    jdt-language-server
+    rust-analyzer
+    java-language-server
+    javascript-typescript-langserver
+  ];
+
   programs.neovim = {
     enable = true;
     defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
+    vimdiffAlias = true;
+    waylandSupport = true;
 
     plugins = with pkgs.vimPlugins; [
-      nvim-lspconfig
-      nvim-treesitter.withAllGrammars
-      plenary-nvim
-      gruvbox-material
-      mini-nvim
 
+      telescope-nvim
+      vim-plug
+      vim-nix
+      vim-startify
+      vscode-nvim
+      nvim-lspconfig
+      nvim-cmp
     ];
 
-    initLua = ''
-      require('nvim-treesitter.configs').setup {
-        highlight {
-          enable = true,
-        },
-        indent = {
-          enable = true,
-        },
-      }
+    coc = {
+      enable = true;
+    };
+
+    extraConfig = ''
+      colorscheme vscode
     '';
+
+    initLua = ''
+      -- Helper for common on_attach behavior
+      local on_attach = function(_, bufnr)
+        local map = function(mode, lhs, rhs)
+          vim.keymap.set(mode, lhs, rhs, { buffer = bufnr })
+        end
+
+        map("n", "gd", vim.lsp.buf.definition)
+        map("n", "gr", vim.lsp.buf.references)
+        map("n", "K", vim.lsp.buf.hover)
+        map("n", "<leader>rn", vim.lsp.buf.rename)
+        map("n", "<leader>ca", vim.lsp.buf.code_action)
+      end
+
+      -- Python (pyright)
+      vim.lsp.config['pyright'] = {
+        cmd = { "pyright-langserver", "--stdio" },
+        filetypes = { "python" },
+        root_markers = { ".git", "pyproject.toml", "requirements.txt" },
+        on_attach = on_attach,
+      }
+
+      -- Lua
+      vim.lsp.config['lua_ls'] = {
+        cmd = { "lua-language-server" },
+        filetypes = { "lua" },
+        root_markers = { ".git", ".luarc.json", ".luarc.jsonc" },
+        settings = {
+          Lua = {
+            runtime = { version = "LuaJIT" },
+            diagnostics = { globals = { "vim" } },
+          }
+        },
+        on_attach = on_attach,
+      }
+
+      -- Nix
+      vim.lsp.config['nil_ls'] = {
+        cmd = { "nil" },
+        filetypes = { "nix" },
+        root_markers = { "flake.nix", ".git" },
+        on_attach = on_attach,
+      }
+
+      -- Rust
+      vim.lsp.config['rust_analyzer'] = {
+        cmd = { "rust-analyzer" },
+        filetypes = { "rust" },
+        root_markers = { "Cargo.toml", ".git" },
+        on_attach = on_attach,
+      }
+
+
+      -- Enable all
+      vim.lsp.enable('pyright')
+      vim.lsp.enable('lua_ls')
+      vim.lsp.enable('nil_ls')
+      vim.lsp.enable('rust_analyzer')
+
+    '';
+
   };
 }
