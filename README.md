@@ -2,14 +2,17 @@
 
 Multi file setup that allows for easy experimentation across multiple devices.
 
+### flake.nix
+Installer file, enables home-manager, see comments in main.nix
+
 ### main.nix
 Main file duh...
 
 ### packages.nix
-Packages for java programming with vscodium.
+Packages for development on nixos.
 
-### user.nix
-See user_example.nix, used to define imports, useraccount and hostname. Makes import in configuration.nix easy.
+### variables.nix
+Used to define device / user specific values, imported from /etc/nixos/variables.nix into flake.nix
 
 ## Niri
 
@@ -25,10 +28,13 @@ Other file types than .nix files used to configure niri itself as well as waybar
 ## Development
 
 ### vscodium
-Nix files that cofigure my vscodium with shellscripts for coding on nixos, /vsix includes vsix files that doesnt exist in the open source repo that vscodium uses.
+Nix files that configure my vscodium and intellij idea with shellscripts for coding on nixos, /vsix includes vsix files that doesnt exist in the open source repo that vscodium uses.
 
-### nvim.nix
-Work in progress neovim config
+### neovim.nix
+Home-manager based configuration of neovim intened for javascript and more.
+
+### shell.nix
+Nix shell that enables graphical applications based on javafx or iced-rs.
 
 ## Desktop Environments
 
@@ -39,8 +45,4 @@ Excessively debloated COSMIC DE from System76.
 Just another plasma setup. (not in use)
 
 ## Other information
-
-Command for allowing git and other file changes to work without root in the /etc/nixos directory/
-sudo setfacl -R -m u:{YOUR_USERNAME}:rwx /etc/nixos/
-
-Nixos config is made in a ~/Documents/nixos directory, .gitignore includes user.nix 
+Nixos config is made in a ~/Documents/nixos directory, .gitignore includes any files that can disturb the repo. 

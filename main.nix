@@ -1,8 +1,7 @@
 {
-  config,
   pkgs,
-  lib,
   userconf,
+  config,
   ...
 }:
 
@@ -52,7 +51,12 @@
   };
 
   networking.hostName = userconf.hostname;
-  programs.captive-browser.interface = userconf.wifiboard;
+
+  # For captive network connection
+  programs.captive-browser = {
+    enable = true;
+    interface = userconf.wifiboard;
+  };
 
   imports = [
     ./packages.nix
@@ -96,7 +100,7 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # Nix stuff?
+  # Enable flakes etc.
   nix.settings = {
     experimental-features = [
       "nix-command"
@@ -104,6 +108,7 @@
     ];
   };
 
+  # Custom build commands for using the flake instead of configuration.nix
   environment.shellAliases = {
     nixos-custom = "
       sudo nixos-rebuild switch --flake /home/${userconf.username}/Documents/nixos#${userconf.hostname} --impure
@@ -122,7 +127,20 @@
       sudo fstrim -av && \
       sudo systemctl restart systemd-journald
     ";
+    nano = "nvim";
+    nixos-git = ''
+      sudo setfacl -R -m u:${userconf.username}:rwx /etc/nixos/
+    '';
   };
+
+  # Global install of neovim to replace nano
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
+  };
+  programs.nano.enable = false;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;

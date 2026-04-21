@@ -13,7 +13,6 @@
     geteduroam
     scenebuilder
     fastfetch
-    helix
 
     # Dev tools
     git
@@ -36,15 +35,13 @@
     curl
     ast-grep
     imagemagick
-    nodejs_24
     gzip
     gnutar
+    nodejs_25
   ];
 
   imports = [
     ./development/vscodium/vscodium.nix
-    #./development/nvim.nix
-
     ./niri/librewolf.nix
   ];
 }

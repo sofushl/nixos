@@ -8,8 +8,6 @@
 {
 
   home.packages = with pkgs; [
-    nodejs_24
-    python315
     lua
     rustc
     telescope
@@ -40,6 +38,18 @@
       vscode-nvim
       nvim-lspconfig
       nvim-cmp
+      cmp-nvim-lsp
+      cmp-nvim-lsp-signature-help
+      cmp-buffer
+      cmp-path
+      cmp-nvim-lsp-document-symbol
+      cmp-nvim-lua
+      cmp-nvim-tags
+      cmp-nvim-ultisnips
+      coc-prettier
+      vim-prettier
+      vim-javascript
+      vim-javascript-syntax
     ];
 
     coc = {
