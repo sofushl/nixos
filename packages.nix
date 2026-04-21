@@ -42,6 +42,7 @@
 
   imports = [
     ./development/vscodium/vscodium.nix
+    ./development/antishell.nix
     ./niri/librewolf.nix
   ];
 }

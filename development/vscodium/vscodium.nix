@@ -26,16 +26,15 @@
     pkgs.jetbrains.idea-oss
 
     (pkgs.writeShellScriptBin "codium-inshell" ''
-      rm -rf ~/.config/VSCodium/Backups
-      nix-shell ~/Documents/nixos/development/shell.nix --run 'codium ~/Documents --ozone-platform=wayland --enable-native-access=javafx.graphics'
+      codium ~/Documents --ozone-platform=wayland --enable-native-access=javafx.graphics
     '')
 
     (pkgs.writeShellScriptBin "idea-inshell" ''
-      nix-shell ~/Documents/nixos/development/shell.nix --run 'idea-oss'
+      idea-oss ~/Documents/HorseStatisticsManager
     '')
 
     (pkgs.writeShellScriptBin "nvim-inshell" ''
-      nix-shell ~/Documents/nixos/development/shell.nix --run 'alacritty -e "nvim"'
+      alacritty -e "nvim ~/Documents"
     '')
 
   ];
