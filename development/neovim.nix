@@ -30,7 +30,7 @@
     waylandSupport = true;
 
     plugins = with pkgs.vimPlugins; [
-
+      neo-tree-nvim
       telescope-nvim
       vim-plug
       vim-nix

@@ -16,6 +16,9 @@
       rm -rf ~/.cache/nvim && \
       rm -rf ~/.local/share/nvim
     ";
+    devshell = "
+       nix-shell ~/Documents/nixos/development/shell.nix 
+    ";
   };
 
   environment.systemPackages = [
