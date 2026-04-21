@@ -42,7 +42,7 @@
     },
     "backlight": {
         "format": "LUX {percent}%",
-        "on-click": "loginctl terminate-user $USER",
+        "on-click": "hyprlock",
         "min-brightness": 0.01,
         "scroll-step": 0.1
     },

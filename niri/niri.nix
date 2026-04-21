@@ -60,6 +60,7 @@
   environment.etc."xdg/fuzzel/fuzzel.ini".source = ./config/fuzzel.ini;
   environment.etc."alacritty/alacritty.toml".source = ./config/alacritty.toml;
   environment.etc."fastfetch".source = ./config/fastfetch;
+  environment.etc."/etc/xdg/hypr/hyprlock.conf".source = ./config/hyprlock.conf;
   # doesnt work: environment.etc."sunsetr/sunsetr.toml".source = ./config/sunsetr.toml;
 
   # Makes right alt into a secondary super/mod/windows button
@@ -95,6 +96,7 @@
     fuzzel
     alacritty
     fastfetch
+    hyprlock 
 
     # Environment controllers
     pavucontrol
