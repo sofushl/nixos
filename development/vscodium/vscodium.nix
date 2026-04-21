@@ -20,14 +20,9 @@
 
   environment.systemPackages = [
     pkgs.vscodium
-    pkgs.jetbrains.idea-oss
 
     (pkgs.writeShellScriptBin "codium-inshell" ''
       codium ~/Documents --ozone-platform=wayland --enable-native-access=javafx.graphics
-    '')
-
-    (pkgs.writeShellScriptBin "idea-inshell" ''
-      idea-oss ~/Documents/HorseStatisticsManager
     '')
 
     (pkgs.writeShellScriptBin "nvim-inshell" ''
