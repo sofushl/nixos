@@ -78,6 +78,10 @@ window-rule {
     open-floating true
 }
 
+switch-events {
+    lid-close { spawn "hyprlock"; }
+}
+
 binds {
     // Core apps
     Mod+T { spawn "alacritty"; }

@@ -26,12 +26,7 @@
       user = userconf.username;
     };
   };
-
-  #services.displayManager.defaultSession = "niri";
-  #services.xserver.displayManager.lightdm = {
-  #  enable = true;
-  #  greeters.enso.enable = true;
-  #};
+  
 
   environment.variables = {
     XCURSOR_THEME = "Bibata-Modern-Classic";
