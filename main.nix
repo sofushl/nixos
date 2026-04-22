@@ -65,10 +65,13 @@
 
   swapDevices = [
     {
-      device = "/.swapfile";
-      size = userconf.swap * 1024;
+      device = userconf.swapDevice;
+      size = userconf.swapSize * 1024;
     }
   ];
+
+  powerManagement.cpuFreqGovernor = "powersave";
+  services.thermald.enable = true;
 
   zramSwap.enable = true;
 
@@ -140,6 +143,7 @@
     viAlias = true;
     vimAlias = true;
   };
+
   programs.nano.enable = false;
 
   # Enable CUPS to print documents.

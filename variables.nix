@@ -6,6 +6,7 @@
   hostname = "Computer";
   wifiboard = "wlp0s20f3";
   bootd = true;
-  swap = 8;
-  state = "25.11"
+  swapSize = 8;
+  swapDevice = "/.swapfile";
+  state = "25.11";
 }
