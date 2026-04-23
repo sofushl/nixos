@@ -10,10 +10,16 @@
 
   # Display manager
   services.xserver.enable = true;
-  xdg.portal = {
-    wlr.enable = true;
-    enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
+
+  xdg = {
+    portal = {
+      wlr.enable = true;
+      enable = true;
+      extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
+    };
+    # fallback for xwayland-sattelite
+    icons.fallbackCursorThemes = [ "Bibata-Modern-Classic" ];
+
   };
 
   # Bad but nice automatic login greeter
@@ -31,9 +37,6 @@
     XCURSOR_THEME = "Bibata-Modern-Classic";
     XCURSOR_SIZE = "24";
   };
-
-  # fallback for xwayland-sattelite
-  xdg.icons.fallbackCursorThemes = [ "Bibata-Modern-Classic" ];
 
   # Audio (PipeWire is standard on NixOS now)
   services.pipewire = {
@@ -84,6 +87,7 @@
       };
     };
   };
+
   environment.systemPackages = with pkgs; [
 
     # Environment applications

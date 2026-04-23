@@ -50,7 +50,40 @@
     ];
   };
 
+  # Network setup
   networking.hostName = userconf.hostname;
+  networking.networkmanager.ensureProfiles.profiles = {
+    eduroam = {
+      connection = {
+        id = "eduroam";
+        type = "wifi";
+        interface-name = userconf.wifiboard; # adjust if needed
+      };
+
+      wifi = {
+        ssid = "eduroam";
+        mode = "infrastructure";
+      };
+
+      wifi-security = {
+        key-mgmt = "wpa-eap";
+      };
+
+      "802-1x" = {
+        eap = "peap";
+        identity = "${userconf.username}@ntnu.no";
+        password = "";
+        phase2-auth = "mschapv2";
+
+        # Important part most people misunderstand:
+        ca-cert = "/etc/ssl/certs/ca-certificates.crt";
+        # or a specific NTNU cert if required
+      };
+
+      ipv4.method = "auto";
+      ipv6.method = "auto";
+    };
+  };
 
   # For captive network connection
   programs.captive-browser = {

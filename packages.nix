@@ -17,6 +17,7 @@
 
     # Dev tools
     git
+    gitui
     openssh
     nixfmt
     tinymist
