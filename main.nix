@@ -58,10 +58,7 @@
     interface = userconf.wifiboard;
   };
 
-  imports = [
-    ./packages.nix
-    ./niri/niri.nix
-  ];
+  imports = userconf.imports;
 
   swapDevices = [
     {
@@ -131,8 +128,10 @@
       sudo systemctl restart systemd-journald
     ";
     nano = "nvim";
-    nixos-git = ''
-      sudo setfacl -R -m u:${userconf.username}:rwx /etc/nixos/
+    nixos-allow = ''
+      sudo setfacl -R -m u:${userconf.username}:rwx /etc/nixos/ && \
+ sudo setfacl -R -m u:${userconf.username}:rwx /home/${userconf.username} 
+ 
     '';
   };
 

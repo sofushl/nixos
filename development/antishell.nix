@@ -52,7 +52,7 @@ in
 
     JAVA_HOME = pkgs.javaPackages.compiler.openjdk25;
 
-    PATH = "$JAVA_HOME/bin:$PATH";
+    #PATH = "$JAVA_HOME/bin:$PATH";
 
     RPATH = "${pkgs.lib.makeLibraryPath dlopenLibraries}";
 
