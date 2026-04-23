@@ -13,6 +13,7 @@
     geteduroam
     scenebuilder
     fastfetch
+    vscodium
 
     # Dev tools
     git

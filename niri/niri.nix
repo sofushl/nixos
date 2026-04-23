@@ -26,7 +26,6 @@
       user = userconf.username;
     };
   };
-  
 
   environment.variables = {
     XCURSOR_THEME = "Bibata-Modern-Classic";
@@ -50,13 +49,15 @@
   services.udisks2.enable = true;
   services.gvfs.enable = true;
 
-  environment.etc."niri/config.kdl".source = ./config/niri.kdl;
-  environment.etc."xdg/waybar".source = ./config/waybar; # https://man.archlinux.org/man/waybar.5
-  environment.etc."xdg/fuzzel/fuzzel.ini".source = ./config/fuzzel.ini;
-  environment.etc."alacritty/alacritty.toml".source = ./config/alacritty.toml;
-  environment.etc."fastfetch".source = ./config/fastfetch;
-  environment.etc."/etc/xdg/hypr/hyprlock.conf".source = ./config/hyprlock.conf;
-  # doesnt work: environment.etc."sunsetr/sunsetr.toml".source = ./config/sunsetr.toml;
+  # Config imports
+  environment.etc = {
+    "niri/config.kdl".source = ./config/niri.kdl;
+    "xdg/waybar".source = ./config/waybar; # https://man.archlinux.org/man/waybar.5
+    "xdg/fuzzel/fuzzel.ini".source = ./config/fuzzel.ini;
+    "alacritty/alacritty.toml".source = ./config/alacritty.toml;
+    "fastfetch".source = ./config/fastfetch;
+    "/etc/xdg/hypr/hyprlock.conf".source = ./config/hyprlock.conf;
+  };
 
   # Makes right alt into a secondary super/mod/windows button
   services.keyd = {
@@ -69,6 +70,7 @@
         main = {
           compose = "layer(nav)";
           rightcontrol = "leftmeta";
+          leftmeta = "overload(meta, fuzzel)";
         };
 
         nav = {
@@ -91,7 +93,7 @@
     fuzzel
     alacritty
     fastfetch
-    hyprlock 
+    hyprlock
 
     # Environment controllers
     pavucontrol

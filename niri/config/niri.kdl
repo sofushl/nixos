@@ -87,11 +87,10 @@ binds {
     Mod+T { spawn "alacritty"; }
     Mod+Space { spawn "fuzzel"; }
 
-    // Personal apps (nix-shell)
+    // Personal apps 
     Mod+D { spawn "vesktop"; }
-    Mod+C { spawn "codium-inshell"; }
-    Mod+Shift+C { spawn "idea-inshell"; }
-    Mod+Shift+T { spawn "nvim-inshell"; }
+    Mod+C { spawn "codium"; }
+    Mod+Shift+T { spawn "alacritty" "-e" "nvim"; }
 
     Mod+E { spawn "element-desktop"; }
     Mod+B { spawn "librewolf"; }

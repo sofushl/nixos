@@ -58,7 +58,17 @@
     interface = userconf.wifiboard;
   };
 
-  imports = userconf.imports;
+  # Imports
+  imports =
+    userconf.imports
+    ++ (
+      if userconf.niri then
+        [
+          /home/${userconf.username}/Documents/nixos/niri/niri.nix
+        ]
+      else
+        [ ]
+    );
 
   swapDevices = [
     {
@@ -130,9 +140,22 @@
     nano = "nvim";
     nixos-allow = ''
       sudo setfacl -R -m u:${userconf.username}:rwx /etc/nixos/ && \
- sudo setfacl -R -m u:${userconf.username}:rwx /home/${userconf.username} 
- 
+      sudo setfacl -R -m u:${userconf.username}:rwx /home/${userconf.username} 
     '';
+    python-venv = "
+      nix-shell -p python314 uv --run ' \
+      uv venv --python \$(which python) \
+      uv sync'
+    ";
+    nvim-clean = "
+      rm -rf ~/.config/nvim && \
+      rm -rf ~/.cache/nvim && \
+      rm -rf ~/.local/share/nvim
+    ";
+    nvim-cache = "
+      rm -rf ~/.cache/nvim && \
+      rm -rf ~/.local/share/nvim
+    ";
   };
 
   # Global install of neovim to replace nano
