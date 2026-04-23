@@ -42,6 +42,7 @@
             home-manager.users.${userconf.username} = {
               imports = [
                 /home/${userconf.username}/Documents/nixos/development/neovim.nix
+                /home/${userconf.username}/Documents/nixos/niri/home.nix
               ];
 
               home.stateVersion = "26.05";
