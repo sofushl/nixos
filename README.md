@@ -27,19 +27,19 @@ Other file types than .nix files used to configure niri itself as well as waybar
 
 ## Development
 
-### vscodium
-Nix files that configure my vscodium and intellij idea with shellscripts for coding on nixos, /vsix includes vsix files that doesnt exist in the open source repo that vscodium uses.
-
 ### neovim.nix
 Home-manager based configuration of neovim intened for javascript and more.
 
-### shell.nix
-Nix shell that enables graphical applications based on javafx or iced-rs.
+### antishell.nix
+Used to be nix shell that enables graphical applications based on javafx or iced-rs, but now it just applies the same things to the global path.
+
+### vscodium
+settings.json for vim in vscodium and vsix files that doesnt exist in the open source repo that vscodium uses.
 
 ## Desktop Environments
 
 ### cosmic.nix
-Excessively debloated COSMIC DE from System76.
+Excessively debloated COSMIC DE from System76. (not in use)
 
 ### plasma.nix
 Just another plasma setup. (not in use)
