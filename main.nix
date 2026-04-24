@@ -265,12 +265,6 @@
     xrdp.enable = true;
   };
 
-  wsl = {
-    enable = userconf.wsl;
-    defaultUser = userconf.username;
-    startMenuLaunchers = true;
-  };
-
   hardware = {
     bluetooth.enable = true;
     graphics.enable = true;

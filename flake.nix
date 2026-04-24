@@ -32,7 +32,6 @@
         modules = [
           /etc/nixos/hardware-configuration.nix
           ./main.nix
-          <nixos-wsl/modules>
 
           home-manager.nixosModules.home-manager
           {
