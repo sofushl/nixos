@@ -5,13 +5,10 @@
   fullname = "Display Name";
   hostname = "Computer";
   wifiboard = "wlp0s20f3";
-  bootd = true;
   swapSize = 8;
   swapDevice = "/.swapfile";
   state = "26.05";
-  niri = true;
-  imports = [
-    /home/username/Documents/nixos/packages.nix
-    /home/username/Documents/nixos/development/antishell.nix
-  ];
+  niri = true; # Enables niri config
+  devenv = true; # Enables antishell.nix
+  wsl = false; # Enables WSL dependencies
 }

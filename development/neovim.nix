@@ -15,10 +15,7 @@
     pyright
     lua-language-server
     nil
-    jdt-language-server
     rust-analyzer
-    java-language-server
-    javascript-typescript-langserver
   ];
 
   programs.neovim = {
@@ -27,7 +24,6 @@
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
-    waylandSupport = true;
 
     plugins = with pkgs.vimPlugins; [
       neo-tree-nvim

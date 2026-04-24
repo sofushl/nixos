@@ -6,8 +6,6 @@
 }:
 
 {
-  # Bootloader defined in user.nix for wsl purposes, see user_example.nix
-
   # Set time zone.
   time.timeZone = "Europe/Oslo";
 
@@ -34,7 +32,7 @@
   };
 
   # Bootloader
-  boot.loader.systemd-boot.enable = userconf.bootd; # false on WSL
+  boot.loader.systemd-boot.enable = !userconf.wsl; # false on WSL
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Kernel
@@ -52,52 +50,72 @@
 
   # Network setup
   networking.hostName = userconf.hostname;
-  networking.networkmanager.ensureProfiles.profiles = {
-    eduroam = {
-      connection = {
-        id = "eduroam";
-        type = "wifi";
-        interface-name = userconf.wifiboard; # adjust if needed
-      };
+  networking.networkmanager = {
 
-      wifi = {
-        ssid = "eduroam";
-        mode = "infrastructure";
-      };
-
-      wifi-security = {
-        key-mgmt = "wpa-eap";
-      };
-
-      "802-1x" = {
-        eap = "peap";
-        identity = "${userconf.username}@ntnu.no";
-        password = "";
-        phase2-auth = "mschapv2";
-
-        # Important part most people misunderstand:
-        ca-cert = "/etc/ssl/certs/ca-certificates.crt";
-        # or a specific NTNU cert if required
-      };
-
-      ipv4.method = "auto";
-      ipv6.method = "auto";
-    };
-  };
-
-  # For captive network connection
-  programs.captive-browser = {
     enable = true;
-    interface = userconf.wifiboard;
+
+    settings.connectivity = {
+      enabled = true;
+      uri = "http://connectivity-check.ubuntu.com/";
+      response = "NetworkManager is online";
+    };
+
+    ensureProfiles.profiles = {
+      eduroam = {
+        connection = {
+          id = "eduroam";
+          type = "wifi";
+          interface-name = userconf.wifiboard; # adjust if needed
+        };
+
+        wifi = {
+          ssid = "eduroam";
+          mode = "infrastructure";
+        };
+
+        wifi-security = {
+          key-mgmt = "wpa-eap";
+        };
+
+        "802-1x" = {
+          eap = "peap";
+          identity = "${userconf.username}@ntnu.no";
+          password = "";
+          phase2-auth = "mschapv2";
+
+          # Important part most people misunderstand:
+          ca-cert = "/etc/ssl/certs/ca-certificates.crt";
+          # or a specific NTNU cert if required
+        };
+
+        ipv4.method = "auto";
+        ipv6.method = "auto";
+      };
+    };
   };
 
   # Imports
   imports =
-    userconf.imports
+    (
+      if userconf.devenv then
+        [
+          /home/${userconf.username}/Documents/nixos/development/antishell.nix
+        ]
+      else
+        [ ]
+    )
     ++ (
       if userconf.niri then
         [
           /home/${userconf.username}/Documents/nixos/niri/niri.nix
+        ]
+      else
+        [ ]
+    )
+    ++ (
+      if userconf.wsl then
+        [
+          <wslpackagesomething>
         ]
       else
         [ ]
@@ -111,33 +129,11 @@
   ];
 
   powerManagement.cpuFreqGovernor = "powersave";
-  services.thermald.enable = true;
-
   zramSwap.enable = true;
 
-  # Enable networking
-  networking.networkmanager.enable = true;
-
-  networking.networkmanager.settings.connectivity = {
-    enabled = true;
-    uri = "http://connectivity-check.ubuntu.com/";
-    response = "NetworkManager is online";
-  };
-
-  #programs.captive-browser.enable = true;
-
-  # Enable bluetooth
-  hardware.bluetooth.enable = true;
-
-  # Enable sound with pipewire.
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = false;
+  security = {
+    rtkit.enable = true;
+    sudo.wheelNeedsPassword = false;
   };
 
   # Allow unfree packages
@@ -151,12 +147,56 @@
     ];
   };
 
-  # Custom build commands for using the flake instead of configuration.nix
-  environment.shellAliases = {
-    nixos-custom = "
+  environment = {
+    # Package set
+    systemPackages =
+      with pkgs;
+      [
+        # Tools
+        fastfetch
+        git
+        gitui
+        openssh
+        nixfmt
+        tinymist
+        kdlfmt
+        graphviz
+        uv
+        btop
+        lazygit
+        fd
+        ripgrep
+        fzf
+        unzip
+        wget
+        gcc
+        curl
+        ast-grep
+        gzip
+        gnutar
+        nodejs_25
+      ]
+      ++ (
+        if !userconf.wsl then
+          [
+            # Applications
+            onlyoffice-desktopeditors
+            vesktop
+            spotify
+            scenebuilder
+            vscodium
+            librewolf
+          ]
+        else
+          [ ]
+      );
+
+    # Custom build commands for using the flake instead of configuration.nix
+    shellAliases = {
+      nixos-custom = "
       sudo nixos-rebuild switch --flake /home/${userconf.username}/Documents/nixos#${userconf.hostname} --impure
     ";
-    nixos-clean = "
+      nixos-clean = "
       nixos-custom
       sudo nix-collect-garbage -d && \
       sudo nix store optimise && \
@@ -164,53 +204,76 @@
       rm -rf ~/.cache/* ~/.local/share/Trash/* && \
       sudo journalctl --vacuum-time=7d
     ";
-    nixos-optimize = "
+      nixos-optimize = "
       nixos-custom
       sudo nix store optimise && \
       sudo fstrim -av && \
       sudo systemctl restart systemd-journald
     ";
-    nano = "nvim";
-    nixos-allow = ''
-      sudo setfacl -R -m u:${userconf.username}:rwx /etc/nixos/ && \
-      sudo setfacl -R -m u:${userconf.username}:rwx /home/${userconf.username} 
-    '';
-    python-venv = "
+      nano = "nvim";
+      nixos-allow = ''
+        sudo setfacl -R -m u:${userconf.username}:rwx /etc/nixos/ && \
+        sudo setfacl -R -m u:${userconf.username}:rwx /home/${userconf.username} 
+      '';
+      python-venv = "
       nix-shell -p python314 uv --run ' \
       uv venv --python \$(which python) \
       uv sync'
     ";
-    nvim-clean = "
+      nvim-clean = "
       rm -rf ~/.config/nvim && \
       rm -rf ~/.cache/nvim && \
       rm -rf ~/.local/share/nvim
     ";
-    nvim-cache = "
+      nvim-cache = "
       rm -rf ~/.cache/nvim && \
       rm -rf ~/.local/share/nvim
     ";
+    };
   };
 
-  # Global install of neovim to replace nano
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
+  programs = {
+    # Global install of neovim to replace nano
+    neovim = {
+      enable = true;
+      defaultEditor = true;
+      viAlias = true;
+      vimAlias = true;
+    };
+
+    nano.enable = false;
+    nix-ld.enable = true;
+
+    # For captive network connection
+    captive-browser = {
+      enable = true;
+      interface = userconf.wifiboard;
+    };
+
   };
 
-  programs.nano.enable = false;
+  services = {
+    # Enable sound with pipewire.
+    pulseaudio.enable = false;
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = false;
+    };
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
+    # Enable CUPS to print documents.
+    printing.enable = true;
 
-  #SSH support
-  services.openssh.enable = true;
+    # Thermal security
+    thermald.enable = true;
+  };
 
-  programs.nix-ld.enable = true;
-
-  hardware.graphics.enable = true;
-
+  hardware = {
+    bluetooth.enable = true;
+    graphics.enable = true;
+  };
   # system version variable
   system.stateVersion = userconf.state;
 }

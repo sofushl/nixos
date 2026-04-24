@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  useconf,
   lib,
   ...
 }:
@@ -51,8 +50,6 @@ in
     RUSTFLAGS = "-C link-arg=-Wl,-rpath,${pkgs.lib.makeLibraryPath dlopenLibraries}";
 
     JAVA_HOME = pkgs.javaPackages.compiler.openjdk25;
-
-    #PATH = "$JAVA_HOME/bin:$PATH";
 
     RPATH = "${pkgs.lib.makeLibraryPath dlopenLibraries}";
 

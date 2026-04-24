@@ -37,20 +37,15 @@
           {
 
             home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
+            home-manager.useUserPackages = false;
 
             home-manager.users.${userconf.username} = {
               imports = [
                 /home/${userconf.username}/Documents/nixos/development/neovim.nix
               ]
-              ++ (
-                if userconf.niri then
-                  [
-                    /home/${userconf.username}/Documents/nixos/niri/home.nix
-                  ]
-                else
-                  [ ]
-              );
+              ++ (if userconf.niri then [ /home/${userconf.username}/Documents/nixos/niri/home.nix ] else [ ]);
+
+              programs.neovim.waylandSupport = !userconf.wsl;
 
               home.stateVersion = "26.05";
             };
