@@ -88,10 +88,9 @@ binds {
     Mod+Space { spawn "fuzzel"; }
 
     // Personal apps 
+    Mod+Shift+T { spawn "alacritty" "-e" "nvim"; }
     Mod+D { spawn "vesktop"; }
     Mod+C { spawn "codium"; }
-    Mod+Shift+T { spawn "alacritty" "-e" "nvim"; }
-
     Mod+E { spawn "element-desktop"; }
     Mod+B { spawn "librewolf"; }
     Mod+F { spawn "cosmic-files"; }

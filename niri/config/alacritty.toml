@@ -1,4 +1,3 @@
-#Alacaritty simple terminal look
 [colors.primary]
 background = '#1E1E1E'
 foreground = '#E0E0E0'
@@ -12,36 +11,30 @@ text = '#1E1E1E'
 cursor = '#DC6666'
 
 [colors.normal]
-black = '#1E1E1E'
-red = '#DC6666'
-green = '#DC6666'
-yellow = '#DC6666'
-blue = '#DC6666'
+black   = '#1E1E1E'
+red     = '#DC6666'
+
+green   = '#86B895'  
+yellow  = '#E0B879' 
+
 magenta = '#DC6666'
-cyan = '#DC6666'
-white = '#E0E0E0'
+blue    = '#DC6666' 
+cyan    = '#DC6666' 
+white   = '#E0E0E0'
 
 [colors.bright]
-black = '#1E1E1E'
-red = '#DC6666'
-green = '#DC6666'
-yellow = '#DC6666'
-blue = '#DC6666'
+black   = '#1E1E1E'
+red     = '#DC6666'
+green   = '#DC6666'
+yellow  = '#DC6666'
+blue    = '#DC6666'
 magenta = '#DC6666'
-cyan = '#DC6666'
-white = '#E0E0E0'
+cyan    = '#DC6666'
+white   = '#E0E0E0'
 
 [window]
 decorations = "None"
 padding = { x = 5, y = 0 }
-opacity = 1.0
-
-[scrolling]
-history = 3023
-
-[cursor]
-style = { shape = "Block", blinking = "Off" }
-unfocused_hollow = true
 
 [mouse]
 hide_when_typing = true

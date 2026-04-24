@@ -3,10 +3,6 @@
     "logo": {
         "type": "file",
         "source": "/etc/fastfetch/abacordlogo.txt",
-        "color": {
-            "1": "97",
-            "7": "31"
-        },
         "padding": {
             "top": 0,
             "left": 0,
