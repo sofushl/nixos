@@ -26,10 +26,6 @@
 
   # Keyboard config
   console.keyMap = "no";
-  services.xserver.xkb = {
-    layout = "no";
-    variant = "winkeys";
-  };
 
   # Bootloader
   boot.loader.systemd-boot.enable = !userconf.wsl; # false on WSL
@@ -59,43 +55,10 @@
       uri = "http://connectivity-check.ubuntu.com/";
       response = "NetworkManager is online";
     };
-
-    ensureProfiles.profiles = {
-      eduroam = {
-        connection = {
-          id = "eduroam";
-          type = "wifi";
-          interface-name = userconf.wifiboard; # adjust if needed
-        };
-
-        wifi = {
-          ssid = "eduroam";
-          mode = "infrastructure";
-        };
-
-        wifi-security = {
-          key-mgmt = "wpa-eap";
-        };
-
-        "802-1x" = {
-          eap = "peap";
-          identity = "${userconf.username}@ntnu.no";
-          password = "";
-          phase2-auth = "mschapv2";
-
-          # Important part most people misunderstand:
-          ca-cert = "/etc/ssl/certs/ca-certificates.crt";
-          # or a specific NTNU cert if required
-        };
-
-        ipv4.method = "auto";
-        ipv6.method = "auto";
-      };
-    };
   };
 
   # Imports
-  imports =  
+  imports =
     (
       if userconf.devenv then
         [
@@ -178,6 +141,7 @@
             scenebuilder
             vscodium
             librewolf
+            geteduroam
           ]
         else
           [ ]
@@ -185,21 +149,16 @@
 
     # Custom build commands for using the flake instead of configuration.nix
     shellAliases = {
-      nixos-custom = "
+      nixos-build = "
       sudo nixos-rebuild switch --flake /home/${userconf.username}/Documents/nixos#${userconf.hostname} --impure
     ";
-      nixos-clean = "
-      nixos-custom
+      nixos-clear = "
       sudo nix-collect-garbage -d && \
       sudo nix store optimise && \
       sudo fstrim -av && \
-      rm -rf ~/.cache/* ~/.local/share/Trash/* && \
-      sudo journalctl --vacuum-time=7d
-    ";
-      nixos-optimize = "
-      nixos-custom
-      sudo nix store optimise && \
-      sudo fstrim -av && \
+      sudo rm -rf /home/${userconf.username}/.cache/* /home/${userconf.username}/.local/share/Trash/* && \
+      sudo rm -rf /tmp/* /var/tmp/* && \
+      sudo journalctl --vacuum-time=7d && \
       sudo systemctl restart systemd-journald
     ";
       nano = "nvim";
@@ -212,12 +171,8 @@
       uv venv --python \$(which python) \
       uv sync'
     ";
-      nvim-clean = "
+      nvim-clear = "
       rm -rf ~/.config/nvim && \
-      rm -rf ~/.cache/nvim && \
-      rm -rf ~/.local/share/nvim
-    ";
-      nvim-cache = "
       rm -rf ~/.cache/nvim && \
       rm -rf ~/.local/share/nvim
     ";
@@ -260,9 +215,6 @@
 
     # Thermal security
     thermald.enable = true;
-
-    # Remote desktop
-    xrdp.enable = true;
   };
 
   hardware = {
