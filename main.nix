@@ -95,7 +95,7 @@
   };
 
   # Imports
-  imports =
+  imports =  
     (
       if userconf.devenv then
         [
@@ -108,14 +108,6 @@
       if userconf.niri then
         [
           /home/${userconf.username}/Documents/nixos/niri/niri.nix
-        ]
-      else
-        [ ]
-    )
-    ++ (
-      if userconf.wsl then
-        [
-          <nixos-wsl/modules>
         ]
       else
         [ ]

@@ -32,6 +32,7 @@
         modules = [
           /etc/nixos/hardware-configuration.nix
           ./main.nix
+          <nixos-wsl/modules>
 
           home-manager.nixosModules.home-manager
           {
@@ -45,7 +46,8 @@
               ]
               ++ (if userconf.niri then [ /home/${userconf.username}/Documents/nixos/niri/home.nix ] else [ ]);
 
-              programs.neovim.waylandSupport = !userconf.wsl;
+              programs.neovim.extraConfig =
+                if userconf.wsl then "" else "colorscheme vscode";
 
               home.stateVersion = "26.05";
             };

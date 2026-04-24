@@ -24,6 +24,7 @@
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
+    waylandSupport = true;
 
     plugins = with pkgs.vimPlugins; [
       neo-tree-nvim
@@ -51,10 +52,6 @@
     coc = {
       enable = true;
     };
-
-    extraConfig = ''
-      colorscheme vscode
-    '';
 
     initLua = ''
       -- Helper for common on_attach behavior
