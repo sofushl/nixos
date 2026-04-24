@@ -13,6 +13,7 @@
         "network",
         "pulseaudio",
         "backlight",
+        "temperature",
         "memory",
         "battery"
     ],
@@ -38,7 +39,7 @@
     "pulseaudio": {
         "format": "VOL {volume}%",
         "format-muted": "MUTED",
-        "on-click": "pavucontrol"
+        "on-click": "alacritty -e bluetui"
     },
     "backlight": {
         "format": "LUX {percent}%",
@@ -54,5 +55,9 @@
         "enable-wireless": true,
         "enable-wired": true,
         "on-click": "alacritty -e nmtui"
+    },
+    "temperature": {
+        "format": "CPU {temperatureC}°C",
+        "on-click": "alacritty -e btop"
     }
 }

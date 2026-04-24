@@ -16,7 +16,8 @@ window#waybar {
 #pulseaudio,
 #backlight,
 #network,
-#battery {
+#battery,
+#temperature {
     padding: 0 5px;
     margin: 2px 3px;
     background: #1E1E1E;
@@ -28,7 +29,8 @@ window#waybar {
 #backlight,
 #memory,
 #network,
-#battery {
+#battery,
+#temperature {
     border-bottom: 2px solid #DC6666;
     min-width: 30px;
 }

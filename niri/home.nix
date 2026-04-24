@@ -18,8 +18,10 @@
     };
   };
 
-  xdg.configFile."sunsetr/sunsetr.toml" = {
-    source = ./config/sunsetr.toml;
-    force = true;
+  xdg = {
+    configFile."sunsetr/sunsetr.toml" = {
+      source = ./config/sunsetr.toml;
+      force = true;
+    };
   };
 }

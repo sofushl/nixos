@@ -8,112 +8,123 @@
 {
   programs.niri.enable = true;
 
-  # Display manager
-  services.xserver.enable = true;
-
   xdg = {
     portal = {
       wlr.enable = true;
       enable = true;
       extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
     };
-    # fallback for xwayland-sattelite
+    # Fallback for xwayland-sattelite
     icons.fallbackCursorThemes = [ "Bibata-Modern-Classic" ];
-
-  };
-
-  # Bad but nice automatic login greeter
-  services.greetd = {
-    enable = true;
-    settings.default_session = {
-      command = ''
-        ${pkgs.dbus}/bin/dbus-run-session ${pkgs.niri}/bin/niri
-      '';
-      user = userconf.username;
-    };
-  };
-
-  environment.variables = {
-    XCURSOR_THEME = "Bibata-Modern-Classic";
-    XCURSOR_SIZE = "24";
-  };
-
-  # Audio (PipeWire is standard on NixOS now)
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
-    alsa.enable = true;
   };
 
   # Enable networking
   networking.networkmanager.enable = true;
 
-  # USB management
-  services.udisks2.enable = true;
-  services.gvfs.enable = true;
+  services = {
 
-  # Config imports
-  environment.etc = {
-    "niri/config.kdl".source = ./config/niri.kdl;
-    "xdg/waybar".source = ./config/waybar; # https://man.archlinux.org/man/waybar.5
-    "xdg/fuzzel/fuzzel.ini".source = ./config/fuzzel.ini;
-    "alacritty/alacritty.toml".source = ./config/alacritty.toml;
-    "fastfetch".source = ./config/fastfetch;
-    "/etc/xdg/hypr/hyprlock.conf".source = ./config/hyprlock.conf;
-  };
+    # Display manager
+    xserver = {
+      enable = true;
+      desktopManager.xterm.enable = false;
+      xkb = {
+        layout = "no";
+        variant = "winkeys";
+      };
+    };
 
-  # Makes right alt into a secondary super/mod/windows button
-  services.keyd = {
-    enable = true;
+    # Automatic login greeter
+    greetd = {
+      enable = true;
+      settings.default_session = {
+        command = ''
+          ${pkgs.dbus}/bin/dbus-run-session ${pkgs.niri}/bin/niri
+        '';
+        user = userconf.username;
+      };
+    };
 
-    keyboards.default = {
-      ids = [ "*" ];
+    # Audio
+    pipewire = {
+      enable = true;
+      pulse.enable = true;
+      alsa.enable = true;
+    };
 
-      settings = {
-        main = {
-          compose = "layer(nav)";
-          rightcontrol = "leftmeta";
-          leftmeta = "overload(meta, fuzzel)";
-        };
+    # USB management
+    udisks2.enable = true;
+    gvfs.enable = true;
 
-        nav = {
-          h = "left";
-          j = "down";
-          k = "up";
-          l = "right";
-          rightalt = "compose";
-          rightcontrol = "rightcontrol";
+    # Makes right alt into a secondary super/mod/windows button
+    keyd = {
+      enable = true;
+      keyboards.default = {
+        ids = [ "*" ];
+        settings = {
+          main = {
+            compose = "layer(nav)";
+            rightcontrol = "leftmeta";
+            leftmeta = "overload(leftmeta, fuzzel)";
+          };
+          nav = {
+            h = "left";
+            j = "down";
+            k = "up";
+            l = "right";
+            rightalt = "compose";
+            rightcontrol = "rightcontrol";
+          };
         };
       };
     };
   };
 
-  environment.systemPackages = with pkgs; [
+  environment = {
 
-    # Environment applications
-    keyd
-    cosmic-files
-    waybar
-    fuzzel
-    alacritty
-    fastfetch
-    hyprlock
+    # Config imports
+    etc = {
+      "niri/config.kdl".source = ./config/niri.kdl;
+      "xdg/waybar".source = ./config/waybar; # https://man.archlinux.org/man/waybar.5
+      "xdg/fuzzel/fuzzel.ini".source = ./config/fuzzel.ini;
+      "alacritty/alacritty.toml".source = ./config/alacritty.toml;
+      "fastfetch".source = ./config/fastfetch;
+      "/etc/xdg/hypr/hyprlock.conf".source = ./config/hyprlock.conf;
+    };
 
-    # Environment controllers
-    pavucontrol
-    playerctl
-    brightnessctl
-    networkmanagerapplet
-    sunsetr
+    systemPackages = with pkgs; [
 
-    # Customization
-    bibata-cursors
+      # Environment applications
+      keyd
+      cosmic-files
+      waybar
+      fuzzel
+      alacritty
+      fastfetch
+      hyprlock
+      bluetui
+      btop
 
-    # X11 support for niri
-    xwayland-satellite
+      # Environment controllers
+      pavucontrol
+      playerctl
+      brightnessctl
+      sunsetr
 
-    #USB disk management
-    usbutils
-    udiskie
-  ];
+      # Customization
+      bibata-cursors
+
+      # X11 support for niri
+      xwayland-satellite
+
+      #USB disk management
+      usbutils
+      udiskie
+    ];
+
+    variables = {
+      XCURSOR_THEME = "Bibata-Modern-Classic";
+      XCURSOR_SIZE = "24";
+    };
+
+  };
 }
