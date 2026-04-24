@@ -115,7 +115,7 @@
     ++ (
       if userconf.wsl then
         [
-          <wslpackagesomething>
+          <nixos-wsl/modules>
         ]
       else
         [ ]
@@ -268,6 +268,15 @@
 
     # Thermal security
     thermald.enable = true;
+
+    # Remote desktop
+    xrdp.enable = true;
+  };
+
+  wsl = {
+    enable = userconf.wsl;
+    defaultUser = userconf.username;
+    startMenuLaunchers = true;
   };
 
   hardware = {
