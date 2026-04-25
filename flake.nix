@@ -45,8 +45,6 @@
                 (if userconf.devenv then [ /home/${userconf.username}/Documents/nixos/neovim.nix ] else [ ])
                 ++ (if userconf.niri then [ /home/${userconf.username}/Documents/nixos/niri/home.nix ] else [ ]);
 
-              programs.neovim.extraConfig = if userconf.wsl then "" else "colorscheme vscode";
-
               home.stateVersion = "26.05";
             };
           }

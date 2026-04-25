@@ -37,6 +37,8 @@
       vim-javascript-syntax
     ];
 
+    extraConfig = "colorscheme vscode";
+
     coc = {
       enable = true;
     };
