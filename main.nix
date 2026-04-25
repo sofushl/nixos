@@ -149,33 +149,42 @@
 
     # Custom build commands for using the flake instead of configuration.nix
     shellAliases = {
-      nixos-build = "
-      sudo nixos-rebuild switch --flake /home/${userconf.username}/Documents/nixos#${userconf.hostname} --impure
-    ";
-      nixos-clear = "
-      sudo nix-collect-garbage -d && \
-      sudo nix store optimise && \
-      sudo fstrim -av && \
-      sudo rm -rf /home/${userconf.username}/.cache/* /home/${userconf.username}/.local/share/Trash/* && \
-      sudo rm -rf /tmp/* /var/tmp/* && \
-      sudo journalctl --vacuum-time=7d && \
-      sudo systemctl restart systemd-journald
-    ";
+      nixos-build = ''
+        sudo nixos-rebuild switch --flake /home/${userconf.username}/Documents/nixos#${userconf.hostname} --impure
+      '';
+      nixos-build-boot = ''
+        sudo nixos-rebuild boot --flake /home/${userconf.username}/Documents/nixos#${userconf.hostname} --impure
+      '';
+      nixos-clear = ''
+        sudo nix-collect-garbage -d && \
+        sudo nix store optimise && \
+        sudo fstrim -av
+      '';
+      nixos-clear-cache = ''
+        sudo rm -rf -v /home/${userconf.username}/.cache/* /home/${userconf.username}/.local/share/Trash/* && \
+        sudo rm -rf -v /tmp/* /var/tmp/* && \
+        sudo journalctl --vacuum-time=7d && \
+        sudo systemctl restart systemd-journald
+      '';
       nano = "nvim";
       nixos-allow = ''
         sudo setfacl -R -m u:${userconf.username}:rwx /etc/nixos/ && \
         sudo setfacl -R -m u:${userconf.username}:rwx /home/${userconf.username} 
       '';
-      python-venv = "
-      nix-shell -p python314 uv --run ' \
-      uv venv --python \$(which python) \
-      uv sync'
-    ";
-      nvim-clear = "
-      rm -rf ~/.config/nvim && \
-      rm -rf ~/.cache/nvim && \
-      rm -rf ~/.local/share/nvim
-    ";
+      python-venv = ''
+        nix-shell -p python314 uv --run ' \
+        uv venv --python \$(which python) \
+        uv sync'
+      '';
+      nvim-clear = ''
+        rm -rf ~/.config/nvim && \
+        rm -rf ~/.cache/nvim && \
+        rm -rf ~/.local/share/nvim
+      '';
+      nixos-system-edit = ''
+        nixos-allow \
+        nvim /etc/nixos/variables.nix
+      '';
     };
   };
 
