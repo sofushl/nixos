@@ -33,7 +33,7 @@
     },
     "memory": {
         "format": "RAM {percentage}%",
-        "interval": 5,
+        "interval": 3,
         "on-click": "shutdown -r now"
     },
     "pulseaudio": {
@@ -54,10 +54,19 @@
         "tooltip": false,
         "enable-wireless": true,
         "enable-wired": true,
-        "on-click": "alacritty -e nmtui"
+        "on-click": "alacritty -e nmtui",
+        "interval": 3
     },
     "temperature": {
+        "hwmon-path": [
+            "/sys/class/hwmon/hwmon4/temp1_input",
+            "/sys/class/hwmon/hwmon3/temp1_input",
+            "/sys/class/thermal/thermal_zone1/temp",
+            "/sys/class/thermal/thermal_zone0/temp"
+            // Append or rearrange after neccesity
+        ],
         "format": "CPU {temperatureC}°C",
+        "interval": 3,
         "on-click": "alacritty -e btop"
     }
 }
