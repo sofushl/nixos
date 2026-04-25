@@ -115,6 +115,7 @@
         nixfmt
         tinymist
         kdlfmt
+        xmlformat
         graphviz
         uv
         nodejs_25
