@@ -169,7 +169,7 @@
       nano = "nvim";
       nixos-allow = ''
         sudo setfacl -R -m u:${userconf.username}:rwx /etc/nixos/ && \
-        sudo setfacl -R -m u:${userconf.username}:rwx /home/${userconf.username} 
+        sudo setfacl -R -m u:${userconf.username}:rwx /home/${userconf.username}/Documents
       '';
       python-venv = ''
         nix-shell -p python314 uv --run ' \
