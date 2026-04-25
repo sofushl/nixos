@@ -2,7 +2,7 @@
 
 {
   username = "sofushl";
-  fullname = "Sofus Lind"; # Display name on pc and git commits
+  displayname = "Sofus Lind"; # Display name on pc and git commits
   email = "43791049+sofuslind@users.noreply.github.com"; # For easy git config
   hostname = "nixos";
   wifiboard = "wlp0s20f3";

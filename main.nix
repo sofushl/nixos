@@ -37,7 +37,7 @@
   # User account
   users.users.${userconf.username} = {
     isNormalUser = true;
-    description = userconf.fullname;
+    description = userconf.displayname;
     extraGroups = [
       "networkmanager"
       "wheel"
@@ -173,6 +173,14 @@
       nixos-system-edit = ''
         nixos-allow \
         nvim /etc/nixos/variables.nix
+      '';
+      git-setup = ''
+        git config --global --replace-all user.name "${userconf.displayname}" && \
+        git config --global --replace-all user.email "${userconf.email}" && \
+        git config --global --get user.name && \
+        git config --global --get user.email && \
+        ssh-keygen && \
+        cat ~/.ssh/*.pub
       '';
     };
   };
