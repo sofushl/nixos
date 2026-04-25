@@ -1,7 +1,5 @@
 {
-  config,
   pkgs,
-  home-manager,
   ...
 }:
 
@@ -44,6 +42,13 @@
     };
 
     initLua = ''
+
+      -- set leader early (optional, but common)
+      vim.g.mapleader = " "
+
+      -- map "n" to toggle Neo-tree floating window
+      vim.keymap.set("n", "n", "<cmd>Neotree float toggle<CR>")
+
       -- Helper for common on_attach behavior
       local on_attach = function(_, bufnr)
         local map = function(mode, lhs, rhs)

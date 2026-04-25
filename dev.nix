@@ -1,7 +1,5 @@
 {
-  config,
   pkgs,
-  lib,
   ...
 }:
 
@@ -77,7 +75,6 @@ in
         ast-grep
         gzip
         gnutar
-
       ]
       ++ dlopenLibraries;
   };

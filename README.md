@@ -35,6 +35,12 @@ Other file types than .nix files used to configure niri itself as well as waybar
 ## Other
 nixos config is made in a ~/Documents/nixos directory, .gitignore includes any files that can disturb the repo. 
 
+Command for launching neovim on windows with wsl in alacritty:
+
+``` bash
+"C:\Program Files\Alacritty\alacritty.exe" -e wsl.exe bash -lc \"cd ~/Documents && nvim\"
+```
+
 ### vscodium
 settings.json for vim in vscodium and vsix files that doesnt exist in the open source repo that vscodium uses.
 
