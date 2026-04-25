@@ -1,7 +1,6 @@
 {
   pkgs,
   userconf,
-  config,
   ...
 }:
 
@@ -165,7 +164,6 @@
         uv venv --python \$(which python) \
         uv sync'
       '';
-      nvim-home = "alacritty -e bash -lc 'cd ~/Documents && nvim'";
       nvim-clear = ''
         rm -rf ~/.config/nvim && \
         rm -rf ~/.cache/nvim && \

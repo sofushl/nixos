@@ -119,6 +119,8 @@
       #USB disk management
       usbutils
       udiskie
+
+      (writeShellScriptBin "nvim-home" "alacritty -e bash -lc 'cd ~/Documents && nvim'")
     ];
 
     variables = {
