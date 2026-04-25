@@ -6,18 +6,6 @@
 }:
 
 {
-
-  home.packages = with pkgs; [
-    lua
-    rustc
-    telescope
-    stylua
-    pyright
-    lua-language-server
-    nil
-    rust-analyzer
-  ];
-
   programs.neovim = {
     enable = true;
     defaultEditor = true;

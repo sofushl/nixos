@@ -1,14 +1,15 @@
 # This is an example file, should reside in /etc/nixos/variables.nix"
 
 {
-  username = "username";
-  fullname = "Display Name";
-  hostname = "Computer";
+  username = "sofushl";
+  fullname = "Sofus Lind"; # Display name on pc and git commits
+  email = "43791049+sofuslind@users.noreply.github.com"; # For easy git config
+  hostname = "nixos";
   wifiboard = "wlp0s20f3";
   swapSize = 8;
   swapDevice = "/.swapfile";
   state = "26.05";
   niri = true; # Enables niri config
-  devenv = true; # Enables antishell.nix
+  devenv = true; # Enables dev.nix and neovim config
   wsl = false; # Enables WSL dependencies
 }

@@ -14,6 +14,13 @@ Packages for development on nixos.
 ### variables.nix
 Used to define device / user specific values, imported from /etc/nixos/variables.nix into flake.nix
 
+### dev.nix
+Contains developer tools and dependencies for neovim.
+Enables graphical applications based on javafx or iced-rs, but now it just applies the same things to the global path. 
+
+### neovim.nix
+Home-manager based configuration of neovim intened for javascript and more.
+
 ## Niri
 
 ### niri.nix
@@ -25,24 +32,18 @@ Attemt to rice librewolf, very much not working at the moment.
 ### /config
 Other file types than .nix files used to configure niri itself as well as waybar, alacritty, fuzzel and more...
 
-## Development
-
-### neovim.nix
-Home-manager based configuration of neovim intened for javascript and more.
-
-### antishell.nix
-Used to be nix shell that enables graphical applications based on javafx or iced-rs, but now it just applies the same things to the global path.
+## Other
+nixos config is made in a ~/Documents/nixos directory, .gitignore includes any files that can disturb the repo. 
 
 ### vscodium
 settings.json for vim in vscodium and vsix files that doesnt exist in the open source repo that vscodium uses.
 
-## Desktop Environments
-
 ### cosmic.nix
-Excessively debloated COSMIC DE from System76. (not in use)
+Excessively debloated COSMIC DE from System76, WIP to move it to home-manager based config. (not in use) 
 
 ### plasma.nix
 Just another plasma setup. (not in use)
 
-## Other information
-Nixos config is made in a ~/Documents/nixos directory, .gitignore includes any files that can disturb the repo. 
+### LICENCE
+
+MIT License - Copyright (c) 2026 Sofus Højberg Lind

@@ -62,7 +62,7 @@
     (
       if userconf.devenv then
         [
-          /home/${userconf.username}/Documents/nixos/development/antishell.nix
+          /home/${userconf.username}/Documents/nixos/dev.nix
         ]
       else
         [ ]
@@ -109,6 +109,7 @@
       [
         # Tools
         fastfetch
+        btop
         git
         gitui
         openssh
@@ -117,18 +118,6 @@
         kdlfmt
         graphviz
         uv
-        btop
-        lazygit
-        fd
-        ripgrep
-        fzf
-        unzip
-        wget
-        gcc
-        curl
-        ast-grep
-        gzip
-        gnutar
         nodejs_25
       ]
       ++ (
