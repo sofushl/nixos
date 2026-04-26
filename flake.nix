@@ -48,6 +48,7 @@
               home.stateVersion = userconf.state;
             };
           }
-        ]
+        ];
+      };
     };
 }
