@@ -52,7 +52,7 @@
                 (if userconf.devenv then [ /home/${userconf.username}/Documents/nixos/neovim.nix ] else [ ])
                 ++ (if userconf.niri then [ /home/${userconf.username}/Documents/nixos/niri/home.nix ] else [ ]);
 
-              home.stateVersion = "26.05";
+              home.stateVersion = userconf.state;
             };
           }
         ]
