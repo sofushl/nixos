@@ -93,12 +93,18 @@
     systemPackages =
       with pkgs;
       [
-        # Tools
-        cacert
+        # Terminal applications
         fastfetch
         btop
-        git
+        lynx
         gitui
+        discordo
+        iamb
+        bluetuith
+
+        # Tools
+        cacert
+        git
         openssh
         nixfmt
         tinymist
@@ -111,7 +117,7 @@
       ++ (
         if !userconf.wsl then
           [
-            # Applications
+            # Graphical Applications
             onlyoffice-desktopeditors
             vesktop
             spotify
