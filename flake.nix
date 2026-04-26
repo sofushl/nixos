@@ -5,7 +5,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     omarchy-nix = {
-      url = "github:mrosseel/omarchy-nix";
+      url = "github:sofuslind/omarchy-nix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
