@@ -6,16 +6,18 @@
 {
   gtk = {
     enable = true;
-
-    theme.name = "Adwaita-dark";
+    colorScheme = "dark";
 
     gtk3 = {
-      extraConfig.gtk-application-prefer-dark-theme = 1;
-      theme.name = "Adwaita-dark";
-    };
-    gtk4 = {
+      enable = true;
+      extraConfig.gtk-application-prefer-dark-theme = true;
       colorScheme = "dark";
-      theme.name = "Adwaita-dark";
+    };
+
+    gtk4 = {
+      enable = true;
+      extraConfig.gtk-application-prefer-dark-theme = true;
+      colorScheme = "dark";
     };
   };
 
@@ -35,8 +37,11 @@
 
     portal = {
       enable = true;
-      extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
-      config.common.default = "*";
+      extraPortals = [
+        pkgs.xdg-desktop-portal-gtk
+        pkgs.xdg-desktop-portal-wlr
+      ];
+      config.common.default = [ "gtk" ];
     };
   };
 }

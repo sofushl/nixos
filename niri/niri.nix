@@ -11,7 +11,10 @@
     portal = {
       wlr.enable = true;
       enable = true;
-      extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
+      extraPortals = [
+        pkgs.xdg-desktop-portal-gtk
+        pkgs.xdg-desktop-portal-wlr
+      ];
     };
     # Fallback for xwayland-sattelite
     icons.fallbackCursorThemes = [ "Bibata-Modern-Classic" ];
@@ -125,6 +128,7 @@
     variables = {
       XCURSOR_THEME = "Bibata-Modern-Classic";
       XCURSOR_SIZE = "24";
+      XDG_CURRENT_DESKTOP = "niri";
     };
 
   };
