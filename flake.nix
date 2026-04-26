@@ -4,6 +4,12 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    omarchy-nix = {
+      url = "github:mrosseel/omarchy-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -14,6 +20,7 @@
     {
       nixpkgs,
       home-manager,
+      omarchy-nix,
       ...
     }:
     let
@@ -48,7 +55,31 @@
               home.stateVersion = "26.05";
             };
           }
-        ];
+        ]
+        ++ (
+          if userconf.omarchy then
+            [
+
+              omarchy-nix.nixosModules.default
+
+              home-manager.nixosModules.home-manager
+              {
+
+                # Configure omarchy
+                omarchy = {
+                  username = userconf.username;
+                  full_name = userconf.displayname;
+                  email_address = userconf.email;
+                  theme = "tokyo-night";
+                };
+
+                home-manager.users.${userconf.username}.imports = [ omarchy-nix.homeManagerModules.default ];
+              }
+
+            ]
+          else
+            [ ]
+        );
       };
     };
 }

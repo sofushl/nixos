@@ -73,6 +73,7 @@
   security = {
     rtkit.enable = true;
     sudo.wheelNeedsPassword = false;
+    pki.certificateFiles = [ ]; # "/etc/ssl/certs/ca-bundle.crt" "/etc/ssl/certs/ca-certificates.crt" "${pkgs.cacert}/etc/ssl/certs/ca-certificates.crt" "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"];
   };
 
   # Allow unfree packages
@@ -84,6 +85,7 @@
       "nix-command"
       "flakes"
     ];
+    sandbox = false;
   };
 
   environment = {
@@ -92,6 +94,7 @@
       with pkgs;
       [
         # Tools
+        cacert
         fastfetch
         btop
         git
@@ -129,12 +132,12 @@
       nixos-build-boot = ''
         sudo nixos-rebuild boot --flake /home/${userconf.username}/Documents/nixos#${userconf.hostname} --impure
       '';
-      nixos-clear = ''
-        sudo nix-collect-garbage -d && \
+      nixos-defrag = ''
         sudo nix store optimise && \
         sudo fstrim -av
       '';
-      nixos-clear-cache = ''
+      nixos-clear = ''
+        sudo nix-collect-garbage -d && \
         sudo rm -rf -v /home/${userconf.username}/.cache/* /home/${userconf.username}/.local/share/Trash/* && \
         sudo rm -rf -v /tmp/* /var/tmp/* && \
         sudo journalctl --vacuum-time=7d && \
@@ -155,9 +158,13 @@
         rm -rf ~/.cache/nvim && \
         rm -rf ~/.local/share/nvim
       '';
-      nixos-system-edit = ''
+      nixos-system-var = ''
         nixos-allow \
         nvim /etc/nixos/variables.nix
+      '';
+      nixos-system-conf = ''
+        nixos-allow \
+        nvim /etc/nixos/hardware-configuration.nix
       '';
       git-setup = ''
         git config --global --replace-all user.name "${userconf.displayname}" && \
@@ -167,6 +174,11 @@
         ssh-keygen && \
         cat ~/.ssh/*.pub
       '';
+    };
+
+    variables = {
+      SSL_CERT_FILE = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
+      NIX_SSL_CERT_FILE = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
     };
   };
 
@@ -190,6 +202,13 @@
 
   };
 
+  nixpkgs.config = {
+    # Force all fetchers to use this CA bundle
+    curlOpts = {
+      cacert = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
+    };
+  };
+
   services = {
     # Enable sound with pipewire.
     pulseaudio.enable = false;
@@ -198,7 +217,6 @@
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
-      jack.enable = false;
     };
 
     # Enable CUPS to print documents.

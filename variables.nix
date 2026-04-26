@@ -12,4 +12,5 @@
   niri = true; # Enables niri config
   devenv = true; # Enables dev.nix and neovim config
   wsl = false; # Enables WSL dependencies
+  omarchy = false; # Enables https://github.com/henrysipp/omarchy-nix/
 }
