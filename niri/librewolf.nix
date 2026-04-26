@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 let
   myTheme = pkgs.stdenv.mkDerivation {
