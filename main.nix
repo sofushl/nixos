@@ -96,11 +96,8 @@
         # Terminal applications
         fastfetch
         btop
-        lynx
         gitui
         discordo
-        iamb
-        bluetuith
 
         # Tools
         cacert
@@ -115,7 +112,7 @@
         nodejs_25
       ]
       ++ (
-        if !userconf.wsl then
+        if !userconf.wsl && !userconf.server then
           [
             # Graphical Applications
             onlyoffice-desktopeditors

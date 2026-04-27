@@ -27,6 +27,14 @@
     };
   };
 
+  home.file = {
+    ".config/cosmic" = {
+      force = true;
+      recursive = true;
+      source = ./config/cosmic;
+    };
+  };
+
   xdg = {
     enable = true;
 

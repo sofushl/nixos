@@ -39,7 +39,7 @@
     "pulseaudio": {
         "format": "VOL {volume}%",
         "format-muted": "MUTED",
-        "on-click": "alacritty -e bluetui"
+        "on-click": "alacritty -e bluetoothctl"
     },
     "backlight": {
         "format": "LUX {percent}%",

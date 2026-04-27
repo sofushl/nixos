@@ -5,7 +5,11 @@
 }:
 
 {
-  programs.niri.enable = true;
+
+  programs.niri = {
+    enable = true;
+    useNautilus = false;
+  };
 
   xdg = {
     portal = {
@@ -18,6 +22,10 @@
     };
     # Fallback for xwayland-sattelite
     icons.fallbackCursorThemes = [ "Bibata-Modern-Classic" ];
+
+    mime.defaultApplications = {
+      "inode/directory" = [ "cosmic-files.desktop" ];
+    };
   };
 
   # Enable networking
@@ -65,8 +73,8 @@
         settings = {
           main = {
             compose = "layer(nav)";
-            rightcontrol = "leftmeta";
-            leftmeta = "overload(leftmeta, fuzzel)";
+            rightcontrol = "layer(meta)";
+            capslock = "esc";
           };
           nav = {
             h = "left";
@@ -75,6 +83,7 @@
             l = "right";
             rightalt = "compose";
             rightcontrol = "rightcontrol";
+            capslock = "capslock";
           };
         };
       };
@@ -97,13 +106,11 @@
 
       # Environment applications
       keyd
-      cosmic-files
       waybar
       fuzzel
       alacritty
-      fastfetch
+      cosmic-files
       hyprlock
-      bluetui
       btop
 
       # Environment controllers
@@ -122,6 +129,7 @@
       usbutils
       udiskie
 
+      # Launch shellscripts
       (writeShellScriptBin "nvim-home" "alacritty -e bash -lc 'cd ~/Documents && nvim'")
     ];
 
