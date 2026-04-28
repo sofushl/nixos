@@ -21,6 +21,9 @@ Enables graphical applications based on javafx or iced-rs, but now it just appli
 ### neovim.nix
 Home-manager based configuration of neovim intened for javascript and more.
 
+### server.nix
+Nextcloud + more self hosted server config (WIP)
+
 ## Niri
 
 ### niri.nix
