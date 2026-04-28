@@ -64,6 +64,7 @@ in
         rust-analyzer
 
         # Nvim dependencies
+        tree-sitter
         telescope
         lazygit
         fd

@@ -29,16 +29,17 @@
       cmp-nvim-lua
       cmp-nvim-tags
       cmp-nvim-ultisnips
-      coc-prettier
       vim-prettier
       vim-javascript
       vim-javascript-syntax
+      toggleterm-nvim
+      python-mode
     ];
 
     extraConfig = "colorscheme vscode";
 
     coc = {
-      enable = true;
+      enable = false;
     };
 
     initLua = ''
@@ -48,6 +49,16 @@
 
       -- map "n" to toggle Neo-tree floating window
       vim.keymap.set("n", "n", "<cmd>Neotree float toggle<CR>")
+      
+      require("toggleterm").setup({
+        direction = "horizontal",
+        float_opts = {
+          border = "rounded",
+        },
+      })
+
+      vim.keymap.set("n", "ø", "<cmd>ToggleTerm<CR>")
+
 
       -- Helper for common on_attach behavior
       local on_attach = function(_, bufnr)
