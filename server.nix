@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
 
@@ -18,7 +18,10 @@
     allowSFTP = true;
 
     # Security baseline (do this from the start)
-    PasswordAuthentication = false;
-    PermitRootLogin = "no";
+
+    settings = {
+      PasswordAuthentication = false;
+      PermitRootLogin = "no";
+    };
   };
 }
