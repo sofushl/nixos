@@ -11,7 +11,6 @@
   services = {
     openssh = {
       enable = true;
-      package = pkgs.nextcloud33;
       allowSFTP = true;
 
       # Security baseline (do this from the start)
