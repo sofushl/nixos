@@ -26,6 +26,8 @@
       "networkmanager"
       "wheel"
     ];
+
+    openssh.authorizedKeys.keys = userconf.sshkeys;
   };
 
   # Network setup
@@ -43,22 +45,9 @@
 
   # Imports
   imports =
-    (
-      if userconf.devenv then
-        [
-          /home/${userconf.username}/Documents/nixos/dev.nix
-        ]
-      else
-        [ ]
-    )
-    ++ (
-      if userconf.niri then
-        [
-          /home/${userconf.username}/Documents/nixos/niri/niri.nix
-        ]
-      else
-        [ ]
-    );
+    (if userconf.devenv then [ /home/${userconf.username}/Documents/nixos/dev.nix ] else [ ])
+    ++ (if userconf.niri then [ /home/${userconf.username}/Documents/nixos/niri/niri.nix ] else [ ])
+    ++ (if userconf.server then [ /home/${userconf.username}/Documents/nixos/server.nix ] else [ ]);
 
   swapDevices = [
     {
