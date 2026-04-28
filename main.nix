@@ -104,6 +104,7 @@
         if !userconf.wsl && !userconf.server then
           [
             # Graphical Applications
+            nextcloud-client
             onlyoffice-desktopeditors
             vesktop
             spotify

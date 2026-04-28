@@ -1,6 +1,47 @@
-{ ... }:
+{
+  config,
+  userconf,
+  pkgs,
+  ...
+}:
 
 {
+
+  # Enable SSH server
+  services = {
+    openssh = {
+      enable = true;
+      package = pkgs.nextcloud33;
+      allowSFTP = true;
+
+      # Security baseline (do this from the start)
+
+      settings = {
+        PasswordAuthentication = false;
+        PermitRootLogin = "no";
+      };
+    };
+
+    nextcloud = {
+      enable = true;
+      hostName = userconf.hostname;
+      https = true;
+      config.adminpassFile = "/etc/nextcloud-admin-pass";
+      config.dbtype = "sqlite";
+    };
+
+    nginx.virtualHosts.${config.services.nextcloud.hostName} = {
+      forceSSL = true;
+      enableACME = true;
+    };
+  };
+
+  security.acme = {
+    acceptTerms = true;
+    certs = {
+      ${config.services.nextcloud.hostName}.email = userconf.email;
+    };
+  };
 
   networking.firewall = {
     enable = true;
@@ -12,16 +53,5 @@
     allowedUDPPorts = [ ];
   };
 
-  # Enable SSH server
-  services.openssh = {
-    enable = true;
-    allowSFTP = true;
-
-    # Security baseline (do this from the start)
-
-    settings = {
-      PasswordAuthentication = false;
-      PermitRootLogin = "no";
-    };
-  };
+  environment.etc."nextcloud-admin-pass".text = userconf.defaultpassword;
 }

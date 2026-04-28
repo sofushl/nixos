@@ -14,5 +14,6 @@
   wsl = false; # Enables WSL dependencies
   omarchy = false; # Enables https://github.com/henrysipp/omarchy-nix/
   server = false; # Enables server configuration server.nix
+  defaultpassword = "p"; # Temporary / remember to replace
   sshkeys = [ ]; # String list of public ssh keys
 }
