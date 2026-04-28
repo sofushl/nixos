@@ -1,7 +1,6 @@
 {
   config,
   userconf,
-  pkgs,
   ...
 }:
 
@@ -25,13 +24,23 @@
       enable = true;
       hostName = userconf.hostname;
       https = true;
-      config.adminpassFile = "/etc/nextcloud-admin-pass";
-      config.dbtype = "sqlite";
+
+      config = {
+        adminpassFile = "/etc/nextcloud-admin-pass";
+        dbtype = "sqlite";
+      };
+
+      settings = {
+        trusted_domains =  userconf.domains;
+      };
     };
 
-    nginx.virtualHosts.${config.services.nextcloud.hostName} = {
-      forceSSL = true;
-      enableACME = true;
+    nginx = {
+      recommendedProxySettings = true;
+      virtualHosts.${config.services.nextcloud.hostName} = {
+        forceSSL = true;
+        enableACME = true;
+      }; 
     };
   };
 

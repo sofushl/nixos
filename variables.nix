@@ -16,4 +16,5 @@
   server = false; # Enables server configuration server.nix
   defaultpassword = "p"; # Temporary / remember to replace
   sshkeys = [ ]; # String list of public ssh keys
+  domains = [ ]; # String list of trusted domains
 }
