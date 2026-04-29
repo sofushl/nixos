@@ -38,9 +38,7 @@
 
     extraConfig = "colorscheme vscode";
 
-    coc = {
-      enable = false;
-    };
+    coc.enable = false;
 
     initLua = ''
 
@@ -57,8 +55,11 @@
         },
       })
 
-      vim.keymap.set("n", "ø", "<cmd>ToggleTerm<CR>")
+      vim.keymap.set("n", "ø", "<cmd>ToggleTerm<cr>")
 
+
+      vim.keymap.set("n", "T", "<cmd>tabclose<cr>")
+      vim.keymap.set("n", "t", "<cmd>tabnew<cr>")
 
       -- Helper for common on_attach behavior
       local on_attach = function(_, bufnr)
