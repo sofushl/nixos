@@ -86,7 +86,7 @@
         fastfetch
         btop
         gitui
-        discordo
+        nnn
 
         # Tools
         cacert
@@ -99,6 +99,7 @@
         graphviz
         uv
         nodejs_25
+        
       ]
       ++ (
         if !userconf.wsl && !userconf.server then
@@ -112,6 +113,7 @@
             vscodium
             librewolf
             geteduroam
+            loupe
           ]
         else
           [ ]
