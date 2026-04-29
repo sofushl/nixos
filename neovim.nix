@@ -47,7 +47,7 @@
 
       -- map "n" to toggle Neo-tree floating window
       vim.keymap.set("n", "n", "<cmd>Neotree float toggle<CR>")
-      
+
       require("toggleterm").setup({
         direction = "horizontal",
         float_opts = {
@@ -60,6 +60,16 @@
 
       vim.keymap.set("n", "T", "<cmd>tabclose<cr>")
       vim.keymap.set("n", "t", "<cmd>tabnew<cr>")
+
+      -- remap for norwegian keyboard
+      vim.keymap.set("n", "å", "[")
+      vim.keymap.set("n", "¨", "]")
+
+      vim.keymap.set("n", "Å", "{")
+      vim.keymap.set("n", "^", "}")
+
+      vim.keymap.set("n", "¤", "$")
+      vim.keymap.set("n", "&", "^")
 
       -- Helper for common on_attach behavior
       local on_attach = function(_, bufnr)

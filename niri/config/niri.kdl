@@ -2,6 +2,7 @@ input {
     keyboard { 
         xkb { 
             layout "no" 
+            variant "nodeadkeys"
         } 
     }
 
@@ -27,9 +28,8 @@ layout {
     center-focused-column "never"
 
     preset-column-widths {
-        proportion 0.33333
         proportion 0.5
-        proportion 0.66667
+        proportion 1.0 
     }
 
     default-column-width { proportion 0.5; }
@@ -78,6 +78,19 @@ window-rule {
     open-floating true
 }
 
+workspace "main" {}
+
+window-rule {
+    open-on-workspace "main"
+}
+
+gestures {
+    hot-corners {
+        off
+    }
+}
+
+
 switch-events {
     lid-close { spawn "hyprlock"; }
 }
@@ -98,46 +111,70 @@ binds {
 
     // Window control
     Mod+Q { close-window; }
-    Mod+O repeat=false { toggle-overview; }
 
-    // Vim-style navigation
+    // Column navigation
     Mod+H { focus-column-left; }
     Mod+L { focus-column-right; }
 
     Mod+Shift+H { move-column-left; }
     Mod+Shift+L { move-column-right; }
 
-    // Workspaces
-    Mod+J { focus-workspace-down; }
-    Mod+K { focus-workspace-up; }
+    Mod+Aring { focus-column-first; }
+    Mod+Diaeresis { focus-column-last; }
     
-    Mod+Shift+J { move-column-to-workspace-down; }
-    Mod+Shift+K  { move-column-to-workspace-up; }
-    
-    // Layout control
-    Mod+R { switch-preset-column-width; }
-    Mod+Shift+R { switch-preset-window-height; }
-    Mod+Ctrl+R { reset-window-height; }
+    Mod+Shift+Aring { move-column-to-first; }
+    Mod+Shift+Diaeresis  { move-column-to-last; }
 
+    // Inside colums    
+    Mod+Shift+J { move-window-down; }
+    Mod+Shift+K  { move-window-up; }
+
+    Mod+J { focus-window-down; }
+    Mod+K { focus-window-up; }
+
+    Mod+Shift+U { consume-or-expel-window-left; }
+    Mod+Shift+I { consume-or-expel-window-right; }
+
+    // Special Column movements
     Mod+A { maximize-column; }
-    Mod+M { maximize-window-to-edges; }
+    Mod+Shift+A { set-window-width "50%"; }
+    Mod+M { expand-column-to-available-width; }
+    Mod+Shift+M { maximize-window-to-edges; }
     Mod+X { center-column; }
+    Mod+Shift+X { reset-window-height; }
 
+
+    // Finer height and widht adjustments 
     Mod+Minus { set-column-width "-10%"; }
     Mod+Plus { set-column-width "+10%"; }
 
-    // Floating / tiling
-    Mod+Shift+V { toggle-window-floating; }
-    Mod+Ctrl+V { switch-focus-between-floating-and-tiling; }
+    Mod+Shift+Minus { set-window-height "-10%"; }
+    Mod+Shift+Plus { set-window-height "+10%"; }
 
-    // Screenshots
+    // Move the focused window between the floating and the tiling layout.
+    Mod+V       { toggle-window-floating; }
+    Mod+Shift+V { switch-focus-between-floating-and-tiling; }
+
+    // Toggle tabbed column display mode.
+    // Windows in this column will appear as vertical tabs,
+    // rather than stacked on top of each other.
+    Mod+W { toggle-column-tabbed-display; }
+
     Print { screenshot; }
     Ctrl+Print { screenshot-screen; }
     Alt+Print { screenshot-window; }
 
-    // System
-    Mod+Shift+E { quit; }
+    // Applications such as remote-desktop clients and software KVM switches may
+    // request that niri stops processing the keyboard shortcuts defined here
+    // so they may, for example, forward the key presses as-is to a remote machine.
+    // It's a good idea to bind an escape hatch to toggle the inhibitor,
+    // so a buggy application can't hold your session hostage.
+    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 
+    // The quit action will show a confirmation dialog to avoid accidental exits.
+    Mod+Shift+E { quit; }
+    Ctrl+Alt+Delete { quit; }
+    
     // Audio
     XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
@@ -153,4 +190,7 @@ binds {
     XF86AudioStop        allow-when-locked=true { spawn-sh "playerctl stop"; }
     XF86AudioPrev        allow-when-locked=true { spawn-sh "playerctl previous"; }
     XF86AudioNext        allow-when-locked=true { spawn-sh "playerctl next"; }
+
+    // Sleep
+    XF86Sleep { spawn "hyprlock" "power-off-monitors"; }
 }
