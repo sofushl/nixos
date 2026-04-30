@@ -6,8 +6,7 @@
   email = "43791049+sofuslind@users.noreply.github.com"; # For easy git config
   hostname = "nixos";
   wifiboard = "wlp0s20f3";
-  swapSize = 8;
-  swapDevice = "/.swapfile";
+  swap = 8; # Sets swapfile in /var/lib/swapfile to 8 GB
   state = "26.05";
   niri = true; # Enables niri config
   devenv = true; # Enables development tools including neovim config
@@ -19,4 +18,5 @@
   defaultpassword = "p"; # Temporary / remember to replace
   sshkeys = [ ]; # String list of public ssh keys
   domains = [ ]; # String list of trusted domains
+  macaddress = "12:something:a1:b1:something";
 }

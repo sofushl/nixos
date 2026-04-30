@@ -59,7 +59,7 @@
     enable = true;
 
     links."10-eth-usb" = {
-      matchConfig.MACAddress = "12:a1:b1:c1:c5:c8";
+      matchConfig.MACAddress = userconf.macaddress;
       linkConfig.Name = "eth-usb";
     };
 

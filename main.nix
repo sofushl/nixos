@@ -57,8 +57,8 @@
 
   swapDevices = [
     {
-      device = userconf.swapDevice;
-      size = userconf.swapSize * 1024;
+      device = "/var/lib/swapfile";
+      size = userconf.swap * 1024;
     }
   ];
 
