@@ -19,4 +19,5 @@
   sshkeys = [ ]; # String list of public ssh keys
   domains = [ ]; # String list of trusted domains
   macaddress = "12:something:a1:b1:something";
+  host = "iplinkorwhatever";
 }

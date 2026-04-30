@@ -1,6 +1,7 @@
 {
   pkgs,
   userconf,
+  lib,
   ...
 }:
 
@@ -34,7 +35,7 @@
   networking.hostName = userconf.hostname;
   networking.networkmanager = {
 
-    enable = true;
+    enable = lib.mkDefault true;
 
     settings.connectivity = {
       enabled = true;
@@ -120,7 +121,6 @@
         sudo journalctl --vacuum-time=7d && \
         sudo systemctl restart systemd-journald
       '';
-      nano = "nvim";
       nixos-allow = ''
         sudo setfacl -R -m u:${userconf.username}:rwx /etc/nixos/ && \
         sudo setfacl -R -m u:${userconf.username}:rwx /home/${userconf.username}/Documents
@@ -135,11 +135,11 @@
         rm -rf ~/.cache/nvim && \
         rm -rf ~/.local/share/nvim
       '';
-      nixos-system-var = ''
+      nixos-userconf = ''
         nixos-allow \
         nvim /etc/nixos/variables.nix
       '';
-      nixos-system-conf = ''
+      nixos-hardwareconf = ''
         nixos-allow \
         nvim /etc/nixos/hardware-configuration.nix
       '';
@@ -168,7 +168,6 @@
       vimAlias = true;
     };
 
-    nano.enable = false;
     nix-ld.enable = true;
 
     # For captive network connection

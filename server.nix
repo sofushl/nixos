@@ -2,6 +2,7 @@
   config,
   userconf,
   lib,
+  pkgs,
   ...
 }:
 
@@ -20,9 +21,28 @@
       };
     };
 
+    nginx = {
+      recommendedProxySettings = true;
+
+      virtualHosts.${config.services.nextcloud.hostName} = {
+        forceSSL = true;
+        enableACME = true;
+      };
+
+      virtualHosts."office.${config.services.nextcloud.hostName}" = {
+        forceSSL = true;
+        enableACME = true;
+
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:8000";
+          proxyWebsockets = true;
+        };
+      };
+    };
+
     nextcloud = {
       enable = true;
-      hostName = userconf.hostname;
+      hostName = userconf.host;
       https = true;
 
       config = {
@@ -30,17 +50,22 @@
         dbtype = "sqlite";
       };
 
+      appstoreEnable = true;
+      autoUpdateApps.enable = true;
+
+      extraApps = {
+        inherit (pkgs.nextcloud33Packages.apps) calendar onlyoffice;
+      };
+
       settings = {
         trusted_domains = userconf.domains;
       };
+
     };
 
-    nginx = {
-      recommendedProxySettings = true;
-      virtualHosts.${config.services.nextcloud.hostName} = {
-        forceSSL = true;
-        enableACME = true;
-      };
+    onlyoffice = {
+      enable = true;
+      securityNonceFile = "/etc/onlyoffice-jwt";
     };
 
     resolved = {
@@ -50,9 +75,7 @@
 
   security.acme = {
     acceptTerms = true;
-    certs = {
-      ${config.services.nextcloud.hostName}.email = userconf.email;
-    };
+    defaults.email = userconf.email;
   };
 
   systemd.network = {
@@ -88,11 +111,20 @@
         22
         80
         443
+        8000
       ];
       allowedUDPPorts = [ ];
     };
-    networkmanager.enable = lib.mkForce true;
+    networkmanager.enable = lib.mkForce false;
+    useDHCP = lib.mkForce false;
   };
 
-  environment.etc."nextcloud-admin-pass".text = userconf.defaultpassword;
+  environment = {
+    etc = {
+      "nextcloud-admin-pass".text = userconf.defaultpassword;
+      "onlyoffice-jwt".text = ''
+        set $secure_link_secret "${userconf.onlyofficejwt}";
+      '';
+    };
+  };
 }
