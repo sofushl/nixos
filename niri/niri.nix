@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   userconf,
   ...
@@ -44,12 +45,10 @@
     };
 
     # Automatic login greeter
-    greetd = {
+    greetd = lib.mkIf (!userconf.cosmic && !userconf.plasma) {
       enable = true;
       settings.default_session = {
-        command = ''
-          ${pkgs.dbus}/bin/dbus-run-session ${pkgs.niri}/bin/niri
-        '';
+        command = "${pkgs.dbus}/bin/dbus-run-session ${pkgs.niri}/bin/niri";
         user = userconf.username;
       };
     };
@@ -104,6 +103,17 @@
 
     systemPackages = with pkgs; [
 
+      # User applications
+      nextcloud-client
+      onlyoffice-desktopeditors
+      vesktop
+      spotify
+      scenebuilder
+      vscodium
+      librewolf
+      geteduroam
+      loupe
+
       # Environment applications
       keyd
       waybar
@@ -134,7 +144,7 @@
       (writeShellScriptBin "nvim-home" "alacritty -e bash -lc 'cd ~/Documents && nvim'")
     ];
 
-    variables = {
+    sessionVariables = {
       XCURSOR_THEME = "Bibata-Modern-Classic";
       XCURSOR_SIZE = "24";
       XDG_CURRENT_DESKTOP = "niri";

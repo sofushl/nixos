@@ -43,7 +43,12 @@
             home-manager.users.${userconf.username} = {
               imports =
                 (if userconf.devenv then [ /home/${userconf.username}/Documents/nixos/neovim.nix ] else [ ])
-                ++ (if userconf.niri then [ /home/${userconf.username}/Documents/nixos/niri/home.nix ] else [ ]);
+                ++ (
+                  if userconf.niri || userconf.cosmic then
+                    [ /home/${userconf.username}/Documents/nixos/niri/home.nix ]
+                  else
+                    [ ]
+                );
 
               home.stateVersion = userconf.state;
             };

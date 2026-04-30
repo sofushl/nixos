@@ -10,9 +10,11 @@
   swapDevice = "/.swapfile";
   state = "26.05";
   niri = true; # Enables niri config
-  devenv = true; # Enables dev.nix and neovim config
+  devenv = true; # Enables development tools including neovim config
   wsl = false; # Enables WSL dependencies
-  omarchy = false; # Enables https://github.com/henrysipp/omarchy-nix/
+  omarchy = false; # Enables https://github.com/henrysipp/omarchy-nix/ !NOT AVALIABLE!
+  cosmic = false; # Enables COSMIC DE from system 76
+  plasma = false; # Enables KDE Plasma
   server = false; # Enables server configuration server.nix
   defaultpassword = "p"; # Temporary / remember to replace
   sshkeys = [ ]; # String list of public ssh keys

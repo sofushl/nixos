@@ -47,7 +47,13 @@
   imports =
     (if userconf.devenv then [ /home/${userconf.username}/Documents/nixos/dev.nix ] else [ ])
     ++ (if userconf.niri then [ /home/${userconf.username}/Documents/nixos/niri/niri.nix ] else [ ])
-    ++ (if userconf.server then [ /home/${userconf.username}/Documents/nixos/server.nix ] else [ ]);
+    ++ (if userconf.server then [ /home/${userconf.username}/Documents/nixos/server.nix ] else [ ])
+    ++ (
+      if userconf.cosmic then [ /home/${userconf.username}/Documents/nixos/other/cosmic.nix ] else [ ]
+    )
+    ++ (
+      if userconf.plasma then [ /home/${userconf.username}/Documents/nixos/other/plasma.nix ] else [ ]
+    );
 
   swapDevices = [
     {
@@ -79,41 +85,21 @@
 
   environment = {
     # Package set
-    systemPackages =
-      with pkgs;
-      [
-        # Terminal applications
-        fastfetch
-        btop
-        gitui
-        nnn
+    systemPackages = with pkgs; [
+      # Terminal applications
+      fastfetch
+      btop
+      nnn
 
-        # Tools
-        cacert
-        git
-        openssh
-        graphviz
-        zip
-        uv
-        nodejs_25
-      ]
-      ++ (
-        if !userconf.wsl && !userconf.server then
-          [
-            # Graphical Applications
-            nextcloud-client
-            onlyoffice-desktopeditors
-            vesktop
-            spotify
-            scenebuilder
-            vscodium
-            librewolf
-            geteduroam
-            loupe
-          ]
-        else
-          [ ]
-      );
+      # Tools
+      cacert
+      git
+      openssh
+      graphviz
+      zip
+      uv
+      nodejs_25
+    ];
 
     # Custom build commands for using the flake instead of configuration.nix
     shellAliases = {
