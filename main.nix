@@ -92,14 +92,9 @@
         cacert
         git
         openssh
-        nixfmt
-        tinymist
-        kdlfmt
-        xmlformat
         graphviz
         uv
         nodejs_25
-        
       ]
       ++ (
         if !userconf.wsl && !userconf.server then

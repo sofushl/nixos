@@ -62,6 +62,23 @@ in
         lua-language-server
         nil
         rust-analyzer
+        jdt-language-server
+        typescript-language-server
+        lldpd
+        ty
+        taplo
+        clang-tools
+        tinymist
+        vscode-css-languageserver
+
+        # Formatter
+        nixfmt
+        kdlfmt
+        rustfmt
+        prettierd
+        prettier
+        black
+        isort
 
         # Nvim dependencies
         tree-sitter
