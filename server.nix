@@ -1,11 +1,11 @@
 {
   config,
   userconf,
+  lib,
   ...
 }:
 
 {
-
   # Enable SSH server
   services = {
     openssh = {
@@ -31,7 +31,7 @@
       };
 
       settings = {
-        trusted_domains =  userconf.domains;
+        trusted_domains = userconf.domains;
       };
     };
 
@@ -40,7 +40,11 @@
       virtualHosts.${config.services.nextcloud.hostName} = {
         forceSSL = true;
         enableACME = true;
-      }; 
+      };
+    };
+
+    resolved = {
+      enable = true;
     };
   };
 
@@ -51,14 +55,43 @@
     };
   };
 
-  networking.firewall = {
+  systemd.network = {
     enable = true;
-    allowedTCPPorts = [
-      22
-      80
-      443
-    ];
-    allowedUDPPorts = [ ];
+
+    links."10-eth-usb" = {
+      matchConfig.MACAddress = "12:a1:b1:c1:c5:c8";
+      linkConfig.Name = "eth-usb";
+    };
+
+    networks."20-eth-usb" = {
+      matchConfig.Name = "eth-usb";
+
+      address = [
+        "192.168.1.111/24"
+      ];
+
+      dns = [ "192.168.1.1" ];
+      gateway = [ "192.168.1.1" ];
+
+      networkConfig = {
+        Gateway = "192.168.1.1";
+        DNS = "192.168.1.1";
+      };
+
+    };
+  };
+
+  networking = {
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [
+        22
+        80
+        443
+      ];
+      allowedUDPPorts = [ ];
+    };
+    networkmanager.enable = lib.mkForce true;
   };
 
   environment.etc."nextcloud-admin-pass".text = userconf.defaultpassword;
