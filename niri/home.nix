@@ -4,6 +4,9 @@
 }:
 
 {
+
+  imports = [ ./librewolf.nix ];
+
   gtk = {
     enable = true;
     colorScheme = "dark";

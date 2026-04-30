@@ -112,6 +112,7 @@
       cosmic-files
       hyprlock
       btop
+      wl-clipboard
 
       # Environment controllers
       pavucontrol

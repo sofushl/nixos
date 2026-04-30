@@ -35,6 +35,7 @@
       vim-javascript-syntax
       toggleterm-nvim
       python-mode
+      vim-wayland-clipboard
     ];
 
     extraConfig = "colorscheme vscode";

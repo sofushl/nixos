@@ -93,6 +93,7 @@
         git
         openssh
         graphviz
+        zip
         uv
         nodejs_25
       ]
