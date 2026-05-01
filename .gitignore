@@ -1,5 +1,5 @@
 hardware-configuration.nix
 configuration.nix
 user.nix
-flake.lock
 hardware.nix
+update.php*

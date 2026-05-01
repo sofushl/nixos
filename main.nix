@@ -94,6 +94,8 @@
 
       # Tools
       cacert
+      wget
+      dnsutils
       git
       openssh
       graphviz
@@ -145,7 +147,7 @@
       '';
       git-setup = ''
         git config --global --replace-all user.name "${userconf.displayname}" && \
-        git config --global --replace-all user.email "${userconf.email}" && \
+        git config --global --replace-all user.email "${userconf.gitmail}" && \
         git config --global --get user.name && \
         git config --global --get user.email && \
         ssh-keygen && \

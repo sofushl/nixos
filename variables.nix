@@ -3,7 +3,8 @@
 {
   username = "sofushl";
   displayname = "Sofus Lind"; # Display name on pc and git commits
-  email = "43791049+sofuslind@users.noreply.github.com"; # For easy git config
+  gitmail = "43791049+sofuslind@users.noreply.github.com"; # For easy git config
+  email = "youremail@example.com";
   hostname = "nixos";
   wifiboard = "wlp0s20f3";
   swap = 8; # Sets swapfile in /var/lib/swapfile to 8 GB
@@ -19,5 +20,5 @@
   sshkeys = [ ]; # String list of public ssh keys
   domains = [ ]; # String list of trusted domains
   macaddress = "12:something:a1:b1:something";
-  host = "iplinkorwhatever";
+  domain = "serverdomain.name";
 }

@@ -6,6 +6,12 @@
   ...
 }:
 
+let
+  officeDom = "office.${userconf.domain}";
+
+  cloudDom = "cloud.${userconf.domain}";
+
+in
 {
   # Enable SSH server
   services = {
@@ -22,27 +28,20 @@
     };
 
     nginx = {
-      recommendedProxySettings = true;
-
-      virtualHosts.${config.services.nextcloud.hostName} = {
+      virtualHosts.${cloudDom} = {
         forceSSL = true;
         enableACME = true;
       };
 
-      virtualHosts."office.${config.services.nextcloud.hostName}" = {
+      virtualHosts.${officeDom} = {
         forceSSL = true;
         enableACME = true;
-
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:8000";
-          proxyWebsockets = true;
-        };
       };
     };
 
     nextcloud = {
       enable = true;
-      hostName = userconf.host;
+      hostName = cloudDom;
       https = true;
 
       config = {
@@ -62,16 +61,41 @@
     onlyoffice = {
       enable = true;
       securityNonceFile = "/etc/onlyoffice-jwt";
+      hostname = officeDom;
     };
 
     resolved = {
       enable = true;
     };
+
+    cron = {
+      enable = true;
+      systemCronJobs = [
+        "0 * * * * wget -q --read-timeout=0.0 --waitretry=5 --tries=400 --background ${userconf.freednsupdate}"
+      ];
+
+    };
+
   };
 
   security.acme = {
+
     acceptTerms = true;
-    defaults.email = userconf.email;
+    defaults = {
+      email = userconf.email;
+      webroot = "/var/lib/acme/acme-challenge/";
+    };
+    certs = {
+      "${userconf.domain}" = {
+        group = config.services.nginx.group;
+        domain = "*.${userconf.domain}";
+
+        extraDomainNames = [
+          officeDom
+          cloudDom
+        ];
+      };
+    };
   };
 
   systemd.network = {
@@ -122,5 +146,10 @@
         set $secure_link_secret "${userconf.onlyofficejwt}";
       '';
     };
+
+    systemPackages = with pkgs; [
+      wget
+    ];
   };
+
 }
