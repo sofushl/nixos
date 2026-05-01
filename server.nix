@@ -53,10 +53,6 @@
       appstoreEnable = true;
       autoUpdateApps.enable = true;
 
-      extraApps = {
-        inherit (pkgs.nextcloud33Packages.apps) calendar onlyoffice;
-      };
-
       settings = {
         trusted_domains = userconf.domains;
       };
