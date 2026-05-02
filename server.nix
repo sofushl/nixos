@@ -13,13 +13,10 @@ let
 
 in
 {
-  # Enable SSH server
   services = {
     openssh = {
       enable = true;
       allowSFTP = true;
-
-      # Security baseline (do this from the start)
 
       settings = {
         PasswordAuthentication = false;
@@ -28,14 +25,22 @@ in
     };
 
     nginx = {
-      virtualHosts.${cloudDom} = {
-        forceSSL = true;
-        enableACME = true;
-      };
 
-      virtualHosts.${officeDom} = {
-        forceSSL = true;
-        enableACME = true;
+      enable = true;
+      recommendedProxySettings = true;
+      recommendedTlsSettings = true;
+
+      virtualHosts = {
+
+        ${cloudDom} = {
+          forceSSL = true;
+          enableACME = true;
+        };
+
+        ${officeDom} = {
+          forceSSL = true;
+          enableACME = true;
+        };
       };
     };
 
@@ -62,6 +67,7 @@ in
       enable = true;
       securityNonceFile = "/etc/onlyoffice-jwt";
       hostname = officeDom;
+      port = 8000;
     };
 
     resolved = {
@@ -131,7 +137,6 @@ in
         22
         80
         443
-        8000
       ];
       allowedUDPPorts = [ ];
     };
