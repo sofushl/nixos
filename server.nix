@@ -7,6 +7,8 @@
 }:
 
 let
+  dom = userconf.domain;
+
   officeDom = "office.${userconf.domain}";
 
   cloudDom = "cloud.${userconf.domain}";
@@ -31,6 +33,17 @@ in
       recommendedTlsSettings = true;
 
       virtualHosts = {
+
+        ${dom} = {
+          forceSSL = true;
+          enableACME = true;
+
+          root = "/var/www/homepage";
+
+          extraConfig = ''
+            index index.html;
+          '';
+        };
 
         ${cloudDom} = {
           forceSSL = true;
@@ -92,11 +105,11 @@ in
       webroot = "/var/lib/acme/acme-challenge/";
     };
     certs = {
-      "${userconf.domain}" = {
+      "${dom}" = {
         group = config.services.nginx.group;
-        domain = "*.${userconf.domain}";
 
         extraDomainNames = [
+          dom
           officeDom
           cloudDom
         ];
