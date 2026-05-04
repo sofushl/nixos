@@ -9,7 +9,7 @@
 let
   dom = userconf.domain;
 
-  officeDom = "office.${userconf.domain}";
+  officeDom = "docs.${userconf.domain}";
 
   cloudDom = "cloud.${userconf.domain}";
 
@@ -53,6 +53,18 @@ in
         ${officeDom} = {
           forceSSL = true;
           enableACME = true;
+
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:8000/";
+            proxyWebsockets = true;
+
+            extraConfig = ''
+              proxy_set_header Host $host;
+              proxy_set_header X-Forwarded-Proto https;
+              proxy_set_header Upgrade $http_upgrade;
+              proxy_set_header Connection "upgrade";
+            '';
+          };
         };
       };
     };
@@ -79,8 +91,6 @@ in
     onlyoffice = {
       enable = true;
       securityNonceFile = "/etc/onlyoffice-jwt";
-      hostname = officeDom;
-      port = 8000;
     };
 
     resolved = {
