@@ -98,7 +98,7 @@
       "xdg/fuzzel/fuzzel.ini".source = ./config/fuzzel.ini;
       "alacritty/alacritty.toml".source = ./config/alacritty.toml;
       "fastfetch".source = ./config/fastfetch;
-      "/etc/xdg/hypr/hyprlock.conf".source = ./config/hyprlock.conf;
+      "xdg/hypr/hyprlock.conf".source = ./config/hyprlock.conf;
     };
 
     systemPackages = with pkgs; [
