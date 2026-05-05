@@ -21,4 +21,5 @@
   domains = [ ]; # String list of trusted domains
   macaddress = "12:something:a1:b1:something";
   domain = "serverdomain.name";
+  path = "home/sofushl/Documents/";
 }

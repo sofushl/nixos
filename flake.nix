@@ -32,7 +32,7 @@
 
         modules = [
           /etc/nixos/hardware-configuration.nix
-          ./main.nix
+          /${userconf.path}/main.nix
 
           home-manager.nixosModules.home-manager
           {
@@ -42,13 +42,8 @@
 
             home-manager.users.${userconf.username} = {
               imports =
-                (if userconf.devenv then [ /home/${userconf.username}/Documents/nixos/neovim.nix ] else [ ])
-                ++ (
-                  if userconf.niri || userconf.cosmic then
-                    [ /home/${userconf.username}/Documents/nixos/niri/home.nix ]
-                  else
-                    [ ]
-                );
+                (if userconf.devenv then [ /${userconf.path}/neovim.nix ] else [ ])
+                ++ (if userconf.niri || userconf.cosmic then [ /${userconf.path}/niri/home.nix ] else [ ]);
 
               home.stateVersion = userconf.state;
             };

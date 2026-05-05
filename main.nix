@@ -48,15 +48,11 @@
 
   # Imports
   imports =
-    (if userconf.devenv then [ /home/${userconf.username}/Documents/nixos/dev.nix ] else [ ])
-    ++ (if userconf.niri then [ /home/${userconf.username}/Documents/nixos/niri/niri.nix ] else [ ])
-    ++ (if userconf.server then [ /home/${userconf.username}/Documents/nixos/server.nix ] else [ ])
-    ++ (
-      if userconf.cosmic then [ /home/${userconf.username}/Documents/nixos/other/cosmic.nix ] else [ ]
-    )
-    ++ (
-      if userconf.plasma then [ /home/${userconf.username}/Documents/nixos/other/plasma.nix ] else [ ]
-    );
+    (if userconf.devenv then [ /${userconf.path}/dev.nix ] else [ ])
+    ++ (if userconf.niri then [ /${userconf.path}/niri/niri.nix ] else [ ])
+    ++ (if userconf.server then [ /${userconf.path}/server.nix ] else [ ])
+    ++ (if userconf.cosmic then [ /${userconf.path}/other/cosmic.nix ] else [ ])
+    ++ (if userconf.plasma then [ /${userconf.path}/other/plasma.nix ] else [ ]);
 
   swapDevices = [
     {
@@ -114,10 +110,10 @@
     # Custom build commands for using the flake instead of configuration.nix
     shellAliases = {
       nixos-build = ''
-        sudo nixos-rebuild switch --upgrade --flake /home/${userconf.username}/Documents/nixos#${userconf.hostname} --impure
+        sudo nixos-rebuild switch --upgrade --flake /${userconf.path}/#${userconf.hostname} --impure
       '';
       nixos-build-boot = ''
-        sudo nixos-rebuild boot --upgrade --flake /home/${userconf.username}/Documents/nixos#${userconf.hostname} --impure
+        sudo nixos-rebuild boot --upgrade --flake /${userconf.path}/#${userconf.hostname} --impure
       '';
       nixos-defrag = ''
         sudo nix store optimise && \
