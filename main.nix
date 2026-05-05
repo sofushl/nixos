@@ -13,8 +13,10 @@
   console.keyMap = "no";
 
   # Bootloader
-  boot.loader.systemd-boot.enable = !userconf.wsl; # false on WSL
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    systemd-boot.enable = !userconf.wsl; # false on WSL
+    efi.canTouchEfiVariables = true;
+  };
 
   # Kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -76,14 +78,19 @@
   nixpkgs.config.allowUnfree = true;
 
   # Enable flakes etc.
-  nix.settings = {
-    experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
-    sandbox = false;
-  };
+  nix = {
 
+    gc.automatic = true;
+
+    settings = {
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+      sandbox = false;
+      auto-optimise-store = true;
+    };
+  };
   environment = {
     # Package set
     systemPackages = with pkgs; [
@@ -107,10 +114,10 @@
     # Custom build commands for using the flake instead of configuration.nix
     shellAliases = {
       nixos-build = ''
-        sudo nixos-rebuild switch --flake /home/${userconf.username}/Documents/nixos#${userconf.hostname} --impure
+        sudo nixos-rebuild switch --upgrade --flake /home/${userconf.username}/Documents/nixos#${userconf.hostname} --impure
       '';
       nixos-build-boot = ''
-        sudo nixos-rebuild boot --flake /home/${userconf.username}/Documents/nixos#${userconf.hostname} --impure
+        sudo nixos-rebuild boot --upgrade --flake /home/${userconf.username}/Documents/nixos#${userconf.hostname} --impure
       '';
       nixos-defrag = ''
         sudo nix store optimise && \
