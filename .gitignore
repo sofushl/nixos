@@ -3,3 +3,4 @@ configuration.nix
 user.nix
 hardware.nix
 update.php*
+flake.lock

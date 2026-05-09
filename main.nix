@@ -110,10 +110,10 @@
     # Custom build commands for using the flake instead of configuration.nix
     shellAliases = {
       nixos-build = ''
-        sudo nixos-rebuild switch --upgrade --flake /${userconf.path}/#${userconf.hostname} --impure
+        sudo nixos-rebuild switch --flake /${userconf.path}/#${userconf.hostname} --impure
       '';
       nixos-build-boot = ''
-        sudo nixos-rebuild boot --upgrade --flake /${userconf.path}/#${userconf.hostname} --impure
+        sudo nixos-rebuild boot --flake /${userconf.path}/#${userconf.hostname} --impure
       '';
       nixos-defrag = ''
         sudo nix store optimise && \
