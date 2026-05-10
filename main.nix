@@ -62,7 +62,6 @@
   ];
 
   powerManagement.cpuFreqGovernor = "powersave";
-  zramSwap.enable = true;
 
   security = {
     rtkit.enable = true;
@@ -163,36 +162,6 @@
       NIX_SSL_CERT_FILE = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
     };
 
-    etc = {
-      "NetworkManager/system-connections/eduroam.nmconnection" = {
-        text = ''
-          [connection]
-          id=eduroam
-          type=wifi
-          interface-name=${userconf.wifiboard}
-
-          [wifi]
-          mode=infrastructure
-          ssid=eduroam
-
-          [wifi-security]
-          key-mgmt=wpa-eap
-
-          [802-1x]
-          eap=peap;
-          identity=${userconf.username}@ntnu.no
-          password=${userconf.defaultpassword}
-          phase2-auth=mschapv2
-
-          [ipv4]
-          method=auto
-
-          [ipv6]
-          method=auto
-        '';
-        mode = "0600";
-      };
-    };
   };
 
   programs = {
@@ -205,13 +174,6 @@
     };
 
     nix-ld.enable = true;
-
-    # For captive network connection
-    captive-browser = {
-      enable = true;
-      interface = userconf.wifiboard;
-    };
-
   };
 
   nixpkgs.config = {

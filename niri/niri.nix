@@ -7,9 +7,17 @@
 
 {
 
-  programs.niri = {
-    enable = true;
-    useNautilus = false;
+  programs = {
+    niri = {
+      enable = true;
+      useNautilus = false;
+    };
+
+    # For captive network connection
+    captive-browser = {
+      enable = true;
+      interface = userconf.wifiboard;
+    };
   };
 
   xdg = {
@@ -99,6 +107,36 @@
       "alacritty/alacritty.toml".source = ./config/alacritty.toml;
       "fastfetch".source = ./config/fastfetch;
       "xdg/hypr/hyprlock.conf".source = ./config/hyprlock.conf;
+
+      # Eduroam network
+      "NetworkManager/system-connections/eduroam.nmconnection" = {
+        text = ''
+          [connection]
+          id=eduroam
+          type=wifi
+          interface-name=${userconf.wifiboard}
+
+          [wifi]
+          mode=infrastructure
+          ssid=eduroam
+
+          [wifi-security]
+          key-mgmt=wpa-eap
+
+          [802-1x]
+          eap=peap;
+          identity=${userconf.username}@ntnu.no
+          password=${userconf.defaultpassword}
+          phase2-auth=mschapv2
+
+          [ipv4]
+          method=auto
+
+          [ipv6]
+          method=auto
+        '';
+        mode = "0600";
+      };
     };
 
     systemPackages = with pkgs; [
@@ -111,7 +149,6 @@
       scenebuilder
       vscodium
       librewolf
-      geteduroam
       loupe
 
       # Environment applications
