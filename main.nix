@@ -114,16 +114,11 @@
       nixos-build-boot = ''
         sudo nixos-rebuild boot --flake /${userconf.path}/#${userconf.hostname} --impure
       '';
-      nixos-defrag = ''
-        sudo nix store optimise && \
-        sudo fstrim -av
-      '';
       nixos-clear = ''
         sudo nix-collect-garbage -d && \
         sudo rm -rf -v /home/${userconf.username}/.cache/* /home/${userconf.username}/.local/share/Trash/* && \
-        sudo rm -rf -v /tmp/* /var/tmp/* && \
-        sudo journalctl --vacuum-time=7d && \
-        sudo systemctl restart systemd-journald
+        sudo nix store optimise && \
+        sudo fstrim -av
       '';
       nixos-allow = ''
         sudo setfacl -R -m u:${userconf.username}:rwx /etc/nixos/ && \
