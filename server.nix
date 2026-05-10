@@ -31,6 +31,7 @@ in
       enable = true;
       recommendedProxySettings = true;
       recommendedTlsSettings = true;
+      recommendedGzipSettings = true;
 
       virtualHosts = {
 
@@ -48,50 +49,54 @@ in
         ${cloudDom} = {
           forceSSL = true;
           enableACME = true;
-        };
-
-        ${officeDom} = {
-          forceSSL = true;
-          enableACME = true;
 
           locations."/" = {
-            proxyPass = "http://127.0.0.1:8000/";
+            proxyPass = "http://127.0.0.1:11000";
+
             proxyWebsockets = true;
 
             extraConfig = ''
-              proxy_set_header Host $host;
-              proxy_set_header X-Forwarded-Proto https;
-              proxy_set_header Upgrade $http_upgrade;
-              proxy_set_header Connection "upgrade";
+              client_max_body_size 10G;
+
+              proxy_read_timeout 36000s;
+              proxy_send_timeout 36000s;
+              proxy_connect_timeout 36000s;
+
+              proxy_buffering off;
             '';
           };
         };
+
+        #${officeDom} = {
+        #  forceSSL = true;
+        #  enableACME = true;
+        #};
       };
     };
 
-    nextcloud = {
-      enable = true;
-      hostName = cloudDom;
-      https = true;
+    #nextcloud = {
+    #  enable = true;
+    #  hostName = cloudDom;
+    #  https = true;
 
-      config = {
-        adminpassFile = "/etc/nextcloud-admin-pass";
-        dbtype = "sqlite";
-      };
+    #  config = {
+    #    adminpassFile = "/etc/nextcloud-admin-pass";
+    #    dbtype = "sqlite";
+    #  };
 
-      appstoreEnable = true;
-      autoUpdateApps.enable = true;
+    #  appstoreEnable = true;
+    #  autoUpdateApps.enable = true;
 
-      settings = {
-        trusted_domains = userconf.domains;
-      };
+    #  settings = {
+    #    trusted_domains = userconf.domains;
+    #  };
 
-    };
+    #};
 
-    onlyoffice = {
-      enable = true;
-      securityNonceFile = "/etc/onlyoffice-jwt";
-    };
+    #onlyoffice = {
+    #  enable = true;
+    #  securityNonceFile = "/etc/onlyoffice-jwt";
+    #};
 
     resolved = {
       enable = true;
@@ -105,6 +110,45 @@ in
 
     };
 
+  };
+
+  virtualisation = {
+    docker.enable = true;
+
+    oci-containers = {
+      backend = "docker";
+      containers.nextcloud-aio-mastercontainer = {
+        image = "nextcloud/all-in-one:latest";
+
+        autoStart = true;
+
+        ports = [
+          "127.0.0.1:8080:8080"
+        ];
+
+        volumes = [
+          "nextcloud_aio_mastercontainer:/mnt/docker-aio-config"
+          "/var/run/docker.sock:/var/run/docker.sock:ro"
+
+          # actual user data
+          "/srv/nextcloud:/mnt/ncdata"
+        ];
+
+        environment = {
+          APACHE_PORT = "11000";
+          APACHE_IP_BINDING = "127.0.0.1";
+
+          NEXTCLOUD_DATADIR = "/mnt/ncdata";
+
+          SKIP_DOMAIN_VALIDATION = "false";
+        };
+
+        extraOptions = [
+          "--init"
+          "--restart=always"
+        ];
+      };
+    };
   };
 
   security.acme = {
