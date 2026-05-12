@@ -27,6 +27,12 @@
 
   };
 
+  # Bootloader
+  boot.loader = {
+    systemd-boot.enable = true; # false on WSL
+    efi.canTouchEfiVariables = true;
+  };
+
   system.stateVersion = userconf.state;
 
   powerManagement.cpuFreqGovernor = "powersave";
