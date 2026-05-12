@@ -10,7 +10,7 @@ This system is meant for one single user and user configuration relies on ```./l
 
 userconf includes a user part (sofushl.nix), a host part and a secret part:
 
-Make ```./.secrets.nix``` like this:
+Make ```/etc/nixos/secrets.nix``` like this:
 
 ```
 {
