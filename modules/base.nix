@@ -100,9 +100,9 @@
         rm -rf ~/.cache/nvim && \
         rm -rf ~/.local/share/nvim
       '';
-      nixos-userconf = ''
+      nixos-secrets = ''
         nixos-allow \
-        nvim /etc/nixos/userconf.nix
+        nvim /etc/nixos/secrets.nix
       '';
       git-setup = ''
         git config --global --replace-all user.name "${userconf.displayname}" && \
