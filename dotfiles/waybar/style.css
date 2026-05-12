@@ -1,0 +1,45 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 12px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: #1E1E1E;
+    color: #E0E0E0;
+}
+
+#clock,
+#memory,
+#pulseaudio,
+#backlight,
+#network,
+#battery,
+#temperature {
+    padding: 0 5px;
+    margin: 2px 3px;
+    background: #1E1E1E;
+    color: #E0E0E0;
+}
+
+/* Accent color used only for state changes */
+#pulseaudio,
+#backlight,
+#memory,
+#network,
+#battery,
+#temperature {
+    border-bottom: 2px solid #DC6666;
+    min-width: 30px;
+}
+
+/* Muted audio = visually distinct */
+#pulseaudio.muted,
+#network.disabled,
+#network.disconnected,
+#battery.full {
+    color: #1E1E1E;
+    background: #DC6666;
+}
