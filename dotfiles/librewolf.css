@@ -1,0 +1,70 @@
+/* Global UI background */
+#navigator-toolbox,
+#TabsToolbar,
+#nav-bar,
+#PersonalToolbar {
+  background-color: #1E1E1E !important;
+  color: #E0E0E0 !important;
+  border: none !important;
+}
+
+/* Tabs - default */
+.tabbrowser-tab {
+  background-color: #1E1E1E !important;
+  color: #E0E0E0 !important;
+}
+
+/* Active tab */
+.tabbrowser-tab[selected="true"] {
+  background-color: #2A2A2A !important;
+  color: #E0E0E0 !important;
+  border-bottom: 2px solid #DC6666 !important;
+}
+
+/* Tab hover */
+.tabbrowser-tab:hover {
+  background-color: #2A2A2A !important;
+}
+
+/* URL bar */
+#urlbar,
+#urlbar-background {
+  background-color: #1E1E1E !important;
+  color: #E0E0E0 !important;
+  border: 1px solid #505050 !important;
+}
+
+/* BASE */
+#urlbar,
+#urlbar-background,
+#urlbar-input-container {
+  background-color: #1E1E1E !important;
+  color: #E0E0E0 !important;
+  border: 1px solid #505050 !important;
+  box-shadow: none !important;
+  outline: none !important;
+
+/* Selection color inside UI lists (bookmarks, menus) */
+menu,
+menuitem {
+  background-color: #1E1E1E !important;
+  color: #E0E0E0 !important;
+}
+
+menuitem:hover {
+  background-color: #DC6666 !important;
+  color: #1E1E1E !important;
+}
+
+/* Sidebar (bookmarks/history) */
+#sidebar-box {
+  background-color: #1E1E1E !important;
+  color: #E0E0E0 !important;
+  border-right: 1px solid #505050 !important;
+}
+
+/* Selected items in sidebar lists */
+treechildren::-moz-tree-row(selected) {
+  background-color: #DC6666 !important;
+  color: #1E1E1E !important;
+}

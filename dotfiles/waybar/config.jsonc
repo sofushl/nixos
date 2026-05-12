@@ -1,0 +1,72 @@
+{
+    "layer": "bottom",
+    "position": "bottom",
+    "height": 8,
+    "margin-top": 0,
+    "margin-left": 0,
+    "margin-right": 0,
+    "modules-left": [
+        "clock"
+    ],
+    "modules-center": [],
+    "modules-right": [
+        "network",
+        "pulseaudio",
+        "backlight",
+        "temperature",
+        "memory",
+        "battery"
+    ],
+    "clock": {
+        "format": "{:%R - %d/%m/%y}",
+        "format-alt": "{:%R - %A %U}",
+        "tooltip": false
+    },
+    "battery": {
+        "interval": 60,
+        "format": "BAT {capacity}%",
+        "on-click": "shutdown now",
+        "format-time": "{H}:{m}",
+        "format-full": "CHARGED",
+        "format-charging": "POW {capacity}%",
+        "format-plugged": "POW {capacity}%"
+    },
+    "memory": {
+        "format": "RAM {percentage}%",
+        "interval": 3,
+        "on-click": "shutdown -r now"
+    },
+    "pulseaudio": {
+        "format": "VOL {volume}%",
+        "format-muted": "MUTED",
+        "on-click": "alacritty -e bluetoothctl"
+    },
+    "backlight": {
+        "format": "LUX {percent}%",
+        "on-click": "hyprlock",
+        "min-brightness": 0.01,
+        "scroll-step": 0.1
+    },
+    "network": {
+        "format": "{essid}",
+        "format-disconnected": "OFFLINE",
+        "format-disabled": "DISABLED",
+        "tooltip": false,
+        "enable-wireless": true,
+        "enable-wired": true,
+        "on-click": "alacritty -e nmtui",
+        "interval": 3
+    },
+    "temperature": {
+        "hwmon-path": [
+            "/sys/class/hwmon/hwmon4/temp1_input",
+            "/sys/class/hwmon/hwmon3/temp1_input",
+            "/sys/class/thermal/thermal_zone1/temp",
+            "/sys/class/thermal/thermal_zone0/temp"
+            // Append or rearrange after neccesity
+        ],
+        "format": "CPU {temperatureC}°C",
+        "interval": 3,
+        "on-click": "alacritty -e btop"
+    }
+}
