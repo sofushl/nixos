@@ -1,6 +1,6 @@
 {
   imports = [
-    /etc/nixos/hardware-configuration.nix
+    ./hardware.nix
 
     ../presets/homeserver.nix
   ];
