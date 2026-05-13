@@ -1,4 +1,4 @@
-{ selv, inputs, ... }:
+{ self, inputs, ... }:
 
 {
   flake.nixosModules.niriPreset =
@@ -25,12 +25,12 @@
         home.stateVersion = userconf.state;
         home.homeDirectory = "/home/${userconf.username}";
 
-        imports = with self.homeModules; [
-          neovim
-          git
+        imports = [
+          /${userconf.path}/home/neovim.nix
+          /${userconf.path}/home/git.nix
 
-          librewolf
-          darkmode
+          /${userconf.path}/home/librewolf.nix
+          /${userconf.path}/home/darkmode.nix
 
         ];
 

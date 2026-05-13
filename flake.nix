@@ -34,22 +34,5 @@
     };
 
   };
-  outputs =
-    inputs:
-    let
-      userconf = import ./lib/sofushl.nix;
-      lenovoconf = import ./lib/Lenovo.nix;
-      acerconf = import ./libAcer.nix;
-      wslconf = import ./lib/WSL.nix;
-      sshkeys = import ./lib/sshkeys.nix;
-      secrets = import /etc/nixos/secrets.nix;
-      default = userconf // sshkeys // secrets;
-
-      defaultModules = [
-
-        inputs.home-manager.nixosModules.home-manager
-        { home-manager.useGlobalPkgs = true; }
-      ];
-    in
-    inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 }

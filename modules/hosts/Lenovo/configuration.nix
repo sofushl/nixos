@@ -1,8 +1,8 @@
-{ selv, inputs, ... }:
+{ self, inputs, ... }:
 
 {
   flake.nixosModules.LenovoConfiguration = {
-    imports = [
+    imports = with self.nixosModules; [
       LenovoHardware
 
       homeserverPreset
