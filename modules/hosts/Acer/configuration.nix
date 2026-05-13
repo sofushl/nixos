@@ -1,4 +1,4 @@
-{ selv, inputs, ... }:
+{ self, inputs, ... }:
 
 {
   flake.nixosModules.AcerConfiguration = {

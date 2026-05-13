@@ -1,4 +1,4 @@
-{ selv, inputs, ... }:
+{ self, inputs, ... }:
 
 {
   flake.nixosModules.homeserverPreset =
@@ -21,9 +21,9 @@
         home.stateVersion = userconf.state;
         home.homeDirectory = "/home/${userconf.username}";
 
-        imports = with self.homeModules; [
-          neovim
-          git
+        imports = [
+          /${userconf.path}/home/neovim.ix
+          /${userconf.path}/home/git.nix
         ];
 
       };

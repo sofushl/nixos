@@ -1,7 +1,7 @@
 { self, inputs, ... }:
 
 {
-  flake.nixosModules.WSLconfiguration =
+  flake.nixosModules.WSLConfiguration =
 
     { userconf, lib, ... }:
 
@@ -21,8 +21,8 @@
         home.stateVersion = userconf.state;
         home.homeDirectory = "/home/${userconf.username}";
 
-        imports = with self.homeModules; [
-          neovim
+        imports = [
+          /${userconf.path}/home/neovim.nix
         ];
 
       };
