@@ -95,11 +95,6 @@
             sudo setfacl -R -m u:${userconf.username}:rwx /etc/nixos/ && \
             sudo setfacl -R -m u:${userconf.username}:rwx /home/${userconf.username}/Documents
           '';
-          python-venv = ''
-            nix-shell -p python314 uv --run ' \
-            uv venv --python \$(which python) \
-            uv sync'
-          '';
           nvim-clear = ''
             rm -rf ~/.config/nvim && \
             rm -rf ~/.cache/nvim && \
