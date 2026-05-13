@@ -1,5 +1,5 @@
 {
-  path = "home/sofushl/Documents/nixos";
+  path = "home/sofushl/nixos";
   wifiboard = "wlp0s20f3";
   state = "26.05";
 }

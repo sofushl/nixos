@@ -48,7 +48,7 @@
 
           coc.enable = false;
 
-          initLua = builtins.readFile ../dotfiles/neovim.lua;
+          initLua = builtins.readFile ../../dotfiles/neovim.lua;
         };
 
         programs.helix = {

@@ -1,7 +1,7 @@
 { self, inputs, ... }:
 let
   userconf = import ../../../lib/sofushl.nix;
-  sysconf = import ../../../lib/Lenovo.nix;
+  sysconf = import ../../../lib/Acer.nix;
   sshkeys = import ../../../lib/sshkeys.nix;
   secrets = import /etc/nixos/secrets.nix;
   default = userconf // sysconf // sshkeys // secrets;

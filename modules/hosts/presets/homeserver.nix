@@ -13,6 +13,9 @@
 
         develop
         nextcloud
+
+        neovim
+        git
       ];
 
       home-manager.users.${userconf.username} = {
@@ -20,15 +23,8 @@
         home.username = userconf.username;
         home.stateVersion = userconf.state;
         home.homeDirectory = "/home/${userconf.username}";
-
-        imports = [
-          /${userconf.path}/home/neovim.nix
-          /${userconf.path}/home/git.nix
-        ];
-
       };
 
-      # Bootloader
       boot.loader = {
         systemd-boot.enable = true;
         efi.canTouchEfiVariables = true;

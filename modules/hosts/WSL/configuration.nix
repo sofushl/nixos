@@ -12,6 +12,8 @@
           base
           user
           develop
+          neovim
+          git
         ]
         ++ [ <nixos-wsl/modules> ];
 
@@ -20,11 +22,6 @@
         home.username = userconf.username;
         home.stateVersion = userconf.state;
         home.homeDirectory = "/home/${userconf.username}";
-
-        imports = [
-          /${userconf.path}/home/neovim.nix
-        ];
-
       };
 
       networking.hostName = "WSL";
