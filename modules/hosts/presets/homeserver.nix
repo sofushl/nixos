@@ -22,7 +22,7 @@
         home.homeDirectory = "/home/${userconf.username}";
 
         imports = [
-          /${userconf.path}/home/neovim.ix
+          /${userconf.path}/home/neovim.nix
           /${userconf.path}/home/git.nix
         ];
 
