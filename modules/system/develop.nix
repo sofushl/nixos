@@ -60,6 +60,7 @@
             cargo
             lua
             gcc
+            nixd
 
             # LSP
             stylua
