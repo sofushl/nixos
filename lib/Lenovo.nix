@@ -1,5 +1,5 @@
 {
-  path = "home/sofushl/Documents/nixos";
+  path = "home/sofushl/nixos";
   wifiboard = "eth-usb";
   state = "26.05";
   domain = "sofus.undo.it";

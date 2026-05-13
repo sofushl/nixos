@@ -25,6 +25,7 @@
           virtualHosts = {
 
             ${dom} = {
+
               forceSSL = true;
               enableACME = true;
 
@@ -33,11 +34,36 @@
               extraConfig = ''
                 index index.html;
               '';
+
+              listen = [
+                {
+                  addr = "0.0.0.0";
+                  port = 80;
+                }
+                {
+                  addr = "0.0.0.0";
+                  port = 443;
+                  ssl = true;
+                }
+              ];
+
             };
 
             ${cloudDom} = {
               forceSSL = true;
               enableACME = true;
+
+              listen = [
+                {
+                  addr = "0.0.0.0";
+                  port = 80;
+                }
+                {
+                  addr = "0.0.0.0";
+                  port = 443;
+                  ssl = true;
+                }
+              ];
             };
           };
         };
@@ -49,7 +75,7 @@
         cron = {
           enable = true;
           systemCronJobs = [
-            "0 * * * * wget -q --read-timeout=0.0 --waitretry=5 --tries=400 --background ${userconf.freednsupdate}"
+            "0 * * * * wget -4 -q --read-timeout=0.0 --waitretry=5 --tries=400 --background ${userconf.freednsupdate}"
           ];
         };
 
