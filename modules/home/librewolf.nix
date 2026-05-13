@@ -1,17 +1,21 @@
-{
-  programs.librewolf = {
-    enable = true;
+{ selv, inputs, ... }:
 
-    profiles.default = {
-      settings = {
-        "webgl.disabled" = false;
-        "privacy.resistfingerprinting" = false;
-        "firefoxsync.disabled" = false;
+{
+  flake.nixosModules.librewolf = {
+    programs.librewolf = {
+      enable = true;
+
+      profiles.default = {
+        settings = {
+          "webgl.disabled" = false;
+          "privacy.resistfingerprinting" = false;
+          "firefoxsync.disabled" = false;
+        };
+
+        userChrome = ../../dotfiles/librewolf.css;
+
       };
 
-      userChrome = ../../dotfiles/librewolf.css;
-
     };
-
   };
 }

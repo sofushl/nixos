@@ -1,22 +1,28 @@
+{ selv, inputs, ... }:
+
 {
-  userconf,
-  config,
-  ...
-}:
-{
-  users.users.${userconf.username} = {
-    isNormalUser = true;
-    description = userconf.displayname;
+  flake.nixosModules.user =
 
-    extraGroups = [
-      "wheel"
-      "networkmanager"
-    ];
+    {
+      userconf,
+      config,
+      ...
+    }:
+    {
+      users.users.${userconf.username} = {
+        isNormalUser = true;
+        description = userconf.displayname;
 
-    initialPassword = userconf.pin;
+        extraGroups = [
+          "wheel"
+          "networkmanager"
+        ];
 
-    openssh.authorizedKeys.keys = userconf.sshkeys;
-  };
+        initialPassword = userconf.pin;
 
-  users.users.root.initialPassword = userconf.pin;
+        openssh.authorizedKeys.keys = userconf.sshkeys;
+      };
+
+      users.users.root.initialPassword = userconf.pin;
+    };
 }

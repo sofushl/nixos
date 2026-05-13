@@ -9,10 +9,9 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
-    #import-tree = {
-    #  url = "github:vic/import-tree";
-    #  inputs.nixpkgs.follows = "nixpkgs";
-    #};
+    import-tree = {
+      url = "github:vic/import-tree";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -36,12 +35,12 @@
 
   };
   outputs =
-    inputs@{ ... }:
+    inputs:
     let
       userconf = import ./lib/sofushl.nix;
-      lenovoconf = import ./hosts/Lenovo/lib.nix;
-      acerconf = import ./hosts/Acer/lib.nix;
-      wslconf = import ./hosts/WSL/lib.nix;
+      lenovoconf = import ./lib/Lenovo.nix;
+      acerconf = import ./libAcer.nix;
+      wslconf = import ./lib/WSL.nix;
       sshkeys = import ./lib/sshkeys.nix;
       secrets = import /etc/nixos/secrets.nix;
       default = userconf // sshkeys // secrets;
@@ -52,53 +51,5 @@
         { home-manager.useGlobalPkgs = true; }
       ];
     in
-    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-
-      systems = [ "x86_64-linux" ];
-
-      flake.nixosConfigurations = {
-
-        Acer = inputs.nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-
-          specialArgs = {
-            inherit inputs;
-            userconf = default // acerconf;
-          };
-
-          modules = [
-            ./hosts/Acer
-          ]
-          ++ defaultModules;
-        };
-
-        Lenovo = inputs.nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-
-          specialArgs = {
-            inherit inputs;
-            userconf = default // lenovoconf;
-          };
-
-          modules = [
-            ./hosts/Lenovo
-          ]
-          ++ defaultModules;
-        };
-
-        WSL = inputs.nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-
-          specialArgs = {
-            inherit inputs;
-            userconf = default // wslconf;
-          };
-
-          modules = [
-            ./hosts/WSL
-          ]
-          ++ defaultModules;
-        };
-      };
-    };
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 }
