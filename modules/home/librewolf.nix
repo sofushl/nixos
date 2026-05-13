@@ -15,7 +15,7 @@
             "firefoxsync.disabled" = false;
           };
 
-          userChrome = ../dotfiles/librewolf.css;
+          userChrome = ../../dotfiles/librewolf.css;
 
         };
 

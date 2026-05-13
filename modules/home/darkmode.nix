@@ -32,7 +32,7 @@
           ".config/cosmic" = {
             force = true;
             recursive = true;
-            source = ../dotfiles/cosmic;
+            source = ../../dotfiles/cosmic;
           };
         };
 
@@ -40,7 +40,7 @@
           enable = true;
 
           configFile."sunsetr/sunsetr.toml" = {
-            source = ../dotfiles/sunsetr.toml;
+            source = ../../dotfiles/sunsetr.toml;
             force = true;
           };
 
