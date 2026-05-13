@@ -133,7 +133,11 @@
             80
             443
           ];
-          allowedUDPPorts = [ ];
+          allowedUDPPorts = [
+            22
+            80
+            443
+          ];
         };
         useDHCP = lib.mkForce false;
       };
