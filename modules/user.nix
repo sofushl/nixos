@@ -23,6 +23,13 @@
         openssh.authorizedKeys.keys = userconf.sshkeys;
       };
 
+      home-manager.users.${userconf.username} = {
+
+        home.username = userconf.username;
+        home.stateVersion = userconf.state;
+        home.homeDirectory = "/home/${userconf.username}";
+      };
+
       users.users.root.initialPassword = userconf.pin;
     };
 }
