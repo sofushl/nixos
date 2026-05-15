@@ -7,7 +7,7 @@
     {
       services.nextcloud = {
         enable = true;
-        hostName = "cloud.${userconf.domain}";
+        hostName = userconf.cloudDom;
         https = true;
         database.createLocally = true;
 
