@@ -39,26 +39,6 @@
       networking.networkmanager.enable = true;
 
       services = {
-
-        # Display manager
-        xserver = {
-          enable = true;
-          desktopManager.xterm.enable = false;
-          xkb = {
-            layout = "no";
-            variant = "winkeys";
-          };
-        };
-
-        # Automatic login greeter
-        greetd = {
-          enable = true;
-          settings.default_session = {
-            command = "${pkgs.dbus}/bin/dbus-run-session ${pkgs.niri}/bin/niri";
-            user = userconf.username;
-          };
-        };
-
         # USB management
         udisks2.enable = true;
         gvfs.enable = true;
@@ -106,7 +86,7 @@
           udiskie
 
           # Launch shellscripts
-          (writeShellScriptBin "nvim-home" "alacritty -e bash -lc 'cd ~/Documents && nvim'")
+          (writeShellScriptBin "nvim-home" "alacritty -e bash -lc 'cd ~/ && nvim'")
         ];
 
         sessionVariables = {

@@ -1,7 +1,7 @@
 { self, inputs, ... }:
 
 {
-  flake.nixosModules.homeserverPreset =
+  flake.nixosModules.serverPreset =
 
     { userconf, ... }:
 
@@ -12,8 +12,12 @@
         server
 
         develop
-        nextcloud
 
+        # Services
+        nextcloud
+        freeDNS
+
+        # Programs
         neovim
         git
       ];

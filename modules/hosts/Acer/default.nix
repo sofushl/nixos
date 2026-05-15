@@ -25,7 +25,8 @@ in
     modules =
       with self.nixosModules;
       [
-        AcerConfiguration
+        AcerHardware
+        laptopPreset
       ]
       ++ defaultModules;
   };
