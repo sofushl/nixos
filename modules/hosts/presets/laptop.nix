@@ -1,7 +1,7 @@
 { self, inputs, ... }:
 
 {
-  flake.nixosModules.niriPreset =
+  flake.nixosModules.laptopPreset =
     { userconf, ... }:
 
     {
@@ -10,18 +10,20 @@
         desktop
         user
 
+        niri
+        darkmode
         develop
 
-        vscodium
+        # Services
         eduroam
-        niri
         greetd-niri
         keyd
 
+        # Programs
+        vscodium
         neovim
         git
         librewolf
-        darkmode
       ];
 
       boot.loader = {

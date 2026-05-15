@@ -9,11 +9,6 @@
       lib,
       ...
     }:
-
-    let
-      dom = userconf.domain;
-      cloudDom = "cloud.${dom}";
-    in
     {
       services = {
         nginx = {
@@ -23,9 +18,7 @@
           recommendedGzipSettings = true;
 
           virtualHosts = {
-
-            ${dom} = {
-
+            ${userconf.topDom} = {
               forceSSL = true;
               enableACME = true;
 
@@ -34,49 +27,17 @@
               extraConfig = ''
                 index index.html;
               '';
-
-              listen = [
-                {
-                  addr = "0.0.0.0";
-                  port = 80;
-                }
-                {
-                  addr = "0.0.0.0";
-                  port = 443;
-                  ssl = true;
-                }
-              ];
-
             };
 
-            ${cloudDom} = {
+            ${userconf.cloudDom} = {
               forceSSL = true;
               enableACME = true;
-
-              listen = [
-                {
-                  addr = "0.0.0.0";
-                  port = 80;
-                }
-                {
-                  addr = "0.0.0.0";
-                  port = 443;
-                  ssl = true;
-                }
-              ];
             };
           };
         };
 
         resolved = {
           enable = true;
-        };
-
-        cron = {
-          enable = true;
-          systemCronJobs = [
-            "0 * * * * wget -4 -q --read-timeout=0.0 --waitretry=5 --tries=400 --background ${userconf.freednsupdate}"
-          ];
         };
 
       };
@@ -88,13 +49,10 @@
           webroot = "/var/lib/acme/acme-challenge/";
         };
         certs = {
-          "${dom}" = {
+          "${userconf.topDom}" = {
             group = config.services.nginx.group;
 
-            extraDomainNames = [
-              dom
-              cloudDom
-            ];
+            extraDomainNames = userconf.domains;
           };
         };
       };
@@ -137,12 +95,6 @@
           ];
         };
         useDHCP = lib.mkForce false;
-      };
-
-      environment = {
-        systemPackages = with pkgs; [
-          wget
-        ];
       };
 
     };

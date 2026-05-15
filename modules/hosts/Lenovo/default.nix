@@ -2,9 +2,10 @@
 let
   userconf = import ../../../lib/sofushl.nix;
   sysconf = import ../../../lib/Lenovo.nix;
+  serverconf = import ../../../lib/server.nix;
   sshkeys = import ../../../lib/sshkeys.nix;
   secrets = import /etc/nixos/secrets.nix;
-  default = userconf // sysconf // sshkeys // secrets;
+  default = userconf // sysconf // sshkeys // secrets // serverconf;
 
   defaultModules = [
 
@@ -25,9 +26,11 @@ in
     modules =
       with self.nixosModules;
       [
-        LenovoConfiguration
+        LenovoHardware
+        serverPreset
       ]
       ++ defaultModules;
+
   };
 
 }

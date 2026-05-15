@@ -7,6 +7,7 @@
       pkgs,
       config,
       userconf,
+      lib,
       ...
     }:
 
@@ -15,7 +16,7 @@
       time.timeZone = "Europe/Oslo";
       i18n.defaultLocale = "nb_NO.UTF-8";
       i18n.extraLocaleSettings.LANG = "en_GB.UTF-8";
-      console.keyMap = "no";
+      console.useXkbConfig = true;
 
       # Kernel
       boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -25,7 +26,6 @@
 
       # Enable flakes etc.
       nix = {
-
         gc.automatic = true;
 
         settings = {
@@ -54,6 +54,13 @@
           settings = {
             PasswordAuthentication = false;
             PermitRootLogin = "no";
+          };
+        };
+
+        xserver = {
+          xkb = {
+            layout = "no";
+            variant = "nodeadkeys";
           };
         };
       };
@@ -95,22 +102,9 @@
             sudo setfacl -R -m u:${userconf.username}:rwx /etc/nixos/ && \
             sudo setfacl -R -m u:${userconf.username}:rwx /home/${userconf.username}/Documents
           '';
-          nvim-clear = ''
-            rm -rf ~/.config/nvim && \
-            rm -rf ~/.cache/nvim && \
-            rm -rf ~/.local/share/nvim
-          '';
           nixos-secrets = ''
             nixos-allow \
             nvim /etc/nixos/secrets.nix
-          '';
-          git-setup = ''
-            git config --global --replace-all user.name "${userconf.displayname}" && \
-            git config --global --replace-all user.email "${userconf.gitmail}" && \
-            git config --global --get user.name && \
-            git config --global --get user.email && \
-            ssh-keygen && \
-            cat ~/.ssh/*.pub
           '';
         };
 
