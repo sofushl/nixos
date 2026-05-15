@@ -1,6 +1,6 @@
 # Old NixOS config description
 
-==This was my config before moving to a dendritic config==
+**This was my config before moving to a dendritic config.**
 
 [new config](https://github.com/sofuslind/nixos).
 
