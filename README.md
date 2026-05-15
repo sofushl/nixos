@@ -1,8 +1,8 @@
 # Old NixOS config description
 
-**This was my config before moving to a dendritic config.**
+**This was my config before moving to a dendritic config, this repo is archived and will receive no future updates!**
 
-[new config](https://github.com/sofuslind/nixos).
+[Link to the new config!](https://github.com/sofuslind/nixos)
 
 Multi file setup that allows for easy experimentation across multiple devices.
 
