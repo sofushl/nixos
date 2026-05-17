@@ -5,32 +5,22 @@ let
   serverconf = import ../../../lib/server.nix;
   sshkeys = import ../../../lib/sshkeys.nix;
   secrets = import /etc/nixos/secrets.nix;
-  default = userconf // sysconf // sshkeys // secrets // serverconf;
-
-  defaultModules = [
-
-    inputs.home-manager.nixosModules.home-manager
-    { home-manager.useGlobalPkgs = true; }
-  ];
 in
-
 {
   flake.nixosConfigurations.Lenovo = inputs.nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
 
     specialArgs = {
       inherit inputs;
-      userconf = default;
+      userconf = userconf // sysconf // sshkeys // secrets // serverconf;
     };
 
-    modules =
-      with self.nixosModules;
-      [
-        LenovoHardware
-        serverPreset
-      ]
-      ++ defaultModules;
+    modules = with self.nixosModules; [
+      LenovoHardware
+      serverPreset
 
+      inputs.home-manager.nixosModules.home-manager
+      { home-manager.useGlobalPkgs = true; }
+    ];
   };
-
 }

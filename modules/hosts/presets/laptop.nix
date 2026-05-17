@@ -24,6 +24,7 @@
         neovim
         git
         librewolf
+        nextcloudClient
       ];
 
       boot.loader = {
