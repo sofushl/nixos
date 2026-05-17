@@ -33,6 +33,8 @@
           jack.enable = true;
         };
 
+        gnome.gnome-keyring.enable = true;
+
         # Enable CUPS to print documents.
         printing.enable = true;
 
@@ -43,12 +45,12 @@
 
       environment.systemPackages = with pkgs; [
         # User applications
-        nextcloud-client
         onlyoffice-desktopeditors
         vesktop
         spotify
         scenebuilder
         loupe
       ];
+
     };
 }

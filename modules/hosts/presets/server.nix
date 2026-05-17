@@ -14,7 +14,7 @@
         develop
 
         # Services
-        nextcloud
+        nextcloudServer
         freeDNS
 
         # Programs

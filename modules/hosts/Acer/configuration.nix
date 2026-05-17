@@ -4,31 +4,25 @@ let
   sysconf = import ../../../lib/Acer.nix;
   sshkeys = import ../../../lib/sshkeys.nix;
   secrets = import /etc/nixos/secrets.nix;
-  default = userconf // sysconf // sshkeys // secrets;
-
-  defaultModules = [
-
-    inputs.home-manager.nixosModules.home-manager
-    { home-manager.useGlobalPkgs = true; }
-  ];
 in
-
 {
   flake.nixosConfigurations.Acer = inputs.nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
 
     specialArgs = {
       inherit inputs;
-      userconf = default;
+      userconf = userconf // sysconf // sshkeys // secrets;
     };
 
-    modules =
-      with self.nixosModules;
-      [
-        AcerHardware
-        laptopPreset
-      ]
-      ++ defaultModules;
-  };
+    modules = with self.nixosModules; [
+      AcerHardware
 
+      laptopPreset
+
+      inputs.home-manager.nixosModules.home-manager
+      { home-manager.useGlobalPkgs = true; }
+      inputs.disko.nixosModules.disko
+      inputs.preservation.nixosModules.default
+    ];
+  };
 }

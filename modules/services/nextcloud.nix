@@ -1,7 +1,7 @@
 { self, inputs, ... }:
 
 {
-  flake.nixosModules.nextcloud =
+  flake.nixosModules.nextcloudServer =
     { userconf, ... }:
 
     {
