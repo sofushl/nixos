@@ -6,6 +6,7 @@
 
     {
       home-manager.users.${userconf.username} = {
+
         programs.neovim = {
           enable = true;
           defaultEditor = true;
@@ -57,7 +58,22 @@
             theme = "gruvbox-material";
           };
         };
-
       };
+
+      environment.systemPackages = with pkgs; [
+        # Dependencies
+        git
+        lazygit
+        fd
+        ripgrep
+        fzf
+        unzip
+        wget
+        curl
+        ast-grep
+        gzip
+        gnutar
+
+      ];
     };
 }
