@@ -73,7 +73,10 @@ sudo nixos-generate-config --root /mnt
 # Apply config
 sudo git clone https://github.com/sofuslind/nixos.git
 sudo rm /mnt/etc/nixos/configuration.nix
-sudo mv /nixos/initconf.nix /mnt/etc/nixos/configuration.nix
+cat /nixos/README.md
+
+# get the configuration into /mnt/etc/configuration.nix
+sudo vi /mnt/etc/nixos/configuration.nix
 
 # Install
 cd /mnt
