@@ -50,6 +50,68 @@ All non nix files used for the config is in ```./dotfiles/```.
 
 Using a simple nixos configuration you can make a ultra bare bones nix config with the sole purpose of rebuilding into a different system. This is an old and weird way to go about doing things in nix, which is why I moved it into the bottom of my README file.
 
-| configuration.nix | shell commands (example) |
-|---|---|
-| <pre lang="nix">{<br>  imports = [<br>    ./hardware-configuration.nix<br>  ];<br>  <br>  boot.loader.systemd-boot.enable = true;<br>  boot.loader.efi.canTouchEfiVariables = true;<br>  <br>  networking.networkmanager.enable = true;<br>  console.keyMap = "no";<br>  <br>  users.users.root.initialPassword = "p";<br>  <br>  users.users.sofushl = {<br>    isNormalUser = true;<br>    extraGroups = [ "wheel" "networkmanager" ];<br>    initialPassword = "p";<br>  };<br>  <br>  programs.neovim = {<br>    enable = true;<br>    defaultEditor = true;<br>    viAlias = true;<br>    vimAlias = true;<br>  };<br>  <br>  programs.git.enable = true;<br>  programs.nix-ld.enable = true;<br>  <br>  system.stateVersion = "25.11";<br>}</pre> | <pre lang="bash">sudo loadkeys no<br>nmtui<br><br>sudo mkfs.fat -F 32 -n BOOT /dev/nvme0n1p1<br>sudo mkfs.xfs /dev/nvme0n1p4 -L ROOT<br><br>sudo mount /dev/disk/by-label/ROOT /mnt<br>sudo mkdir -p /mnt/boot<br>sudo mount /dev/disk/by-label/BOOT /mnt/boot<br>sudo nixos-generate-config --root /mnt<br><br>sudo git clone https://github.com/sofuslind/nixos.git<br>sudo rm /mnt/etc/nixos/configuration.nix<br>sudo mv /nixos/initconf.nix /mnt/etc/nixos/configuration.nix<br><br>cd /mnt<br>sudo nixos-install</pre> |
+
+### `Shell commands (example)`
+
+```bash
+# Keyboard layout
+sudo loadkeys no
+
+# Network setup
+nmtui
+
+# Format partitions (replace with your disk)
+sudo mkfs.fat -F 32 -n BOOT /dev/nvme0n1p1
+sudo mkfs.xfs /dev/nvme0n1p4 -L ROOT
+
+# Mount
+sudo mount /dev/disk/by-label/ROOT /mnt
+sudo mkdir -p /mnt/boot
+sudo mount /dev/disk/by-label/BOOT /mnt/boot
+sudo nixos-generate-config --root /mnt
+
+# Apply config
+sudo git clone https://github.com/sofuslind/nixos.git
+sudo rm /mnt/etc/nixos/configuration.nix
+sudo mv /nixos/initconf.nix /mnt/etc/nixos/configuration.nix
+
+# Install
+cd /mnt
+sudo nixos-install
+```
+
+### `configuration.nix`
+
+```nix
+{
+  imports = [
+    ./hardware-configuration.nix
+  ];
+
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  networking.networkmanager.enable = true;
+  console.keyMap = "no";
+
+  users.users.root.initialPassword = "p";
+
+  users.users.sofushl = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" "networkmanager" ];
+    initialPassword = "p";
+  };
+
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
+  };
+
+  programs.git.enable = true;
+  programs.nix-ld.enable = true;
+
+  system.stateVersion = "25.11";
+}
+```
