@@ -37,7 +37,7 @@ Make ```/etc/nixos/secrets.nix``` like this:
   email = "youremail@example.com"; # Email for automated mails and login
   password = "yourpassword"; # High security online logins
   pin = "yourpin"; # Root and user login on this device
-  freednsupdate = "yourUpdateLink" # for freedns dynamic ip updater cron job
+  freednsupdate = "yourUpdateLink"; # for freedns dynamic ip updater cron job
 }
 ```
 
@@ -45,3 +45,72 @@ Make ```/etc/nixos/secrets.nix``` like this:
 
 All non nix files used for the config is in ```./dotfiles/```.
 
+
+## Install (without disko)
+
+Using a simple nixos configuration you can make a ultra bare bones nix config with the sole purpose of rebuilding into a different system. This is an old and weird way to go about doing things in nix, which is why I moved it into the bottom of my README file.
+
+| configuration.nix | shell commands (example) |
+|---|---|
+|```nix
+{
+  imports = [
+    ./hardware-configuration.nix
+  ];
+
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  networking.networkmanager.enable = true;
+
+  console.keyMap = "no";
+
+  users.users.root.initialPassword = "p";
+
+  users.users.sofushl = {
+    isNormalUser = true;
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+    ];
+    initialPassword = "p";
+  };
+
+  programs = {
+
+    neovim = {
+      enable = true;
+      defaultEditor = true;
+      viAlias = true;
+      vimAlias = true;
+    };
+
+    git.enable = true;
+
+    nix-ld.enable = true;
+  };
+
+  system.stateVersion = "25.11";
+
+}
+```|
+```bash
+sudo loadkeys no # replace with your keyboard layout
+
+nmtui
+
+sudo mkfs.fat -F 32 -n BOOT /dev/nvme0n1p1  # Replace with your disk
+sudo mkfs.xfs /dev/nvme0n1p4 -L ROOT
+
+sudo mount /dev/disk/by-label/ROOT /mnt
+sudo mkdir -p /mnt/boot
+sudo mount /dev/disk/by-label/BOOT /mnt/boot
+sudo nixos-generate-config --root /mnt
+
+sudo git clone https://github.com/sofuslind/nixos.git
+sudo rm /mnt/etc/nixos/configuration.nix
+sudo mv /nixos/initconf.nix /mnt/etc/nixos/configuration.nix
+
+cd /mnt
+sudo nixos-install
+```|
