@@ -7,5 +7,4 @@ rec {
     cloudDom
   ];
 
-  freednsUpdate = "${userconf.freednsupdate}";
 }

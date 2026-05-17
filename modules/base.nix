@@ -79,9 +79,14 @@
           wget
           curl
           dnsutils
+          ripgrep
           git
+          git-filter-repo
           zip
+          unzip
+          gzip
           nodejs_25
+          uv
         ];
 
         # Custom build commands for using the flake instead of configuration.nix

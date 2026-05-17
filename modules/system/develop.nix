@@ -85,24 +85,6 @@
             prettier
             black
             isort
-
-            # Nvim dependencies
-            tree-sitter
-            telescope
-            lazygit
-            fd
-            ripgrep
-            fzf
-            unzip
-            wget
-            curl
-            ast-grep
-            gzip
-            gnutar
-
-            # Other tools
-            uv
-            graphviz
           ]
           ++ dlopenLibraries;
       };
