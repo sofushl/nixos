@@ -22,4 +22,5 @@
   macaddress = "12:something:a1:b1:something";
   domain = "serverdomain.name";
   path = "home/sofushl/Documents/";
+  freednsupdate = "yourUpdateLink"; # for freedns dynamic ip updater cron job
 }

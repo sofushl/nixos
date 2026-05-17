@@ -4,6 +4,8 @@
 
 [Link to the new config!](https://github.com/sofuslind/nixos)
 
+Originally archived 15. May, rearchived 18. May for security reasons.
+
 Multi file setup that allows for easy experimentation across multiple devices.
 
 ### flake.nix
