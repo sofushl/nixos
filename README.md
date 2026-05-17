@@ -46,9 +46,9 @@ Make ```/etc/nixos/secrets.nix``` like this:
 All non nix files used for the config is in ```./dotfiles/```.
 
 
-## Install (without disko)
+## Dual boot installation
 
-Using a simple nixos configuration you can make a ultra bare bones nix config with the sole purpose of rebuilding into a different system. This is an old and weird way to go about doing things in nix, which is why I moved it into the bottom of my README file.
+Using a simple nixos configuration you can make a ultra bare bones nix config with the sole purpose of rebuilding into a different system. This is an old and weird way to go about doing things in nix, which is why I moved it into the bottom of my README file. This example of shell commands is intended for when you have windows installed (without recovery partition) and already have established an xfs linux partition on the 4th partition. The example is quite niche but I'm replacing it with disko anyway...
 
 
 ### `Shell commands (example)`
