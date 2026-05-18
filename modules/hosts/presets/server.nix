@@ -15,7 +15,7 @@
 
         # Services
         nextcloudServer
-        freeDNS
+        dnsUpdater
 
         # Programs
         neovim
