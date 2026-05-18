@@ -37,7 +37,9 @@ Make ```/etc/nixos/secrets.nix``` like this:
   email = "youremail@example.com"; # Email for automated mails and login
   password = "yourpassword"; # High security online logins
   pin = "yourpin"; # Root and user login on this device
-  freednsupdate = "yourUpdateLink"; # for freedns dynamic ip updater cron job
+  dnsUpdateLinks = [
+    "yourUpdateLink1"
+  ]; # for freedns dynamic ip updater cron job
 }
 ```
 
