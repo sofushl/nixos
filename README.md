@@ -24,6 +24,30 @@ Services for various purposes, including nextcloud config.
 #### system
 Miscellaneous larger files that configure session and environment, including my niri config and development library setup for javafx and iced-rs
 
+## Configuration
+
+Boilerplate for nixosModules:
+
+```nix
+{
+  self,
+  inputs,
+  ...
+}:
+
+{
+  flake.nixosModules.MODULENAME = 
+    {userconf, pkgs, ...}:
+    {
+      # Your config here
+
+      home-manager.users.${userconf.username} = {
+        # Your homemanager config here
+      };
+  };
+}
+```
+
 ## Library
 
 This system is meant for one single user and user configuration relies on ```./lib/sofushl.nix```
@@ -62,8 +86,8 @@ sudo loadkeys no
 # Network setup
 nmtui
 
-# Format partitions (replace with your disk)
-sudo mkfs.fat -F 32 -n BOOT /dev/nvme0n1p1
+# Format partition (replace with your designated linux partition)
+# Note that this needs to be set up beforehand with parted or similar.
 sudo mkfs.xfs /dev/nvme0n1p4 -L ROOT
 
 # Mount
@@ -89,9 +113,7 @@ sudo nixos-install
 
 ```nix
 {
-  imports = [
-    ./hardware-configuration.nix
-  ];
+  imports = [ ./hardware-configuration.nix ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -103,9 +125,17 @@ sudo nixos-install
 
   users.users.sofushl = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ];
     initialPassword = "p";
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+    ];
   };
+
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   programs.neovim = {
     enable = true;
@@ -119,4 +149,5 @@ sudo nixos-install
 
   system.stateVersion = "25.11";
 }
+
 ```
