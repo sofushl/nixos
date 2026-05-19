@@ -4,7 +4,10 @@
   flake.nixosModules.tmpfsDisk =
     { userconf, ... }:
     {
+      
       boot.tmp.cleanOnBoot = true;
+
+      preservation.enable = true;
 
       preservation.preserveAt."/persistent" = {
         directories = [
@@ -20,7 +23,7 @@
 
           "/etc/nixos"
           "/etc/NetworkManager/system-connections"
-          "/etc/cups"
+          #"/etc/cups"
 
           "/var/lib/bluetooth"
           "/var/lib/systemd/timers"
@@ -39,7 +42,6 @@
           directories = [
 
             "Downloads"
-            "Documents"
             "nixos"
 
             ".ssh"
@@ -50,8 +52,11 @@
             ".librewolf"
 
             ".local/share/keyrings"
-            ".loval/state/wireplumber"
+            ".local/state/wireplumber"
 
+          ];
+          files = [
+            # "Documents"
           ];
         };
       };
