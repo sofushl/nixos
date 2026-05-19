@@ -40,7 +40,7 @@
 
             ".config/VSCodium"
 
-            ".librewolf"
+            ".librewolf/default"
           ];
           files = [
             # "Documents"
