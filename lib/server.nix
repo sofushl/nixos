@@ -1,10 +1,14 @@
 rec {
-  topDom = "sofus.undo.it";
-  cloudDom = "cloud.sofus.undo.it";
+  topDom = "sofus.privatedns.org";
+  cloudDom = "cloud.sofus.privatedns.org";
+  secondaryDom = "sofus.undo.it";
 
   domains = [
+
     topDom
     cloudDom
+    secondaryDom
+
   ];
 
 }
