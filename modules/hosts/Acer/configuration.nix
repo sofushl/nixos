@@ -16,8 +16,6 @@ in
 
     modules = with self.nixosModules; [
       AcerHardware
-      #AcerDisk
-      #AcerPreservation
 
       laptopPreset
 
@@ -25,6 +23,7 @@ in
       { home-manager.useGlobalPkgs = true; }
       inputs.disko.nixosModules.disko
       inputs.preservation.nixosModules.default
+
     ];
   };
 }
