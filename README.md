@@ -71,6 +71,58 @@ Make ```/etc/nixos/secrets.nix``` like this:
 
 All non nix files used for the config is in ```./dotfiles/```.
 
+## Disko installation
+
+```bash
+sudo loadkeys no
+
+nmtui
+
+sudo git clone https://github.com/sofuslind/nixos.git
+
+# If you didn't make the config beforehand, make it now:
+sudo mkdir nixos/modules/hosts/YOUR_HOST
+cd nixos/modules/hosts/YOUR_HOST
+
+sudo nixos-generate-config --no-filesystems --dir .
+
+# Otherwise, just generate hardware configuration:
+
+sudo mkdir hardware-tmp
+sudo nixos-generate-config --no-filesystems --dir ./hardware-tmp
+
+sudo mv ./hardware-tmp/hardware-configuration.nix ./hardware.nix
+
+# Lastly make secrets.nix run and run the installer
+
+sudo vi /etc/nixos/secrets.nix # You will have to remake this when in the system
+
+cd /nixos
+
+# Remember to update ./lib/YOUR_HOST.nix before and after installing
+
+sudo nix --extra-experimental-features "nix-command flakes" \
+  run 'github:nix-community/disko/latest#disko-install' -- \
+  --flake .#YOUR_HOST --impure \
+  --disk main /dev/YOUR_DISK \
+
+# After rebooting:
+
+ssh-keygen
+cat .ssh/id_ed25519.pub 
+
+# Add to github and clone the repo
+
+git clone git@github.com:sofuslind/nixos.git # My link
+
+# Update ./lib/YOUR_HOST.nix and ./lib/sshkeys.nix and 
+
+# Rebuild to make sure you did everything right
+
+nixos-build 
+
+
+```
 
 ## Dual boot installation
 
