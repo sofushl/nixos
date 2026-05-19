@@ -96,7 +96,7 @@
 
           nixos-build-boot = "sudo nixos-rebuild boot --flake /${userconf.path}/#${config.networking.hostName} --impure";
 
-          nixos-update = "nix flake update --flake /${userconf.path}/nixos";
+          nixos-update = "sudo nix flake update --flake /${userconf.path}";
 
           nixos-clear = ''
             sudo nix-collect-garbage -d && \
