@@ -6,7 +6,7 @@ let
   secrets = import /etc/nixos/secrets.nix;
 in
 {
-  flake.nixosConfigurations.Disk = inputs.nixpkgs.lib.nixosSystem {
+  flake.nixosConfigurations.Dell = inputs.nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
 
     specialArgs = {
