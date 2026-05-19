@@ -16,6 +16,7 @@
         # Services
         nextcloudServer
         dnsUpdater
+        nginx
 
         # Programs
         neovim

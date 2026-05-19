@@ -2,11 +2,7 @@
 
 {
   flake.nixosModules.develop =
-    {
-      lib,
-      pkgs,
-      ...
-    }:
+    { lib, pkgs, ... }:
 
     let
       dlopenLibraries = with pkgs; [
