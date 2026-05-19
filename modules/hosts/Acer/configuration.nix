@@ -16,6 +16,8 @@ in
 
     modules = with self.nixosModules; [
       AcerHardware
+      AcerDisk
+      AcerPreservation
 
       laptopPreset
 

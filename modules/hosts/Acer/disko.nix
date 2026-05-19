@@ -2,69 +2,76 @@
 
 {
   flake.nixosModules.AcerDisk = {
-
     fileSystems."/nix".neededForBoot = true;
 
-    disko.devices = {
-      nodev."/" = {
+    disko.devices.nodev = {
+      "/" = {
         fsType = "tmpfs";
-
         mountOptions = [
           "size=25%"
           "mode=755"
         ];
       };
+    };
 
-      disk.main = {
-        type = "disk";
-        device = "/dev/nvme0n1";
+    disko.devices.disk.main = {
+      device = "/dev/nvme0n1";
+      type = "disk";
+
+      content.type = "gpt";
+
+      content.partitions.esp = {
+        priority = 1;
+        name = "ESP";
+        start = "1M";
+        end = "128M";
+        type = "EF00";
+        content = {
+          type = "filesystem";
+          format = "vfat";
+          mountpoint = "/boot";
+          mountOptions = [ "umask=0077" ];
+        };
+      };
+
+      content.partitions.swap = {
+        size = "8G";
 
         content = {
+          type = "swap";
+          resumeDevice = true;
+        };
+      };
 
-          partitions = {
-            nixos = {
-              name = "ROOT";
-              device = "/dev/nvme0n1p4";
+      content.partitions.root = {
+        name = "root";
+        size = "100%";
 
-              content = {
-                type = "btrfs";
+        content = {
+          type = "btrfs";
+          extraArgs = [ "-f" ];
 
-                extraArgs = [ "-f" ];
+          subvolumes = {
+            "/persistent" = {
+              mountOptions = [
+                "subvol=persistent"
+                "compress=zstd"
+                "noatime"
+              ];
+              mountpoint = "/persistent";
+            };
 
-                subvolumes = {
-                  "/persistent" = {
-                    mountpoint = "/persistent";
-                    mountOptions = [
-                      "subvol=persistent"
-                      "compress=zstd"
-                      "noatime"
-                    ];
-                  };
-
-                  "/nix" = {
-                    mountpoint = "/nix";
-                    mountOptions = [
-                      "subvol=nix"
-                      "compress=zstd"
-                      "noatime"
-                    ];
-                  };
-                };
-              };
+            "/nix" = {
+              mountOptions = [
+                "subvol=nix"
+                "compress=zstd"
+                "noatime"
+              ];
+              mountpoint = "/nix";
             };
           };
         };
       };
-    };
-
-    fileSystems."/boot" = {
-      device = "/dev/nvme0n1p1";
-      fsType = "vfat";
-
-      options = [
-        "fmask=0077"
-        "dmask=0077"
-      ];
     };
   };
 }

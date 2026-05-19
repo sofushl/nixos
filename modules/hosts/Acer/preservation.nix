@@ -1,40 +1,63 @@
-{ self, inputs, ... }:
+{
+  self,
+  inputs,
+  userconf,
+  ...
+}:
 
 {
-  flake.nixosModules.AcerPreservation =
-    { userconf, ... }:
+  flake.nixosModules.AcerPreservation = {
 
-    {
-      preservation.preserveAt."/persistent" = {
+    boot.tmp.cleanOnBoot = true;
+
+    preservation.preserveAt."/persistent" = {
+      directories = [
+        {
+          directory = "/var/lib/nixos";
+          inInitrd = true;
+        }
+
+        {
+          directory = "/etc/ssh";
+          inInitrd = true;
+        }
+
+        "/etc/nixos"
+        "/etc/NetworkManager/system-connections"
+        "/etc/cups"
+
+        "/var/lib/bluetooth"
+        "/var/lib/systemd/timers"
+        "/tmp"
+
+      ];
+
+      files = [
+        {
+          file = "/etc/machine-id";
+          inInitrd = true;
+        }
+      ];
+
+      users.${userconf.username} = {
         directories = [
-          {
-            directory = "/var/lib/nixos";
-            inInitrd = true;
-          }
 
-          "/etc/nixos"
-          "/var/lib/bluetooth"
-          "/var/lib/systemd"
-          "/var/lib/NetworkManager"
-          "/etc/NetworkManager"
+          "Downloads"
           "Documents"
-        ];
+          "nixos"
 
-        files = [
-          {
-            file = "/etc/machine-id";
-            inInitrd = true;
-          }
-        ];
+          ".ssh"
+          ".nextcloud"
 
-        users.${userconf.username} = {
-          directories = [
-            "Downloads"
-            ".ssh"
-            ".nextcloud"
-            ".local/share/keyrings"
-          ];
-        };
+          ".config/VSCodium"
+
+          ".librewolf"
+
+          ".local/share/keyrings"
+          ".loval/state/wireplumber"
+
+        ];
       };
     };
+  };
 }
