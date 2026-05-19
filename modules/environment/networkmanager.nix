@@ -7,29 +7,49 @@
       networking.networkmanager = {
         enable = true;
 
-        ensureProfiles.profiles.eduroam = {
+        ensureProfiles.profiles = {
+          eduroam = {
+            connection = {
+              id = "eduroam";
+              type = "wifi";
+              interface-name = userconf.wifiboard;
+            };
+
+            wifi = {
+              mode = "infrastructure";
+              ssid = "eduroam";
+            };
+
+            wifi-security = {
+              "key-mgmt" = "wpa-eap";
+            };
+
+            "802-1x" = {
+              eap = "peap";
+              identity = "${userconf.username}@ntnu.no";
+              password = userconf.password;
+              "phase2-auth" = "mschapv2";
+            };
+          };
+        }
+        // lib.mapAttrs (ssid: password: {
           connection = {
-            id = "eduroam";
+            id = ssid;
             type = "wifi";
             interface-name = userconf.wifiboard;
           };
 
           wifi = {
             mode = "infrastructure";
-            ssid = "eduroam";
+            inherit ssid;
           };
 
           wifi-security = {
-            "key-mgmt" = "wpa-eap";
+            auth-alg = "open";
+            key-mgmt = "wpa-psk";
+            psk = password;
           };
-
-          "802-1x" = {
-            eap = "peap";
-            identity = "${userconf.username}@ntnu.no";
-            password = userconf.password;
-            "phase2-auth" = "mschapv2";
-          };
-        };
+        }) userconf.networks;
       };
     };
 }
