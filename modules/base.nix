@@ -91,24 +91,22 @@
 
         # Custom build commands for using the flake instead of configuration.nix
         shellAliases = {
-          nixos-build = ''
-            sudo nixos-rebuild switch --flake /${userconf.path}/#${config.networking.hostName} --impure --recreate-lock-file
-          '';
-          nixos-build-boot = ''
-            sudo nixos-rebuild boot --flake /${userconf.path}/#${config.networking.hostName} --impure --recreate-lock-file
-          '';
+
+          nixos-build = "sudo nixos-rebuild switch --flake /${userconf.path}/#${config.networking.hostName} --impure";
+
+          nixos-build-boot = "sudo nixos-rebuild boot --flake /${userconf.path}/#${config.networking.hostName} --impure";
+
+          nixos-update = "nix flake update --flake /${userconf.path}/nixos";
+
           nixos-clear = ''
             sudo nix-collect-garbage -d && \
             sudo rm -rf -v /home/${userconf.username}/.cache/* /home/${userconf.username}/.local/share/Trash/* && \
             sudo nix store optimise && \
             sudo fstrim -av
           '';
-          nixos-allow = ''
-            sudo setfacl -R -m u:${userconf.username}:rwx /etc/nixos/ && \
-            sudo setfacl -R -m u:${userconf.username}:rwx /home/${userconf.username}/Documents
-          '';
+
           nixos-secrets = ''
-            nixos-allow \
+            sudo setfacl -R -m u:${userconf.username}:rwx /etc/nixos/ && \
             nvim /etc/nixos/secrets.nix
           '';
         };

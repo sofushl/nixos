@@ -1,12 +1,12 @@
 { self, inputs, ... }:
 let
   userconf = import ../../../lib/sofushl.nix;
-  sysconf = import ../../../lib/Acer.nix;
+  sysconf = import ../../../lib/Dell.nix;
   sshkeys = import ../../../lib/sshkeys.nix;
   secrets = import /etc/nixos/secrets.nix;
 in
 {
-  flake.nixosConfigurations.Acer = inputs.nixpkgs.lib.nixosSystem {
+  flake.nixosConfigurations.Disk = inputs.nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
 
     specialArgs = {
@@ -15,7 +15,8 @@ in
     };
 
     modules = with self.nixosModules; [
-      AcerHardware
+      DellHardware
+      tmpfsDisk
 
       laptopPreset
 
