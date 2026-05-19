@@ -92,10 +92,10 @@
         # Custom build commands for using the flake instead of configuration.nix
         shellAliases = {
           nixos-build = ''
-            sudo nixos-rebuild switch --flake /${userconf.path}/#${config.networking.hostName} --impure
+            sudo nixos-rebuild switch --flake /${userconf.path}/#${config.networking.hostName} --impure --recreate-lock-file
           '';
           nixos-build-boot = ''
-            sudo nixos-rebuild boot --flake /${userconf.path}/#${config.networking.hostName} --impure
+            sudo nixos-rebuild boot --flake /${userconf.path}/#${config.networking.hostName} --impure --recreate-lock-file
           '';
           nixos-clear = ''
             sudo nix-collect-garbage -d && \

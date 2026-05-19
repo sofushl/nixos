@@ -2,14 +2,8 @@
 
 {
   flake.nixosModules.niri =
+    { pkgs, userconf, ... }:
     {
-      pkgs,
-      userconf,
-      ...
-    }:
-
-    {
-
       programs = {
         niri = {
           enable = true;

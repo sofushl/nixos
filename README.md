@@ -21,7 +21,7 @@ Home manager and nixos based program configuration modules, including my neovim 
 #### services
 Services for various purposes, including nextcloud config.
 
-#### system
+#### environment
 Miscellaneous larger files that configure session and environment, including my niri config and development library setup for javafx and iced-rs
 
 ## Configuration

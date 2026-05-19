@@ -29,21 +29,9 @@
       url = "github:nix-community/preservation";
     };
 
-    impermanence = {
-      url = "github:nix-community/impermanence";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
-
     flake-compat = {
       url = "github:NixOS/flake-compat";
       flake = true;
-    };
-
-    stylix = {
-      url = "github:nix-community/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-parts.follows = "flake-parts";
     };
 
     nixos-wsl = {
