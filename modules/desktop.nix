@@ -5,10 +5,6 @@
     { userconf, pkgs, ... }:
 
     {
-
-      # Networking
-      networking.networkmanager.enable = true;
-
       programs = {
         # For captive network connection
         captive-browser = {
@@ -44,6 +40,7 @@
       };
 
       environment.systemPackages = with pkgs; [
+
         # User applications
         onlyoffice-desktopeditors
         vesktop
