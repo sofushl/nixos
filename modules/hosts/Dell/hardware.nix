@@ -1,7 +1,7 @@
 { self, inputs, ... }:
 
 {
-  flake.nixosModules.AcerHardware =
+  flake.nixosModules.DellHardware =
     {
       config,
       lib,
