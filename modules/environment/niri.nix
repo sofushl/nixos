@@ -2,14 +2,17 @@
 
 {
   flake.nixosModules.niri =
-    { pkgs, userconf, ... }:
     {
-      programs = {
-        niri = {
-          enable = true;
-          useNautilus = false;
-        };
+      pkgs,
+      userconf,
+      lib,
+      ...
+    }:
+    {
 
+      programs.niri = {
+        enable = true;
+        useNautilus = false;
       };
 
       xdg = {
@@ -21,6 +24,7 @@
             pkgs.xdg-desktop-portal-wlr
           ];
         };
+
         # Fallback for xwayland-sattelite
         icons.fallbackCursorThemes = [ "Bibata-Modern-Classic" ];
 
@@ -30,7 +34,7 @@
       };
 
       # Enable networking
-      networking.networkmanager.enable = true;
+      networking.networkmanager.enable = lib.mkDefault true;
 
       services = {
         # USB management
@@ -87,7 +91,6 @@
           XCURSOR_THEME = "Bibata-Modern-Classic";
           XCURSOR_SIZE = "24";
           XDG_CURRENT_DESKTOP = "niri";
-          QT_STYLE_OVERRIDE = "adwaita-dark";
         };
 
       };

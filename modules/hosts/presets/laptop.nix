@@ -15,7 +15,7 @@
         develop
 
         # Services
-        eduroam
+        networkmanager
         greetd-niri
         keyd
 
