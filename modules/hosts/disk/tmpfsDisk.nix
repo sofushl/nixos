@@ -4,7 +4,7 @@
   flake.nixosModules.tmpfsDisk =
     { userconf, ... }:
     {
-      
+
       boot.tmp.cleanOnBoot = true;
 
       preservation.enable = true;
@@ -16,18 +16,9 @@
             inInitrd = true;
           }
 
-          {
-            directory = "/etc/ssh";
-            inInitrd = true;
-          }
-
           "/etc/nixos"
-          "/etc/NetworkManager/system-connections"
-          #"/etc/cups"
 
           "/var/lib/bluetooth"
-          "/var/lib/systemd/timers"
-          "/tmp"
 
         ];
 
@@ -50,10 +41,6 @@
             ".config/VSCodium"
 
             ".librewolf"
-
-            ".local/share/keyrings"
-            ".local/state/wireplumber"
-
           ];
           files = [
             # "Documents"
