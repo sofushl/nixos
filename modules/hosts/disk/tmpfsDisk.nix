@@ -39,11 +39,14 @@
             ".nextcloud"
 
             ".config/VSCodium"
+            ".config/Nextcloud"
+
+            ".local/share/keyrings"
 
             ".librewolf/default"
           ];
           files = [
-            # "Documents"
+            "Documents"
           ];
         };
       };
