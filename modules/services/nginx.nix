@@ -30,6 +30,12 @@
             forceSSL = true;
             enableACME = true;
           };
+
+          ${userconf.secondaryDom} = {
+            forceSSL = true;
+            enableACME = true;
+            globalRedirect = userconf.topDom;
+          };
         };
       };
     };
