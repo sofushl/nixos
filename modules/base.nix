@@ -71,8 +71,6 @@
           # Terminal applications
           fastfetch
           btop
-          nnn
-          agenix-cli
 
           # Tools
           cacert

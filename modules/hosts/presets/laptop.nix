@@ -11,7 +11,6 @@
         user
 
         niri
-        darkmode
         develop
 
         # Services
@@ -20,6 +19,7 @@
         keyd
 
         # Programs
+        vesktop
         vscodium
         neovim
         git

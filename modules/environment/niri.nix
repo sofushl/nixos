@@ -10,10 +10,7 @@
     }:
     {
 
-      programs.niri = {
-        enable = true;
-        useNautilus = false;
-      };
+      programs.niri.enable = true;
 
       xdg = {
         portal = {
@@ -27,22 +24,7 @@
 
         # Fallback for xwayland-sattelite
         icons.fallbackCursorThemes = [ "Bibata-Modern-Classic" ];
-
-        mime.defaultApplications = {
-          "inode/directory" = [ "cosmic-files.desktop" ];
-        };
       };
-
-      # Enable networking
-      networking.networkmanager.enable = lib.mkDefault true;
-
-      services = {
-        # USB management
-        udisks2.enable = true;
-        gvfs.enable = true;
-
-      };
-
       environment = {
 
         # Config imports
@@ -58,11 +40,9 @@
         systemPackages = with pkgs; [
 
           # Environment applications
-          keyd
           waybar
           fuzzel
           alacritty
-          cosmic-files
           hyprlock
           btop
           wl-clipboard
@@ -78,13 +58,8 @@
 
           # X11 support for niri
           xwayland-satellite
-
-          #USB disk management
-          usbutils
-          udiskie
-
           # Launch shellscripts
-          (writeShellScriptBin "nvim-home" "alacritty -e bash -lc 'cd ~/ && nvim'")
+          (writeShellScriptBin "nvim-home" "alacritty -e bash -lc 'cd ~/ && yazi'")
         ];
 
         sessionVariables = {
@@ -92,7 +67,50 @@
           XCURSOR_SIZE = "24";
           XDG_CURRENT_DESKTOP = "niri";
         };
+      };
 
+      home-manager.users.${userconf.username} = {
+
+        gtk = {
+          enable = true;
+          colorScheme = "dark";
+
+          gtk3 = {
+            enable = true;
+            extraConfig.gtk-application-prefer-dark-theme = true;
+            colorScheme = "dark";
+          };
+
+          gtk4 = {
+            enable = true;
+            extraConfig.gtk-application-prefer-dark-theme = true;
+            colorScheme = "dark";
+          };
+        };
+
+        dconf.settings = {
+          "org/gnome/desktop/interface" = {
+            color-scheme = "prefer-dark";
+          };
+        };
+
+        xdg = {
+          enable = true;
+
+          configFile."sunsetr/sunsetr.toml" = {
+            source = ../../dotfiles/sunsetr.toml;
+            force = true;
+          };
+
+          portal = {
+            enable = true;
+            extraPortals = [
+              pkgs.xdg-desktop-portal-gtk
+              pkgs.xdg-desktop-portal-wlr
+            ];
+            config.common.default = [ "gtk" ];
+          };
+        };
       };
     };
 }
