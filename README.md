@@ -6,11 +6,8 @@ Dendritic flake-parts + import tree based config, should be cleaner and more man
 
 base.nix is universal configuration across all hosts.
 
-user.nix sets up userspace for one user selected in the active host module.
-
-desktop.nix is basic setup for hosts that gets used with graphical interface.
-
-server.nix is a WIP server config for my home server.
+#### environment
+Essential configuration of system, session and environment, including my base configs for server, desktop, niri and development library setup for javafx and iced-rs.
 
 #### hosts
 Host machine configurations, including WSL config and presets for server and niri desktop setups.
@@ -21,19 +18,13 @@ Home manager and nixos based program configuration modules, including my neovim 
 #### services
 Services for various purposes, including nextcloud config.
 
-#### environment
-Miscellaneous larger files that configure session and environment, including my niri config and development library setup for javafx and iced-rs
 
 ## Configuration
 
 Boilerplate for nixosModules:
 
 ```nix
-{
-  self,
-  inputs,
-  ...
-}:
+{ self, inputs, ... }:
 
 {
   flake.nixosModules.MODULENAME = 

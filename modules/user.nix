@@ -2,12 +2,7 @@
 
 {
   flake.nixosModules.user =
-
-    {
-      userconf,
-      config,
-      ...
-    }:
+    { userconf, config, ... }:
     {
       users.users.${userconf.username} = {
         isNormalUser = true;

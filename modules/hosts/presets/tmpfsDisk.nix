@@ -45,9 +45,6 @@
 
             ".librewolf/default"
           ];
-          files = [
-            "Documents"
-          ];
         };
       };
 

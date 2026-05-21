@@ -2,7 +2,12 @@
 
 {
   flake.nixosModules.desktop =
-    { userconf, pkgs, ... }:
+    {
+      userconf,
+      pkgs,
+      lib,
+      ...
+    }:
 
     {
       programs = {
@@ -11,6 +16,25 @@
           enable = true;
           interface = userconf.wifiboard;
         };
+      };
+
+      # Enable networking
+      networking.networkmanager.enable = lib.mkDefault true;
+
+      services = {
+
+      };
+
+      systemd.user.services.mount-symlink = {
+        script = ''
+          ln -sfn \
+          /run/media/${userconf.username} \
+          /home/${userconf.username}/media
+        '';
+
+        serviceConfig.Type = "oneshot";
+
+        wantedBy = [ "default.target" ];
       };
 
       hardware = {
@@ -29,10 +53,9 @@
           jack.enable = true;
         };
 
-        gnome.gnome-keyring.enable = true;
-
-        # Enable CUPS to print documents.
-        printing.enable = true;
+        # USB management
+        udisks2.enable = true;
+        gvfs.enable = true;
 
         # Thermal security
         thermald.enable = true;
@@ -47,7 +70,18 @@
         spotify
         scenebuilder
         loupe
+
+        #USB disk management
+        usbutils
+        udiskie
+
       ];
+
+      home-manager.users.${userconf.username}.services.udiskie = {
+        enable = true;
+        automount = true;
+        notify = false;
+      };
 
     };
 }

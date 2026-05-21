@@ -5,9 +5,9 @@
     { userconf, pkgs, ... }:
 
     {
-      home-manager.users.${userconf.username} = {
+      home-manager.users.${userconf.username}.programs = {
 
-        programs.neovim = {
+        neovim = {
           enable = true;
           defaultEditor = true;
           viAlias = true;
@@ -52,12 +52,18 @@
           initLua = builtins.readFile ../../dotfiles/neovim.lua;
         };
 
-        programs.helix = {
+        helix = {
           enable = true;
           settings = {
             theme = "gruvbox-material";
           };
         };
+
+        yazi = {
+          enable = true;
+          enableBashIntegration = true;
+        };
+
       };
 
       environment.systemPackages = with pkgs; [

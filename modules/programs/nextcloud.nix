@@ -11,5 +11,23 @@
         enable = true;
         startInBackground = true;
       };
+
+      systemd.user.services.nextcloud-documents-symlink = {
+        script = ''
+          ln -sfn \
+          /home/${userconf.username}/.nextcloud/Documents \
+          /home/${userconf.username}/Documents
+        '';
+
+        serviceConfig.Type = "oneshot";
+
+        wantedBy = [ "default.target" ];
+      };
+
+      preservation.preserveAt."/persistent".users.${userconf.username}.directories = [
+        ".nextcloud"
+        ".config/Nextcloud"
+      ];
     };
+
 }
