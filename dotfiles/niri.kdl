@@ -60,12 +60,6 @@ hotkey-overlay {
     hide-not-bound
 }
 window-rule {
-    match app-id="^org\\.wezfurlong\\.wezterm$"
-    default-column-width {
-
-    }
-}
-window-rule {
     match app-id="librewolf$" title="^Picture-in-Picture$"
     open-floating true
 }
@@ -88,14 +82,14 @@ switch-events {
 binds {
     // Core apps
     Mod+T {
-        spawn "alacritty"
+        spawn "ghostty"
     }
     Mod+Space {
         spawn "fuzzel"
     }
     // Personal apps
     Mod+Shift+T {
-        spawn "nvim-home"
+        spawn "ghostty" "-e" "nvim"
     }
     Mod+D {
         spawn "vesktop"
@@ -110,7 +104,7 @@ binds {
         spawn "librewolf"
     }
     Mod+F {
-        spawn "nvim-home"
+        spawn "ghostty" "-e" "yazi"
     }
     Mod+S {
         spawn "spotify"
