@@ -60,6 +60,7 @@
         };
 
         yazi = {
+          # https://kb.adamsdesk.com/application/yazi-keyboard-shortcuts/
           enable = true;
           enableBashIntegration = true;
         };

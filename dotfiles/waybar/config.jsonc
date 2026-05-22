@@ -39,7 +39,7 @@
     "pulseaudio": {
         "format": "VOL {volume}%",
         "format-muted": "MUTED",
-        "on-click": "alacritty -e bluetoothctl"
+        "on-click": "ghostty -e bluetoothctl"
     },
     "backlight": {
         "format": "LUX {percent}%",
@@ -54,7 +54,7 @@
         "tooltip": false,
         "enable-wireless": true,
         "enable-wired": true,
-        "on-click": "alacritty -e nmtui",
+        "on-click": "ghostty -e nmtui",
         "interval": 3
     },
     "temperature": {
@@ -67,6 +67,6 @@
         ],
         "format": "CPU {temperatureC}°C",
         "interval": 3,
-        "on-click": "alacritty -e btop"
+        "on-click": "ghostty -e btop"
     }
 }

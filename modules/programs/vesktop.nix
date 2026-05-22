@@ -4,7 +4,7 @@
     {
 
       preservation.preserveAt."/persistent".users.${userconf.username}.directories = [
-        ".config/vesktop/sessionData"
+        ".config/vesktop"
       ];
 
       home-manager.users.${userconf.username} = {

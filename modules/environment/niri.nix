@@ -32,7 +32,6 @@
           "niri/config.kdl".source = ../../dotfiles/niri.kdl;
           "xdg/waybar".source = ../../dotfiles/waybar; # https://man.archlinux.org/man/waybar.5
           "xdg/fuzzel/fuzzel.ini".source = ../../dotfiles/fuzzel.ini;
-          "alacritty/alacritty.toml".source = ../../dotfiles/alacritty.toml;
           "fastfetch".source = ../../dotfiles/fastfetch;
           "xdg/hypr/hyprlock.conf".source = ../../dotfiles/hyprlock.conf;
         };
@@ -42,7 +41,6 @@
           # Environment applications
           waybar
           fuzzel
-          alacritty
           hyprlock
           btop
           wl-clipboard
@@ -59,7 +57,7 @@
           # X11 support for niri
           xwayland-satellite
           # Launch shellscripts
-          (writeShellScriptBin "nvim-home" "alacritty -e bash -lc 'cd ~/ && yazi'")
+          (writeShellScriptBin "term" "ghostty -e bash -lc 'cd ~/'")
         ];
 
         sessionVariables = {

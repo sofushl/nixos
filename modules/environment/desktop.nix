@@ -65,8 +65,7 @@
       environment.systemPackages = with pkgs; [
 
         # User applications
-        onlyoffice-desktopeditors
-        vesktop
+        ghostty
         spotify
         scenebuilder
         loupe
@@ -80,7 +79,13 @@
       home-manager.users.${userconf.username}.services.udiskie = {
         enable = true;
         automount = true;
-        notify = false;
+        settings = {
+          program_options = {
+            udisks_version = 2;
+          };
+          icon_names.media = [ "media-optical" ];
+        };
+
       };
 
     };

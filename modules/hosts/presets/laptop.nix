@@ -19,6 +19,7 @@
         keyd
 
         # Programs
+        ghostty
         vesktop
         vscodium
         neovim
