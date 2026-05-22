@@ -4,6 +4,7 @@
   flake.nixosModules.networkmanager =
     { userconf, lib, ... }:
     {
+
       networking.networkmanager = {
         enable = true;
 
@@ -12,7 +13,6 @@
             connection = {
               id = "eduroam";
               type = "wifi";
-              interface-name = userconf.wifiboard;
             };
 
             wifi = {
@@ -36,7 +36,6 @@
           connection = {
             id = ssid;
             type = "wifi";
-            interface-name = userconf.wifiboard;
           };
 
           wifi = {
