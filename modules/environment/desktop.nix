@@ -10,19 +10,16 @@
     }:
 
     {
+
+      # Enable networking
+      networking.networkmanager.enable = lib.mkDefault true;
+
       programs = {
         # For captive network connection
         captive-browser = {
           enable = true;
           interface = userconf.wifiboard;
         };
-      };
-
-      # Enable networking
-      networking.networkmanager.enable = lib.mkDefault true;
-
-      services = {
-
       };
 
       systemd.user.services.mount-symlink = {
