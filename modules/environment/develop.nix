@@ -81,6 +81,12 @@
             prettier
             black
             isort
+
+            # Tools
+            nodejs_25
+            uv
+            git-filter-repo
+
           ]
           ++ dlopenLibraries;
       };

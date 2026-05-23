@@ -20,7 +20,6 @@
             neo-tree-nvim
             telescope-nvim
             project-nvim
-            persistence-nvim
             lazygit-nvim
             vim-plug
             vim-nix
@@ -40,7 +39,6 @@
             vim-prettier
             vim-javascript
             vim-javascript-syntax
-            toggleterm-nvim
             python-mode
             vim-wayland-clipboard
           ];
@@ -80,7 +78,7 @@
         ast-grep
         gzip
         gnutar
-
+        zip
       ];
     };
 }

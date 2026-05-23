@@ -32,7 +32,6 @@
           "niri/config.kdl".source = ../../dotfiles/niri.kdl;
           "xdg/waybar".source = ../../dotfiles/waybar; # https://man.archlinux.org/man/waybar.5
           "xdg/fuzzel/fuzzel.ini".source = ../../dotfiles/fuzzel.ini;
-          "fastfetch".source = ../../dotfiles/fastfetch;
           "xdg/hypr/hyprlock.conf".source = ../../dotfiles/hyprlock.conf;
         };
 

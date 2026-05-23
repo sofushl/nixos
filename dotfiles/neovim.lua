@@ -11,8 +11,6 @@ require("toggleterm").setup({
 	},
 })
 
-vim.keymap.set("n", "ø", "<cmd>ToggleTerm<cr>")
-
 vim.keymap.set("n", "T", "<cmd>tabclose<cr>")
 vim.keymap.set("n", "t", "<cmd>tabnew<cr>")
 
