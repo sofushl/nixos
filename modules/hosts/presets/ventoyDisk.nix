@@ -40,14 +40,15 @@
 
       fileSystems."/nix".neededForBoot = true;
 
-      disko.devices.nodev = {
-        "/" = {
-          fsType = "tmpfs";
-          mountOptions = [
-            "size=25%"
-            "mode=755"
-          ];
-        };
+      disko.devices.nodev.root = {
+        fsType = "tmpfs";
+
+        mountpoint = "/";
+
+        mountOptions = [
+          "size=25%"
+          "mode=755"
+        ];
       };
 
       disko.devices.disk.main = {
@@ -57,10 +58,7 @@
         content.type = "gpt";
 
         content.partitions.esp = {
-          priority = 1;
-          name = "ESP";
-          start = "1M";
-          end = "128M";
+          size = "200M";
           type = "EF00";
           content = {
             type = "filesystem";
@@ -71,15 +69,14 @@
         };
 
         content.partitions.ventoy = {
-          size = "50%";
+          end = "-20G";
           content = {
             type = "filesystem";
-            format = "fat32";
-            mountpoint = "/ventoy";
+            format = "vfat";
           };
         };
 
-        content.partitions.root = {
+        content.partitions.nixos = {
           name = "root";
           size = "100%";
 
