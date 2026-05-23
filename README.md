@@ -4,19 +4,21 @@ Dendritic flake-parts + import tree based config, should be cleaner and more man
 
 ## Modules
 
-base.nix is universal configuration across all hosts.
+[base.nix](./modules/base.nix) is universal configuration across all hosts, sets up essential and QoL system configuration such as enabling nvim, git and ssh.
 
-#### environment
-Essential configuration of system, session and environment, including my base configs for server, desktop, niri and development library setup for javafx and iced-rs.
+[user.nix](./modules/user.nix) sets up userspace for one user selected in the active host module. (Also essential and universal across all hosts)
 
-#### hosts
-Host machine configurations, including WSL config and presets for server and niri desktop setups.
+#### [environment](./modules/environment/README.md)
+Essential configuration of system, session and environment.
 
-#### programs
-Home manager and nixos based program configuration modules, including my neovim config.
+#### [hosts](./modules/hosts/README.md)
+Host machine configurations, including special configs and presets for desktop setups.
 
-#### services
-Services for various purposes, including nextcloud config.
+#### [programs](./modules/programs/README.md)
+Home manager and nixos based program configuration modules.
+
+#### [services](./modules/services/README.md)
+Services config for various purposes.
 
 
 ## Configuration
