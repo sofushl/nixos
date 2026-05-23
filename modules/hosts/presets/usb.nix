@@ -3,7 +3,7 @@
 {
   flake.nixosModules.usbPreset =
 
-    { userconf, ... }:
+    { userconf, lib, ... }:
 
     {
       imports = with self.nixosModules; [
@@ -21,6 +21,7 @@
         efi.canTouchEfiVariables = true;
       };
 
+      networking.hostName = lib.mkDefault "USB";
       system.stateVersion = userconf.state;
 
       powerManagement.cpuFreqGovernor = "powersave";

@@ -14,8 +14,6 @@ in
       userconf = userconf // sysconf // sshkeys // secrets;
     };
 
-    networking.hostName = "PNY";
-
     modules = with self.nixosModules; [
       ventoyDisk
 
