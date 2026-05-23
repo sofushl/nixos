@@ -26,6 +26,7 @@
         git
         librewolf
         nextcloudClient
+        fastfetch
       ];
 
       boot.loader = {
