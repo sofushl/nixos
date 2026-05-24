@@ -1,10 +1,10 @@
 { self, inputs, ... }:
 
 {
-  flake.nixosModules.MODULENAME =
+  flake.nixosModules.fastfetch =
     { userconf, pkgs, ... }:
     {
       environment.systemPackages = [ pkgs.fastfetch ];
-      environment.etc.fastfetch.source = "../../dotfiles/fastfetch";
+      environment.etc.fastfetch.source = ../../dotfiles/fastfetch;
     };
 }
