@@ -4,12 +4,15 @@ vim.g.mapleader = " "
 -- map "n" to toggle Neo-tree floating window
 vim.keymap.set("n", "n", "<cmd>Neotree float toggle<CR>")
 
+
+--[[
 require("toggleterm").setup({
 	direction = "horizontal",
 	float_opts = {
 		border = "rounded",
 	},
 })
+--]]
 
 vim.keymap.set("n", "T", "<cmd>tabclose<cr>")
 vim.keymap.set("n", "t", "<cmd>tabnew<cr>")
@@ -23,6 +26,9 @@ vim.keymap.set("n", "^", "}")
 
 vim.keymap.set("n", "¤", "$")
 vim.keymap.set("n", "&", "^")
+
+vim.keymap.set("v", "¤", "$")
+vim.keymap.set("v", "&", "^")
 
 -- Helper for common on_attach behavior
 local on_attach = function(_, bufnr)
