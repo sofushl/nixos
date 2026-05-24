@@ -24,7 +24,7 @@
           "${userconf.topDom}" = {
             group = config.services.nginx.group;
 
-            extraDomainNames = userconf.domains;
+            extraDomainNames = userconf.domains ++ [ userconf.secretDom ];
           };
         };
       };
