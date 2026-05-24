@@ -36,6 +36,17 @@
             enableACME = true;
             globalRedirect = userconf.topDom;
           };
+
+          ${userconf.secretDom} = {
+            forceSSL = true;
+            enableACME = true;
+            root = "/var/www/secretpage";
+
+            extraConfig = ''
+              index index.html;
+            '';
+          };
+
         };
       };
     };

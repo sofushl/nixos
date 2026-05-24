@@ -58,8 +58,9 @@ Make ```/etc/nixos/secrets.nix``` like this:
     "yourUpdateLink1"
   ]; # for freedns dynamic ip updater cron job
   networks = {
-    "ssid1" = "password1"
+    "ssid1" = "password1";
   }; # for declarative wifi management
+  secretDom = "yoursecretdomain";
 }
 ```
 
