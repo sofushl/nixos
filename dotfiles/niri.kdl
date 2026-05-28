@@ -52,9 +52,6 @@ spawn-at-startup "waybar"
 spawn-at-startup "/run/current-system/sw/bin/sunsetr"
 spawn-at-startup "hyprlock"
 spawn-at-startup "nextcloud"
-animations {
-
-}
 hotkey-overlay {
     skip-at-startup
     hide-not-bound

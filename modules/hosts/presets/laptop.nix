@@ -19,6 +19,7 @@
         keyd
 
         # Programs
+        alacritty
         ghostty
         vesktop
         vscodium
