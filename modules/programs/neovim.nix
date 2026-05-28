@@ -9,7 +9,7 @@
 
         neovim = {
           enable = true;
-          defaultEditor = true;
+          #defaultEditor = true;
           viAlias = true;
           vimAlias = true;
           vimdiffAlias = true;
@@ -41,6 +41,9 @@
             vim-javascript-syntax
             python-mode
             vim-wayland-clipboard
+            typst-vim
+            typst-preview-nvim
+            markdown-preview-nvim
           ];
 
           extraConfig = "colorscheme vscode";
@@ -52,6 +55,7 @@
 
         helix = {
           enable = true;
+          defaultEditor = true;
           settings = {
             theme = "gruvbox-material";
           };
