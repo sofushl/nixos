@@ -55,8 +55,8 @@
               green = "#DC6666";
               yellow = "#DC6666";
               blue = "#DC6666";
-              magenta = "#DC66666";
-              cyan = "#DC66666";
+              magenta = "#DC6666";
+              cyan = "#DC6666";
             };
           };
 
