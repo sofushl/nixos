@@ -22,6 +22,8 @@
           ms-python.debugpy
           #ms-python.vscode-python-envs
 
+          myriad-dreamin.tinymist
+
           #v1hz.kdl
         ];
       };

@@ -83,7 +83,7 @@
             isort
 
             # Tools
-            nodejs_25
+            nodejs
             uv
             git-filter-repo
 
