@@ -23,6 +23,7 @@ in
       { home-manager.useGlobalPkgs = true; }
       inputs.disko.nixosModules.disko
       inputs.preservation.nixosModules.default
+      inputs.niri.nixosModules.niri
 
     ];
   };
