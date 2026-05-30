@@ -17,6 +17,13 @@
           dbtype = "sqlite";
         };
 
+        settings = {
+          maintenance_window_start = 2;
+          default_phone_region = "NO";
+          server_id = "main";
+          integrity.check.disabled = false;
+        };
+
         appstoreEnable = true;
         autoUpdateApps.enable = true;
 
