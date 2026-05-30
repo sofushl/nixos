@@ -6,9 +6,12 @@
       config,
       userconf,
       lib,
+      pkgs,
       ...
     }:
     {
+
+      environment.systemPackages = [ pkgs.btop ];
 
       services.resolved.enable = true;
 

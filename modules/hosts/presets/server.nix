@@ -20,6 +20,7 @@
 
         # Programs
         neovim
+        fastfetch
         git
       ];
 
