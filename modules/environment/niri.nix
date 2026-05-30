@@ -10,7 +10,12 @@
     }:
     {
 
-      programs.niri.enable = true;
+      nixpkgs.overlays = [ inputs.niri.overlays.niri ];
+
+      programs.niri = {
+        enable = true;
+        package = pkgs.niri;
+      };
 
       xdg = {
         portal = {
@@ -19,7 +24,10 @@
           extraPortals = [
             pkgs.xdg-desktop-portal-gtk
             pkgs.xdg-desktop-portal-wlr
+            pkgs.xdg-desktop-portal-gnome
           ];
+
+          config.common.default = [ "*" ];
         };
 
         # Fallback for xwayland-sattelite

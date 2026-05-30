@@ -25,6 +25,7 @@ in
       inputs.disko.nixosModules.disko
       inputs.preservation.nixosModules.default
       inputs.nix-flatpak.nixosModules.nix-flatpak
+      inputs.niri.nixosModules.niri
 
       roblox
 
