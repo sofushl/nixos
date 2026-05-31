@@ -20,13 +20,6 @@ in
 
       laptopPreset
 
-      inputs.home-manager.nixosModules.home-manager
-      { home-manager.useGlobalPkgs = true; }
-      inputs.disko.nixosModules.disko
-      inputs.preservation.nixosModules.default
-      inputs.nix-flatpak.nixosModules.nix-flatpak
-      inputs.niri.nixosModules.niri
-
       roblox
 
     ];

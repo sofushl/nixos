@@ -18,13 +18,6 @@ in
       AcerHardware
 
       laptopPreset
-
-      inputs.home-manager.nixosModules.home-manager
-      { home-manager.useGlobalPkgs = true; }
-      inputs.disko.nixosModules.disko
-      inputs.preservation.nixosModules.default
-      inputs.niri.nixosModules.niri
-
     ];
   };
 }

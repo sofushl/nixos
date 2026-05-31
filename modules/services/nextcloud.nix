@@ -14,7 +14,11 @@
         config = {
           adminuser = userconf.username;
           adminpassFile = "/etc/nextcloud-admin-pass";
+
           dbtype = "sqlite";
+          #dbtype = "pgsql";
+          dbname = "nextcloud";
+          dbuser = "nextcloud";
         };
 
         settings = {
@@ -27,9 +31,28 @@
         appstoreEnable = true;
         autoUpdateApps.enable = true;
 
+        caching.redis = true;
+
       };
+
       environment.etc."nextcloud-admin-pass".text = userconf.password;
 
-      services.postgresql.enable = true;
+      services.postgresql = {
+        enable = true;
+        ensureDatabases = [ "nextcloud" ];
+        ensureUsers = [
+          {
+            name = "nextcloud";
+            ensureDBOwnership = true;
+          }
+        ];
+      };
+
+      systemd.services."nextcloud-setup" = {
+        requires = [ "postgresql.service" ];
+        after = [ "postgresql.service" ];
+      };
+
     };
+
 }
