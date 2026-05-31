@@ -17,6 +17,7 @@
         inputs.home-manager.nixosModules.home-manager
         { home-manager.useGlobalPkgs = true; }
         inputs.agenix.nixosModules.default
+        inputs.preservation.nixosModules.default
       ];
 
       # Set locales to Norwegian, but with English language

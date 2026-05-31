@@ -6,7 +6,6 @@
     {
       imports = [
         inputs.disko.nixosModules.disko
-        inputs.preservation.nixosModules.default
       ];
 
       boot.tmp.cleanOnBoot = true;
