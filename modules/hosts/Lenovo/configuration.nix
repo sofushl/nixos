@@ -17,8 +17,8 @@ in
 
     modules = with self.nixosModules; [
       LenovoHardware
-      serverPreset
 
+      serverPreset
     ];
   };
 }
