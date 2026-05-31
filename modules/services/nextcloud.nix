@@ -30,5 +30,6 @@
       };
       environment.etc."nextcloud-admin-pass".text = userconf.password;
 
+      services.postgresql.enable = true;
     };
 }
