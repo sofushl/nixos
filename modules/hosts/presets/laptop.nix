@@ -21,6 +21,7 @@
         # Programs
         alacritty
         ghostty
+        wezterm
         vesktop
         vscodium
         neovim
