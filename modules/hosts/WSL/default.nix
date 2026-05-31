@@ -15,11 +15,7 @@ in
     };
 
     modules = with self.nixosModules; [
-
       WSLConfiguration
-
-      inputs.home-manager.nixosModules.home-manager
-      { home-manager.useGlobalPkgs = true; }
     ];
   };
 }
