@@ -12,6 +12,13 @@
     }:
 
     {
+
+      imports = [
+        inputs.home-manager.nixosModules.home-manager
+        { home-manager.useGlobalPkgs = true; }
+        inputs.agenix.nixosModules.default
+      ];
+
       # Set locales to Norwegian, but with English language
       time.timeZone = "Europe/Oslo";
       i18n.defaultLocale = "nb_NO.UTF-8";
@@ -73,6 +80,7 @@
           dnsutils
           ripgrep
           git
+          inputs.agenix.packages.${stdenv.hostPlatform.system}.default
         ];
 
         # Custom build commands for using the flake instead of configuration.nix

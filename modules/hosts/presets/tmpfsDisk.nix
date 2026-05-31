@@ -4,6 +4,10 @@
   flake.nixosModules.tmpfsDisk =
     { userconf, ... }:
     {
+      imports = [
+        inputs.disko.nixosModules.disko
+        inputs.preservation.nixosModules.default
+      ];
 
       boot.tmp.cleanOnBoot = true;
 
