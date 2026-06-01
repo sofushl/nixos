@@ -17,6 +17,7 @@
         nextcloudServer
         dnsUpdater
         nginx
+        ollama
 
         # Programs
         neovim
