@@ -79,17 +79,17 @@ switch-events {
 binds {
     // Core apps
     Mod+T {
-        spawn "ghostty"
+        spawn "wezterm"
     }
     Mod+Return {
-        spawn "alacritty"
+        spawn "wezterm"
     }
     Mod+Space {
         spawn "fuzzel"
     }
     // Personal apps
     Mod+Shift+T {
-        spawn "ghostty" "-e" "nvim"
+        spawn "wezterm" "-e" "nvim"
     }
     Mod+D {
         spawn "vesktop"
@@ -104,7 +104,7 @@ binds {
         spawn "librewolf"
     }
     Mod+F {
-        spawn "ghostty" "-e" "yazi"
+        spawn "wezterm" "-e" "yazi"
     }
     Mod+S {
         spawn "spotify"
