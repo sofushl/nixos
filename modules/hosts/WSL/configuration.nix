@@ -14,6 +14,7 @@
           develop
           neovim
           git
+          fastfetch
         ]
         ++ [ <nixos-wsl/modules> ];
 
