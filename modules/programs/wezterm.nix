@@ -37,10 +37,10 @@
           brights = [
             "#1E1E1E" # bright black
             "#DC6666" # bright red
-            "#DC6666" # bright green
-            "#DC6666" # bright yellow
-            "#DC6666" # bright blue
-            "#DC6666" # bright magenta
+            "#86B895" # green
+            "#E0B879" # yellow
+            "#7DAAEA" # blue
+            "#CFA1E8" # magenta
             "#DC6666" # bright cyan
             "#E3E0E0" # bright white
           ];
@@ -57,11 +57,14 @@
 
           # Similar feel
           window_padding = {
-            left = 8;
-            right = 8;
-            top = 8;
-            bottom = 8;
+            left = 4;
+            right = 4;
+            top = 0;
+            bottom = 0;
           };
+
+          line_height = 0.9;
+          cell_width = 1.0;
 
           # Ghostty doesn't ask before closing either
           window_close_confirmation = "NeverPrompt";
