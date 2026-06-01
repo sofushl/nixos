@@ -2,21 +2,30 @@
 
 {
   flake.nixosModules.user =
-    { userconf, config, ... }:
     {
-      users.users.${userconf.username} = {
-        isNormalUser = true;
-        description = userconf.displayname;
+      userconf,
+      config,
+      pkgs,
+      ...
+    }:
+    {
+      users = {
+        users.${userconf.username} = {
+          isNormalUser = true;
+          description = userconf.displayname;
 
-        extraGroups = [
-          "wheel"
-          "networkmanager"
-          "storage"
-        ];
+          extraGroups = [
+            "wheel"
+            "networkmanager"
+            "storage"
+          ];
 
-        initialPassword = userconf.pin;
+          initialPassword = userconf.pin;
 
-        openssh.authorizedKeys.keys = userconf.sshkeys;
+          openssh.authorizedKeys.keys = userconf.sshkeys;
+        };
+
+        users.root.initialPassword = userconf.pin;
       };
 
       home-manager.users.${userconf.username} = {
@@ -26,6 +35,5 @@
         home.homeDirectory = "/home/${userconf.username}";
       };
 
-      users.users.root.initialPassword = userconf.pin;
     };
 }
