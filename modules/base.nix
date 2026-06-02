@@ -16,7 +16,6 @@
       imports = [
         inputs.home-manager.nixosModules.home-manager
         { home-manager.useGlobalPkgs = true; }
-        inputs.agenix.nixosModules.default
         inputs.preservation.nixosModules.default
       ];
 
@@ -81,7 +80,6 @@
           dnsutils
           ripgrep
           git
-          inputs.agenix.packages.${stdenv.hostPlatform.system}.default
         ];
 
         # Custom build commands for using the flake instead of configuration.nix
