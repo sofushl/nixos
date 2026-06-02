@@ -126,6 +126,17 @@
           undistractMe.enable = true;
           interactiveShellInit = "fastfetch";
         };
+
+        nh = {
+          enable = true;
+          flake = "/${userconf.path}";
+
+          clean = {
+            enable = true;
+            dates = "daily";
+            extraArgs = "";
+          };
+        };
       };
     };
 }

@@ -62,7 +62,6 @@
       environment.systemPackages = with pkgs; [
 
         # User applications
-        ghostty
         spotify
         scenebuilder
         loupe

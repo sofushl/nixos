@@ -66,8 +66,6 @@
 
           # X11 support for niri
           xwayland-satellite
-          # Launch shellscripts
-          (writeShellScriptBin "term" "ghostty -e bash -lc 'cd ~/'")
         ];
 
         sessionVariables = {
