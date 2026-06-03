@@ -24,21 +24,21 @@
 
             userChrome = ../../dotfiles/librewolf.css;
 
-            handlers = {
-              #mimeTypes = { };
-              #schemes = {
-              #  mailto = {
-              #    action = 2;
-              #    ask = false;
-              #    handlers = [
-              #      {
-              #        name = "Gmail";
-              #        uriTemplate = "https://mail.google.com/mail/?extsrc=mailto&url=%s";
-              #      }
-              #    ];
-              #  };
-              #};
-            };
+            #handlers = {
+            #  mimeTypes = { };
+            #  schemes = {
+            #    mailto = {
+            #      action = 2;
+            #      ask = false;
+            #      handlers = [
+            #        {
+            #          name = "Gmail";
+            #          uriTemplate = "https://mail.google.com/mail/?extsrc=mailto&url=%s";
+            #        }
+            #      ];
+            #    };
+            #  };
+            #};
 
             search = {
 
