@@ -4,9 +4,6 @@
   flake.nixosModules.tmpfsDisk =
     { userconf, ... }:
     {
-      imports = [
-        inputs.disko.nixosModules.disko
-      ];
 
       boot.tmp.cleanOnBoot = true;
 
@@ -18,11 +15,8 @@
             directory = "/var/lib/nixos";
             inInitrd = true;
           }
-
           "/etc/nixos"
-
           "/var/lib/bluetooth"
-
         ];
 
         files = [
@@ -34,19 +28,9 @@
 
         users.${userconf.username} = {
           directories = [
-
             "Downloads"
             "nixos"
-
             ".ssh"
-            ".nextcloud"
-
-            ".config/VSCodium"
-            ".config/Nextcloud"
-
-            ".local/share/keyrings"
-
-            ".librewolf/default"
           ];
         };
       };
@@ -73,22 +57,13 @@
           priority = 1;
           name = "ESP";
           start = "1M";
-          end = "128M";
+          end = "256M";
           type = "EF00";
           content = {
             type = "filesystem";
             format = "vfat";
             mountpoint = "/boot";
             mountOptions = [ "umask=0077" ];
-          };
-        };
-
-        content.partitions.swap = {
-          size = "8G";
-
-          content = {
-            type = "swap";
-            resumeDevice = true;
           };
         };
 
@@ -117,6 +92,15 @@
                   "noatime"
                 ];
                 mountpoint = "/nix";
+              };
+
+              "/tmp" = {
+                mountOptions = [
+                  "subvol=tmp"
+                  "compress=zstd"
+                  "noatime"
+                ];
+                mountpoint = "/tmp";
               };
             };
           };

@@ -17,6 +17,8 @@
         inputs.home-manager.nixosModules.home-manager
         { home-manager.useGlobalPkgs = true; }
         inputs.preservation.nixosModules.default
+        inputs.nix-flatpak.nixosModules.nix-flatpak
+        inputs.disko.nixosModules.disko
       ];
 
       # Set locales to Norwegian, but with English language

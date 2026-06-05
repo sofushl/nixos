@@ -34,10 +34,10 @@
         {
           device = "/dev/sda2";
         }
-     #  {
-     #    device = "/preservation/swapfile";
-     #    size = 8 * 1024;
-     #  }
+        #  {
+        #    device = "/preservation/swapfile";
+        #    size = 8 * 1024;
+        #  }
       ];
 
       networking.hostName = "Dell";

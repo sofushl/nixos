@@ -16,7 +16,6 @@ in
 
     modules = with self.nixosModules; [
       AcerHardware
-
       laptopPreset
     ];
   };

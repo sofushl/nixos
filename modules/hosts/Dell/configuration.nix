@@ -17,10 +17,7 @@ in
     modules = with self.nixosModules; [
       DellHardware
       tmpfsDisk
-
       laptopPreset
-
-      roblox
     ];
   };
 }

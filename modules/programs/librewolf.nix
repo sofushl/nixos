@@ -133,5 +133,9 @@
         };
       };
 
+      preservation.preserveAt."/persistent".users.${userconf.username}.directories = [
+        ".librewolf/default"
+      ];
+
     };
 }
