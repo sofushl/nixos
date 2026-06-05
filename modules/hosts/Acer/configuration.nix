@@ -16,6 +16,7 @@ in
 
     modules = with self.nixosModules; [
       AcerHardware
+      disko
       laptopPreset
     ];
   };
