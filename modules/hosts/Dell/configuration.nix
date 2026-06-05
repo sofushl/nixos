@@ -16,7 +16,7 @@ in
 
     modules = with self.nixosModules; [
       DellHardware
-      tmpfsDisk
+      DellDisk
       laptopPreset
     ];
   };

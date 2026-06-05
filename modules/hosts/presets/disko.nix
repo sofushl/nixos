@@ -1,39 +1,11 @@
 { self, inputs, ... }:
 
 {
-  flake.nixosModules.tmpfsDisk =
+  flake.nixosModules.disko =
     { userconf, ... }:
     {
 
       boot.tmp.cleanOnBoot = true;
-
-      preservation.enable = true;
-
-      preservation.preserveAt."/persistent" = {
-        directories = [
-          {
-            directory = "/var/lib/nixos";
-            inInitrd = true;
-          }
-          "/etc/nixos"
-          "/var/lib/bluetooth"
-        ];
-
-        files = [
-          {
-            file = "/etc/machine-id";
-            inInitrd = true;
-          }
-        ];
-
-        users.${userconf.username} = {
-          directories = [
-            "Downloads"
-            "nixos"
-            ".ssh"
-          ];
-        };
-      };
 
       fileSystems."/nix".neededForBoot = true;
 

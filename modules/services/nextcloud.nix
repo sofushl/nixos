@@ -53,7 +53,7 @@
         after = [ "postgresql.service" ];
       };
 
-      persistent.preserveAt.directories = [ "/var/lib/nextcloud" ];
+      preservation.preserveAt.directories = [ "/var/lib/nextcloud" ];
 
     };
 

@@ -12,6 +12,7 @@
 
         niri
         develop
+        preservation
 
         # Services
         networkmanager
