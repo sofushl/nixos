@@ -53,6 +53,8 @@
         after = [ "postgresql.service" ];
       };
 
+      persistent.preserveAt.directories = [ "/var/lib/nextcloud" ];
+
     };
 
 }

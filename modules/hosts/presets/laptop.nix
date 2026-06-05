@@ -19,9 +19,9 @@
         keyd
 
         # Programs
+        roblox
         wezterm
         vesktop
-        vscodium
         neovim
         git
         librewolf

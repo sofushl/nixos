@@ -42,7 +42,7 @@
 
           RPATH = "${pkgs.lib.makeLibraryPath dlopenLibraries}";
 
-          LD_LIBRARY_PATH = pkgs.lib.mkForce (pkgs.lib.makeLibraryPath dlopenLibraries);
+          #LD_LIBRARY_PATH = pkgs.lib.mkForce (pkgs.lib.makeLibraryPath dlopenLibraries);
 
         };
 
