@@ -50,7 +50,7 @@
       security = {
         rtkit.enable = true;
         sudo.wheelNeedsPassword = false;
-        pki.certificateFiles = [ ]; # "/etc/ssl/certs/ca-bundle.crt" "/etc/ssl/certs/ca-certificates.crt" "${pkgs.cacert}/etc/ssl/certs/ca-certificates.crt" "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"];
+        #pki.certificateFiles = [ ];
       };
 
       services = {
