@@ -8,6 +8,7 @@
         enable = true;
         packages = [
           "org.vinegarhq.Sober"
+          "io.gitlab.leesonwai.Sums"
         ];
         remotes = [
           {
