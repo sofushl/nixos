@@ -54,13 +54,19 @@ Make ```/etc/nixos/secrets.nix``` like this:
   email = "youremail@example.com"; # Email for automated mails and login
   password = "yourpassword"; # High security online logins
   pin = "yourpin"; # Root and user login on this device
-  dnsUpdateLinks = [
-    "yourUpdateLink1"
-  ]; # for freedns dynamic ip updater cron job
+  
+  # For Desktop
   networks = {
     "ssid1" = "password1";
   }; # for declarative wifi management
+  
+
+  # For Server
+  dnsUpdateLinks = [
+    "yourUpdateLink1"
+  ]; # for freedns dynamic ip updater cron job
   secretDom = "yoursecretdomain";
+  secretGit = "github link for the secret domain";
 }
 ```
 
@@ -196,7 +202,7 @@ sudo nixos-install
   programs.git.enable = true;
   programs.nix-ld.enable = true;
 
-  system.stateVersion = "25.11";
+  system.stateVersion = "26.11";
 }
 
 ```
