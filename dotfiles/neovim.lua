@@ -4,7 +4,6 @@ vim.g.mapleader = " "
 -- map "n" to toggle Neo-tree floating window
 vim.keymap.set("n", "n", "<cmd>Neotree float toggle<CR>")
 
-
 --[[
 require("toggleterm").setup({
 	direction = "horizontal",
@@ -92,7 +91,7 @@ require("conform").setup({
 		lua = { "stylua" },
 		python = { "isort", "black" },
 		rust = { "rustfmt" },
-		javascript = { "pretierd", "prettier" },
+		javascript = { "prettierd", "prettier" },
 		nix = { "nixfmt" },
 		kdl = { "kdlfmt" },
 	},
