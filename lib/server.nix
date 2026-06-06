@@ -14,9 +14,4 @@ rec {
     searchDom
 
   ];
-
-  gitPullers = [
-    "/var/www/homepage"
-  ];
-
 }

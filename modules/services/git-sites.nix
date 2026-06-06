@@ -6,11 +6,10 @@
       userconf,
       pkgs,
       lib,
-      config,
       ...
     }:
-    {
-      my.gitSites = [
+    let
+      sites = [
         {
           name = "homepage";
           repo = "https://github.com/sofuslind/homepage.git";
@@ -24,71 +23,51 @@
         }
       ];
 
-      options.my.gitSites = lib.mkOption {
-        type = lib.types.listOf (
-          lib.types.submodule {
-            options = {
-              name = lib.mkOption {
-                type = lib.types.str;
-              };
+    in
+    {
+      environment.systemPackages = [ pkgs.git ];
 
-              repo = lib.mkOption {
-                type = lib.types.str;
-              };
+      systemd.services.git-site-update = {
+        path = [ pkgs.git ];
 
-              domain = lib.mkOption {
-                type = lib.types.str;
-              };
-            };
-          }
-        );
+        script = ''
+          mkdir -p /var/www
 
-        default = [ ];
+          ${lib.concatMapStringsSep "\n" (site: ''
+            if [ ! -d /var/www/${site.name}/.git ]; then
+              git clone ${site.repo} /var/www/${site.name}
+            else
+              git -C /var/www/${site.name} fetch origin
+              git -C /var/www/${site.name} reset --hard origin/HEAD
+            fi
+          '') sites}
+        '';
+
+        serviceConfig.Type = "oneshot";
       };
 
-      config =
-        let
-          sites = config.my.gitSites;
-        in
-        {
-          environment.systemPackages = [ pkgs.git ];
+      systemd.timers.git-site-update = {
+        wantedBy = [ "timers.target" ];
 
-          systemd.services.git-site-update = {
-            script = ''
-              mkdir -p /var/lib/git-sites
-
-              ${lib.concatMapStringsSep "\n" (site: ''
-                if [ ! -d /var/lib/git-sites/${site.name}/.git ]; then
-                  git clone ${site.repo} /var/lib/git-sites/${site.name}
-                else
-                  git -C /var/lib/git-sites/${site.name} fetch origin
-                  git -C /var/lib/git-sites/${site.name} reset --hard origin/HEAD
-                fi
-              '') sites}
-            '';
-
-            serviceConfig.Type = "oneshot";
-          };
-
-          systemd.timers.git-site-update = {
-            wantedBy = [ "timers.target" ];
-
-            timerConfig = {
-              OnBootSec = "1m";
-              OnUnitActiveSec = "5m";
-            };
-          };
-
-          services.nginx.enable = true;
-
-          services.nginx.virtualHosts = lib.listToAttrs (
-            map (site: {
-              name = site.domain;
-              value = {
-                root = "/var/lib/git-sites/${site.name}";
-              };
-            }) sites
-          );
+        timerConfig = {
+          OnBootSec = "1m";
+          OnUnitActiveSec = "5m";
         };
+      };
+
+      services.nginx.enable = true;
+
+      services.nginx.virtualHosts = lib.listToAttrs (
+        map (site: {
+          name = site.domain;
+          value = {
+            root = "/var/www/${site.name}";
+            forceSSL = true;
+            enableACME = true;
+          };
+        }) sites
+      );
+
+      preservation.preserveAt.directories = [ "/var/www" ];
     };
 }

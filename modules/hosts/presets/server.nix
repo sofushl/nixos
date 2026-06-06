@@ -16,7 +16,7 @@
         # Services
         nextcloudServer
         dnsUpdater
-        
+        gitSites
 
         nginx
         ollama
