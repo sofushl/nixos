@@ -15,4 +15,8 @@ rec {
 
   ];
 
+  gitPullers = [
+    "/var/www/homepage"
+  ];
+
 }
