@@ -16,7 +16,8 @@
         # Services
         nextcloudServer
         dnsUpdater
-        gitPuller
+        
+
         nginx
         ollama
 
