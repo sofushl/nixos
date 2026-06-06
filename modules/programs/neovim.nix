@@ -21,11 +21,14 @@
             telescope-nvim
             project-nvim
             lazygit-nvim
+
             vim-plug
             vim-nix
             vim-startify
             conform-nvim
+
             vscode-nvim
+
             nvim-lspconfig
             nvim-cmp
             cmp-nvim-lsp
@@ -36,13 +39,19 @@
             cmp-nvim-lua
             cmp-nvim-tags
             cmp-nvim-ultisnips
+
             vim-prettier
             vim-javascript
             vim-javascript-syntax
+            typescript-vim
+            vim-jsx-typescript
+
             python-mode
             vim-wayland-clipboard
+
             typst-vim
             typst-preview-nvim
+
             markdown-preview-nvim
           ];
 
