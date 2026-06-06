@@ -25,11 +25,16 @@
 
         content.type = "gpt";
 
+        content.partitions.boot = {
+          name = "boot";
+          size = "1M";
+          type = "EF02";
+        };
+
         content.partitions.esp = {
           priority = 1;
           name = "ESP";
-          start = "1M";
-          end = "256M";
+          size = "300M";
           type = "EF00";
           content = {
             type = "filesystem";
