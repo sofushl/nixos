@@ -11,7 +11,7 @@
     let
       sites = [
         {
-          name = "homepage";
+          name = "homepage/dist";
           repo = "https://github.com/sofuslind/homepage.git";
           domain = userconf.topDom;
         }
@@ -28,18 +28,29 @@
       environment.systemPackages = [ pkgs.git ];
 
       systemd.services.git-site-update = {
-        path = [ pkgs.git ];
+        path = [
+          pkgs.git
+          pkgs.nodejs
+        ];
 
         script = ''
           mkdir -p /var/www
 
           ${lib.concatMapStringsSep "\n" (site: ''
+
             if [ ! -d /var/www/${site.name}/.git ]; then
               git clone ${site.repo} /var/www/${site.name}
             else
               git -C /var/www/${site.name} fetch origin
               git -C /var/www/${site.name} reset --hard origin/HEAD
             fi
+
+            cd /var/lib/git-sites/${site.name}
+            if [ -f package.json ]; then
+              npm install
+              npm run build
+            fi
+
           '') sites}
         '';
 
