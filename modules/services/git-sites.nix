@@ -11,27 +11,32 @@
     let
       sites = [
         {
-          name = "homepage/dist";
+          name = "homepage";
+          root = "/dist";
           repo = "https://github.com/sofuslind/homepage.git";
           domain = userconf.topDom;
         }
 
         {
           name = "secretpage";
+          root = "";
           repo = userconf.secretGit;
           domain = userconf.secretDom;
         }
       ];
 
+      pack = with pkgs; [
+        git
+        nodejs
+        bash
+      ];
+
     in
     {
-      environment.systemPackages = [ pkgs.git ];
+      environment.systemPackages = pack;
 
       systemd.services.git-site-update = {
-        path = [
-          pkgs.git
-          pkgs.nodejs
-        ];
+        path = pack;
 
         script = ''
           mkdir -p /var/www
@@ -45,7 +50,7 @@
               git -C /var/www/${site.name} reset --hard origin/HEAD
             fi
 
-            cd /var/lib/git-sites/${site.name}
+            cd /var/www/${site.name}
             if [ -f package.json ]; then
               npm install
               npm run build
@@ -72,7 +77,7 @@
         map (site: {
           name = site.domain;
           value = {
-            root = "/var/www/${site.name}";
+            root = "/var/www/${site.name}${site.root}";
             forceSSL = true;
             enableACME = true;
           };
