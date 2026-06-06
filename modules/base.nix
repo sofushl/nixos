@@ -95,6 +95,7 @@
 
           nixos-clear = ''
             sudo nix-collect-garbage -d && \
+            nh clean all && \
             sudo rm -rf -v /home/${userconf.username}/.cache/* /home/${userconf.username}/.local/share/Trash/* && \
             sudo nix store optimise && \
             sudo fstrim -av
