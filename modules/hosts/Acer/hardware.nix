@@ -29,7 +29,7 @@
 
       swapDevices = [
         {
-          device = "/preservation/swapfile";
+          device = "/etc/nixos/swapfile";
           size = 8 * 1024;
         }
       ];
