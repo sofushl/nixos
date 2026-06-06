@@ -52,7 +52,6 @@
       security = {
         rtkit.enable = true;
         sudo.wheelNeedsPassword = false;
-        #pki.certificateFiles = [ ];
       };
 
       services = {
@@ -87,7 +86,9 @@
         # Custom build commands for using the flake instead of configuration.nix
         shellAliases = {
 
-          nixos-build = "sudo nixos-rebuild switch --flake /${userconf.path}/#${config.networking.hostName} --impure";
+          nixos-build = "
+          git -C /${userconf.path} add -A && \
+          sudo nixos-rebuild switch --flake /${userconf.path}/#${config.networking.hostName} --impure";
 
           nixos-build-boot = "sudo nixos-rebuild boot --flake /${userconf.path}/#${config.networking.hostName} --impure";
 
