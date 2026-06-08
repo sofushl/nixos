@@ -17,7 +17,7 @@
         nextcloudServer
         dnsUpdater
         gitSites
-
+        discordBot
         nginx
 
         # Programs
