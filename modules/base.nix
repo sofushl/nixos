@@ -35,7 +35,7 @@
 
       # Enable flakes etc.
       nix = {
-        gc.automatic = true;
+        #gc.automatic = true;
 
         settings = {
           experimental-features = [
@@ -95,8 +95,8 @@
           nixos-update = "sudo nix flake update --flake /${userconf.path}";
 
           nixos-clear = ''
-            sudo nix-collect-garbage -d && \
-            nh clean all && \
+            #sudo nix-collect-garbage -d && \
+            sudo nh clean all && \
             sudo rm -rf -v /home/${userconf.username}/.cache/* /home/${userconf.username}/.local/share/Trash/* && \
             sudo nix store optimise && \
             sudo fstrim -av
@@ -135,8 +135,6 @@
 
           clean = {
             enable = true;
-            dates = "daily";
-            extraArgs = "";
           };
         };
       };
