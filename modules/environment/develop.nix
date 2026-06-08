@@ -72,7 +72,8 @@
             taplo
             clang-tools
             tinymist
-            vscode-css-languageserver
+            vscode-langservers-extracted
+            tailwindcss-language-server
 
             # Formatter
             nixfmt
@@ -80,6 +81,7 @@
             rustfmt
             prettierd
             prettier
+            eslint
             black
             isort
 

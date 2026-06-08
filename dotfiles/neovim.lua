@@ -80,11 +80,21 @@ vim.lsp.config["rust_analyzer"] = {
 	on_attach = on_attach,
 }
 
+-- typescript
+
+vim.lsp.config["ts_ls"] = {
+	on_attach = on_attach,
+	filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascript.jsx" },
+	root_markers = { "tsconfig.json", ".git", "index.html", "package.json" },
+	cmd = { "typescript-language-server", "--stdio" },
+}
+
 -- Enable all
 vim.lsp.enable("pyright")
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("nil_ls")
 vim.lsp.enable("rust_analyzer")
+vim.lsp.enable("ts_ls")
 
 require("conform").setup({
 	formatters_by_ft = {
@@ -92,6 +102,7 @@ require("conform").setup({
 		python = { "isort", "black" },
 		rust = { "rustfmt" },
 		javascript = { "prettierd", "prettier" },
+		typescript = { "prettierd", "prettier" },
 		nix = { "nixfmt" },
 		kdl = { "kdlfmt" },
 	},
