@@ -19,7 +19,6 @@
         gitSites
 
         nginx
-        ollama
 
         # Programs
         neovim
