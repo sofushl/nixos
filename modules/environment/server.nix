@@ -32,6 +32,19 @@
         };
       };
 
+      services.nginx = {
+        enable = true;
+        recommendedProxySettings = true;
+        recommendedTlsSettings = true;
+        recommendedGzipSettings = true;
+
+        virtualHosts.${userconf.secondaryDom} = {
+          forceSSL = true;
+          enableACME = true;
+          globalRedirect = userconf.topDom;
+        };
+      };
+
       systemd.network = {
         enable = true;
 

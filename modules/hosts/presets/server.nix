@@ -18,7 +18,6 @@
         dnsUpdater
         gitSites
         discordBot
-        nginx
 
         # Programs
         neovim
