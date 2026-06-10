@@ -35,6 +35,13 @@
 
       };
 
+      services.nginx.virtualHosts = {
+        ${userconf.cloudDom} = {
+          forceSSL = true;
+          enableACME = true;
+        };
+      };
+
       environment.etc."nextcloud-admin-pass".text = userconf.password;
 
       services.postgresql = {

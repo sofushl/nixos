@@ -28,7 +28,7 @@
       boot.extraModulePackages = [ ];
       boot.kernelParams = [ "intel_pstate=active" ];
 
-      networking.enableIPv6 = false;
+      #networking.enableIPv6 = false;
 
       boot.kernel.sysctl = {
         "net.ipv6.conf.all.disable_ipv6" = 1;
