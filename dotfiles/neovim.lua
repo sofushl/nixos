@@ -35,25 +35,11 @@ vim.keymap.set("n", "K", vim.lsp.buf.hover)
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
 
--- Helper for common on_attach behavior
-local on_attach = function(_, bufnr)
-	local map = function(mode, lhs, rhs)
-		vim.keymap.set(mode, lhs, rhs, { buffer = bufnr })
-	end
-
-	map("n", "gd", vim.lsp.buf.definition)
-	map("n", "gr", vim.lsp.buf.references)
-	map("n", "K", vim.lsp.buf.hover)
-	map("n", "<leader>rn", vim.lsp.buf.rename)
-	map("n", "<leader>ca", vim.lsp.buf.code_action)
-end
-
 -- Python (pyright)
 vim.lsp.config["pyright"] = {
 	cmd = { "pyright-langserver", "--stdio" },
 	filetypes = { "python" },
 	root_markers = { ".git", "pyproject.toml", "requirements.txt" },
-	on_attach = on_attach,
 }
 
 -- Lua
@@ -67,7 +53,6 @@ vim.lsp.config["lua_ls"] = {
 			diagnostics = { globals = { "vim" } },
 		},
 	},
-	on_attach = on_attach,
 }
 
 -- Nix
@@ -75,7 +60,6 @@ vim.lsp.config["nil_ls"] = {
 	cmd = { "nil" },
 	filetypes = { "nix" },
 	root_markers = { "flake.nix", ".git" },
-	on_attach = on_attach,
 }
 
 -- Rust
@@ -83,16 +67,20 @@ vim.lsp.config["rust_analyzer"] = {
 	cmd = { "rust-analyzer" },
 	filetypes = { "rust" },
 	root_markers = { "Cargo.toml", ".git" },
-	on_attach = on_attach,
 }
 
 -- typescript
 
 vim.lsp.config["ts_ls"] = {
-	on_attach = on_attach,
 	filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascript.jsx" },
 	root_markers = { "tsconfig.json", ".git", "index.html", "package.json" },
 	cmd = { "typescript-language-server", "--stdio" },
+}
+
+vim.lsp.config["jdtls"] = {
+	cmd = { "jdtls" },
+	filetypes = { "java" },
+	root_markers = { "pom.xml", ".git" },
 }
 
 -- Enable all
@@ -101,12 +89,14 @@ vim.lsp.enable("lua_ls")
 vim.lsp.enable("nil_ls")
 vim.lsp.enable("rust_analyzer")
 vim.lsp.enable("ts_ls")
+vim.lsp.enable("jdtls")
 
 vim.lsp.enable({
 	"ts_ls",
 	"eslint",
 	"html",
 	"cssls",
+	"jdt-language-server",
 	"jsonls",
 	"tailwindcss",
 	"lua_ls",
@@ -139,6 +129,7 @@ require("conform").setup({
 		typescript = { "prettierd", "prettier" },
 		nix = { "nixfmt" },
 		kdl = { "kdlfmt" },
+		java = { "google-java-format" },
 	},
 	format_on_save = {
 		timeout_ms = 500,
