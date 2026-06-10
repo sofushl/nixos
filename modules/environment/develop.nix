@@ -84,6 +84,7 @@
             eslint
             black
             isort
+            google-java-format
 
             # Tools
             nodejs

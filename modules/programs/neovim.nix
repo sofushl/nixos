@@ -19,7 +19,6 @@
             nvim-tree-lua
             neo-tree-nvim
             telescope-nvim
-            project-nvim
             lazygit-nvim
 
             vim-plug
@@ -32,15 +31,8 @@
             nvim-lspconfig
 
             blink-cmp
-            nvim-cmp
-            cmp-nvim-lsp
-            cmp-nvim-lsp-signature-help
-            cmp-buffer
-            cmp-path
-            cmp-nvim-lsp-document-symbol
-            cmp-nvim-lua
-            cmp-nvim-tags
-            cmp-nvim-ultisnips
+
+            nvim-jdtls
 
             vim-prettier
             vim-javascript
