@@ -30,6 +30,8 @@
             vscode-nvim
 
             nvim-lspconfig
+
+            blink-cmp
             nvim-cmp
             cmp-nvim-lsp
             cmp-nvim-lsp-signature-help

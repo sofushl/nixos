@@ -29,6 +29,12 @@ vim.keymap.set("n", "&", "^")
 vim.keymap.set("v", "¤", "$")
 vim.keymap.set("v", "&", "^")
 
+vim.keymap.set("n", "gd", vim.lsp.buf.definition)
+vim.keymap.set("n", "gr", vim.lsp.buf.references)
+vim.keymap.set("n", "K", vim.lsp.buf.hover)
+vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
+vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
+
 -- Helper for common on_attach behavior
 local on_attach = function(_, bufnr)
 	local map = function(mode, lhs, rhs)
@@ -95,6 +101,34 @@ vim.lsp.enable("lua_ls")
 vim.lsp.enable("nil_ls")
 vim.lsp.enable("rust_analyzer")
 vim.lsp.enable("ts_ls")
+
+vim.lsp.enable({
+	"ts_ls",
+	"eslint",
+	"html",
+	"cssls",
+	"jsonls",
+	"tailwindcss",
+	"lua_ls",
+	"nil_ls",
+	"bashls",
+	"pyright",
+	"rust_analyzer",
+	"gopls",
+	"yamlls",
+})
+
+require("blink.cmp").setup({
+	completion = {
+		menu = {
+			auto_show = true,
+		},
+	},
+
+	keymap = {
+		preset = "default",
+	},
+})
 
 require("conform").setup({
 	formatters_by_ft = {
