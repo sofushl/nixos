@@ -35,6 +35,12 @@ vim.keymap.set("n", "K", vim.lsp.buf.hover)
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
 
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 2
+vim.opt.expandtab = true
+vim.opt.smartindent = true
+
 -- Python (pyright)
 vim.lsp.config["pyright"] = {
 	cmd = { "pyright-langserver", "--stdio" },
@@ -116,7 +122,10 @@ require("blink.cmp").setup({
 	},
 
 	keymap = {
-		preset = "default",
+		["<C-j>"] = { "select_next", "fallback" },
+		["<C-k>"] = { "select_prev", "fallback" },
+		["<C-l>"] = { "accept", "fallback" },
+		["<tab>"] = { "accept", "fallback" },
 	},
 })
 
