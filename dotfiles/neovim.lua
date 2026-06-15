@@ -1,17 +1,7 @@
--- set leader early (optional, but common)
+-- Keymap
 vim.g.mapleader = " "
 
--- map "n" to toggle Neo-tree floating window
-vim.keymap.set("n", "n", "<cmd>Neotree float toggle<CR>")
-
---[[
-require("toggleterm").setup({
-	direction = "horizontal",
-	float_opts = {
-		border = "rounded",
-	},
-})
---]]
+vim.keymap.set("n", "n", "<cmd>Neotree left toggle<CR>")
 
 vim.keymap.set("n", "T", "<cmd>tabclose<cr>")
 vim.keymap.set("n", "t", "<cmd>tabnew<cr>")
@@ -29,24 +19,20 @@ vim.keymap.set("n", "&", "^")
 vim.keymap.set("v", "¤", "$")
 vim.keymap.set("v", "&", "^")
 
+-- LSP remaps
 vim.keymap.set("n", "gd", vim.lsp.buf.definition)
 vim.keymap.set("n", "gr", vim.lsp.buf.references)
 vim.keymap.set("n", "K", vim.lsp.buf.hover)
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
 
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.softtabstop = 2
-vim.opt.expandtab = true
-vim.opt.smartindent = true
-
--- Python (pyright)
+-- Python
 vim.lsp.config["pyright"] = {
 	cmd = { "pyright-langserver", "--stdio" },
 	filetypes = { "python" },
 	root_markers = { ".git", "pyproject.toml", "requirements.txt" },
 }
+vim.lsp.enable("pyright")
 
 -- Lua
 vim.lsp.config["lua_ls"] = {
@@ -60,6 +46,7 @@ vim.lsp.config["lua_ls"] = {
 		},
 	},
 }
+vim.lsp.enable("lua_ls")
 
 -- Nix
 vim.lsp.config["nil_ls"] = {
@@ -67,6 +54,7 @@ vim.lsp.config["nil_ls"] = {
 	filetypes = { "nix" },
 	root_markers = { "flake.nix", ".git" },
 }
+vim.lsp.enable("nil_ls")
 
 -- Rust
 vim.lsp.config["rust_analyzer"] = {
@@ -74,29 +62,25 @@ vim.lsp.config["rust_analyzer"] = {
 	filetypes = { "rust" },
 	root_markers = { "Cargo.toml", ".git" },
 }
+vim.lsp.enable("rust_analyzer")
 
--- typescript
-
+-- Typescript
 vim.lsp.config["ts_ls"] = {
 	filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascript.jsx" },
 	root_markers = { "tsconfig.json", ".git", "index.html", "package.json" },
 	cmd = { "typescript-language-server", "--stdio" },
 }
+vim.lsp.enable("ts_ls")
 
+-- Java
 vim.lsp.config["jdtls"] = {
 	cmd = { "jdtls" },
 	filetypes = { "java" },
 	root_markers = { "pom.xml", ".git" },
 }
-
--- Enable all
-vim.lsp.enable("pyright")
-vim.lsp.enable("lua_ls")
-vim.lsp.enable("nil_ls")
-vim.lsp.enable("rust_analyzer")
-vim.lsp.enable("ts_ls")
 vim.lsp.enable("jdtls")
 
+-- More
 vim.lsp.enable({
 	"ts_ls",
 	"eslint",
@@ -114,6 +98,7 @@ vim.lsp.enable({
 	"yamlls",
 })
 
+-- Completion
 require("blink.cmp").setup({
 	completion = {
 		menu = {
@@ -129,6 +114,7 @@ require("blink.cmp").setup({
 	},
 })
 
+-- Formatting
 require("conform").setup({
 	formatters_by_ft = {
 		lua = { "stylua" },
@@ -145,3 +131,10 @@ require("conform").setup({
 		lsp_format = "fallback",
 	},
 })
+
+-- Formatting option
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 2
+vim.opt.expandtab = true
+vim.opt.smartindent = true
