@@ -1,6 +1,7 @@
 rec {
   wslkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICcW+Me6dHxyYPWni5w9YBfHOunyGbTwrHHNK6MLtp2B sofushl@nixos";
   wslkey2 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAzlaxVMsDaYtP3tk3KGOUeICgnnl9SLpuhWDiEunTz1 sofushl@WSL";
+  workwsl = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILuW8C+83AOJyewaRCJUant4NrMMriweP/jXpJyTTgRC sofushl@nixos";
   zbookkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFVOm4q1/v7MNNsnf6iNlFYUXsV/kxkAzmleWgd6JOr7 sofushl@ZBook";
   acerkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPCfUfHZ/WX05U6bH3Jvf/OxLxEWQlTX6mipQZ8vBjNl sofushl@Acer";
   dellkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIImCTdfafU0SBz1/mMmiXE+di4Hb9/0Pr8DxkK+5plJy sofushl@Dell";
@@ -15,6 +16,7 @@ rec {
     dellkey
     lenovokey
     phonekey
+    workwsl
   ];
 
 }
