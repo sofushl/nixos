@@ -59,25 +59,10 @@
             nixd
             typescript
 
-            # LSP
-            stylua
-            pyright
-            lua-language-server
-            nil
-            rust-analyzer
-            jdt-language-server
-            typescript-language-server
-            lldpd
-            ty
-            taplo
-            clang-tools
-            tinymist
-            vscode-langservers-extracted
-            tailwindcss-language-server
-
             # Formatter
             nixfmt
             kdlfmt
+            yamlfmt
             rustfmt
             prettierd
             prettier

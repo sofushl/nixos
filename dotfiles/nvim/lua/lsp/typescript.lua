@@ -1,4 +1,4 @@
-return {
+vim.lsp.config["typescript"] = {
 	init_options = { hostInfo = "neovim" },
 	cmd = { "typescript-language-server", "--stdio" },
 	filetypes = {

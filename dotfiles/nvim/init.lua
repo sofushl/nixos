@@ -51,10 +51,17 @@ vim.lsp.config["jdtls"] = {
 vim.lsp.enable("jdtls")
 
 -- More
-require "./lsp/*"
+local lsp_dir = vim.fn.stdpath("config") .. "/lua/lsp"
+
+for _, file in ipairs(vim.fn.readdir(lsp_dir)) do
+	if file:match("%.lua$") and file ~= "init.lua" then
+		require("lsp." .. file:gsub("%.lua$", ""))
+	end
+end
+
 vim.lsp.enable({
 	"css",
-	"css_modules",
+	"cssmodules",
 	"eslint",
 	"html",
 	"json",
