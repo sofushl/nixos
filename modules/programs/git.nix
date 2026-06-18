@@ -11,11 +11,6 @@
           git = {
             enable = true;
 
-            #signing = {
-            #  key = userconf.sshkey;
-            #  signByDefault = true;
-            #};
-
             settings = {
 
               user = {
@@ -23,7 +18,6 @@
                 email = userconf.gitmail;
               };
 
-              gpg.format = "ssh";
               init.defaultBranch = "main";
               pull.rebase = true;
               core.editor = "nvim";
@@ -40,10 +34,6 @@
           gh = {
             enable = true;
 
-            hosts."github.com" = {
-              user = userconf.ghname;
-            };
-
             settings = {
               git_protocol = "ssh";
 
@@ -58,15 +48,6 @@
             };
 
           };
-
-          ssh = {
-            enable = true;
-
-            enableDefaultConfig = false;
-
-            settings."*".addKeysToAgent = "yes";
-          };
-
         };
       };
     };
