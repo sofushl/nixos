@@ -5,17 +5,13 @@ lsp.config["eslint"] = {
 	filetypes = {
 		"javascript",
 		"javascriptreact",
-		"javascript.jsx",
 		"typescript",
 		"typescriptreact",
-		"typescript.tsx",
 		"markdown",
 	},
 	workspace_required = true,
 	on_attach = function(client, bufnr)
 		vim.api.nvim_buf_create_user_command(0, "LspEslintFixAll", function()
-			local bufnr = vim.api.nvim_get_current_buf()
-
 			client:exec_cmd({
 				title = "Fix all Eslint errors for current buffer",
 				command = "eslint.applyAllFixes",
@@ -56,7 +52,6 @@ lsp.config["eslint"] = {
 	end,
 	settings = {
 		validate = "on",
-		packageManager = nil,
 		useESLintClass = false,
 		experimental = {
 			useFlatConfig = false,
@@ -113,18 +108,11 @@ lsp.config["eslint"] = {
 			for _, file in ipairs(flat_config_files) do
 				if vim.fn.filereadable(root_dir .. "/" .. file) == 1 then
 					config.settings.experimental = config.settings.experimental or {}
-					config.settings.experimental.useFlatConfig = true
 					break
 				end
 			end
 
 			-- Support Yarn2 (PnP) projects
-			local pnp_cjs = root_dir .. "/.pnp.cjs"
-			local pnp_js = root_dir .. "/.pnp.js"
-			if vim.uv.fs_stat(pnp_cjs) or vim.uv.fs_stat(pnp_js) then
-				local cmd = config.cmd
-				config.cmd = vim.list_extend({ "yarn", "exec" }, cmd)
-			end
 		end
 	end,
 	handlers = {

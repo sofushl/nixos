@@ -29,7 +29,6 @@ in
           systemd-boot.enable = true;
           systemd-boot.configurationLimit = 10;
           efi.canTouchEfiVariables = true;
-
         };
 
         system.stateVersion = userconf.state;
