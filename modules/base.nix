@@ -99,11 +99,6 @@
             sudo nix store optimise && \
             sudo fstrim -av
           '';
-
-          nixos-secrets = ''
-            sudo setfacl -R -m u:${userconf.username}:rwx /etc/nixos/ && \
-            nvim /etc/nixos/secrets.nix
-          '';
         };
 
         variables = {
