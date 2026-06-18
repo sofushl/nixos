@@ -27,7 +27,7 @@
             "802-1x" = {
               eap = "peap";
               identity = "${userconf.username}@ntnu.no";
-              password = userconf.password;
+              password = userconf.edupass;
               "phase2-auth" = "mschapv2";
             };
           };

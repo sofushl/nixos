@@ -45,13 +45,14 @@ Boilerplate for nixosModules:
 
 This system is meant for one single user and user configuration relies on ```./lib/sofushl.nix```
 
-userconf includes several parts from ```./lib``` defined in```.modules/hosts/*``` and a secret part:
+userconf includes several parts from ```./lib``` defined in```.modules/hosts/*``` and a secret part (Working on removing this):
 
 Make ```/etc/nixos/secrets.nix``` like this:
 
 ``` nix
 {
  # For Desktop
+ edupass = "your eduroam network password";
   networks = {
     "ssid1" = "password1";
   }; # for declarative wifi management
