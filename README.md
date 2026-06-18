@@ -106,7 +106,7 @@ cd /nixos
 
 sudo nix --extra-experimental-features "nix-command flakes" \
   run 'github:nix-community/disko/latest#disko-install' -- \
-  --flake .#YOUR_HOST --impure \
+  --flake .#init \
   --disk main /dev/YOUR_DISK \
 
 # After rebooting:
@@ -120,10 +120,7 @@ git clone git@github.com:sofuslind/nixos.git # My link
 
 # Update ./lib/YOUR_HOST.nix and ./lib/sshkeys.nix and 
 
-# Rebuild to make sure you did everything right
-
-nixos-build 
-
+# Rebuild with correct hostname make sure you did everything right
 
 ```
 

@@ -1,7 +1,6 @@
 vim.lsp.config["tailwind"] = {
 	cmd = { "tailwindcss-language-server", "--stdio" },
 	filetypes = {
-		"ejs",
 		"html",
 		"markdown",
 		"css",
@@ -45,9 +44,6 @@ vim.lsp.config["tailwind"] = {
 		end
 		if not config.settings.editor then
 			config.settings.editor = {}
-		end
-		if not config.settings.editor.tabSize then
-			config.settings.editor.tabSize = vim.lsp.util.get_effective_tabstop()
 		end
 	end,
 	workspace_required = true,

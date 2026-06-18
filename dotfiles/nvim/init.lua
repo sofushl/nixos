@@ -26,30 +26,6 @@ vim.keymap.set("n", "K", vim.lsp.buf.hover)
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
 
--- Nix
-vim.lsp.config["nil"] = {
-	cmd = { "nil" },
-	filetypes = { "nix" },
-	root_markers = { "flake.nix", ".git" },
-}
-vim.lsp.enable("nil")
-
--- Rust
-vim.lsp.config["rust_analyzer"] = {
-	cmd = { "rust-analyzer" },
-	filetypes = { "rust" },
-	root_markers = { "Cargo.toml", ".git" },
-}
-vim.lsp.enable("rust_analyzer")
-
--- Java
-vim.lsp.config["jdtls"] = {
-	cmd = { "jdtls" },
-	filetypes = { "java" },
-	root_markers = { "pom.xml", ".git" },
-}
-vim.lsp.enable("jdtls")
-
 -- More
 local lsp_dir = vim.fn.stdpath("config") .. "/lua/lsp"
 
@@ -60,14 +36,16 @@ for _, file in ipairs(vim.fn.readdir(lsp_dir)) do
 end
 
 vim.lsp.enable({
+	"python",
+	"nix",
+	"rust",
+	"java",
 	"css",
-	"cssmodules",
 	"eslint",
 	"html",
 	"json",
 	"lua",
 	"markdown",
-	"python",
 	"tailwind",
 	"typescript",
 	"yaml",
@@ -102,8 +80,8 @@ require("conform").setup({
 		java = { "google-java-format" },
 	},
 	format_on_save = {
-		timeout_ms = 500,
-		lsp_format = "fallback",
+		timeout_ms = 1000,
+		lsp_format = "first",
 	},
 })
 
