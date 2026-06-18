@@ -51,11 +51,7 @@ Make ```/etc/nixos/secrets.nix``` like this:
 
 ``` nix
 {
-  email = "youremail@example.com"; # Email for automated mails and login
-  password = "yourpassword"; # High security online logins
-  pin = "yourpin"; # Root and user login on this device
-  
-  # For Desktop
+ # For Desktop
   networks = {
     "ssid1" = "password1";
   }; # for declarative wifi management

@@ -47,8 +47,6 @@
         };
       };
 
-      users.mutableUsers = false;
-
       security = {
         rtkit.enable = true;
         sudo.wheelNeedsPassword = false;

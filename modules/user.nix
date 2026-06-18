@@ -10,6 +10,7 @@
     }:
     {
       users = {
+
         users.${userconf.username} = {
           isNormalUser = true;
           description = userconf.displayname;
@@ -20,12 +21,14 @@
             "storage"
           ];
 
-          initialPassword = userconf.pin;
+          hashedPassword = userconf.pinhash;
 
           openssh.authorizedKeys.keys = userconf.sshkeys;
         };
 
-        users.root.initialPassword = userconf.pin;
+        mutableUsers = false;
+
+        users.root.hashedPassword = userconf.pinhash;
       };
 
       home-manager.users.${userconf.username} = {
