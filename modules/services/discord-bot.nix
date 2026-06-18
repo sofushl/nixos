@@ -56,7 +56,7 @@
 
         timerConfig = {
           OnBootSec = "1m";
-          OnUnitActiveSec = "10m";
+          OnUnitActiveSec = "19m";
         };
       };
 

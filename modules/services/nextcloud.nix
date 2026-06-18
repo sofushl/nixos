@@ -12,7 +12,7 @@
         database.createLocally = true;
 
         config = {
-          adminuser = userconf.username;
+          adminuser = null;
 
           dbtype = "sqlite";
           #dbtype = "pgsql";

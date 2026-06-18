@@ -16,14 +16,8 @@
           repo = "https://github.com/sofuslind/homepage.git";
           domain = userconf.topDom;
         }
-
-        {
-          name = "secretpage";
-          root = "";
-          repo = userconf.secretGit;
-          domain = userconf.secretDom;
-        }
-      ];
+      ]
+      ++ userconf.secretPages;
 
       pack = with pkgs; [
         git
@@ -66,8 +60,8 @@
         wantedBy = [ "timers.target" ];
 
         timerConfig = {
-          OnBootSec = "1m";
-          OnUnitActiveSec = "5m";
+          OnStartupSec = "2m";
+          OnUnitActiveSec = "20m";
         };
       };
 
