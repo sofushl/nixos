@@ -27,7 +27,7 @@
           "${userconf.topDom}" = {
             group = config.services.nginx.group;
 
-            extraDomainNames = userconf.domains ++ [ userconf.secretDom ];
+            extraDomainNames = userconf.domains ++ map (site: site.domain) userconf.secretPages;
           };
         };
       };
