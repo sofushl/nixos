@@ -13,7 +13,6 @@
 
         config = {
           adminuser = userconf.username;
-          adminpassFile = "/etc/nextcloud-admin-pass";
 
           dbtype = "sqlite";
           #dbtype = "pgsql";
@@ -41,8 +40,6 @@
           enableACME = true;
         };
       };
-
-      environment.etc."nextcloud-admin-pass".text = userconf.password;
 
       services.postgresql = {
         enable = true;
