@@ -1,4 +1,5 @@
 # Machine specific configurations
-Host machine configurations, including special configs and presets for desktop setups.
+
+Host machine configurations, including presets for desktop and server setups.
 
  
