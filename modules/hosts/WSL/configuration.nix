@@ -6,17 +6,15 @@
     { userconf, lib, ... }:
 
     {
-      imports =
-        with self.nixosModules;
-        [
-          base
-          user
-          develop
-          neovim
-          git
-          fastfetch
-        ]
-        ++ [ <nixos-wsl/modules> ];
+      imports = with self.nixosModules; [
+        base
+        user
+        develop
+        neovim
+        git
+        fastfetch
+        inputs.nixos-wsl.nixosModules.default
+      ];
 
       home-manager.users.${userconf.username} = {
 
