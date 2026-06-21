@@ -120,7 +120,7 @@ cat .ssh/id_ed25519.pub
 
 # Add to github and clone the repo
 
-git clone git@github.com:sofuslind/nixos.git # My link
+git clone git@github.com:sofushl/nixos.git # My link
 
 # Update ./lib/YOUR_HOST.nix and ./lib/sshkeys.nix and 
 
