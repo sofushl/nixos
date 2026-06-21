@@ -1,7 +1,7 @@
 {
   username = "sofushl";
   displayname = "Sofus Lind";
-  gitmail = "43791049+sofuslind@users.noreply.github.com";
+  gitmail = "sofushl@proton.me";
   ghname = "sofushl";
   email = "sofushl@proton.me";
   pinhash = "$6$INVALID$PLACEHOLDER";
