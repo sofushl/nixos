@@ -6,6 +6,8 @@
 
     let
       dlopenLibraries = with pkgs; [
+
+        # Java
         pipewire
         javaPackages.openjfx25
         gtk3
@@ -24,6 +26,30 @@
         libxxf86vm
         libxfixes
         libxinerama
+
+        # For electron within wsl
+        nss
+        nspr
+        dbus
+        gdk-pixbuf
+        pango
+        cairo
+        expat
+        libxcb
+        alsa-lib
+
+        # AI suggestions (reduces amount of rebuilds maybe)
+        atk
+        cups
+        libdrm
+        libgbm
+        libxtst
+        xprintidle-ng
+        libxcomposite
+        libxdamage
+        xdg-utils
+
+        # Rust
         mesa
         wayland
         libxkbcommon
@@ -32,7 +58,6 @@
 
     in
     {
-
       environment = {
         variables = {
 
@@ -75,7 +100,6 @@
             nodejs
             uv
             git-filter-repo
-
           ]
           ++ dlopenLibraries;
       };

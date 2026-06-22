@@ -3,6 +3,8 @@ vim.g.mapleader = " "
 
 vim.keymap.set("n", "n", "<cmd>Neotree left toggle<CR>")
 
+vim.keymap.set("n", "gh", vim.diagnostic.open_float)
+
 vim.keymap.set("n", "T", "<cmd>tabclose<cr>")
 vim.keymap.set("n", "t", "<cmd>tabnew<cr>")
 
