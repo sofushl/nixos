@@ -1,6 +1,6 @@
 # NixOS Dendritic Config
 
-Dendritic flake-parts + import tree based config, should be cleaner and more managable than [my old config](https://github.com/sofuslind/nixos-old).
+Dendritic flake-parts + import tree based config, should be cleaner and more managable than [my old config](https://github.com/sofushl/nixos-old).
 
 ## Modules
 
@@ -85,7 +85,7 @@ sudo loadkeys no
 
 nmtui
 
-sudo git clone https://github.com/sofuslind/nixos.git
+sudo git clone https://github.com/sofushl/nixos.git
 
 # If you didn't make the config beforehand, make it now:
 sudo mkdir nixos/modules/hosts/YOUR_HOST
@@ -153,7 +153,7 @@ sudo mount /dev/disk/by-label/BOOT /mnt/boot
 sudo nixos-generate-config --root /mnt
 
 # Apply config
-sudo git clone https://github.com/sofuslind/nixos.git
+sudo git clone https://github.com/sofushl/nixos.git
 sudo rm /mnt/etc/nixos/configuration.nix
 cat /nixos/README.md
 

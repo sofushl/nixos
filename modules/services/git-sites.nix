@@ -13,7 +13,7 @@
         {
           name = "homepage";
           root = "/dist";
-          repo = "https://github.com/sofuslind/homepage.git";
+          repo = "https://github.com/sofushl/homepage.git";
           domain = userconf.topDom;
         }
       ]
