@@ -22,6 +22,7 @@
         # Programs
         wezterm
         neovim
+        yazi
         git
         firefox
         nextcloudClient

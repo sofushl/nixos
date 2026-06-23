@@ -9,8 +9,7 @@
       home-manager.users.${userconf.username}.programs.wezterm = {
         enable = true;
 
-        enableBashIntegration = true;
-        enableZshIntegration = true;
+        enableBashIntegration = false;
 
         colorSchemes.basic-red = {
           foreground = "#E3E0E0";

@@ -29,15 +29,9 @@
       url = "github:nix-community/preservation";
     };
 
-    flake-compat = {
-      url = "github:NixOS/flake-compat";
-      flake = true;
-    };
-
     nixos-wsl = {
       url = "github:nix-community/NixOS-WSL";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-compat.follows = "flake-compat";
     };
 
     nix-flatpak = {
