@@ -13,6 +13,8 @@
         neovim
         git
         fastfetch
+        electronWSL
+
         inputs.nixos-wsl.nixosModules.default
       ];
 
