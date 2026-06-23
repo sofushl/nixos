@@ -118,7 +118,6 @@
 
         bash = {
           enable = true;
-          undistractMe.enable = true;
           interactiveShellInit = "fastfetch";
         };
 

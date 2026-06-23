@@ -11,6 +11,7 @@
         user
         develop
         neovim
+        yazi
         git
         fastfetch
         electronWSL
