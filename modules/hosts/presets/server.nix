@@ -21,6 +21,7 @@
 
         # Programs
         neovim
+        yazi
         fastfetch
         git
       ];

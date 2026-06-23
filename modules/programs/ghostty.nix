@@ -7,8 +7,7 @@
     {
       home-manager.users.${userconf.username}.programs.ghostty = {
         enable = true;
-        enableBashIntegration = true;
-        enableZshIntegration = true;
+        enableBashIntegration = false;
 
         settings = {
           theme = "basic-red";
