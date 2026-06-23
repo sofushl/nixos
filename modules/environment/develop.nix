@@ -27,28 +27,6 @@
         libxfixes
         libxinerama
 
-        # For electron within wsl
-        nss
-        nspr
-        dbus
-        gdk-pixbuf
-        pango
-        cairo
-        expat
-        libxcb
-        alsa-lib
-
-        # AI suggestions (reduces amount of rebuilds maybe)
-        atk
-        cups
-        libdrm
-        libgbm
-        libxtst
-        xprintidle-ng
-        libxcomposite
-        libxdamage
-        xdg-utils
-
         # Rust
         mesa
         wayland

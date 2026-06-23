@@ -101,7 +101,7 @@ binds {
         spawn "element-desktop"
     }
     Mod+B {
-        spawn "librewolf"
+        spawn "firefox"
     }
     Mod+F {
         spawn "wezterm" "-e" "yazi"

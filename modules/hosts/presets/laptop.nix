@@ -23,7 +23,7 @@
         wezterm
         neovim
         git
-        librewolf
+        firefox
         nextcloudClient
         fastfetch
       ];
