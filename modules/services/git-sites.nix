@@ -39,15 +39,25 @@
 
             if [ ! -d /var/www/${site.name}/.git ]; then
               git clone ${site.repo} /var/www/${site.name}
+
+              before=$(git /var/www/${site.name} rev-parse HEAD)
             else
+              before=$(git /var/www/${site.name} rev-parse HEAD)
+
               git -C /var/www/${site.name} fetch origin
               git -C /var/www/${site.name} reset --hard origin/HEAD
             fi
 
             cd /var/www/${site.name}
             if [ -f package.json ]; then
-              npm install
-              npm run build
+              after=$(git rev-parse HEAD)
+
+              if [ "$before" != "$after" ]; then
+
+                npm install
+                npm run build
+
+              fi
             fi
 
           '') sites}
@@ -61,7 +71,7 @@
 
         timerConfig = {
           OnStartupSec = "2m";
-          OnUnitActiveSec = "20m";
+          OnUnitActiveSec = "10m";
         };
       };
 
