@@ -91,12 +91,6 @@ binds {
     Mod+Shift+T {
         spawn "wezterm" "-e" "nvim"
     }
-    Mod+D {
-        spawn "vesktop"
-    }
-    Mod+C {
-        spawn "codium"
-    }
     Mod+E {
         spawn "element-desktop"
     }
