@@ -84,21 +84,30 @@ binds {
     Mod+Return {
         spawn "wezterm"
     }
+    Mod+C {
+        spawn "wezterm"
+    }
     Mod+Space {
+        spawn "fuzzel"
+    }
+    Mod+R {
         spawn "fuzzel"
     }
     // Personal apps
     Mod+Shift+T {
-        spawn "wezterm" "-e" "nvim"
+        spawn "wezterm" "-e" "yazi"
+    }
+    Mod+D {
+        spawn "wezterm" "-e" "yazi"
     }
     Mod+E {
-        spawn "element-desktop"
+        spawn "wezterm" "-e" "yazi"
     }
     Mod+B {
         spawn "firefox"
     }
     Mod+F {
-        spawn "wezterm" "-e" "yazi"
+        spawn "firefox"
     }
     Mod+S {
         spawn "spotify"

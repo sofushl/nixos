@@ -18,12 +18,6 @@
       programs.niri = {
         enable = true;
         package = pkgs.niri;
-        settings = {
-          include = "/etc/niri/main.kdl";
-          binds = {
-            "Mod+F".action.spawn = "firefox";
-          };
-        };
       };
 
       xdg = {
@@ -46,7 +40,7 @@
 
         # Config imports
         etc = {
-          "niri/main.kdl".source = ../../dotfiles/niri.kdl;
+          "niri/config.kdl".source = ../../dotfiles/niri.kdl;
           "xdg/waybar".source = ../../dotfiles/waybar; # https://man.archlinux.org/man/waybar.5
           "xdg/fuzzel/fuzzel.ini".source = ../../dotfiles/fuzzel.ini;
           "xdg/hypr/hyprlock.conf".source = ../../dotfiles/hyprlock.conf;
@@ -82,6 +76,7 @@
       };
 
       home-manager.users.${userconf.username} = {
+        programs.niri.settings = null;
 
         gtk = {
           enable = true;
