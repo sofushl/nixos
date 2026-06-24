@@ -11,18 +11,15 @@
           enableBashIntegration = true;
 
           settings = {
-            log = {
-              enabled = true;
-            };
+
             mgr = {
               show_hidden = false;
-              sort_by = "mtime";
               sort_dir_first = true;
               sort_reverse = false;
             };
-            bash.enable = true;
           };
         };
+        bash.enable = true;
       };
 
       nix.settings = {
