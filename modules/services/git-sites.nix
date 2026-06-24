@@ -40,9 +40,9 @@
             if [ ! -d /var/www/${site.name}/.git ]; then
               git clone ${site.repo} /var/www/${site.name}
 
-              before=$(git /var/www/${site.name} rev-parse HEAD)
+              before=$(git -C /var/www/${site.name} rev-parse HEAD)
             else
-              before=$(git /var/www/${site.name} rev-parse HEAD)
+              before=$(git -C /var/www/${site.name} rev-parse HEAD)
 
               git -C /var/www/${site.name} fetch origin
               git -C /var/www/${site.name} reset --hard origin/HEAD
