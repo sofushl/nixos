@@ -37,21 +37,23 @@
             if [ ! -d /var/www/${bot.name}/.git ]; then
               git clone ${bot.repo} /var/www/${bot.name}
 
-              before=$(git /var/www/${bot.name} rev-parse HEAD)
+              before=$(git -C /var/www/${bot.name} rev-parse HEAD)
             else
-              before=$(git /var/www/${bot.name} rev-parse HEAD)
+              before=$(git -C /var/www/${bot.name} rev-parse HEAD)
 
               git -C /var/www/${bot.name} fetch origin
               git -C /var/www/${bot.name} reset --hard origin/HEAD
             fi
 
-            after=$(git /var/www/${bot.name} rev-parse HEAD)
+            after=$(git -C /var/www/${bot.name} rev-parse HEAD)
 
             if [ "$before" != "$after" ]; then
               cd /var/www/${bot.name}
               npm update
-              npm start
             fi
+
+            cd /var/www/${bot.name}
+            npm start
 
           '') bots}
         '';
