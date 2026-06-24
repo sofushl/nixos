@@ -5,11 +5,11 @@
     { lib, pkgs, ... }:
 
     let
-      dlopenLibraries = with pkgs; [
+      javafxLib = with pkgs; [
 
-        # Java
-        pipewire
         javaPackages.openjfx25
+        mesa
+
         gtk3
         glib
         libGL
@@ -27,25 +27,41 @@
         libxfixes
         libxinerama
 
-        # Rust
-        mesa
-        wayland
-        libxkbcommon
-        vulkan-loader
+        pipewire
       ];
+
+      icedLib = with pkgs; [
+        libxkbcommon
+
+        # GPU backend
+        vulkan-loader
+        libGL
+
+        # Window system
+        wayland
+        libx11
+        libxcursor
+        libxi
+      ];
+
+      jdkWithFX = pkgs.openjdk.override {
+        enableJavaFX = true; # for JavaFX
+        # include following line if JavaFX with Webkit is needed
+        # openjfx_jdk = pkgs.openjfx.override { withWebKit = true; };
+      };
 
     in
     {
       environment = {
         variables = {
 
-          RUSTFLAGS = "-C link-arg=-Wl,-rpath,${pkgs.lib.makeLibraryPath dlopenLibraries}";
+          RUSTFLAGS = "-C link-arg=-Wl,-rpath,${pkgs.lib.makeLibraryPath javafxLib}";
 
           JAVA_HOME = pkgs.javaPackages.compiler.openjdk25;
 
-          RPATH = "${pkgs.lib.makeLibraryPath dlopenLibraries}";
+          RPATH = "${pkgs.lib.makeLibraryPath javafxLib}";
 
-          LD_LIBRARY_PATH = pkgs.lib.mkForce (pkgs.lib.makeLibraryPath dlopenLibraries);
+          LD_LIBRARY_PATH = pkgs.lib.mkForce (pkgs.lib.makeLibraryPath icedLib);
 
         };
 
@@ -53,6 +69,7 @@
           with pkgs;
           [
             # Languages
+            jdkWithFX
             javaPackages.compiler.openjdk25
             maven
             rustc
@@ -75,11 +92,12 @@
             google-java-format
 
             # Tools
-            nodejs
+            nodejs_22
             uv
             git-filter-repo
           ]
-          ++ dlopenLibraries;
+          ++ javafxLib
+          ++ icedLib;
       };
 
       services.pipewire.jack.enable = lib.mkForce false;
