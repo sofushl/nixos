@@ -36,14 +36,22 @@
 
             if [ ! -d /var/www/${bot.name}/.git ]; then
               git clone ${bot.repo} /var/www/${bot.name}
+
+              before=$(git /var/www/${bot.name} rev-parse HEAD)
             else
+              before=$(git /var/www/${bot.name} rev-parse HEAD)
+
               git -C /var/www/${bot.name} fetch origin
               git -C /var/www/${bot.name} reset --hard origin/HEAD
             fi
 
-            cd /var/www/${bot.name}
-            npm update
-            npm start
+            after=$(git /var/www/${bot.name} rev-parse HEAD)
+
+            if [ "$before" != "$after" ]; then
+              cd /var/www/${bot.name}
+              npm update
+              npm start
+            fi
 
           '') bots}
         '';
@@ -56,7 +64,7 @@
 
         timerConfig = {
           OnBootSec = "1m";
-          OnUnitActiveSec = "19m";
+          OnUnitActiveSec = "9m";
         };
       };
 
