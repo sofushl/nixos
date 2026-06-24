@@ -99,6 +99,12 @@
             sudo nix store optimise && \
             sudo fstrim -av
           '';
+
+          nixos-sync = ''
+            git -C /${userconf.path} pull && \
+            nixos-build && \
+            nixos-clear
+          '';
         };
 
         variables = {
