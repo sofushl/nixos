@@ -24,7 +24,7 @@
         nextcloudClient
       ];
 
-      home-imports = with self.homeModules; [
+      home-manager.users.${userconf.username}.imports = with self.homeModules; [
         dev
         git
         yazi
