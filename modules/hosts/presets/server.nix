@@ -1,4 +1,4 @@
-{ self, inputs, ... }:
+{ self, ... }:
 
 {
   flake.nixosModules.serverPreset =
@@ -20,12 +20,12 @@
         discordBot
       ];
 
-      home-manager.users.${userconf.username}.imports = [
-        ../../../home/dev.nix
-        ../../../home/git.nix
-        ../../../home/yazi.nix
-        ../../../home/neovim.nix
-        ../../../home/fastfetch.nix
+      home-manager.users.${userconf.username}.imports = with self.homeModules; [
+        dev
+        git
+        yazi
+        neovim
+        fastfetch
       ];
 
       boot.loader = {

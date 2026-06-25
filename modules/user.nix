@@ -1,16 +1,19 @@
-{ self, inputs, ... }:
-
-{
+{ self, ... }: {
   flake.nixosModules.user =
     {
       userconf,
-      config,
       pkgs,
       ...
     }:
     {
-      users = {
+      home-manager = {
+        useGlobalPkgs = true;
+        useUserPackages = true;
+        extraSpecialArgs = { inherit userconf; };
+        users.${userconf.username} = self.homeModules.user;
+      };
 
+      users = {
         users.${userconf.username} = {
           isNormalUser = true;
           description = userconf.displayname;
@@ -30,13 +33,16 @@
 
         users.root.hashedPassword = userconf.pinhash;
       };
+    };
 
-      home-manager = {
-        useGlobalPkgs = true;
-        useUserPackages = true;
-        extraSpecialArgs = { inherit userconf; };
-        users.${userconf.username}.imports = [ ../home ];
-      };
-
+  flake.homeModules.user =
+    {
+      userconf,
+      ...
+    }:
+    {
+      home.username = userconf.username;
+      home.stateVersion = userconf.state;
+      home.homeDirectory = "/home/${userconf.username}";
     };
 }
