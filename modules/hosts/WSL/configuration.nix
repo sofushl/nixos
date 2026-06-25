@@ -14,12 +14,12 @@
         inputs.nixos-wsl.nixosModules.default
       ];
 
-      home-manager.users.${userconf.username}.imports = [
-        ../../../home/dev.nix
-        ../../../home/git.nix
-        ../../../home/yazi.nix
-        ../../../home/neovim.nix
-        ../../../home/fastfetch.nix
+      home-manager.users.${userconf.username}.imports = with self.homeModules; [
+        dev
+        yazi
+        neovim
+        fastfetch
+        git
       ];
 
       networking.hostName = "WSL";

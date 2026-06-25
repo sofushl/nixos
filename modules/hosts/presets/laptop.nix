@@ -1,4 +1,4 @@
-{ self, inputs, ... }:
+{ self, ... }:
 
 {
   flake.nixosModules.laptopPreset =
@@ -24,14 +24,14 @@
         nextcloudClient
       ];
 
-      home-manager.users.${userconf.username}.imports = [
-        ../../../home/dev.nix
-        ../../../home/git.nix
-        ../../../home/yazi.nix
-        ../../../home/neovim.nix
-        ../../../home/fastfetch.nix
-        ../../../home/wezterm.nix
-        ../../../home/firefox.nix
+      home-imports = with self.homeModules; [
+        dev
+        git
+        yazi
+        neovim
+        fastfetch
+        wezterm
+        firefox
       ];
 
       preservation.preserveAt."/persistent".users.${userconf.username}.directories = [
