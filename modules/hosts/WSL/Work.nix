@@ -15,6 +15,7 @@ in
 
     modules = with self.nixosModules; [
       WSLConfiguration
+      electronDev
     ];
   };
 }
