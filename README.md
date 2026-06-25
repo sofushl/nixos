@@ -14,14 +14,12 @@ Essential configuration of system, session and environment.
 #### [hosts](./modules/hosts/README.md)
 Host machine configurations, including special configs and presets for desktop setups.
 
-#### [programs](./modules/programs/README.md)
-Home manager and nixos based program configuration modules.
 
 #### [services](./modules/services/README.md)
-Services config for various purposes.
+Services and programs configured with nixosModules for various purposes.
 
 
-## Configuration
+### Configuration
 
 Boilerplate for nixosModules:
 
@@ -40,6 +38,10 @@ Boilerplate for nixosModules:
   };
 }
 ```
+
+## [Home](./home/README.md)
+
+Home manager based program configuration.
 
 ## Library
 

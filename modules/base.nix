@@ -15,7 +15,6 @@
 
       imports = [
         inputs.home-manager.nixosModules.home-manager
-        { home-manager.useGlobalPkgs = true; }
         inputs.preservation.nixosModules.default
         inputs.nix-flatpak.nixosModules.nix-flatpak
         inputs.disko.nixosModules.disko
@@ -76,10 +75,7 @@
           cacert
           wget
           curl
-          dnsutils
-          ripgrep
           git
-          git-filter-repo
         ];
 
         # Custom build commands for using the flake instead of configuration.nix
@@ -126,6 +122,20 @@
         bash = {
           enable = true;
           interactiveShellInit = "fastfetch";
+        };
+
+        git = {
+          enable = true;
+
+          config = {
+            user = {
+              name = userconf.displayname;
+              email = userconf.gitmail;
+            };
+
+            init.defaultBranch = "main";
+            core.editor = "nvim";
+          };
         };
 
         nh = {

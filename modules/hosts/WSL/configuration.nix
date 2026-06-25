@@ -9,23 +9,18 @@
       imports = with self.nixosModules; [
         base
         user
-
         develop
-        neovim
-        yazi
 
-        git
-
-        fastfetch
         inputs.nixos-wsl.nixosModules.default
       ];
 
-      home-manager.users.${userconf.username} = {
-
-        home.username = userconf.username;
-        home.stateVersion = userconf.state;
-        home.homeDirectory = "/home/${userconf.username}";
-      };
+      home-manager.users.${userconf.username}.imports = [
+        ../../../home/dev.nix
+        ../../../home/git.nix
+        ../../../home/yazi.nix
+        ../../../home/neovim.nix
+        ../../../home/fastfetch.nix
+      ];
 
       networking.hostName = "WSL";
       networking.resolvconf.enable = lib.mkForce false;

@@ -18,12 +18,14 @@
         dnsUpdater
         gitSites
         discordBot
+      ];
 
-        # Programs
-        neovim
-        yazi
-        fastfetch
-        git
+      home-manager.users.${userconf.username}.imports = [
+        ../../../home/dev.nix
+        ../../../home/git.nix
+        ../../../home/yazi.nix
+        ../../../home/neovim.nix
+        ../../../home/fastfetch.nix
       ];
 
       boot.loader = {

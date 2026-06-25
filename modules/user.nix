@@ -31,11 +31,11 @@
         users.root.hashedPassword = userconf.pinhash;
       };
 
-      home-manager.users.${userconf.username} = {
-
-        home.username = userconf.username;
-        home.stateVersion = userconf.state;
-        home.homeDirectory = "/home/${userconf.username}";
+      home-manager = {
+        useGlobalPkgs = true;
+        useUserPackages = true;
+        extraSpecialArgs = { inherit userconf; };
+        users.${userconf.username}.imports = [ ../home ];
       };
 
     };
