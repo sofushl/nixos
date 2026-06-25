@@ -36,8 +36,6 @@
 
       environment.systemPackages = with pkgs; [
         # Languages
-        rustc
-        cargo
         lua
         gcc
         nixd
@@ -54,6 +52,7 @@
         black
         isort
         google-java-format
+        vscode-langservers-extracted
       ];
     };
 }
