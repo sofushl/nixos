@@ -35,10 +35,7 @@
       ];
     in
     {
-
-      environment = {
-        systemPackages = libs;
-        variables.LD_LIBRARY_PATH = lib.mkAfter (lib.makeLibraryPath libs);
-      };
+      programs.nix-ld.enable = true;
+      programs.nix-ld.libraries = libs;
     };
 }

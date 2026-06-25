@@ -17,10 +17,16 @@
     in
     {
       environment = {
-        systemPackages = libs;
+        systemPackages = [
+          pkgs.cargo
+          pkgs.rustc
+        ]
+        ++ libs;
         variables = {
           RUSTFLAGS = "-C link-arg=-Wl,-rpath,${rpath}";
         };
       };
+      programs.nix-ld.enable = true;
+      programs.nix-ld.libraries = libs;
     };
 }
