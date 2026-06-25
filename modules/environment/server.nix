@@ -10,9 +10,6 @@
       ...
     }:
     {
-
-      environment.systemPackages = [ pkgs.btop ];
-
       services.resolved.enable = true;
 
       security.acme = {

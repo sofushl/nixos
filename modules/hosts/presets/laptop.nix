@@ -9,11 +9,10 @@
         base
         desktop
         user
-
         preservation
-
         niri
 
+        # Development libraries
         develop
         javafxDev
         icedDev
@@ -22,15 +21,21 @@
         networkmanager
         greetd-niri
         keyd
-
-        # Programs
-        wezterm
-        neovim
-        yazi
-        git
-        firefox
         nextcloudClient
-        fastfetch
+      ];
+
+      home-manager.users.${userconf.username}.imports = [
+        ../../../home/dev.nix
+        ../../../home/git.nix
+        ../../../home/yazi.nix
+        ../../../home/neovim.nix
+        ../../../home/fastfetch.nix
+        ../../../home/wezterm.nix
+        ../../../home/firefox.nix
+      ];
+
+      preservation.preserveAt."/persistent".users.${userconf.username}.directories = [
+        ".config/mozilla"
       ];
 
       boot.loader = {
