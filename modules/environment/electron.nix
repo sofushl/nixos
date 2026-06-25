@@ -1,18 +1,20 @@
 { self, inputs, ... }:
 
 {
-  flake.nixosModules.electronWSL =
+  flake.nixosModules.electronDev =
     { lib, pkgs, ... }:
-
     let
-      lib = with pkgs; [
+      libs = with pkgs; [
         nss
         nspr
         dbus
         gdk-pixbuf
+        cups
         pango
         cairo
         expat
+        gtk3
+        libGL
         libxcb
         alsa-lib
         atk
@@ -21,9 +23,22 @@
         libxtst
         libxcomposite
         libxdamage
+        libx11
+        libxrender
+        libxext
+        libxi
+        libxcursor
+        libxrandr
+        libxfixes
+        libxkbcommon
+        glib
       ];
     in
     {
-      environment.systemPackages = lib;
+
+      environment = {
+        systemPackages = libs;
+        variables.LD_LIBRARY_PATH = lib.mkAfter (lib.makeLibraryPath libs);
+      };
     };
 }

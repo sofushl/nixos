@@ -79,6 +79,7 @@
           dnsutils
           ripgrep
           git
+          git-filter-repo
         ];
 
         # Custom build commands for using the flake instead of configuration.nix

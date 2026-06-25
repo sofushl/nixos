@@ -9,13 +9,14 @@
       imports = with self.nixosModules; [
         base
         user
+
         develop
         neovim
         yazi
-        git
-        fastfetch
-        electronWSL
 
+        git
+
+        fastfetch
         inputs.nixos-wsl.nixosModules.default
       ];
 

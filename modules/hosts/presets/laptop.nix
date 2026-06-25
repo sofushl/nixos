@@ -10,9 +10,13 @@
         desktop
         user
 
-        niri
-        develop
         preservation
+
+        niri
+
+        develop
+        javafxDev
+        icedDev
 
         # Services
         networkmanager
