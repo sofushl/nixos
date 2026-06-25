@@ -22,7 +22,7 @@ vim.keymap.set("v", "¤", "$")
 vim.keymap.set("v", "&", "^")
 
 -- clipboard
-vim.opt.clipboard = "unnamed,unnamedplus"
+--vim.opt.clipboard = "unnamed,unnamedplus"
 
 -- LSP remaps
 vim.keymap.set("n", "gd", vim.lsp.buf.definition)

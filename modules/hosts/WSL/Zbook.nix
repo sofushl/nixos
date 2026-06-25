@@ -15,6 +15,8 @@ in
 
     modules = with self.nixosModules; [
       WSLConfiguration
+      javafxDev
+      icedDev
     ];
   };
 }
