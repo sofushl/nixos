@@ -8,7 +8,7 @@
     {
       home-manager = {
         useGlobalPkgs = true;
-        useUserPackages = true;
+        useUserPackages = false;
         extraSpecialArgs = { inherit userconf; };
         users.${userconf.username} = self.homeModules.user;
       };
@@ -44,5 +44,12 @@
       home.username = userconf.username;
       home.stateVersion = userconf.state;
       home.homeDirectory = "/home/${userconf.username}";
+      programs.home-manager.enable = true;
+      home.shellAliases = {
+        home-switch = ''
+          git -C /${userconf.path} add -A && \
+          nix run nixpkgs#home-manager -- switch --flake /${userconf.path}#soli -b back
+        '';
+      };
     };
 }
