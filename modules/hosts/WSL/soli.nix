@@ -25,6 +25,8 @@ in
       user
       neovim
       bash
+      firefox
+      wezterm
     ];
   };
 }
