@@ -8,9 +8,11 @@
       systemd.services.dns-update = {
         path = pack;
 
-        script = map (
-          link: "wget -q --read-timeout=0.0 --waitretry=5 --tries=100 --background ${link}"
-        ) userconf.dnsUpdateLinks;
+        script = builtins.concatStringsSep "\n" (
+          map (link: ''
+            wget -q --read-timeout=0.0 --waitretry=5 --tries=100 --background ${link}
+          '') userconf.dnsUpdateLinks
+        );
 
         serviceConfig.Type = "oneshot";
       };
