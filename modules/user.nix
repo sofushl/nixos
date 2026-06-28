@@ -9,6 +9,7 @@
       home-manager = {
         useGlobalPkgs = true;
         useUserPackages = false;
+	backupFileExtension = "back";
         extraSpecialArgs = { inherit userconf; };
         users.${userconf.username} = self.homeModules.user;
       };
