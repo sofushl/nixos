@@ -10,7 +10,7 @@
     }:
     {
       home-manager.users.${userconf.username}.imports = [ self.homeModules.niri ];
-	programs.dconf.enable =true;	
+      programs.dconf.enable = true;
 
       # Fallback for xwayland-sattelite
       xdg.icons.fallbackCursorThemes = [ "Bibata-Modern-Classic" ];
@@ -61,6 +61,7 @@
       packages = with pkgs; [
 
         # Environment applications
+        niri
         waybar
         fuzzel
         hyprlock
