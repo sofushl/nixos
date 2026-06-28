@@ -9,49 +9,11 @@
       ...
     }:
     {
-      imports = [
-        inputs.niri.nixosModules.niri
-      ];
-
-      nixpkgs.overlays = [ inputs.niri.overlays.niri ];
-
       home-manager.users.${userconf.username}.imports = [ self.homeModules.niri ];
+	programs.dconf.enable =true;	
 
-      programs.niri = {
-        enable = true;
-        package = pkgs.niri;
-      };
       # Fallback for xwayland-sattelite
       xdg.icons.fallbackCursorThemes = [ "Bibata-Modern-Classic" ];
-      environment = {
-        systemPackages = with pkgs; [
-
-          # Environment applications
-          waybar
-          fuzzel
-          hyprlock
-          btop
-          wl-clipboard
-
-          # Environment controllers
-          pavucontrol
-          playerctl
-          brightnessctl
-          sunsetr
-
-          # Customization
-          bibata-cursors
-
-          # X11 support for niri
-          xwayland-satellite
-        ];
-
-        sessionVariables = {
-          XCURSOR_THEME = "Bibata-Modern-Classic";
-          XCURSOR_SIZE = "24";
-          XDG_CURRENT_DESKTOP = "niri";
-        };
-      };
     };
 
   flake.homeModules.niri = { pkgs, ... }: {
@@ -78,8 +40,6 @@
       };
     };
 
-    programs.niri.settings = null;
-
     gtk = {
       enable = true;
       colorScheme = "dark";
@@ -97,12 +57,41 @@
       };
     };
 
-    home.pointerCursor = {
-      name = "Bibata-Modern-Classic";
-      gtk.enable = true;
-      x11.enable = true;
-      size = 24;
-      package = pkgs.bibata-cursors;
+    home = {
+      packages = with pkgs; [
+
+        # Environment applications
+        waybar
+        fuzzel
+        hyprlock
+        btop
+        wl-clipboard
+
+        # Environment controllers
+        pavucontrol
+        playerctl
+        brightnessctl
+        sunsetr
+
+        # Customization
+        bibata-cursors
+
+        # X11 support for niri
+        xwayland-satellite
+      ];
+
+      sessionVariables = {
+        XCURSOR_THEME = "Bibata-Modern-Classic";
+        XCURSOR_SIZE = "24";
+        XDG_CURRENT_DESKTOP = "niri";
+      };
+      pointerCursor = {
+        name = "Bibata-Modern-Classic";
+        gtk.enable = true;
+        x11.enable = true;
+        size = 24;
+        package = pkgs.bibata-cursors;
+      };
     };
 
     dconf.settings = {
