@@ -9,7 +9,7 @@
       home-manager = {
         useGlobalPkgs = true;
         useUserPackages = false;
-	backupFileExtension = "back";
+        backupFileExtension = "back";
         extraSpecialArgs = { inherit userconf; };
         users.${userconf.username} = self.homeModules.user;
       };
@@ -49,7 +49,7 @@
       home.shellAliases = {
         home-switch = ''
           git -C /${userconf.path} add -A && \
-          nix run nixpkgs#home-manager -- switch --flake /${userconf.path}#soli -b back
+          nix run nixpkgs#home-manager -- switch --flake /${userconf.path}#${userconf.host} -b back
         '';
       };
     };
