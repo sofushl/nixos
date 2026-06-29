@@ -26,7 +26,6 @@ in
       neovim
       bash
       firefox
-      wezterm
       niri
     ];
   };

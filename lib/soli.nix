@@ -6,4 +6,5 @@
   email = "sofushl@proton.me";
   state = "26.11";
   path = "home/soli/Documents/nixos";
+  host = "soli";
 }
