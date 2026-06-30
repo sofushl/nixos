@@ -42,15 +42,31 @@
       ...
     }:
     {
-      home.username = userconf.username;
-      home.stateVersion = userconf.state;
-      home.homeDirectory = "/home/${userconf.username}";
-      programs.home-manager.enable = true;
-      home.shellAliases = {
-        home-switch = ''
-          git -C /${userconf.path} add -A && \
-          nix run nixpkgs#home-manager -- switch --flake /${userconf.path}#${userconf.host} -b back
-        '';
+      home = {
+        username = userconf.username;
+        stateVersion = userconf.state;
+        homeDirectory = "/home/${userconf.username}";
+        shellAliases = {
+          home-switch = ''
+            git -C /${userconf.path} add -A && \
+            nix run nixpkgs#home-manager -- switch --flake /${userconf.path}#${userconf.host} -b back
+          '';
+        };
+      };
+
+      programs = {
+        nh = {
+          enable = true;
+          flake = "/${userconf.path}";
+
+          clean = {
+            enable = true;
+          };
+        };
+        home-manager = {
+          enable = true;
+        };
       };
     };
+
 }
