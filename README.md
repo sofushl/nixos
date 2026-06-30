@@ -6,7 +6,9 @@ Dendritic flake-parts + import tree based config, should be cleaner and more man
 
 [base.nix](./modules/base.nix) is universal configuration across all hosts, sets up essential and QoL system configuration such as enabling nvim, git and ssh.
 
-[user.nix](./modules/user.nix) sets up userspace for one user selected in the active host module. (Also essential and universal across all hosts)
+[user.nix](./modules/user.nix) sets up userspace and home-manager for one user selected in the active host module. (Also essential and universal across all hosts)
+
+[options.nix](./modules/options.nix) enables the config to include multiple homeModules. 
 
 #### [environment](./modules/environment/README.md)
 Essential configuration of system, session and environment.
@@ -14,6 +16,8 @@ Essential configuration of system, session and environment.
 #### [hosts](./modules/hosts/README.md)
 Host machine configurations, including special configs and presets for desktop setups.
 
+#### [programs](./modules/programs/README.md)
+Home manager based program configuration.
 
 #### [services](./modules/services/README.md)
 Services and programs configured with nixosModules for various purposes.
@@ -21,7 +25,7 @@ Services and programs configured with nixosModules for various purposes.
 
 ### Configuration
 
-Boilerplate for nixosModules:
+Boilerplate for nixosModules and/or homeModules:
 
 ```nix
 { self, inputs, ... }:
@@ -32,16 +36,17 @@ Boilerplate for nixosModules:
     {
       # Your config here
 
-      home-manager.users.${userconf.username} = {
-        # Your homemanager config here
-      };
-  };
+      home-manager.users.${userconf.username}.imports = [ self.homeModules.HOMEMODULE ];
+    };
+  
+  flake.homeModules.HOMEMODULE = 
+    {userconf, pkgs, ...}:
+    {
+      # Your homemanager config heredd
+    };
+    
 }
 ```
-
-## [Home](./home/README.md)
-
-Home manager based program configuration.
 
 ## Library
 
@@ -128,6 +133,45 @@ git clone git@github.com:sofushl/nixos.git # My link
 
 # Rebuild with correct hostname make sure you did everything right
 
+```
+
+## Home-manager installation
+
+```bash
+
+# Wezterm
+curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
+echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
+sudo chmod 644 /usr/share/keyrings/wezterm-fury.gpg
+
+# Niri
+sudo add-apt-repository ppa:avengemedia/danklinux
+
+sudo apt update && sudo apt upgrade 
+sudo apt install wezterm-nightly niri
+
+# Nix
+curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install | sh -s -- --daemon
+
+sudo /etc/nix/nix.conf
+# Write "experimental-features = nix-command flakes"
+
+git clone https://github.com/sofushl/nixos.git
+cd nixos
+nix run nixpkgs#home-manager -- switch --flake .#CONFIGNAME --impure -b back
+
+# Purge snap (after new browser and terminal is installed)
+sudo systemctl stop snapd
+sudo snap list | awk '{print $1}' | tail -n +2 | xargs -I{} sudo snap remove {}
+sudo apt purge snapd -y
+rm -rf ~/.snap ~/snap
+sudo rm -rf /var/cache/snapd /var/lib/snapd
+
+sudo apt autoremove --purge -y
+sudo apt autoclean
+
+# Now you can rebuild anytime with:
+home-switch
 ```
 
 ## Dual boot installation
