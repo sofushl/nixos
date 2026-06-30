@@ -138,14 +138,6 @@
           };
         };
 
-        nh = {
-          enable = true;
-          flake = "/${userconf.path}";
-
-          clean = {
-            enable = true;
-          };
-        };
       };
     };
 }
