@@ -1,4 +1,4 @@
-{ self, ... }:
+{ self, inputs, ... }:
 
 {
   flake.nixosModules.niri =
@@ -17,6 +17,8 @@
         pkgs.hyprlock
       ];
 
+      programs.niri.enable = true;
+
       # Fallback for xwayland-sattelite
       xdg.icons.fallbackCursorThemes = [ "Bibata-Modern-Classic" ];
     };
@@ -24,7 +26,6 @@
   flake.homeModules.niri =
     {
       pkgs,
-      inputs,
       ...
     }:
     {
