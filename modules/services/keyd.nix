@@ -1,8 +1,4 @@
-{ self, inputs, ... }:
-
 {
-
-  # Makes right alt into a secondary super/mod/windows button
   flake.nixosModules.keyd.services.keyd = {
     enable = true;
     keyboards.default = {
@@ -10,7 +6,9 @@
       settings = {
         main = {
           compose = "layer(nav)";
+          copilot = "layer(nav)";
           rightcontrol = "layer(meta)";
+          leftalt = "layer(meta)";
           capslock = "esc";
         };
         nav = {
@@ -19,6 +17,7 @@
           k = "up";
           l = "right";
           rightalt = "compose";
+          leftalt = "leftalt";
           rightcontrol = "rightcontrol";
           capslock = "capslock";
         };
