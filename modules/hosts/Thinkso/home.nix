@@ -1,4 +1,8 @@
-{ self, inputs, ... }:
+{
+  self,
+  inputs,
+  ...
+}:
 let
   system = "x86_64-linux";
   pkgs = import inputs.nixpkgs {
@@ -28,6 +32,11 @@ in
       firefox
       niri
       workMonitors
+
+      {
+        home.shellAliases."launch" =
+          "/home/soli/Documents/launcher/node_modules/electron/dist/electron /home/soli/Documents/launcher --ozone-platform=wayland --enable-features=UseOzonePlatform";
+      }
     ];
   };
 }
