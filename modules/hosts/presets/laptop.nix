@@ -30,7 +30,6 @@
         yazi
         neovim
         fastfetch
-        wezterm
         firefox
       ];
 
