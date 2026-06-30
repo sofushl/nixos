@@ -27,6 +27,7 @@ in
       bash
       firefox
       niri
+      workMonitors
     ];
   };
 }
