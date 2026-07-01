@@ -1,6 +1,7 @@
 {
   self,
   inputs,
+  lib,
   ...
 }:
 let
@@ -34,8 +35,27 @@ in
       workMonitors
 
       {
-        home.shellAliases."launch" =
-          "/home/soli/Documents/launcher/node_modules/electron/dist/electron /home/soli/Documents/launcher --ozone-platform=wayland --enable-features=UseOzonePlatform";
+        home.shellAliases =
+          let
+            launcher = "/home/soli/Workspace/launcher/";
+            shared = "/home/soli/Workspace/shared/";
+            nrfapps = "/home/soli/.nrfconnect-apps/local/";
+          in
+          {
+            "launch" = ''
+              sudo chown root:root /home/soli/Workspace/launcher/node_modules/electron/dist/chrome-sandbox
+              sudo chmod 4755 /home/soli/Workspace/launcher/node_modules/electron/dist/chrome-sandbox
+              ${launcher}node_modules/electron/dist/electron  ${launcher} --ozone-platform=wayland --enable-features=UseOzonePlatform
+            '';
+
+            "pack" = ''
+              npm pack --prefix ${shared}
+              npm i --save-dev ${shared}nordicsemiconductor-pc-nrfconnect-shared-252.0.0.tgz
+            '';
+
+          };
+
+        programs.npm.package = lib.mkForce pkgs.nodejs_22;
       }
     ];
   };
