@@ -82,7 +82,7 @@
         shellAliases = {
 
           nixos-build = "
-          git -C /${userconf.path} add -A && \
+          git -C /${userconf.path} add -A
           sudo nixos-rebuild switch --flake /${userconf.path}/#${userconf.host} --impure";
 
           nixos-build-boot = "sudo nixos-rebuild boot --flake /${userconf.path}/#${userconf.host} --impure";
@@ -90,8 +90,8 @@
           nixos-update = "sudo nix flake update --flake /${userconf.path}";
 
           nixos-sync = ''
-            git -C /${userconf.path} pull && \
-            nixos-build && \
+            git -C /${userconf.path} pull
+            nixos-build
             nix-clear
           '';
         };
