@@ -86,6 +86,8 @@
           wl-clipboard
 
           # Environment controllers
+          wiremix
+          bluetui
           pavucontrol
           playerctl
           brightnessctl
@@ -357,6 +359,10 @@
             "XF86Sleep".action.spawn = [
               "hyprlock"
               "power-off-monitors"
+            ];
+
+            "Mod+Shift+W".action.spawn = [
+              "hyprlock"
             ];
           };
 

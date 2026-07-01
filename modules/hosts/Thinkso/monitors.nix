@@ -1,6 +1,11 @@
 {
-  flake.homeModules.workMonitors = {
+  flake.homeModules.workMonitors = { lib, ... }: {
     programs.niri.settings = {
+
+      spawn-at-startup = lib.mkForce [
+        { command = [ "waybar" ]; }
+      ];
+
       binds = {
         "Mod+Ctrl+H".action.focus-monitor-left = { };
         "Mod+Ctrl+L".action.focus-monitor-right = { };
