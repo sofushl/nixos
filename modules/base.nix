@@ -89,18 +89,10 @@
 
           nixos-update = "sudo nix flake update --flake /${userconf.path}";
 
-          nixos-clear = ''
-            #sudo nix-collect-garbage -d && \
-            sudo nh clean all && \
-            sudo rm -rf -v /home/${userconf.username}/.cache/* /home/${userconf.username}/.local/share/Trash/* && \
-            sudo nix store optimise && \
-            sudo fstrim -av
-          '';
-
           nixos-sync = ''
             git -C /${userconf.path} pull && \
             nixos-build && \
-            nixos-clear
+            nix-clear
           '';
         };
 
