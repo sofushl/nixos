@@ -51,6 +51,19 @@
             git -C /${userconf.path} add -A && \
             nix run nixpkgs#home-manager -- switch --flake /${userconf.path}#${userconf.host} -b back
           '';
+
+          nix-clear = ''
+            nix-collect-garbage -d && \
+            nh clean all && \
+            nix store optimise && \
+            sudo fstrim -av
+          '';
+
+          home-sync = ''
+            git -C /${userconf.path} pull && \
+            home-switch && \
+            nix-clear
+          '';
         };
       };
 
