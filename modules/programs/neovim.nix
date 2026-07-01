@@ -40,7 +40,6 @@
           typescript-vim
           vim-jsx-typescript
 
-          python-mode
           vim-wayland-clipboard
 
           typst-vim
