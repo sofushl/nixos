@@ -29,6 +29,7 @@ window#waybar {
 #pulseaudio,
 #backlight,
 #memory,
+#network,
 #battery,
 #temperature {
     border-bottom: 2px solid #DC6666;

@@ -22,6 +22,7 @@
         greetd-niri
         keyd
         nextcloudClient
+        flatpak
       ];
 
       home-manager.users.${userconf.username}.imports = with self.homeModules; [
