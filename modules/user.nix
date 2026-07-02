@@ -47,17 +47,19 @@
         stateVersion = userconf.state;
         homeDirectory = "/home/${userconf.username}";
         shellAliases = {
-          home-build = ''
+          home-switch = ''
             git -C /${userconf.path} add -A
             nix run nixpkgs#home-manager -- switch --flake /${userconf.path}#${userconf.host} -b back
           '';
+
           nix-clear = ''
             nix-collect-garbage -d
             nh clean all
             nix store optimise
             sudo fstrim -av
           '';
-          home-sync = ''
+
+          home-pull = ''
             git -C /${userconf.path} pull
             home-build
             nix-clear

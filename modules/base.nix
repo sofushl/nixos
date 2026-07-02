@@ -81,25 +81,37 @@
         # Custom build commands for using the flake instead of configuration.nix
         shellAliases = {
 
-          nixos-build = "
+          nixos-switch = "
           git -C /${userconf.path} add -A
           sudo nixos-rebuild switch --flake /${userconf.path}/#${userconf.host} --impure";
 
-          nixos-build-boot = "sudo nixos-rebuild boot --flake /${userconf.path}/#${userconf.host} --impure";
+          nixos-boot = ''
+            sudo nixos-rebuild boot --flake /${userconf.path}/#${userconf.host} --impure
+          '';
 
-          nixos-update = "sudo nix flake update --flake /${userconf.path}";
+          nixos-update = ''
+            sudo nix flake update --flake /${userconf.path}
+            nixos-switch
+          '';
 
-          nixos-sync = ''
+          nixos-pull = ''
             git -C /${userconf.path} pull
-            nixos-build
+            nixos-switch
             nix-clear
+          '';
+
+          nix-clear = ''
+            sudo nix-collect-garbage -d
+            sudo nh clean all
+            sudo nix store optimise
+            sudo fstrim -av
           '';
         };
 
-        variables = {
-          SSL_CERT_FILE = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
-          NIX_SSL_CERT_FILE = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
-        };
+        #variables = {
+        #  SSL_CERT_FILE = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
+        #  NIX_SSL_CERT_FILE = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
+        #};
       };
 
       programs = {
