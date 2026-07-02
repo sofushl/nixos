@@ -49,8 +49,9 @@ in
             '';
 
             "pack" = ''
-              npm pack --prefix ${shared}
-              npm i --save-dev ${shared}nordicsemiconductor-pc-nrfconnect-shared-252.0.0.tgz
+              tarball=$(cd ${shared} && npm pack --pack-destination ${shared} --ignore-scripts | grep -E '\.tgz$')
+              npm i --save-dev "${shared}$tarball"
+              npm run build:dev
             '';
 
           };
