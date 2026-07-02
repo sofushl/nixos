@@ -195,7 +195,7 @@
             {
               matches = [
                 {
-                  app-id = "librewolf$";
+                  app-id = "firfox$";
                   title = "^Picture-in-Picture$";
                 }
               ];
