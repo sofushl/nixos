@@ -30,14 +30,16 @@
     }:
     {
 
-      imports = [ inputs.niri.homeModules.niri ];
+      imports = [
+        inputs.niri.homeModules.niri
+        self.homeModules.waybar
+      ];
 
       xdg = {
         enable = true;
 
         configFile = {
           "sunsetr/sunsetr.toml".source = ../../dotfiles/sunsetr.toml;
-          "waybar".source = ../../dotfiles/waybar; # https://man.archlinux.org/man/waybar.5
           "fuzzel/fuzzel.ini".source = ../../dotfiles/fuzzel.ini;
           "hypr/hyprlock.conf".source = ../../dotfiles/hyprlock.conf;
           "wezterm/wezterm.lua".source = ../../dotfiles/wezterm.lua;
@@ -72,7 +74,6 @@
             @define-color accent_bg_color #DC6666;
             @define-color accent_fg_color #ffffff;
           '';
-
         };
       };
 
@@ -80,13 +81,10 @@
         packages = with pkgs; [
 
           # Environment applications
-          waybar
           fuzzel
-          btop
           wl-clipboard
 
           # Environment controllers
-          wiremix
           bluetui
           pavucontrol
           playerctl
