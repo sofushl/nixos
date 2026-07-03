@@ -10,6 +10,8 @@
         base
         user
         develop
+        icedDev
+        javafxDev
 
         inputs.nixos-wsl.nixosModules.default
       ];
