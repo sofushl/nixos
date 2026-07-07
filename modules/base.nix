@@ -97,7 +97,6 @@
           nixos-pull = ''
             git -C /${userconf.path} pull
             nixos-switch
-            nix-clear
           '';
 
           nix-clear = ''
@@ -107,11 +106,6 @@
             sudo fstrim -av
           '';
         };
-
-        #variables = {
-        #  SSL_CERT_FILE = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
-        #  NIX_SSL_CERT_FILE = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
-        #};
       };
 
       programs = {
@@ -141,7 +135,6 @@
             core.editor = "nvim";
           };
         };
-
       };
     };
 }
