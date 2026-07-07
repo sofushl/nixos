@@ -62,15 +62,25 @@
           "nixpkgs"
         ]
       },
-      "locked": {
-        "lastModified": 1783436070,
-        "narHash": "sha256-F80z1JoiJgZyTT5D+3siLOVzqmCEphLR7t0Ym/I2CLI=",
+"locked": {
+
+
+
+        "lastModified": 1783005591,
+
+
+        "narHash": "sha256-NcLHV5uBAeggDUE2wPbKszjfyaSLsoqaYt7izOphkZw=",
+
         "owner": "nix-community",
+
         "repo": "home-manager",
-        "rev": "f09af49406ffad37acb6538d3207189a1a1e0b7e",
+
+
+        "rev": "f469c79b955609d6a8fdd9e689be76a93b1621d7",
+
         "type": "github"
-      },
-      "original": {
+
+      },     "original": {
         "owner": "nix-community",
         "repo": "home-manager",
         "type": "github"
