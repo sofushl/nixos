@@ -62,7 +62,6 @@
           home-pull = ''
             git -C /${userconf.path} pull
             home-switch
-            nix-clear
           '';
         };
       };
