@@ -84,6 +84,9 @@
             root = "/var/www/${site.name}${site.root}";
             forceSSL = true;
             enableACME = true;
+            locations."/" = {
+              tryFiles = "$uri $uri/ /index.html";
+            };
           };
         }) sites
       );
