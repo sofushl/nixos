@@ -1,5 +1,3 @@
-{ self, inputs, ... }:
-
 {
   flake.nixosModules.server =
     {
@@ -28,6 +26,8 @@
           };
         };
       };
+
+      services.fail2ban.enable = true;
 
       services.nginx = {
         enable = true;
