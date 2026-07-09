@@ -1,5 +1,3 @@
-{ self, inputs, ... }:
-
 {
   flake.nixosModules.gitSites =
     {
@@ -11,9 +9,9 @@
     let
       sites = [
         {
-          name = "homepage";
+          name = "portfolio";
           root = "/dist";
-          repo = "https://github.com/sofushl/homepage.git";
+          repo = "https://github.com/sofushl/portfolio.git";
           domain = userconf.topDom;
         }
       ]
