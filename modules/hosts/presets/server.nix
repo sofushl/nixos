@@ -16,8 +16,7 @@
         # Services
         nextcloudServer
         dnsUpdater
-        gitSites
-        discordBot
+        gitService
       ];
 
       home-manager.users.${userconf.username}.imports = with self.homeModules; [
