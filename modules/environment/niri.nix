@@ -26,8 +26,32 @@
   flake.homeModules.niri =
     {
       pkgs,
+      lib,
       ...
     }:
+
+    let
+      mkMenu =
+        menu:
+        let
+          configFile = pkgs.writeText "config.yaml" (
+            pkgs.lib.generators.toYAML { } {
+              anchor = "center";
+              background = "#1E1E1E";
+              color = "#E3E0E0";
+
+              border = "#DC6666";
+              border_width = 5;
+              padding = 10;
+
+              inherit menu;
+            }
+          );
+        in
+        pkgs.writeShellScriptBin "my-menu" ''
+          exec ${pkgs.lib.getExe pkgs.wlr-which-key} ${configFile}
+        '';
+    in
     {
 
       imports = [
@@ -83,6 +107,7 @@
           # Environment applications
           fuzzel
           wl-clipboard
+          wlr-which-key
 
           # Environment controllers
           bluetui
@@ -234,7 +259,45 @@
             ];
             "Mod+B".action.spawn = [ "firefox" ];
             "Mod+F".action.spawn = [ "firefox" ];
-            "Mod+S".action.spawn = [ "spotify" ];
+            "Mod+S".action.spawn = [
+              (pkgs.lib.getExe (mkMenu [
+                {
+                  key = "a";
+                  desc = "All";
+                  cmd = (lib.getExe pkgs.fuzzel);
+                }
+                {
+                  key = "s";
+                  desc = "Spotify";
+                  cmd = (lib.getExe pkgs.spotify);
+                }
+                {
+                  key = "d";
+                  desc = "Discord";
+                  cmd = (lib.getExe pkgs.discord);
+                }
+                {
+                  key = "f";
+                  desc = "Firefox";
+                  cmd = (lib.getExe pkgs.firefox);
+                }
+                {
+                  key = "h";
+                  desc = "Wezterm";
+                  cmd = (lib.getExe pkgs.wezterm);
+                }
+                {
+                  key = "k";
+                  desc = "Thonny";
+                  cmd = (lib.getExe pkgs.thonny);
+                }
+                {
+                  key = "l";
+                  desc = "Loupe";
+                  cmd = (lib.getExe pkgs.loupe);
+                }
+              ]))
+            ];
 
             # Window control
             "Mod+Q".action.close-window = { };
