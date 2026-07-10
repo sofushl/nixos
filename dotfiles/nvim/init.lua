@@ -90,6 +90,8 @@ require("conform").setup({
 	},
 })
 
+require("dap-python").setup("uv")
+
 -- Formatting option
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4

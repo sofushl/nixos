@@ -24,6 +24,9 @@
           };
           scale = 1.25;
         };
+        "DP-2" = {
+          scale = 1;
+        };
         "DP-8" = {
           position = {
             x = 1536;

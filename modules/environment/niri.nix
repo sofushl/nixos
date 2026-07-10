@@ -105,6 +105,7 @@
         };
 
         pointerCursor = {
+          enable = true;
           name = "Bibata-Modern-Classic";
           gtk.enable = true;
           x11.enable = true;

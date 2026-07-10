@@ -1,7 +1,7 @@
 vim.lsp.config["python"] = {
 	cmd = { "pyright-langserver", "--stdio" },
 	filetypes = { "python" },
-	root_markers = { ".git", "pyproject.toml", "requirements.txt" },
+	root_markers = { ".git", "pyproject.toml", "requirements.txt", "pyrightconfig.json" },
 }
 
 vim.lsp.config["markdown"] = {
