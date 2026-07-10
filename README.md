@@ -70,12 +70,19 @@ Make ```/etc/nixos/secrets.nix``` like this:
     "yourUpdateLink1"
   ]; # for freedns dynamic ip updater cron job
 
-  secretPages = [
+  secretServices = [
         {
           name = "secretpage";
           root = "/dist";
           repo = "github link for the secret domain";
           domain = "yoursecretdomain";
+          build = ''
+            npm i
+            npm build
+          '';
+          start = ''
+            npm start
+          ''
         }
   ]; # Used in git-sites service
 }
