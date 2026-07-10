@@ -11,6 +11,15 @@
             email = userconf.gitmail;
           };
 
+          url = {
+            "https://github.com/" = {
+              insteadOf = [
+                "gh:"
+                "github:"
+              ];
+            };
+          };
+
           init.defaultBranch = "main";
           pull.rebase = true;
           core.editor = "nvim";
