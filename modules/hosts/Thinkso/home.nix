@@ -33,7 +33,6 @@ in
       firefox
       niri
       workMonitors
-      micropython
 
       {
         home.shellAliases =

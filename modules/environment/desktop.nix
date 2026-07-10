@@ -1,5 +1,3 @@
-{ self, inputs, ... }:
-
 {
   flake.nixosModules.desktop =
     {
@@ -60,11 +58,6 @@
       };
 
       environment.systemPackages = with pkgs; [
-
-        # User applications
-        spotify
-        scenebuilder
-        loupe
 
         #USB disk management
         usbutils
