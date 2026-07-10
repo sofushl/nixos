@@ -3,7 +3,12 @@
 {
   flake.nixosModules.WSLConfiguration =
 
-    { userconf, lib, ... }:
+    {
+      userconf,
+      lib,
+      pkgs,
+      ...
+    }:
 
     {
       imports = with self.nixosModules; [
@@ -23,6 +28,10 @@
         neovim
         fastfetch
         git
+      ];
+
+      environment.systemPackages = with pkgs; [
+        kmod
       ];
 
       networking.hostName = "WSL";
