@@ -12,6 +12,7 @@
         develop
         icedDev
         javafxDev
+        micropython
 
         inputs.nixos-wsl.nixosModules.default
       ];

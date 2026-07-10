@@ -16,6 +16,7 @@
         develop
         javafxDev
         icedDev
+        micropython
 
         # Services
         networkmanager

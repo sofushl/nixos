@@ -23,6 +23,7 @@
             "wheel"
             "networkmanager"
             "storage"
+            "dialout"
           ];
 
           hashedPassword = userconf.pinhash;
