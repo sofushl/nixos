@@ -34,6 +34,9 @@
 
           nvim-jdtls
 
+          nvim-dap
+          nvim-dap-python
+
           vim-prettier
           vim-javascript
           vim-javascript-syntax
