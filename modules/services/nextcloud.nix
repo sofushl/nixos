@@ -1,8 +1,6 @@
-{ self, inputs, ... }:
-
 {
   flake.nixosModules.nextcloudServer =
-    { userconf, ... }:
+    { userconf, pkgs, ... }:
 
     {
       services.nextcloud = {
@@ -10,12 +8,12 @@
         hostName = userconf.cloudDom;
         https = true;
         database.createLocally = true;
+        package = pkgs.nextcloud34;
 
         config = {
           adminuser = null;
 
-          dbtype = "sqlite";
-          #dbtype = "pgsql";
+          dbtype = "pgsql";
           dbname = "nextcloud";
           dbuser = "nextcloud";
         };
@@ -50,11 +48,6 @@
             ensureDBOwnership = true;
           }
         ];
-      };
-
-      systemd.services."nextcloud-setup" = {
-        requires = [ "postgresql.service" ];
-        after = [ "postgresql.service" ];
       };
 
       preservation.preserveAt.directories = [ "/var/lib/nextcloud" ];
