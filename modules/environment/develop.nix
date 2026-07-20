@@ -13,6 +13,13 @@
           '';
         };
       };
+
+      environment.systemPackages = with pkgs; [
+        rustc
+        cargo
+        clippy
+        rustlings
+      ];
     };
 
   flake.homeModules.dev = { pkgs, ... }: {
