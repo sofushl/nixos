@@ -14,7 +14,7 @@
           repo = "https://github.com/sofushl/portfolio.git";
           domain = userconf.topDom;
           build = ''
-
+            npm i
             npm run build
           '';
           start = "";
@@ -61,23 +61,29 @@
                 cd /var/www/${service.name}
                 ${service.build}
 
-                before=$(git -C /var/www/${service.name} rev-parse HEAD)
+                systemctl restart app-${service.name}.service
+
               else
                 before=$(git -C /var/www/${service.name} rev-parse HEAD)
 
+                echo "before: $before"
+
                 git -C /var/www/${service.name} fetch origin
                 git -C /var/www/${service.name} reset --hard origin/HEAD
-              fi
+                git -C /var/www/${service.name} checkout main
+                
+                cd /var/www/${service.name}
+                
+                after=$(git rev-parse HEAD)
 
-              cd /var/www/${service.name}
-              after=$(git rev-parse HEAD)
+                echo "after:  $after"
 
-              if [ "$before" != "$after" ]; then
+                if [ "$before" != "$after" ]; then
                   ${service.build}
+
+                  systemctl restart app-${service.name}.service
+                fi
               fi
-
-              systemctl restart app-${service.name}.service
-
             '') gitServices}
           '';
 
