@@ -64,6 +64,8 @@
             git -C /${userconf.path} pull
             home-switch
           '';
+
+          home-manager = "home-manager --flake /${userconf.path}";
         };
       };
 
