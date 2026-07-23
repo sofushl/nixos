@@ -1,7 +1,7 @@
 { self, inputs, ... }:
 let
   userconf = import ../../../lib/sofushl.nix;
-  wslconf = import ../../../lib/WSLZbook.nix;
+  wslconf = import ../../../lib/Zbook.nix;
   sshkeys = import ../../../lib/sshkeys.nix;
 in
 {
