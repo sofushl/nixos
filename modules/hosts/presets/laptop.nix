@@ -35,15 +35,19 @@
         firefox
       ];
 
-      preservation.preserveAt."/persistent".users.${userconf.username}.directories = [
-        ".config/mozilla"
+      preservation.preserveAt."/persistent".directories = [
+        "/var/lib/bluetooth"
+        "/var/lib/flatpak"
       ];
 
-      boot.loader = {
-        systemd-boot.enable = true;
-        systemd-boot.configurationLimit = 10;
-        efi.canTouchEfiVariables = true;
-      };
+      preservation.preserveAt."/persistent".users.${userconf.username}.directories = [
+        ".local/share/flatpak"
+        ".var/"
+        ".config/mozilla"
+        ".nextcloud"
+        ".config/Nextcloud"
+        "Downloads"
+      ];
 
       system.stateVersion = userconf.state;
 

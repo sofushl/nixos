@@ -1,5 +1,3 @@
-{ self, inputs, ... }:
-
 {
   flake.nixosModules.vscodium =
 
@@ -9,6 +7,8 @@
       lib,
       ...
     }:
+
+    # REQURIES PRESERVATION OF ".config/VSCodium"
 
     {
       programs.vscode = {
@@ -32,9 +32,5 @@
           #v1hz.kdl
         ];
       };
-      preservation.preserveAt."/persistent".users.${userconf.username}.directories = [
-        ".config/VSCodium"
-      ];
-
     };
 }

@@ -20,18 +20,6 @@
         };
       };
 
-      systemd.user.services.mount-symlink = {
-        script = ''
-          ln -sfn \
-          /run/media/${userconf.username} \
-          /home/${userconf.username}/media
-        '';
-
-        serviceConfig.Type = "oneshot";
-
-        wantedBy = [ "default.target" ];
-      };
-
       hardware = {
         bluetooth.enable = true;
         graphics.enable = true;
@@ -54,7 +42,6 @@
 
         # Thermal security
         thermald.enable = true;
-
       };
 
       environment.systemPackages = with pkgs; [
@@ -77,5 +64,10 @@
 
       };
 
+      boot.loader = {
+        systemd-boot.enable = true;
+        systemd-boot.configurationLimit = 10;
+        efi.canTouchEfiVariables = true;
+      };
     };
 }

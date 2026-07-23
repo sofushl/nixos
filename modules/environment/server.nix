@@ -45,13 +45,13 @@
       systemd.network = {
         enable = true;
 
-        links."10-eth-usb" = {
+        links."10-eth" = {
           matchConfig.MACAddress = userconf.macaddress;
-          linkConfig.Name = "eth-usb";
+          linkConfig.Name = "eth";
         };
 
-        networks."20-eth-usb" = {
-          matchConfig.Name = "eth-usb";
+        networks."20-eth" = {
+          matchConfig.Name = "eth";
 
           address = [
             "192.168.1.10/24"

@@ -1,5 +1,8 @@
 {
   flake.homeModules.librewolf = { pkgs, ... }: {
+
+    # REQUIRES PRESERVATION OF ".librewolf/default"
+
     programs.librewolf = {
       enable = true;
 
@@ -125,9 +128,5 @@
         "application/pdf" = "librewolf.desktop";
       };
     };
-
-    #preservation.preserveAt."/persistent".users.${userconf.username}.directories = [
-    #  ".librewolf/default"
-    #];
   };
 }
