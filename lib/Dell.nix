@@ -3,6 +3,6 @@
   host = "Dell";
   path = "home/sofushl/nixos";
   wifiboard = "wlp1s0";
-  state = "26.05";
+  state = "26.11";
   disk = "sda";
 }
