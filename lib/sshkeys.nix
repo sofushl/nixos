@@ -2,9 +2,9 @@ let
   acerkey = (import ./Acer.nix).sshkey;
   dellkey = (import ./Dell.nix).sshkey;
   lenovokey = (import ./Lenovo.nix).sshkey;
-  wslzbookkey = (import ./WSLZbook.nix).sshkey;
-  wslT2000key = (import ./WSLT2000.nix).sshkey;
+  wslzbookkey = (import ./Zbook.nix).sshkey;
   workkey = (import ./soli.nix).sshkey;
+  T2000key = (import ./T2000.nix).sshkey;
 in
 rec {
   zbookkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFVOm4q1/v7MNNsnf6iNlFYUXsV/kxkAzmleWgd6JOr7 sofushl@ZBook";
@@ -14,9 +14,9 @@ rec {
   sshkeys = [
     acerkey
     dellkey
+    T2000key
     lenovokey
     wslzbookkey
-    wslT2000key
     workkey
     zbookkey
     phonekey

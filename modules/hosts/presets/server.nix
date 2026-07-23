@@ -2,7 +2,6 @@
 
 {
   flake.nixosModules.serverPreset =
-
     { userconf, ... }:
 
     {
@@ -13,10 +12,10 @@
 
         develop
 
-        # Services
         nextcloudServer
         dnsUpdater
         gitService
+        ollama
       ];
 
       home-manager.users.${userconf.username}.imports = with self.homeModules; [
@@ -25,6 +24,17 @@
         yazi
         neovim
         fastfetch
+      ];
+
+      preservation.preserveAt."/persistent".directories = [
+        "/var/lib/nextcloud"
+        "/var/www"
+        "/var/lib/ollama"
+        "/var/lib/open-webui"
+      ];
+
+      preservation.preserveAt."/persistent".files = [
+        "/etc/searx.env"
       ];
 
       boot.loader = {

@@ -1,4 +1,4 @@
-{ self, inputs, ... }:
+{ inputs, ... }:
 
 {
   flake.nixosModules.base =
@@ -28,6 +28,8 @@
 
       # Kernel
       boot.kernelPackages = pkgs.linuxPackages_latest;
+
+      networking.hostName = userconf.host;
 
       # Allow unfree packages
       nixpkgs.config.allowUnfree = true;
@@ -79,7 +81,6 @@
           cacert
           wget
           curl
-          git
         ];
 
         # Custom build commands for using the flake instead of configuration.nix

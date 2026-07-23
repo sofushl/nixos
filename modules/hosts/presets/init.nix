@@ -16,14 +16,10 @@ in
 
     modules = with self.nixosModules; [
       PLACEHOLDERHardware
-      disko
-      preservation
-
+      disko # Replace with appropriate disko module
       base
       user
-      git
       networkmanager
-
       {
         boot.loader = {
           systemd-boot.enable = true;

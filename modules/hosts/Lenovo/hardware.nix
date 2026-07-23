@@ -28,8 +28,6 @@
       boot.extraModulePackages = [ ];
       boot.kernelParams = [ "intel_pstate=active" ];
 
-      #networking.enableIPv6 = false;
-
       boot.kernel.sysctl = {
         "net.ipv6.conf.all.disable_ipv6" = 1;
         "net.ipv6.conf.default.disable_ipv6" = 1;
@@ -56,8 +54,6 @@
           size = 16 * 1024;
         }
       ];
-
-      networking.hostName = "Lenovo";
 
       nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
       hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

@@ -1,5 +1,3 @@
-{ self, inputs, ... }:
-
 {
   flake.nixosModules.DellHardware =
     {
@@ -29,17 +27,5 @@
 
       nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
       hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-
-      swapDevices = [
-        {
-          device = "/dev/sda2";
-        }
-        #  {
-        #    device = "/preservation/swapfile";
-        #    size = 8 * 1024;
-        #  }
-      ];
-
-      networking.hostName = "Dell";
     };
 }

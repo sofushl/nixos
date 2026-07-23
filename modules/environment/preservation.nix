@@ -1,11 +1,23 @@
-{ self, inputs, ... }:
-
 {
   flake.nixosModules.preservation =
     { userconf, ... }:
     {
-
       preservation.enable = true;
+
+      zramSwap = {
+        enable = true;
+        algorithm = "zstd";
+        memoryPercent = 20;
+        priority = 2;
+      };
+
+      swapDevices = [
+        {
+          device = "/persistent/swapfile";
+          size = 16 * 1024;
+          priority = 1;
+        }
+      ];
 
       preservation.preserveAt."/persistent" = {
         directories = [
@@ -14,7 +26,6 @@
             inInitrd = true;
           }
           "/etc/nixos"
-          "/var/lib/bluetooth"
         ];
 
         files = [
@@ -26,7 +37,6 @@
 
         users.${userconf.username} = {
           directories = [
-            "Downloads"
             "nixos"
             ".ssh"
           ];

@@ -1,5 +1,8 @@
 {
   flake.homeModules.firefox = { pkgs, ... }: {
+
+    # REQUIRES PRESERVATION OF ".config/mozilla"
+
     programs.firefox = {
       enable = true;
 

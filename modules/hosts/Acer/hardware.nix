@@ -1,5 +1,3 @@
-{ self, inputs, ... }:
-
 {
   flake.nixosModules.AcerHardware =
     {
@@ -26,15 +24,6 @@
       boot.initrd.kernelModules = [ ];
       boot.kernelModules = [ "kvm-intel" ];
       boot.extraModulePackages = [ ];
-
-      swapDevices = [
-        {
-          device = "/etc/nixos/swapfile";
-          size = 8 * 1024;
-        }
-      ];
-
-      networking.hostName = "Acer";
 
       nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
       hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

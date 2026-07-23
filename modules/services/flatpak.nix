@@ -13,12 +13,5 @@
         }
       ];
     };
-    preservation.preserveAt."/persistent" = {
-      directories = [ "var/lib/flatpak" ];
-      users.${userconf.username}.directories = [
-        ".local/share/flatpak"
-        ".var/"
-      ];
-    };
   };
 }
