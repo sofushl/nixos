@@ -9,6 +9,7 @@
         base
         desktop
         user
+        disko
         preservation
         niri
 
