@@ -1,36 +1,15 @@
-{ self, inputs, ... }:
-let
-  userconf = import ../../../lib/sofushl.nix;
-  sysconf = import ../../../lib/PLACEHOLDER.nix;
-  sshkeys = import ../../../lib/sshkeys.nix;
-  secrets = import /etc/nixos/secrets.nix;
-in
+{ self, ... }:
+
 {
-  flake.nixosConfigurations.Init = inputs.nixpkgs.lib.nixosSystem {
-    system = "x86_64-linux";
+  flake.nixosModules.initPreset =
+    { userconf, ... }:
 
-    specialArgs = {
-      inherit inputs;
-      userconf = userconf // sysconf // sshkeys // secrets;
+    {
+      imports = with self.nixosModules; [
+        base
+        user
+        disko
+        preservation
+      ];
     };
-
-    modules = with self.nixosModules; [
-      PLACEHOLDERHardware
-      disko # Replace with appropriate disko module
-      base
-      user
-      networkmanager
-      {
-        boot.loader = {
-          systemd-boot.enable = true;
-          systemd-boot.configurationLimit = 10;
-          efi.canTouchEfiVariables = true;
-        };
-
-        system.stateVersion = userconf.state;
-
-        powerManagement.cpuFreqGovernor = "powersave";
-      }
-    ];
-  };
 }
