@@ -1,8 +1,8 @@
-{ self, inputs, ... }:
-
 {
   flake.nixosModules.nextcloudClient =
     { userconf, pkgs, ... }:
+
+    # REQUIRES PRESERVATION OF ".config/Nextcloud" AND SYNC DIR
 
     {
       environment.systemPackages = [ pkgs.nextcloud-client ];
@@ -23,11 +23,5 @@
 
         wantedBy = [ "default.target" ];
       };
-
-      preservation.preserveAt."/persistent".users.${userconf.username}.directories = [
-        ".nextcloud"
-        ".config/Nextcloud"
-      ];
     };
-
 }

@@ -2,6 +2,8 @@
   flake.nixosModules.nextcloudServer =
     { userconf, pkgs, ... }:
 
+    # REQUIRES PRESERVATION OF "/var/lib/nextcloud"
+
     {
       services.nextcloud = {
         enable = true;
@@ -49,9 +51,5 @@
           }
         ];
       };
-
-      preservation.preserveAt.directories = [ "/var/lib/nextcloud" ];
-
     };
-
 }

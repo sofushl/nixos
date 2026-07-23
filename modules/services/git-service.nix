@@ -6,6 +6,9 @@
       lib,
       ...
     }:
+
+    # REQURIES PRESERVATION OF "/var/www"
+
     let
       gitServices = [
         {
@@ -41,7 +44,6 @@
         nodejs
         bash
       ];
-
     in
     {
       environment.systemPackages = pack;
@@ -137,7 +139,5 @@
           };
         }) gitSites
       );
-
-      preservation.preserveAt.directories = [ "/var/www" ];
     };
 }
