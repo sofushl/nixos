@@ -30,6 +30,7 @@
       boot.kernelPackages = pkgs.linuxPackages_latest;
 
       networking.hostName = userconf.host;
+      system.stateVersion = userconf.state;
 
       # Allow unfree packages
       nixpkgs.config.allowUnfree = true;

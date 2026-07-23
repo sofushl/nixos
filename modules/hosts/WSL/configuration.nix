@@ -34,7 +34,6 @@
         kmod
       ];
 
-      networking.hostName = "WSL";
       networking.resolvconf.enable = lib.mkForce false;
 
       wsl = {
@@ -42,7 +41,5 @@
         defaultUser = userconf.username;
         startMenuLaunchers = true;
       };
-
-      system.stateVersion = userconf.state;
     };
 }

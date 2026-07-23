@@ -49,8 +49,6 @@
         "Downloads"
       ];
 
-      system.stateVersion = userconf.state;
-
       powerManagement.cpuFreqGovernor = "powersave";
     };
 }
