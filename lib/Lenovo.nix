@@ -1,10 +1,8 @@
 {
-  sshkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINlOmYM6fPUSpez3tWmoxbXij+dakU0r1FNKpZjHJEsn sofushl@Lenovo";
+  sshkey = "";
   host = "Lenovo";
   path = "home/sofushl/nixos";
-  wifiboard = "eth"; # From server module
-  state = "26.05";
+  wifiboard = "wlp0s26u1u4i2";
+  state = "26.11";
   disk = "sda";
-
-  macaddress = "12:a1:b1:c1:c5:c8";
 }
