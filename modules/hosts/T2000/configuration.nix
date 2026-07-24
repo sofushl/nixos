@@ -17,7 +17,9 @@ in
 
     modules = with self.nixosModules; [
       T2000Hardware
+      nvidia
       serverPreset
+
     ];
   };
 }

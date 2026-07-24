@@ -28,32 +28,11 @@
       boot.extraModulePackages = [ ];
       boot.kernelParams = [ "intel_pstate=active" ];
 
-      boot.kernel.sysctl = {
-        "net.ipv6.conf.all.disable_ipv6" = 1;
-        "net.ipv6.conf.default.disable_ipv6" = 1;
-        "net.ipv6.conf.lo.disable_ipv6" = 1;
-      };
-
-      fileSystems."/" = {
-        device = "/dev/disk/by-uuid/96002411-4977-4179-afd6-1bf45f4a5a8c";
-        fsType = "xfs";
-      };
-
-      fileSystems."/boot" = {
-        device = "/dev/disk/by-uuid/B3F6-B060";
-        fsType = "vfat";
-        options = [
-          "fmask=0022"
-          "dmask=0022"
-        ];
-      };
-
-      swapDevices = [
-        {
-          device = "/var/lib/swapfile";
-          size = 16 * 1024;
-        }
-      ];
+      #boot.kernel.sysctl = {
+      #  "net.ipv6.conf.all.disable_ipv6" = 1;
+      #  "net.ipv6.conf.default.disable_ipv6" = 1;
+      #  "net.ipv6.conf.lo.disable_ipv6" = 1;
+      #};
 
       nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
       hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
