@@ -5,7 +5,7 @@ let
   sshkeys = import ../../../lib/sshkeys.nix;
 in
 {
-  flake.nixosConfigurations.WSLZbook = inputs.nixpkgs.lib.nixosSystem {
+  flake.nixosConfigurations.Zbook = inputs.nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
 
     specialArgs = {
