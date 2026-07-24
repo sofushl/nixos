@@ -15,15 +15,11 @@
     {
       services.ollama = {
         enable = true;
-        # Curated for Nvidia T2000 using shared vram
         loadModels = [
-          "qwen3-coder:30b" # MoE 30B/3.3B active, ~19GB Q4, 256K ctx — primary coder + tool use
-          "gpt-oss:20b" # MoE ~20B, MXFP4 ~14GB — lightest, most headroom for long tool contexts
-          # "devstral:24b"       # dense 24B agentic coder (~14GB) — heavier when offloading to RAM
-          # "deepseek-coder-v2:16b"  # MoE 16B/2.4B, ~12GB — low-VRAM fallback
-          # GLM-4.5-Air is NOT in the official Ollama library. Options if you want it:
-          #   - community: "MichelRosselli/GLM-4.5-Air"
-          #   - official newer GLM: "glm-4.7-flash"  (verify tag at ollama.com/library)
+          "qwen3:0.6b"
+          #"qwen3.6:latest"
+          "glm-4.7-flash:latest"
+          #"mistral-small3.2:latest"
         ];
         # acceleration = "cuda";
       };
