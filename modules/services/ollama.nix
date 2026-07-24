@@ -7,6 +7,9 @@
       userconf,
       ...
     }:
+
+    # REQUIRES PERSISTENT "/var/lib"
+
     let
       webuiPort = 4180;
       searxPort = 8888;
@@ -15,7 +18,7 @@
     {
       services.ollama = {
         enable = true;
-        package = pkgs.ollama;
+        package = pkgs.ollama-cuda;
         loadModels = [
           "qwen3:0.6b"
           "qwen3.6:latest"
@@ -80,6 +83,8 @@
           # How many results get pulled into context per search.
           WEB_SEARCH_RESULT_COUNT = "5";
           WEB_SEARCH_CONCURRENT_REQUESTS = "10";
+
+          ENABLE_PERSISTENT_CONFIG = "False";
 
           WEBUI_AUTH = "True";
           # Behind nginx on a single host; relax if you see CORS/websocket issues.
