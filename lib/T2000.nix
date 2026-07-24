@@ -2,9 +2,9 @@
   sshkey = "";
   host = "T2000";
   path = "home/sofushl/nixos";
-  wifiboard = "eth"; # From server module
+  wifiboard = "wlp0s20f3"; 
   state = "26.11";
-  disk = "FILL";
+  disk = "nvme0n1";
 
-  macaddress = "FILL";
+  macaddress = "48:9e:bd:75:c0:68";
 }

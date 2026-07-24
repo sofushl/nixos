@@ -9,6 +9,8 @@
         base
         user
         server
+        disko
+        preservation
 
         develop
 
@@ -27,10 +29,9 @@
       ];
 
       preservation.preserveAt."/persistent".directories = [
-        "/var/lib/nextcloud"
+        "/var/lib/"
         "/var/www"
-        "/var/lib/ollama"
-        "/var/lib/open-webui"
+        "/var/log"
       ];
 
       preservation.preserveAt."/persistent".files = [
@@ -42,6 +43,6 @@
         efi.canTouchEfiVariables = true;
       };
 
-      powerManagement.cpuFreqGovernor = "powersave";
+      powerManagement.cpuFreqGovernor = "performance";
     };
 }

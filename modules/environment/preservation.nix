@@ -26,6 +26,7 @@
             inInitrd = true;
           }
           "/etc/nixos"
+          "/etc/ssh"
         ];
 
         files = [
@@ -39,6 +40,10 @@
           directories = [
             "nixos"
             ".ssh"
+          ];
+
+          files = [
+            ".bash_history"
           ];
         };
       };

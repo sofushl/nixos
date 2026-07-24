@@ -7,7 +7,7 @@ let
   secrets = import /etc/nixos/secrets.nix;
 in
 {
-  flake.nixosConfigurations.Lenovo = inputs.nixpkgs.lib.nixosSystem {
+  flake.nixosConfigurations.T2000 = inputs.nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
 
     specialArgs = {
@@ -16,8 +16,8 @@ in
     };
 
     modules = with self.nixosModules; [
-      initPreset
       T2000Hardware
+      serverPreset
     ];
   };
 }
