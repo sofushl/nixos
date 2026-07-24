@@ -15,13 +15,13 @@
     {
       services.ollama = {
         enable = true;
+        package = pkgs.ollama;
         loadModels = [
           "qwen3:0.6b"
-          #"qwen3.6:latest"
+          "qwen3.6:latest"
           "glm-4.7-flash:latest"
-          #"mistral-small3.2:latest"
+          "mistral-small3.2:latest"
         ];
-        # acceleration = "cuda";
       };
 
       services.searx = {
