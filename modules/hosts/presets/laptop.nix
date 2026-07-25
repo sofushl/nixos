@@ -41,14 +41,20 @@
         "/var/lib/flatpak"
       ];
 
-      preservation.preserveAt."/persistent".users.${userconf.username}.directories = [
-        ".local/share/flatpak"
-        ".var/"
-        ".config/mozilla"
-        ".nextcloud"
-        ".config/Nextcloud"
-        "Downloads"
-      ];
+      preservation.preserveAt."/persistent".users.${userconf.username} = {
+        directories = [
+          ".local/share/flatpak"
+          ".var/"
+          ".config/mozilla"
+          ".nextcloud"
+          ".config/Nextcloud"
+          "Downloads"
+        ];
+
+        files = [
+          ".config/gh/hosts.yml"
+        ];
+      };
 
       powerManagement.cpuFreqGovernor = "powersave";
     };

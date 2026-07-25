@@ -33,6 +33,8 @@
 
       };
 
+      # REQUIRES PERSISTENT "./config/gh/hosts.yml"
+
       gh = {
         enable = true;
 
