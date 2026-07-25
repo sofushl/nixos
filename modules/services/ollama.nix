@@ -53,13 +53,24 @@
               "json"
             ];
           };
-          # Optional: trim to fast, code-friendly engines.
-          # engines = [
-          #   { name = "duckduckgo"; disabled = false; }
-          #   { name = "google"; disabled = false; }
-          #   { name = "github"; disabled = false; }
-          #   { name = "stackoverflow"; disabled = false; }
-          # ];
+          engines = [
+            {
+              name = "duckduckgo";
+              disabled = false;
+            }
+            {
+              name = "google";
+              disabled = false;
+            }
+            {
+              name = "github";
+              disabled = false;
+            }
+            {
+              name = "stackoverflow";
+              disabled = false;
+            }
+          ];
         };
 
         # Substitutes @SEARX_SECRET_KEY@ from a file kept out of the Nix store.
@@ -93,6 +104,8 @@
           ENABLE_PERSISTENT_CONFIG = "False";
 
           WEBUI_AUTH = "True";
+
+          ENABLE_SEARCH_QUERY = "True";
           # Behind nginx on a single host; relax if you see CORS/websocket issues.
           # WEBUI_URL = "http://${hostName}";
         };

@@ -38,6 +38,12 @@
         "/etc/searx.env"
       ];
 
+      preservation.preserveAt."/persistent".users.${userconf.username} = {
+        files = [
+          ".config/gh/hosts.yml"
+        ];
+      };
+
       boot.loader = {
         systemd-boot.enable = true;
         efi.canTouchEfiVariables = true;
