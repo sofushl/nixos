@@ -1,3 +1,4 @@
+{ inputs, ... }:
 {
   flake.nixosModules.ollama =
     {
@@ -14,11 +15,16 @@
       webuiPort = 4180;
       searxPort = 8888;
       hostName = userconf.aiDom;
+
+      pkgsOllama = import inputs.nixpkgs-ollama {
+        config.allowUnfree = true;
+        config.cudaSupport = true;
+      };
     in
     {
       services.ollama = {
         enable = true;
-        package = pkgs.ollama-cuda;
+        package = pkgsOllama.ollama-cuda;
         loadModels = [
           "qwen3:0.6b"
           "qwen3.6:latest"
