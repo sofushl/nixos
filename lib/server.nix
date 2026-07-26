@@ -3,7 +3,7 @@ rec {
   cloudDom = "cloud.sofus.privatedns.org";
   secondaryDom = "sofus.undo.it";
   aiDom = "ai.sofus.privatedns.org";
-  wifiboard = "eth";
+  mcDom = "mc.sofus.privatedns.org";
 
   domains = [
 
@@ -11,6 +11,9 @@ rec {
     cloudDom
     secondaryDom
     aiDom
+    mcDom
 
   ];
+
+  wifiboard = "eth";
 }
