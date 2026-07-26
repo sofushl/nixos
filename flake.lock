@@ -241,6 +241,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-ollama": {
+      "locked": {
+        "lastModified": 1784497964,
+        "narHash": "sha256-vlHUuqAcbcH2RKmHbPiuQzbv1pnzzavXnI62RD0bqCU=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "241313f4e8e508cb9b13278c2b0fa25b9ca27163",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "241313f4e8e508cb9b13278c2b0fa25b9ca27163",
+        "type": "github"
+      }
+    },
     "preservation": {
       "locked": {
         "lastModified": 1757436102,
@@ -267,23 +283,8 @@
         "nix-minecraft": "nix-minecraft",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs",
-        "preservation": "preservation",
-        "stable": "stable"
-      }
-    },
-    "stable": {
-      "locked": {
-        "lastModified": 1785091252,
-        "narHash": "sha256-Yz0VWDx3YLrU9kZMTtfhIHMTSL1pXwzWqQ39+rtbcDs=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "76ceb2fc11045456cba10d4f2641b4e261b77cde",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "type": "github"
+        "nixpkgs-ollama": "nixpkgs-ollama",
+        "preservation": "preservation"
       }
     },
     "systems": {
