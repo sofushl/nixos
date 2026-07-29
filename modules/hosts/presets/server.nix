@@ -18,7 +18,7 @@
         dnsUpdater
         gitService
         ollama
-        minecraftServers
+        minecraftServer
       ];
 
       home-manager.users.${userconf.username}.imports = with self.homeModules; [
