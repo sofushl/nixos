@@ -6,7 +6,7 @@
       settings = {
         logo = {
           type = "file";
-          source = "/${userconf.path}/dotfiles/fastfetch/abacordlogo.txt";
+          source = "/${userconf.path}/dotfiles/abacordlogo.txt";
           padding.right = 4;
           printRemaining = true;
         };
@@ -164,27 +164,8 @@
             keyIcon = "󰚥";
             key = "{#green}Power";
           }
-
-          "break"
-
-          {
-            type = "colors";
-            key = " ";
-            keyIcon = "";
-            symbol = "block";
-            block = {
-              width = 3;
-              range = [
-                0
-                15
-              ];
-            };
-          }
         ];
       };
     };
-
-    #environment.systemPackages = [ pkgs.fastfetch ];
-    #environment.etc.fastfetch.source = ../../dotfiles/fastfetch;
   };
 }
