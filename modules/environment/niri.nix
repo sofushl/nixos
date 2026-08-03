@@ -207,7 +207,7 @@
 
           spawn-at-startup = [
             { command = [ "waybar" ]; }
-            { command = [ "/run/current-system/sw/bin/sunsetr" ]; }
+            { command = [ "sunsetr" ]; }
             { command = [ "hyprlock" ]; }
             { command = [ "nextcloud" ]; }
           ];

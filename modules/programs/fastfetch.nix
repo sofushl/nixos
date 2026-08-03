@@ -7,7 +7,7 @@
         logo = {
           type = "file";
           source = "/${userconf.path}/dotfiles/abacordlogo.txt";
-          padding.right = 4;
+          padding.right = 2;
           printRemaining = true;
         };
 
@@ -17,6 +17,7 @@
           brightColor = false;
           color = {
             title = "red";
+            keys = "red";
           };
           key = {
             width = 12;
