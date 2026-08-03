@@ -2,23 +2,29 @@
 
 rec {
   topDom = "sofus.privatedns.org";
-  cloudDom = "cloud.${topDom}";
   secondaryDom = "sofus.undo.it";
+  apiDom = "api.${topDom}";
+
+  cloudDom = "cloud.${topDom}";
   aiDom = "ai.${topDom}";
   mcDom = "mc.${topDom}";
-  apiDom = "api.${topDom}";
-  emailApiDom = "email.${apiDom}";
+  rgbDom = "rgb.${topDom}";
+
+  emailApi = "email.${apiDom}";
+  rgbApi = "rgb.${apiDom}";
 
   domains = [
-
     topDom
-    cloudDom
     secondaryDom
+    apiDom
+
+    cloudDom
     aiDom
     mcDom
-    apiDom
-    emailApiDom
+    rgbDom
 
+    emailApi
+    rgbApi
   ];
 
   wifiboard = "eth";
@@ -50,7 +56,7 @@ rec {
       start = "./target/release/email-backend";
       build = "cargo build --release --locked";
       port = 3000;
-      domain = emailApiDom;
+      domain = emailApi;
       env = {
         CARGO_HOME = "/var/www/email-backend/.cargo";
         PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
