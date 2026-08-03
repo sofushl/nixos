@@ -42,6 +42,9 @@
             path = pack ++ service.pack;
             environment = {
               HOME = "/var/www/${service.name}";
+              GIT_CONFIG_COUNT = "1";
+              GIT_CONFIG_KEY_0 = "safe.directory";
+              GIT_CONFIG_VALUE_0 = "/var/www/${service.name}";
             }
             // service.env;
             script = ''
@@ -89,21 +92,25 @@
               Type = "simple";
               Restart = "always";
               RestartSec = 5;
-              User = "nginx";
             };
             wantedBy = [ "multi-user.target" ];
           };
         }) running
       );
 
-      systemd.timers.git-service = {
-        wantedBy = [ "timers.target" ];
-
-        timerConfig = {
-          OnStartupSec = "1m";
-          OnUnitActiveSec = "5m";
-        };
-      };
+      systemd.timers = lib.listToAttrs (
+        map (service: {
+          name = "git-update-${service.name}";
+          value = {
+            wantedBy = [ "timers.target" ];
+            timerConfig = {
+              OnStartupSec = "1m";
+              OnUnitActiveSec = "5m";
+              RandomizedDelaySec = "30s";
+            };
+          };
+        }) gitServices
+      );
 
       services.nginx.enable = true;
 
