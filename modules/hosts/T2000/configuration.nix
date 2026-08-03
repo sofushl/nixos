@@ -2,7 +2,8 @@
 let
   userconf = import ../../../lib/sofushl.nix;
   sysconf = import ../../../lib/T2000.nix;
-  serverconf = import ../../../lib/server.nix;
+  pkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";
+  serverconf = import ../../../lib/server.nix { inherit pkgs; };
   sshkeys = import ../../../lib/sshkeys.nix;
   secrets = import /etc/nixos/secrets.nix;
 in
@@ -19,7 +20,6 @@ in
       T2000Hardware
       nvidia
       serverPreset
-
     ];
   };
 }
