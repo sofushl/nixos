@@ -28,14 +28,14 @@
         ];
 
         brights = [
-          "#1E1E1E" # bright black
-          "#DC6666" # bright red
-          "#86B895" # green
-          "#E0B879" # yellow
-          "#7DAAEA" # blue
-          "#CFA1E8" # magenta
-          "#DC6666" # bright cyan
-          "#E3E0E0" # bright white
+          "#3A3A3A" # bright black
+          "#E87878" # bright red
+          "#98C9A6" # bright green
+          "#EDC98C" # bright yellow
+          "#93BCF5" # bright blue
+          "#DCB3F2" # bright magenta
+          "#92D0D4" # bright cyan
+          "#F2F0F0" # bright white
         ];
       };
 
