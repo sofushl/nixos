@@ -7,7 +7,8 @@
         logo = {
           type = "file";
           source = "/${userconf.path}/dotfiles/abacordlogo.txt";
-          padding.right = 2;
+          padding.right = 0;
+          padding.left = 3;
           printRemaining = true;
         };
 

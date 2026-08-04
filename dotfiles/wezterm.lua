@@ -33,7 +33,7 @@ local hm_config = {
 			"#E0B879",
 			"#7DAAEA",
 			"#CFA1E8",
-			"#A9E8E9",
+			"#7FC0C4",
 			"#E3E0E0",
 		},
 		brights = {
