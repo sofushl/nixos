@@ -2,9 +2,9 @@
 let
   userconf = import ../../../lib/sofushl.nix;
   sysconf = import ../../../lib/Lenovo.nix;
-  serverconf = import ../../../lib/server.nix;
   sshkeys = import ../../../lib/sshkeys.nix;
-  secrets = import /etc/nixos/secrets.nix;
+  secrets =
+    if builtins.pathExists /etc/nixos/secrets.nix then import ../../../lib/sshkeys.nix else { };
 in
 {
   flake.nixosConfigurations.Lenovo = inputs.nixpkgs.lib.nixosSystem {
@@ -12,7 +12,7 @@ in
 
     specialArgs = {
       inherit inputs;
-      userconf = userconf // sysconf // sshkeys // secrets // serverconf;
+      userconf = userconf // sysconf // sshkeys // secrets;
     };
 
     modules = with self.nixosModules; [

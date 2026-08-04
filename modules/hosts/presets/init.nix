@@ -10,8 +10,9 @@
         user
         disko
         preservation
-        networkmanager
       ];
+
+      networking.networkmanager.enable = true;
 
       boot.loader = {
         systemd-boot.enable = true;

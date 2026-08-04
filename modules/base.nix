@@ -16,7 +16,6 @@
       imports = [
         inputs.home-manager.nixosModules.home-manager
         inputs.preservation.nixosModules.default
-        inputs.nix-flatpak.nixosModules.nix-flatpak
         inputs.disko.nixosModules.disko
       ];
 
