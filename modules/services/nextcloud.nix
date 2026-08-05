@@ -59,6 +59,10 @@
         };
       };
 
+      systemd.tmpfiles.rules = [
+        "Z /var/lib/nextcloud   0750 nextcloud nextcloud -"
+      ];
+
       services.postgresql = {
         enable = true;
         ensureDatabases = [ "nextcloud" ];
