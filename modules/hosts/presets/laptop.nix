@@ -32,6 +32,7 @@
         neovim
         fastfetch
         firefox
+        rclone
       ];
 
       preservation.preserveAt."/persistent".directories = [
@@ -46,6 +47,7 @@
 
         files = [
           ".config/gh/hosts.yml"
+          ".config/rclone/nextcloud.pass"
         ];
       };
 
