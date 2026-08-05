@@ -6,9 +6,9 @@
       remotes.nextcloud = {
         config = {
           type = "webdav";
-          url = "https://cloud.sofus.privatedns.org/remote.php/dav/files/${userconf.username}/";
+          url = "https://${userconf.nextcloud}/remote.php/dav/files/${userconf.nextclouduser}/";
           vendor = "nextcloud";
-          user = userconf.username;
+          user = userconf.nextclouduser;
         };
         secrets.pass = "${config.xdg.configHome}/rclone/nextcloud.pass";
 
