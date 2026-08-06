@@ -10,6 +10,10 @@ vim.keymap.set("n", "t", "<cmd>tabnew<cr>")
 vim.keymap.set("n", "gk", "<cmd>tabnext<cr>")
 vim.keymap.set("n", "gj", "<cmd>tabprevious<cr>")
 
+vim.keymap.set("n", "gh", vim.diagnostic.open_float)
+vim.keymap.set("n", "gs", vim.lsp.buf.hover)
+vim.keymap.set("n", "gd", vim.lsp.buf.definition)
+
 -- remap for norwegian keyboard
 vim.keymap.set("n", "å", "[")
 vim.keymap.set("n", "¨", "]")
@@ -22,14 +26,6 @@ vim.keymap.set("n", "&", "^")
 
 vim.keymap.set("v", "¤", "$")
 vim.keymap.set("v", "&", "^")
-
--- LSP remaps
-vim.keymap.set("n", "gd", vim.lsp.buf.definition)
-vim.keymap.set("n", "gr", vim.lsp.buf.references)
-vim.keymap.set("n", "K", vim.lsp.buf.hover)
-vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
-vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
-
 -- LSP setup
 vim.lsp.enable({
 	"python",
