@@ -1,6 +1,4 @@
-local lsp = vim.lsp
-
-lsp.config["eslint"] = {
+return {
 	cmd = { "vscode-eslint-language-server", "--stdio" },
 	filetypes = {
 		"javascript",
@@ -18,7 +16,7 @@ lsp.config["eslint"] = {
 				arguments = {
 					{
 						uri = vim.uri_from_bufnr(bufnr),
-						version = lsp.util.buf_versions[bufnr],
+						version = vim.lsp.util.buf_versions[bufnr],
 					},
 				},
 			}, { bufnr = bufnr })
@@ -43,7 +41,6 @@ lsp.config["eslint"] = {
 			"eslint.config.ts",
 			"eslint.config.mts",
 			"eslint.config.cts",
-			"package.json",
 		}
 
 		local fname = vim.api.nvim_buf_get_name(bufnr)
