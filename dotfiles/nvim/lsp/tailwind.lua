@@ -1,4 +1,4 @@
-vim.lsp.config["tailwind"] = {
+return {
 	cmd = { "tailwindcss-language-server", "--stdio" },
 	filetypes = {
 		"html",
@@ -6,10 +6,9 @@ vim.lsp.config["tailwind"] = {
 		"css",
 		"sass",
 		"scss",
-		-- 'javascript',
 		"javascriptreact",
-		-- 'typescript',
 		"typescriptreact",
+		"rust",
 	},
 	settings = {
 		tailwindCSS = {
@@ -30,11 +29,15 @@ vim.lsp.config["tailwind"] = {
 				"classList",
 				"ngClass",
 			},
+			classRegex = {
+				{ 'class="([^"]*)"', "([a-zA-Z0-9\\-:\\[\\]/\\.%]+)" },
+			},
 			includeLanguages = {
 				eelixir = "html-eex",
 				eruby = "erb",
 				templ = "html",
 				htmlangular = "html",
+				rust = "html",
 			},
 		},
 	},
@@ -59,8 +62,8 @@ vim.lsp.config["tailwind"] = {
 			"postcss.config.cjs",
 			"postcss.config.mjs",
 			"postcss.config.ts",
-			"package.json",
-			".git",
+			"index.css",
+			"tailwind.css",
 		}
 
 		local root = vim.fs.find(root_files, {
