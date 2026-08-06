@@ -1,7 +1,7 @@
 {
   flake.homeModules.neovim = { pkgs, ... }: {
-    home.file.".config/nvim/lua" = {
-      source = ../../dotfiles/nvim/lua;
+    home.file.".config/nvim/lsp" = {
+      source = ../../dotfiles/nvim/lsp;
       force = true;
       recursive = true;
     };
@@ -16,44 +16,20 @@
         waylandSupport = true;
 
         plugins = with pkgs.vimPlugins; [
-          nvim-tree-lua
-          neo-tree-nvim
-          telescope-nvim
-          lazygit-nvim
-
-          vim-plug
-          vim-nix
-          vim-startify
           conform-nvim
-
           vscode-nvim
-
           nvim-lspconfig
-
           blink-cmp
-
-          nvim-jdtls
-
-          nvim-dap
-          nvim-dap-python
-
-          vim-prettier
-          vim-javascript
-          vim-javascript-syntax
-          typescript-vim
-          vim-jsx-typescript
-
-          vim-wayland-clipboard
-
-          typst-vim
-          typst-preview-nvim
-
-          markdown-preview-nvim
+          yazi-nvim
         ];
 
         extraConfig = "colorscheme vscode";
 
         coc.enable = false;
+        withPython3 = false;
+        withPerl = false;
+        withRuby = false;
+        withNodeJs = false;
 
         initLua = builtins.readFile ../../dotfiles/nvim/init.lua;
       };

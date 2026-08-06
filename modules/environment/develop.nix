@@ -71,6 +71,7 @@
       kdlfmt
       yamlfmt
       rustfmt
+      clippy
       prettierd
       prettier
       eslint

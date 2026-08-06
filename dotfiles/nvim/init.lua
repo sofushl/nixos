@@ -1,12 +1,14 @@
 -- Keymap
 vim.g.mapleader = " "
 
-vim.keymap.set("n", "n", "<cmd>Neotree left toggle<CR>")
-
-vim.keymap.set("n", "gh", vim.diagnostic.open_float)
+vim.keymap.set("n", "q", "<cmd>Yazi<CR>")
+vim.keymap.set("v", "q", "<cmd>Yazi<CR>")
 
 vim.keymap.set("n", "T", "<cmd>tabclose<cr>")
 vim.keymap.set("n", "t", "<cmd>tabnew<cr>")
+
+vim.keymap.set("n", "gk", "<cmd>tabnext<cr>")
+vim.keymap.set("n", "gj", "<cmd>tabprevious<cr>")
 
 -- remap for norwegian keyboard
 vim.keymap.set("n", "å", "[")
@@ -21,9 +23,6 @@ vim.keymap.set("n", "&", "^")
 vim.keymap.set("v", "¤", "$")
 vim.keymap.set("v", "&", "^")
 
--- clipboard
---vim.opt.clipboard = "unnamed,unnamedplus"
-
 -- LSP remaps
 vim.keymap.set("n", "gd", vim.lsp.buf.definition)
 vim.keymap.set("n", "gr", vim.lsp.buf.references)
@@ -32,14 +31,6 @@ vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
 
 -- LSP setup
-local lsp_dir = vim.fn.stdpath("config") .. "/lua/lsp"
-
-for _, file in ipairs(vim.fn.readdir(lsp_dir)) do
-	if file:match("%.lua$") and file ~= "init.lua" then
-		require("lsp." .. file:gsub("%.lua$", ""))
-	end
-end
-
 vim.lsp.enable({
 	"python",
 	"nix",
@@ -58,10 +49,11 @@ vim.lsp.enable({
 
 -- Completion
 require("blink.cmp").setup({
+	fuzzy = { implementation = "rust" },
 	completion = {
-		menu = {
-			auto_show = true,
-		},
+		menu = { auto_show = true },
+		list = { max_items = 50 },
+		trigger = { prefetch_on_insert = false },
 	},
 
 	keymap = {
@@ -89,8 +81,6 @@ require("conform").setup({
 		lsp_format = "first",
 	},
 })
-
-require("dap-python").setup("uv")
 
 -- Formatting option
 vim.opt.tabstop = 4
