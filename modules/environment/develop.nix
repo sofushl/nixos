@@ -1,3 +1,5 @@
+{ self, ... }:
+
 {
   flake.nixosModules.develop =
     { userconf, pkgs, ... }:
@@ -20,6 +22,8 @@
         clippy
         rustlings
       ];
+
+      home-manager.users.${userconf.username}.imports = [ self.homeModules.dev ];
     };
 
   flake.homeModules.dev = { pkgs, ... }: {
@@ -39,19 +43,26 @@
       };
 
       uv.enable = true;
-
     };
+
+    imports = with self.homeModules; [
+      neovim
+      yazi
+      opencode
+      git
+    ];
+
     home.packages = with pkgs; [
       # Tools
       lazygit
       btop
-      git
       curl
       wget
       fd
       ripgrep
       fzf
       unzip
+      imagemagick
       wget
       curl
       ast-grep

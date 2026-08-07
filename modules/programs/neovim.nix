@@ -1,10 +1,21 @@
 {
-  flake.homeModules.neovim = { pkgs, ... }: {
-    home.file.".config/nvim/lsp" = {
-      source = ../../dotfiles/nvim/lsp;
-      force = true;
-      recursive = true;
-    };
+  flake.homeModules.neovim = { pkgs, lib, ... }: {
+
+    home.file = lib.listToAttrs (
+      map
+        (path: {
+          name = ".config/nvim/${path}";
+          value = {
+            source = ../../dotfiles/nvim/${path};
+            force = true;
+            recursive = true;
+          };
+        })
+        [
+          "lsp"
+          "plugin"
+        ]
+    );
 
     programs = {
       neovim = {
@@ -16,11 +27,15 @@
         waylandSupport = true;
 
         plugins = with pkgs.vimPlugins; [
-          conform-nvim
-          vscode-nvim
           nvim-lspconfig
+          conform-nvim
           blink-cmp
+
           yazi-nvim
+          opencode-nvim
+          snacks-nvim
+
+          vscode-nvim
         ];
 
         extraConfig = "colorscheme vscode";

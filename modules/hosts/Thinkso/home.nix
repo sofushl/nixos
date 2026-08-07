@@ -23,16 +23,16 @@ in
     };
 
     modules = with self.homeModules; [
-      dev
-      yazi
-      fastfetch
-      git
       user
-      neovim
-      bash
-      firefox
+
       niri
       workMonitors
+
+      dev
+
+      fastfetch
+      bash
+      firefox
 
       {
         home.shellAliases =
