@@ -21,10 +21,6 @@
       ];
 
       home-manager.users.${userconf.username}.imports = with self.homeModules; [
-        dev
-        git
-        yazi
-        neovim
         fastfetch
       ];
 

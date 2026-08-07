@@ -1,8 +1,9 @@
 -- Keymap
 vim.g.mapleader = " "
 
-vim.keymap.set("n", "q", "<cmd>Yazi<CR>")
-vim.keymap.set("v", "q", "<cmd>Yazi<CR>")
+vim.keymap.set({ "n", "v" }, "q", "<cmd>Yazi<CR>")
+
+vim.keymap.set({ "n", "v" }, "Q", ":qa")
 
 vim.keymap.set("n", "T", "<cmd>tabclose<cr>")
 vim.keymap.set("n", "t", "<cmd>tabnew<cr>")
@@ -26,7 +27,8 @@ vim.keymap.set("n", "&", "^")
 
 vim.keymap.set("v", "¤", "$")
 vim.keymap.set("v", "&", "^")
--- LSP setup
+
+-- LSP enabling
 vim.lsp.enable({
 	"python",
 	"nix",
@@ -41,41 +43,6 @@ vim.lsp.enable({
 	"tailwind",
 	"typescript",
 	"yaml",
-})
-
--- Completion
-require("blink.cmp").setup({
-	fuzzy = { implementation = "rust" },
-	completion = {
-		menu = { auto_show = true },
-		list = { max_items = 50 },
-		trigger = { prefetch_on_insert = false },
-	},
-
-	keymap = {
-		["<C-j>"] = { "select_next", "fallback" },
-		["<C-k>"] = { "select_prev", "fallback" },
-		["<C-l>"] = { "accept", "fallback" },
-		["<tab>"] = { "accept", "fallback" },
-	},
-})
-
--- Formatting
-require("conform").setup({
-	formatters_by_ft = {
-		lua = { "stylua" },
-		python = { "isort", "black" },
-		rust = { "rustfmt" },
-		javascript = { "prettierd", "prettier" },
-		typescript = { "prettierd", "prettier" },
-		nix = { "nixfmt" },
-		kdl = { "kdlfmt" },
-		java = { "google-java-format" },
-	},
-	format_on_save = {
-		timeout_ms = 1000,
-		lsp_format = "first",
-	},
 })
 
 -- Formatting option
