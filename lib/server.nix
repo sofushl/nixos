@@ -11,7 +11,6 @@ rec {
   rgbDom = "rgb.${topDom}";
 
   emailApi = "email.${apiDom}";
-  rgbApi = "rgb.${apiDom}";
 
   domains = [
     topDom
@@ -24,7 +23,6 @@ rec {
     rgbDom
 
     emailApi
-    rgbApi
   ];
 
   wifiboard = "eth";
@@ -39,6 +37,21 @@ rec {
         npm i
         npm run build
       '';
+      locations = {
+        "/" = {
+          tryFiles = "$uri $uri/ /index.html";
+        };
+        "/email" = {
+          proxyPass = "https://email.api.sofus.privatedns.org/email";
+          recommendedProxySettings = false;
+          extraConfig = ''
+            proxy_ssl_server_name on;
+            proxy_set_header Host email.api.sofus.privatedns.org;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+          '';
+        };
+      };
     }
     {
       name = "AbaCordium";
@@ -68,6 +81,11 @@ rec {
         pkg-config
         openssl
       ];
+      locations = {
+        "/" = {
+          proxyPass = "http://127.0.0.1:3000";
+        };
+      };
     }
   ];
 }
