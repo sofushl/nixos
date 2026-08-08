@@ -1,7 +1,7 @@
 { self, ... }:
 
 {
-  flake.nixosModules.initPreset =
+  flake.nixosModules.default =
     { userconf, ... }:
 
     {
@@ -10,9 +10,8 @@
         user
         disko
         preservation
-        boot
+        develop
+        openssh
       ];
-
-      networking.networkmanager.enable = true;
     };
 }

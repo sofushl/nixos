@@ -5,6 +5,8 @@
     { userconf, ... }:
     {
 
+      imports = [ inputs.disko.nixosModules.disko ];
+
       boot.tmp.cleanOnBoot = true;
 
       fileSystems."/nix".neededForBoot = true;

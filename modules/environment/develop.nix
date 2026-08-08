@@ -41,7 +41,6 @@
           prefix = "\${HOME}/.npm";
         };
       };
-
       uv.enable = true;
     };
 
@@ -50,6 +49,8 @@
       yazi
       opencode
       git
+      bash
+      fastfetch
     ];
 
     home.packages = with pkgs; [
