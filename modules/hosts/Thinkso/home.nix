@@ -29,9 +29,6 @@ in
       workMonitors
 
       dev
-
-      fastfetch
-      bash
       firefox
 
       {
@@ -39,7 +36,6 @@ in
           let
             launcher = "/home/soli/Workspace/launcher/";
             shared = "/home/soli/Workspace/shared/";
-            nrfapps = "/home/soli/.nrfconnect-apps/local/";
           in
           {
             "launch" = ''

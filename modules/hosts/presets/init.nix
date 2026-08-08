@@ -10,13 +10,9 @@
         user
         disko
         preservation
+        boot
       ];
 
       networking.networkmanager.enable = true;
-
-      boot.loader = {
-        systemd-boot.enable = true;
-        efi.canTouchEfiVariables = true;
-      };
     };
 }

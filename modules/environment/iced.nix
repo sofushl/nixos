@@ -1,5 +1,3 @@
-{ self, inputs, ... }:
-
 {
   flake.nixosModules.icedDev =
     { lib, pkgs, ... }:

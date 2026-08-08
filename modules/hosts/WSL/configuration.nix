@@ -1,7 +1,7 @@
 { self, inputs, ... }:
 
 {
-  flake.nixosModules.WSLConfiguration =
+  flake.nixosModules.wsl =
 
     {
       userconf,
@@ -12,22 +12,13 @@
 
     {
       imports = with self.nixosModules; [
-        base
-        user
-        develop
+        default
+
         icedDev
         javafxDev
         micropython
 
         inputs.nixos-wsl.nixosModules.default
-      ];
-
-      home-manager.users.${userconf.username}.imports = with self.homeModules; [
-        dev
-        yazi
-        neovim
-        fastfetch
-        git
       ];
 
       environment.systemPackages = with pkgs; [

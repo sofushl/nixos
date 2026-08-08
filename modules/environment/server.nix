@@ -10,10 +10,7 @@
     {
       services.resolved.enable = true;
 
-      programs.tmux.enable = true;
-
       security.acme = {
-
         acceptTerms = true;
         defaults = {
           email = userconf.email;

@@ -6,15 +6,12 @@
 
     {
       imports = with self.nixosModules; [
-        base
+        default
         desktop
-        user
-        disko
-        preservation
         niri
+        boot
 
         # Development libraries
-        develop
         javafxDev
         icedDev
         micropython
@@ -26,7 +23,6 @@
       ];
 
       home-manager.users.${userconf.username}.imports = with self.homeModules; [
-        fastfetch
         firefox
         rclone
       ];

@@ -1,7 +1,11 @@
+{ inputs, ... }:
 {
   flake.nixosModules.preservation =
     { userconf, ... }:
     {
+
+      imports = [ inputs.preservation.nixosModules.default ];
+
       preservation.enable = true;
 
       zramSwap = {

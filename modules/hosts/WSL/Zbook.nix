@@ -13,8 +13,6 @@ in
       userconf = userconf // wslconf // sshkeys;
     };
 
-    modules = with self.nixosModules; [
-      WSLConfiguration
-    ];
+    modules = with self.nixosModules; [ wsl ];
   };
 }
