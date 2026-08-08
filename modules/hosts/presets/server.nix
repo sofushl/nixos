@@ -6,22 +6,14 @@
 
     {
       imports = with self.nixosModules; [
-        base
-        user
+        default
+        boot
         server
-        disko
-        preservation
-
-        develop
 
         nextcloudServer
         dnsUpdater
         gitService
         ollama
-      ];
-
-      home-manager.users.${userconf.username}.imports = with self.homeModules; [
-        fastfetch
       ];
 
       preservation.preserveAt."/persistent".directories = [
@@ -38,11 +30,6 @@
         files = [
           ".config/gh/hosts.yml"
         ];
-      };
-
-      boot.loader = {
-        systemd-boot.enable = true;
-        efi.canTouchEfiVariables = true;
       };
 
       powerManagement.cpuFreqGovernor = "performance";

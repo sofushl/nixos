@@ -13,11 +13,7 @@
 
     {
 
-      imports = [
-        inputs.home-manager.nixosModules.home-manager
-        inputs.preservation.nixosModules.default
-        inputs.disko.nixosModules.disko
-      ];
+      imports = [ inputs.home-manager.nixosModules.home-manager ];
 
       # Set locales to Norwegian, but with English language
       time.timeZone = "Europe/Oslo";
@@ -25,19 +21,13 @@
       i18n.extraLocaleSettings.LANG = "en_GB.UTF-8";
       console.useXkbConfig = true;
 
-      # Kernel
       boot.kernelPackages = pkgs.linuxPackages_latest;
-
       networking.hostName = userconf.host;
       system.stateVersion = userconf.state;
 
-      # Allow unfree packages
       nixpkgs.config.allowUnfree = true;
 
-      # Enable flakes etc.
       nix = {
-        #gc.automatic = true;
-
         settings = {
           experimental-features = [
             "nix-command"
@@ -54,24 +44,36 @@
       };
 
       services = {
-        openssh = {
-          enable = true;
-          allowSFTP = false;
-          openFirewall = false;
-
-          settings = {
-            PasswordAuthentication = false;
-            KbdInteractiveAuthentication = false;
-            PermitRootLogin = "no";
-            AllowUsers = [ userconf.username ];
-            X11Forwarding = false;
-          };
-        };
 
         xserver = {
           xkb = {
             layout = "no";
             variant = "nodeadkeys";
+          };
+        };
+      };
+
+      programs = {
+        neovim = {
+          enable = true;
+          defaultEditor = true;
+          viAlias = true;
+          vimAlias = true;
+        };
+
+        nix-ld.enable = true;
+
+        git = {
+          enable = true;
+
+          config = {
+            user = {
+              name = userconf.displayname;
+              email = userconf.gitmail;
+            };
+
+            init.defaultBranch = "main";
+            core.editor = "nvim";
           };
         };
       };
@@ -110,35 +112,6 @@
             sudo nix store optimise
             sudo fstrim -av
           '';
-        };
-      };
-
-      programs = {
-        neovim = {
-          enable = true;
-          defaultEditor = true;
-          viAlias = true;
-          vimAlias = true;
-        };
-        nix-ld.enable = true;
-
-        bash = {
-          enable = true;
-          interactiveShellInit = "fastfetch";
-        };
-
-        git = {
-          enable = true;
-
-          config = {
-            user = {
-              name = userconf.displayname;
-              email = userconf.gitmail;
-            };
-
-            init.defaultBranch = "main";
-            core.editor = "nvim";
-          };
         };
       };
     };
