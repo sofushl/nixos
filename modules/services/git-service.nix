@@ -20,12 +20,13 @@
         start = null;
         env = { };
         pack = [ pkgs.nodejs ];
+        locations = { };
       };
       withDefaults = service: serviceDefaults // service;
       gitServices = map withDefaults (userconf.gitServices ++ userconf.secretServices);
 
-      forwarded = lib.filter (service: service.domain != null) gitServices;
       running = lib.filter (service: service.start != null) gitServices;
+      forwarded = lib.filter (service: service.domain != null) gitServices;
 
       pack = with pkgs; [
         git
@@ -54,7 +55,7 @@
 
                 cd /var/www/${service.name}
                 ${service.build}
-                systemctl restart app-${service.name}.service
+                ${if (service.start == null) then "" else "systemctl restart app-${service.name}.service"}
               else
                 before=$(git -C /var/www/${service.name} rev-parse HEAD)
                 echo "before: $before"
@@ -68,7 +69,8 @@
                 echo "after:  $after"
                 if [ "$before" != "$after" ]; then
                   ${service.build}
-                  systemctl restart app-${service.name}.service
+                  ${if (service.start == null) then "" else "systemctl restart app-${service.name}.service"}
+                  
                 fi
               fi
             '';
@@ -120,20 +122,10 @@
           value = {
             forceSSL = true;
             enableACME = true;
-          }
-          // (
-            if (site.port or null) != null then
-              {
-                locations."/" = {
-                  proxyPass = "http://127.0.0.1:${toString site.port}";
-                };
-              }
-            else
-              {
-                root = "/var/www/${site.name}${site.subdir}";
-                locations."/".tryFiles = "$uri $uri/ /index.html";
-              }
-          );
+            root = "/var/www/${site.name}${site.subdir}";
+            locations = site.locations;
+
+          };
         }) forwarded
       );
     };
