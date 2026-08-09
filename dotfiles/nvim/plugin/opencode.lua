@@ -9,27 +9,27 @@ vim.g.opencode_opts = {
 	},
 }
 
-vim.keymap.set({ "n", "t" }, "<C-.>", function()
+vim.keymap.set({ "n", "t" }, "<leader>o.", function()
 	require("snacks.terminal").toggle(oc_cmd, oc_win)
 end, { desc = "Toggle opencode" })
 
-vim.keymap.set({ "n", "x" }, "<C-a>", function()
+vim.keymap.set({ "n", "x" }, "<leader>oa", function()
 	require("opencode").ask("@this: ")
 end, { desc = "Ask opencode" })
 
-vim.keymap.set({ "n", "x" }, "<C-x>", function()
+vim.keymap.set({ "n", "x" }, "<leader>ox", function()
 	require("opencode").select()
 end, { desc = "Select opencode" })
 
-vim.keymap.set({ "n", "x" }, "go", function()
+vim.keymap.set({ "n", "x" }, "<leader>og", function()
 	return require("opencode").operator("@this ")
 end, { expr = true })
 
-vim.keymap.set("n", "<S-C-u>", function()
+vim.keymap.set("n", "<leader>ou", function()
 	require("opencode").command("session.half.page.up")
 end)
 
-vim.keymap.set("n", "<S-C-d>", function()
+vim.keymap.set("n", "<leader>os", function()
 	require("opencode").command("session.half.page.down")
 end)
 

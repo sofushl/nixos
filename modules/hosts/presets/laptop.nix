@@ -37,6 +37,7 @@
           ".config/mozilla"
           ".config/discord"
           ".config/spotify"
+          ".claude"
           ".config/opencode"
           ".local/share/opencode"
           ".local/state/opencode"
@@ -45,6 +46,7 @@
         files = [
           ".config/gh/hosts.yml"
           ".config/rclone/nextcloud.pass"
+          ".claude.json"
         ];
       };
 

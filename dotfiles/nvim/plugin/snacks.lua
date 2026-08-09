@@ -107,8 +107,8 @@ local function close(force)
 	end
 end
 
-map("n", "<C-w>", close(false), { nowait = true })
-map("n", "<C-q>", close(true))
+map({ "n", "v", "x" }, "<C-w>", close(false), { nowait = true })
+map({ "n", "v", "x" }, "<C-q>", close(true))
 
 -- Snacks.rename integration only if you have oil/neo-tree; skip otherwise
 Snacks.toggle.diagnostics():map("<leader>ud")
