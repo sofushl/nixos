@@ -28,8 +28,16 @@
 
         plugins = with pkgs.vimPlugins; [
           nvim-lspconfig
+          nvim-treesitter
           conform-nvim
           blink-cmp
+
+          lualine-nvim
+          lualine-lsp-progress
+          bufferline-nvim
+
+          nvim-test
+          tmux-nvim
 
           yazi-nvim
           opencode-nvim
@@ -37,8 +45,6 @@
 
           vscode-nvim
         ];
-
-        extraConfig = "colorscheme vscode";
 
         coc.enable = false;
         withPython3 = false;

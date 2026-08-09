@@ -97,6 +97,19 @@ map("n", "<c-\\>", function()
 	Snacks.terminal()
 end, { desc = "Terminal" })
 
+local function close(force)
+	return function()
+		if #vim.api.nvim_tabpage_list_wins(0) > 1 then
+			vim.cmd(force and "close!" or "close")
+		else
+			Snacks.bufdelete({ force = force })
+		end
+	end
+end
+
+map("n", "<C-w>", close(false), { nowait = true })
+map("n", "<C-q>", close(true))
+
 -- Snacks.rename integration only if you have oil/neo-tree; skip otherwise
 Snacks.toggle.diagnostics():map("<leader>ud")
 Snacks.toggle.inlay_hints():map("<leader>uh")
