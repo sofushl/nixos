@@ -33,8 +33,13 @@
 
       preservation.preserveAt."/persistent".users.${userconf.username} = {
         directories = [
-          ".config/mozilla"
           "Downloads"
+          ".config/mozilla"
+          ".config/discord"
+          ".config/spotify"
+          ".config/opencode"
+          ".local/share/opencode"
+          ".local/state/opencode"
         ];
 
         files = [
