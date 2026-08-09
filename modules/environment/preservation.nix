@@ -23,6 +23,12 @@
         }
       ];
 
+      preservation.preserveAt."/tmp" = {
+        users.${userconf.username} = {
+          directories = [ ".cache" ];
+        };
+      };
+
       preservation.preserveAt."/persistent" = {
         directories = [
           {

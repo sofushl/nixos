@@ -6,6 +6,9 @@
       lib,
       ...
     }:
+
+    # REQURIES PRESERVATION OF "$HOME/.local/share/opencode/" "$HOME/.local/state/opencode/" "$HOME/.config/opencode"
+
     {
       programs.opencode = {
         enable = true;
@@ -19,8 +22,8 @@
         };
       };
 
-      home.packages = with pkgs; [
-        claude-code
-      ];
+      home.shellAliases."claude-auth" =
+        "NIXPKGS_ALLOW_UNFREE=1 nix-shell -p claude-code --run 'claude && opencode'";
     };
+
 }
