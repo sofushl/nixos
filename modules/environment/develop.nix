@@ -47,6 +47,7 @@
     imports = with self.homeModules; [
       neovim
       yazi
+      claude
       opencode
       git
       bash

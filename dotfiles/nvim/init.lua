@@ -5,7 +5,7 @@ local map = vim.keymap.set
 
 map({ "n", "v" }, "q", "<cmd>Yazi<CR>")
 
-map({ "n", "v" }, "Q", "<cmd>wq<CR>")
+map({ "n", "v" }, "Q", "<cmd>qa<CR>")
 
 map("n", "gh", vim.diagnostic.open_float)
 map("n", "gs", vim.lsp.buf.hover)
