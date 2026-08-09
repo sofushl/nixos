@@ -43,6 +43,8 @@
       ...
     }:
     {
+      imports = [ self.homeModules.stylix ];
+
       home = {
         username = userconf.username;
         stateVersion = userconf.state;

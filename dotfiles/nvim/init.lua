@@ -1,32 +1,28 @@
 -- Keymap
 vim.g.mapleader = " "
 
-vim.keymap.set({ "n", "v" }, "q", "<cmd>Yazi<CR>")
+local map = vim.keymap.set
 
-vim.keymap.set({ "n", "v" }, "Q", ":qa")
+map({ "n", "v" }, "q", "<cmd>Yazi<CR>")
 
-vim.keymap.set("n", "T", "<cmd>tabclose<cr>")
-vim.keymap.set("n", "t", "<cmd>tabnew<cr>")
+map({ "n", "v" }, "Q", "<cmd>wq<CR>")
 
-vim.keymap.set("n", "gk", "<cmd>tabnext<cr>")
-vim.keymap.set("n", "gj", "<cmd>tabprevious<cr>")
+map("n", "gh", vim.diagnostic.open_float)
+map("n", "gs", vim.lsp.buf.hover)
+map("n", "gd", vim.lsp.buf.definition)
 
-vim.keymap.set("n", "gh", vim.diagnostic.open_float)
-vim.keymap.set("n", "gs", vim.lsp.buf.hover)
-vim.keymap.set("n", "gd", vim.lsp.buf.definition)
+map({ "n", "v", "x" }, "<C-n>", "<cmd>vsplit<CR>")
+map({ "n", "v", "x" }, "<C-m>", "<cmd>split<CR>")
 
 -- remap for norwegian keyboard
-vim.keymap.set("n", "å", "[")
-vim.keymap.set("n", "¨", "]")
+map({ "n", "v" }, "å", "[")
+map({ "n", "v" }, "¨", "]")
 
-vim.keymap.set("n", "Å", "{")
-vim.keymap.set("n", "^", "}")
+map({ "n", "v" }, "Å", "{")
+map({ "n", "v" }, "^", "}")
 
-vim.keymap.set("n", "¤", "$")
-vim.keymap.set("n", "&", "^")
-
-vim.keymap.set("v", "¤", "$")
-vim.keymap.set("v", "&", "^")
+map({ "n", "v" }, "¤", "$")
+map({ "n", "v" }, "&", "^")
 
 -- LSP enabling
 vim.lsp.enable({
@@ -51,3 +47,5 @@ vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
+
+vim.cmd.colorscheme("vscode")

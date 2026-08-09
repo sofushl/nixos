@@ -84,21 +84,8 @@
         enable = true;
         colorScheme = "dark";
 
-        gtk3 = {
-          extraConfig.gtk-application-prefer-dark-theme = true;
-          extraCss = ''
-            @define-color accent_color #DC6666;
-          '';
-        };
-
-        gtk4 = {
-          extraConfig.gtk-application-prefer-dark-theme = true;
-          extraCss = ''
-            @define-color accent_color #DC6666;
-            @define-color accent_bg_color #DC6666;
-            @define-color accent_fg_color #ffffff;
-          '';
-        };
+        gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
+        gtk4.extraConfig.gtk-application-prefer-dark-theme = true;
       };
 
       home = {
@@ -124,18 +111,7 @@
         ];
 
         sessionVariables = {
-          XCURSOR_THEME = "Bibata-Modern-Classic";
-          XCURSOR_SIZE = "24";
           XDG_CURRENT_DESKTOP = "niri";
-        };
-
-        pointerCursor = {
-          enable = true;
-          name = "Bibata-Modern-Classic";
-          gtk.enable = true;
-          x11.enable = true;
-          size = 24;
-          package = pkgs.bibata-cursors;
         };
       };
 
