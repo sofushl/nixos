@@ -13,6 +13,14 @@
         web = {
           enable = true;
         };
+
+        settings = {
+          plugin = [ "opencode-claude-auth@latest" ];
+        };
       };
+
+      home.packages = with pkgs; [
+        claude-code
+      ];
     };
 }
