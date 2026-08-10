@@ -4,6 +4,7 @@
     {
 
       imports = [ inputs.stylix.homeModules.stylix ];
+      dconf.enable = true;
 
       stylix = {
         enable = true;
@@ -70,5 +71,4 @@
         };
       };
     };
-
 }
