@@ -1,0 +1,63 @@
+{ self, inputs, ... }:
+let
+  userconf = import ../../lib/sofushl.nix;
+  sysconf = import ../../lib/T2000.nix;
+  pkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";
+  serverconf = import ../../lib/server.nix { inherit pkgs; };
+  sshkeys = import ../../lib/sshkeys.nix;
+  secrets = import /etc/nixos/secrets.nix;
+in
+{
+  flake.nixosConfigurations.T2000 = inputs.nixpkgs.lib.nixosSystem {
+    system = "x86_64-linux";
+
+    specialArgs = {
+      inherit inputs;
+      userconf = userconf // sysconf // sshkeys // secrets // serverconf;
+    };
+
+    modules = with self.nixosModules; [
+      base
+      user
+      disko
+      preservation
+      develop
+      openssh
+      hardware
+      nvidia
+
+      server
+
+      nextcloudServer
+      dnsUpdater
+      gitService
+      ollama
+
+      {
+        preservation.preserveAt."/persistent".directories = [
+          "/var/lib/"
+          "/var/www"
+          "/var/log"
+        ];
+
+        preservation.preserveAt."/persistent".files = [
+          "/etc/searx.env"
+        ];
+
+        preservation.preserveAt."/persistent".users.${userconf.username} = {
+          directories = [
+            ".local/share/opencode"
+            ".local/state/opencode"
+            ".config/opencode"
+          ];
+
+          files = [
+            ".config/gh/hosts.yml"
+          ];
+        };
+
+        powerManagement.cpuFreqGovernor = "performance";
+      }
+    ];
+  };
+}
