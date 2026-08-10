@@ -1,31 +1,16 @@
-{ inputs, self, ... }:
+{ self, ... }:
 {
-  flake.nixosConfigurations.init = inputs.nixpkgs.lib.nixosSystem {
-    system = "x86_64-linux";
-
-    specialArgs = {
-      inherit inputs;
-      userconf = {
-        disk = "sda";
-      };
-    };
-
-    modules = with self.nixosModules; [
-      disko
+  flake.nixosConfigurations.init = self.inputs.nixpkgs.lib.nixosSystem {
+    specialArgs.userconf.disk = "sda";
+    modules = [
+      self.nixosModules.disko
       {
-        boot.loader = {
-          systemd-boot.enable = true;
-          efi.canTouchEfiVariables = true;
-        };
-
+        nixpkgs.hostPlatform = "x86_64-linux";
+        boot.loader.systemd-boot.enable = true;
         hardware.enableRedistributableFirmware = true;
-
-        networking.hostName = "nixos";
-        system.stateVersion = "26.11";
-
-        users.users.root.initialPassword = "p";
-
         networking.networkmanager.enable = true;
+        system.stateVersion = "26.11";
+        users.users.root.initialPassword = "p";
       }
     ];
   };
