@@ -49,3 +49,11 @@ vim.opt.expandtab = true
 vim.opt.smartindent = true
 
 vim.cmd.colorscheme("vscode")
+vim.opt.number = true
+vim.opt.relativenumber = true
+
+vim.api.nvim_create_autocmd({ "InsertEnter", "InsertLeave" }, {
+	callback = function()
+		vim.opt.relativenumber = vim.fn.mode() ~= "i"
+	end,
+})
