@@ -1,10 +1,10 @@
 let
-  acerkey = (import ./Acer.nix).sshkey;
-  dellkey = (import ./Dell.nix).sshkey;
-  lenovokey = (import ./Lenovo.nix).sshkey;
-  wslzbookkey = (import ./Zbook.nix).sshkey;
+  wslzbookkey = (import ./wsl.nix).sshkey;
   workkey = (import ./soli.nix).sshkey;
   T2000key = (import ./T2000.nix).sshkey;
+  laptops = import ./laptops.nix;
+  resolved = builtins.mapAttrs (_: h: laptops.default // h) laptops.hosts;
+  laptopkeys = builtins.filter (k: k != null) (map (h: h.key) (builtins.attrValues resolved));
 in
 rec {
   zbookkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFVOm4q1/v7MNNsnf6iNlFYUXsV/kxkAzmleWgd6JOr7 sofushl@ZBook";
@@ -12,14 +12,12 @@ rec {
   tvkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPUbk0QgUO3d5o7zKqHacseqALt1AlKZkQJj2FcRRcsm soli@tv";
 
   sshkeys = [
-    acerkey
-    dellkey
     T2000key
-    lenovokey
     wslzbookkey
     workkey
     zbookkey
     phonekey
     tvkey
-  ];
+  ]
+  ++ laptopkeys;
 }

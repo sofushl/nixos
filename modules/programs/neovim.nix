@@ -56,6 +56,8 @@
             claudecode-nvim
             blink-cmp-claude
 
+            render-markdown-nvim
+
             vscode-nvim
           ];
 
