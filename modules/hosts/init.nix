@@ -12,17 +12,12 @@
 
     modules = with self.nixosModules; [
       disko
+      hardware
       {
-        boot.loader = {
-          systemd-boot.enable = true;
-          efi.canTouchEfiVariables = true;
-        };
-
-        boot.kernelPackages = pkgs.linuxPackages_latest;
         networking.hostName = "nixos";
         system.stateVersion = "26.11";
 
-        users.users.root.initialPassowrd = "p";
+        users.users.root.initialPassword = "p";
 
         networking.networkmanager.enable = true;
       }
