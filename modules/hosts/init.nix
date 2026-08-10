@@ -1,25 +1,31 @@
 { inputs, self, ... }:
-let
-  userconf = import ../../lib/sofushl.nix;
-  sysconf = (import ../../lib/laptops.nix).default;
-in
 {
   flake.nixosConfigurations.init = inputs.nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
 
     specialArgs = {
       inherit inputs;
-      userconf = userconf // sysconf;
+      userconf = {
+        disk = "sda";
+      };
     };
 
     modules = with self.nixosModules; [
-      base
-      user
       disko
-      preservation
-      hardware
-    ];
+      {
+        boot.loader = {
+          systemd-boot.enable = true;
+          efi.canTouchEfiVariables = true;
+        };
 
-    networking.networkmanager.enable = true;
+        boot.kernelPackages = pkgs.linuxPackages_latest;
+        networking.hostName = "nixos";
+        system.stateVersion = "26.11";
+
+        users.users.root.initialPassowrd = "p";
+
+        networking.networkmanager.enable = true;
+      }
+    ];
   };
 }
