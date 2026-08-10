@@ -12,8 +12,14 @@
 
     modules = with self.nixosModules; [
       disko
-      hardware
       {
+        boot.loader = {
+          systemd-boot.enable = true;
+          efi.canTouchEfiVariables = true;
+        };
+
+        hardware.enableRedistributableFirmware = true;
+
         networking.hostName = "nixos";
         system.stateVersion = "26.11";
 
