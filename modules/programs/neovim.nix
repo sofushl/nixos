@@ -44,7 +44,7 @@
             nvim-lspconfig
             conform-nvim
             blink-cmp
-            nvim-test
+            vim-test
 
             lualine-nvim
             bufferline-nvim
