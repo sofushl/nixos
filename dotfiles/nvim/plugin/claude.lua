@@ -38,14 +38,3 @@ map("n", "<leader>ab", "<cmd>ClaudeCodeAdd %<cr>", { desc = "Add buffer" })
 map("x", "<leader>as", "<cmd>ClaudeCodeSend<cr>", { desc = "Send selection" })
 map("n", "<leader>aa", "<cmd>ClaudeCodeDiffAccept<cr>", { desc = "Accept diff" })
 map("n", "<leader>ax", "<cmd>ClaudeCodeDiffDeny<cr>", { desc = "Deny diff" })
-
-require("blink-cmp-claude").setup({
-	sources = {
-		per_filetype = { claudeprompt = { "claude-slash", "claude-files", "path" } },
-		providers = {
-			lsp = { fallbacks = {} },
-			["claude-slash"] = { module = "blink-cmp-claude.slash", name = "Claude", score_offset = 100 },
-			["claude-files"] = { module = "blink-cmp-claude.files", name = "Files", score_offset = 90 },
-		},
-	},
-})

@@ -33,6 +33,15 @@ require("snacks").setup({
 			{ section = "keys", gap = 1, padding = 1 },
 		},
 	},
+	terminal = {},
+	styles = {
+		terminal = {
+			position = "right",
+			width = 0.4,
+			height = 0,
+			border = "none",
+		},
+	},
 })
 
 local map = vim.keymap.set
@@ -70,10 +79,10 @@ end, { desc = "References" })
 map("n", "<leader>ss", function()
 	Snacks.picker.lsp_symbols()
 end, { desc = "Symbols" })
-map("n", "]]", function()
+map("n", "J", function()
 	Snacks.words.jump(1, true)
 end, { desc = "Next ref" })
-map("n", "[[", function()
+map("n", "K", function()
 	Snacks.words.jump(-1, true)
 end, { desc = "Prev ref" })
 
@@ -93,7 +102,7 @@ end, { desc = "Scratch" })
 map("n", "<leader>un", function()
 	Snacks.notifier.hide()
 end, { desc = "Dismiss notifs" })
-map("n", "<c-\\>", function()
+map("n", "<C-.>", function()
 	Snacks.terminal()
 end, { desc = "Terminal" })
 
