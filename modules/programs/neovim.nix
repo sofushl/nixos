@@ -26,40 +26,24 @@
         vimdiffAlias = true;
         waylandSupport = true;
 
-        plugins =
-          let
-            blink-cmp-claude = pkgs.vimUtils.buildVimPlugin {
-              pname = "blink-cmp-claude";
-              version = "unstable-2026-08-09";
-              src = pkgs.fetchFromGitHub {
-                owner = "saiashirwad";
-                repo = "blink-cmp-claude";
-                rev = "main";
-                hash = "sha256-Uq+bA7TL2FgfL7W42/pTOb3Eqg1RHrqRLTJJz8+C3kA=";
-              };
-            };
-          in
-          with pkgs.vimPlugins;
-          [
-            nvim-lspconfig
-            conform-nvim
-            blink-cmp
-            vim-test
+        plugins = with pkgs.vimPlugins; [
+          conform-nvim
+          blink-cmp
+          vim-test
 
-            lualine-nvim
-            bufferline-nvim
-            tmux-nvim
-            yazi-nvim
-            snacks-nvim
+          lualine-nvim
+          bufferline-nvim
+          tmux-nvim
+          yazi-nvim
+          snacks-nvim
 
-            opencode-nvim
-            claudecode-nvim
-            blink-cmp-claude
+          opencode-nvim
+          claudecode-nvim
 
-            render-markdown-nvim
+          render-markdown-nvim
 
-            vscode-nvim
-          ];
+          vscode-nvim
+        ];
 
         coc.enable = false;
         withPython3 = false;
