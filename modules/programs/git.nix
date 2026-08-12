@@ -28,6 +28,7 @@
             ci = "commit";
             co = "checkout";
             s = "status";
+            p = "push";
           };
         };
 
