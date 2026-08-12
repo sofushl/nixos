@@ -35,7 +35,7 @@
 
         initrd.kernelModules = [ ];
         extraModulePackages = [ ];
-        kernelParams = [ ];
+        kernelParams = [ "intel_pstate=active" ];
       };
 
       nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
