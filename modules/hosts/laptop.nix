@@ -56,9 +56,6 @@ in
               ".config/discord"
               ".config/spotify"
               ".claude"
-              ".config/opencode"
-              ".local/share/opencode"
-              ".local/state/opencode"
             ];
 
             files = [
