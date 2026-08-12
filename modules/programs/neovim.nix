@@ -37,7 +37,6 @@
           yazi-nvim
           snacks-nvim
 
-          opencode-nvim
           claudecode-nvim
 
           render-markdown-nvim
