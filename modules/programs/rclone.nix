@@ -1,6 +1,12 @@
 {
   flake.homeModules.rclone = { userconf, config, ... }: {
 
+    # REQUIRES PRESERVATION OF ".config/rclone/nextcloud.pass"
+
+    home.shellAlias."nc-setup" =
+      "mkdir -p ~/.config/rclone && (umask 077; rclone obscure \"$NCPASS\" > ~/.config/rclone/nextcloud.pass)";
+    # run  NCPASS='yourAppPassword' nc-setup
+
     programs.rclone = {
       enable = true;
       remotes.nextcloud = {
