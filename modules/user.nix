@@ -7,8 +7,8 @@
     }:
     {
       home-manager = {
-        useGlobalPkgs = true;
-        useUserPackages = false;
+        useGlobalPkgs = false;
+        useUserPackages = true;
         backupFileExtension = "back";
         extraSpecialArgs = { inherit userconf; };
         users.${userconf.username} = self.homeModules.user;
@@ -44,6 +44,8 @@
     }:
     {
       imports = [ self.homeModules.stylix ];
+
+      nixpkgs.config.allowUnfree = true;
 
       home = {
         username = userconf.username;
