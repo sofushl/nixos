@@ -22,6 +22,7 @@
     };
     Lenovo = {
       host = "Lenovo";
+      key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDWrMHaQJytYaXu8akiijr+eAs+Psa1w6T0yLawLMk4d sofushl@Lenovo";
       wifiboard = "wlp0s26u1u4i2";
     };
   };
