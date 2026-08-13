@@ -1,4 +1,9 @@
-{ self, inputs, ... }:
+{
+  self,
+  inputs,
+  lib,
+  ...
+}:
 let
   userconf = import ../../lib/sofushl.nix;
   wslconf = import ../../lib/wsl.nix;
@@ -26,17 +31,13 @@ in
       inputs.nixos-wsl.nixosModules.default
 
       {
-        environment.systemPackages = with pkgs; [
-          kmod
-        ];
-
-        networking.resolvconf.enable = lib.mkForce false;
-
         wsl = {
           enable = true;
           defaultUser = userconf.username;
           startMenuLaunchers = true;
         };
+
+        home-manager.users.${userconf.username}.dconf.enable = lib.mkForce false;
       }
     ];
   };
