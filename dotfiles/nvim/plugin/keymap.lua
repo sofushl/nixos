@@ -4,9 +4,11 @@ map({ "n", "v" }, "q", "<cmd>Yazi<CR>")
 
 map({ "n", "v" }, "<C-S-Q>", "<cmd>qa<CR>")
 
-map({ "n", "v" }, "å", "{")
-map({ "n", "v" }, "¨", "}")
-map({ "n", "v" }, "ø", ":")
+-- Norwegian keymap remap
+map({ "n", "v", "x" }, "å", "{")
+map({ "n", "v", "x" }, "¨", "}")
+map({ "n", "v", "x" }, "ø", ":")
+map({ "n", "v", "x" }, "æ", '"')
 
 map("n", "gh", vim.diagnostic.open_float)
 map("n", "gs", vim.lsp.buf.hover)
@@ -118,13 +120,9 @@ local function close(force)
 	end
 end
 
-map({ "n", "v", "x" }, "<leader>w", function()
-	close(false)
-end, { desc = "Delete buffer" })
+map({ "n", "v", "x" }, "<C-q>", close(false), { desc = "Delete buffer" })
 
-map({ "n", "v", "x" }, "<leader>q", function()
-	close(true)
-end, { desc = "Delete buffer" })
+map({ "n", "v", "x" }, "Q", close(true), { desc = "Delete buffer" })
 
 map("n", "<leader>.", function()
 	Snacks.scratch()
