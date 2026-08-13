@@ -23,6 +23,7 @@ map("n", "<leader>l", "<Cmd>BufferLineCycleNext<CR>")
 
 -- claude
 map({ "n", "x" }, "<C-,>", "<cmd>ClaudeCodeFocus<cr>", { desc = "Claude" })
+map({ "n", "x" }, "<leader>,", "<cmd>ClaudeCodeFocus<cr>", { desc = "Claude" })
 map("n", "<leader>ar", "<cmd>ClaudeCode --resume<cr>", { desc = "Resume" })
 map("n", "<leader>am", "<cmd>ClaudeCodeSelectModel<cr>", { desc = "Model" })
 map("n", "<leader>ab", "<cmd>ClaudeCodeAdd %<cr>", { desc = "Add buffer" })
@@ -124,10 +125,6 @@ map({ "n", "v", "x" }, "<C-q>", close(false), { desc = "Delete buffer" })
 
 map({ "n", "v", "x" }, "Q", close(true), { desc = "Delete buffer" })
 
-map("n", "<leader>.", function()
-	Snacks.scratch()
-end, { desc = "Scratch" })
-
 map("n", "<leader>un", function()
 	Snacks.notifier.hide()
 end, { desc = "Dismiss notifs" })
@@ -135,6 +132,10 @@ end, { desc = "Dismiss notifs" })
 map("n", "<C-.>", function()
 	Snacks.terminal()
 end, { desc = "Terminal" })
+
+map("n", "<leader>.", function()
+	Snacks.terminal()
+end, { desc = "Scratch" })
 
 -- Snacks.rename integration only if you have oil/neo-tree; skip otherwise
 Snacks.toggle.diagnostics():map("<leader>ud")
