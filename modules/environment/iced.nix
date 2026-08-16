@@ -15,11 +15,22 @@
     in
     {
       environment = {
-        systemPackages = [
-          pkgs.cargo
-          pkgs.rustc
-        ]
-        ++ libs;
+        systemPackages =
+          with pkgs;
+          [
+            cargo
+            rustc
+
+            cargo-generate
+            pkg-config
+            openssl
+
+            lld
+            trunk
+            cargo-wasi
+            tailwindcss_4
+          ]
+          ++ libs;
         variables = {
           RUSTFLAGS = "-C link-arg=-Wl,-rpath,${rpath}";
         };
