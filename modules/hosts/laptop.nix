@@ -4,7 +4,14 @@ let
   laptops = import ../../lib/laptops.nix;
   resolved = builtins.mapAttrs (_: h: laptops.default // h) laptops.hosts;
   sshkeys = import ../../lib/sshkeys.nix;
-  secrets = if builtins.pathExists /etc/nixos/secrets.nix then import /etc/nixos/secrets.nix else { };
+  secrets =
+    if builtins.pathExists /etc/nixos/secrets.nix then
+      import /etc/nixos/secrets.nix
+    else
+      {
+        edupass = "";
+        networks = { };
+      };
 in
 {
   flake.nixosConfigurations = builtins.mapAttrs (
@@ -17,57 +24,57 @@ in
         userconf = sysconf // userconf // sshkeys // secrets;
       };
 
-      modules = with self.nixosModules; [
-        base
-        user
-        disko
-        preservation
-        develop
-        openssh
-        hardware
+      modules =
+        with self.nixosModules;
+        [
+          base
+          user
+          disko
+          preservation
+          develop
+          openssh
+          hardware
+          desktop
 
-        desktop
-        niri
+          # Development libraries
+          javafxDev
+          icedDev
+          micropython
 
-        # Development libraries
-        javafxDev
-        icedDev
-        micropython
+          # Services
+          networkmanager
+          keyd
 
-        # Services
-        networkmanager
-        greetd-niri
-        keyd
-
-        {
-          home-manager.users.${userconf.username}.imports = with self.homeModules; [
-            firefox
-            rclone
-          ];
-
-          preservation.preserveAt."/persistent".directories = [
-            "/var/lib/bluetooth"
-          ];
-
-          preservation.preserveAt."/persistent".users.${userconf.username} = {
-            directories = [
-              "Downloads"
-              ".config/mozilla"
-              ".config/discord"
-              ".config/spotify"
-              ".claude"
+          {
+            home-manager.users.${userconf.username}.imports = with self.homeModules; [
+              firefox
+              rclone
             ];
 
-            files = [
-              ".config/gh/hosts.yml"
-              ".config/rclone/nextcloud.pass"
-              ".claude.json"
+            preservation.preserveAt."/persistent".directories = [
+              "/var/lib/bluetooth"
             ];
-          };
 
-          powerManagement.cpuFreqGovernor = "powersave";
-        }
-      ];
+            preservation.preserveAt."/persistent".users.${userconf.username} = {
+              directories = [
+                "Downloads"
+                ".config/mozilla"
+                ".config/discord"
+                ".config/spotify"
+                ".claude"
+              ];
+
+              files = [
+                ".config/gh/hosts.yml"
+                ".config/rclone/nextcloud.pass"
+                ".claude.json"
+              ];
+            };
+
+            powerManagement.cpuFreqGovernor = "powersave";
+          }
+        ]
+        ++ map (n: self.nixosModules.${n}) sysconf.modules;
     }
   ) resolved;
 }
