@@ -36,7 +36,6 @@
             @define-color accent_bg_color #DC6666;
             @define-color accent_fg_color #ffffff;
           '';
-
         };
 
         cursor = {
