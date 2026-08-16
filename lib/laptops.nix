@@ -6,6 +6,10 @@
     state = "26.11";
     wifiboard = "eth0";
     disk = "sda";
+    modules = [
+      "niri"
+      "greetd-niri"
+    ];
   };
 
   hosts = {
