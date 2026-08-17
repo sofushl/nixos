@@ -31,11 +31,8 @@
         targets = {
           neovim.enable = false;
           firefox.profileNames = [ "default" ];
-          gtk.extraCss = ''
-            @define-color accent_color #DC6666;
-            @define-color accent_bg_color #DC6666;
-            @define-color accent_fg_color #ffffff;
-          '';
+          gtk.enable = false;
+
         };
 
         cursor = {
