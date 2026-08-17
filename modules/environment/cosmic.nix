@@ -14,6 +14,7 @@
 
       home-manager.users.${userconf.username}.imports = [
         self.homeModules.cosmic
+        self.homeModules.ghostty
         inputs.cosmic-manager.homeManagerModules.cosmic-manager
       ];
 
@@ -21,7 +22,10 @@
 
       environment = {
         sessionVariables.COSMIC_DATA_CONTROL_ENABLED = "1";
-        cosmic.excludePackages = with pkgs; [ cosmic-initial-setup ];
+        cosmic.excludePackages = with pkgs; [
+          cosmic-initial-setup
+          cosmic-term
+        ];
       };
       programs.firefox.preferences."widget.gtk.libadwaita-colors.enabled" = false;
     };
@@ -34,6 +38,20 @@
       opt = ron "optional";
     in
     {
+      xdg = {
+        enable = true;
+
+        portal = {
+          enable = true;
+          extraPortals = [
+            pkgs.xdg-desktop-portal-cosmic
+            pkgs.xdg-desktop-portal-wlr
+          ];
+
+          config.common.default = "cosmic";
+        };
+      };
+
       wayland.desktopManager.cosmic = {
         enable = true;
         resetFiles = true;
@@ -204,7 +222,7 @@
         systemActions = ron "map" [
           {
             key = enum "Terminal";
-            value = "cosmic-term";
+            value = "ghostty";
           }
         ];
 
@@ -213,7 +231,7 @@
             key = "Super+Return";
             action = enum {
               variant = "Spawn";
-              value = [ "cosmic-term" ];
+              value = [ "ghostty" ];
             };
             description = opt "Terminal";
           }
@@ -221,7 +239,7 @@
             key = "Super+E";
             action = enum {
               variant = "Spawn";
-              value = [ "cosmic-term start -- yazi" ];
+              value = [ "ghostty start -- yazi" ];
             };
             description = opt "Yazi";
           }
