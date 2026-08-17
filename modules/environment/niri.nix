@@ -80,13 +80,25 @@
         };
       };
 
-      gtk = {
-        enable = true;
-        colorScheme = "dark";
+      gtk =
+        let
+          gtkConf = {
+            extraConfig.gtk-application-prefer-dark-theme = true;
 
-        gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
-        gtk4.extraConfig.gtk-application-prefer-dark-theme = true;
-      };
+            extraCss = ''
+              @define-color accent_color #DC6666;
+              @define-color accent_bg_color #DC6666;
+              @define-color accent_fg_color #ffffff;
+            '';
+          };
+        in
+        {
+          enable = true;
+          colorScheme = "dark";
+
+          gtk3 = gtkConf;
+          gtk4 = gtkConf;
+        };
 
       home = {
         packages = with pkgs; [

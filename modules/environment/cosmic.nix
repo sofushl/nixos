@@ -19,8 +19,10 @@
 
       services.desktopManager.cosmic.showExcludedPkgsWarning = false;
 
-      environment.sessionVariables.COSMIC_DATA_CONTROL_ENABLED = "1";
-
+      environment = {
+        sessionVariables.COSMIC_DATA_CONTROL_ENABLED = "1";
+        cosmic.excludePackages = with pkgs; [ cosmic-initial-setup ];
+      };
       programs.firefox.preferences."widget.gtk.libadwaita-colors.enabled" = false;
     };
 
@@ -39,10 +41,10 @@
         appearance = {
           theme.mode = "dark";
           theme.dark = {
-            active_hint = 3;
+            active_hint = 2;
             gaps = ron "tuple" [
               0
-              4
+              2
             ];
             accent = opt {
               red = 0.862745;
@@ -97,7 +99,7 @@
         compositor = {
           active_hint = true;
           autotile = true;
-          autotile_behavior = enum "PerWorkspace";
+          autotile_behavior = enum "Global";
           focus_follows_cursor = true;
           cursor_follows_focus = false;
           descale_xwayland = false;
@@ -243,25 +245,5 @@
           }
         ];
       };
-
-      wayland.desktopManager.cosmic.configFile."com.system76.CosmicSettings" = {
-        version = 1;
-        entries.active-page = "wallpaper";
-      };
-
-      #programs.cosmic-term = {
-      #  enable = true;
-      #  settings = {
-      #    app_theme = enum "Dark";
-      #    font_name = "JetBrainsMono Nerd Font";
-      #    font_size = 12;
-      #    show_headerbar = false;
-      #    opacity = 100;
-      #  };
-      #  profiles = [ ];
-      #};
-
-      programs.cosmic-files.enable = true;
-      programs.cosmic-edit.enable = false;
     };
 }
