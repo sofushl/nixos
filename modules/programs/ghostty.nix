@@ -2,48 +2,41 @@
   flake.homeModules.ghostty = {
     programs.ghostty = {
       enable = true;
-      enableBashIntegration = false;
-
       settings = {
-        theme = "basic-red";
+        window-decoration = "none";
+        window-padding-x = 4;
+        window-padding-y = 0;
+        window-show-tab-bar = "auto";
+        gtk-titlebar = false;
         confirm-close-surface = false;
-      };
+        adjust-cell-height = "-10%";
 
-      themes = {
+        keybind = [ "super+w=close_tab" ];
 
-        basic-red = {
-
-          foreground = "#E3E0E0";
-          background = "#1E1E1E";
-          cursor-color = "#DC6666";
-
-          palette = [
-            "0=#1E1E1E" # black
-            "7=#E3E0E0" # white
-
-            "1=#DC6666" # red
-            "6=#DC6666" # cyan
-
-            #"2=#86B895" # green
-            #"3=#E0B879" # yellow
-            #"4=#7DAAEA" # blue
-            #"5=#CFA1E8" # magenta
-
-            "8=#1E1E1E" # bright black
-            "15=E3E0E0" # bright white
-
-            "9=#DC6666" # bright red
-            "10=#DC6666" # bright green
-            "11=#DC6666" # bright yellow
-            "12=#DC6666" # bright blue
-            "13=#DC6666" # bright magenta
-            "14=#DC6666" # bright cyan
-          ];
-
-          selection-background = "DC6666";
-          selection-foreground = "1E1E1E";
-        };
-
+        palette = [
+          "0=#1E1E1E"
+          "1=#DC6666"
+          "2=#86B895"
+          "3=#E0B879"
+          "4=#7DAAEA"
+          "5=#CFA1E8"
+          "6=#7FC0C4"
+          "7=#E3E0E0"
+          "8=#3A3A3A"
+          "9=#E87878"
+          "10=#98C9A6"
+          "11=#EDC98C"
+          "12=#93BCF5"
+          "13=#DCB3F2"
+          "14=#92D0D4"
+          "15=#F2F0F0"
+        ];
+        background = "#1E1E1E";
+        foreground = "#E3E0E0";
+        cursor-color = "#DC6666";
+        cursor-text = "#1E1E1E";
+        selection-background = "#DC6666";
+        selection-foreground = "#1E1E1E";
       };
     };
   };
