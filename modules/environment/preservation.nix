@@ -28,6 +28,9 @@
           directories = [ ".cache" ];
         };
       };
+      systemd.tmpfiles.rules = [
+        "R! /home/sofushl/.cache - - - - -"
+      ];
 
       preservation.preserveAt."/persistent" = {
         directories = [
