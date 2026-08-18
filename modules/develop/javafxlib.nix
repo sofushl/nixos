@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.javafxDev =
+  flake.nixosModules.javafxlib =
     { lib, pkgs, ... }:
     let
       libs = with pkgs; [
