@@ -39,6 +39,7 @@ in
           # Development libraries
           icedDev
           micropython
+          javaWithFx
 
           # Services
           networkmanager
@@ -48,7 +49,6 @@ in
             home-manager.users.${userconf.username}.imports = with self.homeModules; [
               firefox
               rclone
-              javafxDev
             ];
 
             preservation.preserveAt."/persistent".directories = [
