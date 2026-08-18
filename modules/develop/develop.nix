@@ -55,22 +55,11 @@
 
     home.packages = with pkgs; [
       # Tools
-      lazygit
-      btop
-      curl
-      wget
       fd
-      ripgrep
+      lazygit
       fzf
-      unzip
       imagemagick
-      wget
-      curl
       ast-grep
-      gzip
-      zip
-      git-filter-repo
-      dnsutils
 
       # Languages
       lua

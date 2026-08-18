@@ -37,7 +37,6 @@ in
           desktop
 
           # Development libraries
-          javafxDev
           icedDev
           micropython
 
@@ -49,6 +48,7 @@ in
             home-manager.users.${userconf.username}.imports = with self.homeModules; [
               firefox
               rclone
+              javafxDev
             ];
 
             preservation.preserveAt."/persistent".directories = [

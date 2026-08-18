@@ -2,7 +2,6 @@
   flake.nixosModules.javafxDev =
     { lib, pkgs, ... }:
     let
-      jdkWithFX = pkgs.openjdk.override { enableJavaFX = true; };
       libs = with pkgs; [
         openjfx
         mesa
@@ -28,7 +27,6 @@
     {
       environment = {
         systemPackages = [
-          #jdkWithFX
           pkgs.javaPackages.compiler.openjdk25
           pkgs.maven
         ]
