@@ -34,6 +34,7 @@
           neovim.enable = false;
           gtk.enable = false;
           obsidian.enable = false;
+          ghostty.enable = false;
         };
 
         cursor = {

@@ -36,18 +36,28 @@
         thermald.enable = true;
       };
 
-      home-manager.users.${userconf.username}.imports = [ self.homeModules.udiskie ];
+      home-manager.users.${userconf.username}.imports = [ self.homeModules.desktop ];
     };
 
-  flake.homeModules.udiskie.services.udiskie = {
-    enable = true;
-    automount = true;
-    settings = {
-      program_options = {
-        udisks_version = 2;
+  flake.homeModules.desktop = { pkgs, ... }: {
+
+    home.packages = with pkgs; [
+      spotify
+      discord
+      prismlauncher
+      element-desktop
+      onlyoffice-desktopeditors
+    ];
+
+    services.udiskie = {
+      enable = true;
+      automount = true;
+      settings = {
+        program_options = {
+          udisks_version = 2;
+        };
+        icon_names.media = [ "media-optical" ];
       };
-      icon_names.media = [ "media-optical" ];
     };
-
   };
 }
