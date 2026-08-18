@@ -32,7 +32,6 @@
           neovim.enable = false;
           firefox.profileNames = [ "default" ];
           gtk.enable = false;
-
         };
 
         cursor = {
