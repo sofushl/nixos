@@ -61,7 +61,11 @@ in
                 "Downloads"
                 ".config/mozilla"
                 ".config/discord"
+                ".config/Element"
                 ".config/spotify"
+                ".config/onlyoffice"
+                ".local/state/onlyoffice"
+                ".local/share/PrismLauncher/"
                 ".claude"
               ];
 
