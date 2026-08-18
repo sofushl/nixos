@@ -29,9 +29,11 @@
         };
 
         targets = {
-          neovim.enable = false;
           firefox.profileNames = [ "default" ];
+
+          neovim.enable = false;
           gtk.enable = false;
+          obsidian.enable = false;
         };
 
         cursor = {

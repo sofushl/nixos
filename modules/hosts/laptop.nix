@@ -49,6 +49,7 @@ in
             home-manager.users.${userconf.username}.imports = with self.homeModules; [
               firefox
               rclone
+              obsidian
             ];
 
             preservation.preserveAt."/persistent".directories = [
