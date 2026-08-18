@@ -6,12 +6,14 @@ Dendritic flake-parts + import tree based config, should be cleaner and more man
 
 [base.nix](./modules/base.nix) is universal configuration across all hosts, sets up essential and QoL system configuration such as enabling nvim, git and ssh.
 
-[user.nix](./modules/user.nix) sets up userspace and home-manager for one user selected in the active host module. (Also essential and universal across all hosts)
+[environment.nix](./modules/environment.nix) installs universally used terminal applications and other system packages, as well as declaring useful shell aliases. 
 
 [options.nix](./modules/options.nix) enables the config to include multiple homeModules. 
 
-#### [environment](./modules/environment/README.md)
-Essential configuration of system, session and environment.
+[user.nix](./modules/user.nix) sets up userspace and home-manager for one user selected in the active host module. (Also essential and universal across all hosts)
+
+#### [develop](./modules/develop/README.md)
+Declaration of dependencies, tools installation and development libraries.
 
 #### [hosts](./modules/hosts/README.md)
 Host machine configurations, including special configs and presets for desktop setups.
@@ -22,6 +24,8 @@ Home manager based program configuration.
 #### [services](./modules/services/README.md)
 Services and programs configured with nixosModules for various purposes.
 
+#### [system](./modules/system/README.md)
+Essential configuration of system, session and environment.
 
 ### Configuration
 

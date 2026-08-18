@@ -1,4 +1,4 @@
-{ self, ... }: {
+{ self, inputs, ... }: {
   flake.nixosModules.user =
     {
       userconf,
@@ -6,6 +6,8 @@
       ...
     }:
     {
+      imports = [ inputs.home-manager.nixosModules.home-manager ];
+
       home-manager = {
         useGlobalPkgs = false;
         useUserPackages = true;
@@ -32,8 +34,6 @@
         };
 
         mutableUsers = false;
-
-        users.root.hashedPassword = userconf.pinhash;
       };
     };
 
@@ -53,7 +53,7 @@
         homeDirectory = "/home/${userconf.username}";
         shellAliases = {
           home-switch = ''
-            git -C /${userconf.path} add -A
+            git -C /${userconf.path} add -N -A
             nix run nixpkgs#home-manager -- switch --flake /${userconf.path}#${userconf.host} -b back
           '';
 
@@ -87,5 +87,4 @@
         };
       };
     };
-
 }
