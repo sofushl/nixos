@@ -29,6 +29,7 @@
           serverid = 1;
 
           log_type = "file";
+          trusted_proxies = [ "192.168.1.1" ];
         };
 
         phpOptions = {
