@@ -39,6 +39,11 @@
     in
     {
       xdg = {
+        userDirs = {
+          enable = true;
+          createDirectories = false;
+        };
+
         enable = true;
 
         portal = {
