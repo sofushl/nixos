@@ -65,6 +65,14 @@ map("n", "fg", function()
 	Snacks.picker.grep()
 end, { desc = "Grep" })
 
+map("n", "fn", function()
+	Snacks.picker.grep_buffers()
+end, { desc = "Lines" })
+
+map("n", "fl", function()
+	Snacks.picker.lines()
+end, { desc = "Lines" })
+
 map("n", "fb", function()
 	Snacks.picker.buffers()
 end, { desc = "Buffers" })
