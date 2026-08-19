@@ -55,20 +55,19 @@ in
               };
               scale = 1.25;
             };
-            "DP-2" = {
-              scale = 1;
+
+            "DP-2".scale = 1.2;
+
+            "HDMI-A-1".scale = 2;
+
+            "DP-8".position = {
+              x = 1536;
+              y = 0;
             };
-            "DP-8" = {
-              position = {
-                x = 1536;
-                y = 0;
-              };
-            };
-            "DP-9" = {
-              position = {
-                x = 3456;
-                y = 0;
-              };
+
+            "DP-9".position = {
+              x = 3456;
+              y = 0;
             };
           };
 
