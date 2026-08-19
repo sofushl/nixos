@@ -25,7 +25,7 @@ in
       openssh
 
       icedDev
-      javafxDev
+      javafxlib
       micropython
 
       inputs.nixos-wsl.nixosModules.default
