@@ -40,6 +40,13 @@
     };
 
   flake.homeModules.desktop = { pkgs, ... }: {
+    xdg = {
+      enable = true;
+      userDirs = {
+        enable = true;
+        createDirectories = false;
+      };
+    };
 
     home.packages = with pkgs; [
       spotify

@@ -23,10 +23,11 @@ in
     };
 
     modules = with self.homeModules; [
+      base
       user
 
       niri
-
+      desktop
       dev
       firefox
 

@@ -51,40 +51,16 @@
         username = userconf.username;
         stateVersion = userconf.state;
         homeDirectory = "/home/${userconf.username}";
-        shellAliases = {
-          home-switch = ''
-            git -C /${userconf.path} add -N -A
-            nix run nixpkgs#home-manager -- switch --flake /${userconf.path}#${userconf.host} -b back
-          '';
-
-          nix-clear = ''
-            nix-collect-garbage -d
-            nh clean all
-            nix store optimise
-            sudo fstrim -av
-          '';
-
-          home-pull = ''
-            git -C /${userconf.path} pull
-            home-switch
-          '';
-
-          home-manager = "home-manager --flake /${userconf.path}";
-        };
       };
 
-      programs = {
-        nh = {
-          enable = true;
-          flake = "/${userconf.path}";
+      programs.nh = {
+        enable = true;
+        flake = "/${userconf.path}";
 
-          clean = {
-            enable = true;
-          };
-        };
-        home-manager = {
+        clean = {
           enable = true;
         };
       };
+
     };
 }
