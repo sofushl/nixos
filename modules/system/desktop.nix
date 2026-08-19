@@ -54,6 +54,8 @@
       prismlauncher
       element-desktop
       onlyoffice-desktopeditors
+      ripes
+      postman
     ];
 
     services.udiskie = {
