@@ -60,6 +60,7 @@
       fzf
       imagemagick
       ast-grep
+      ripes
 
       # Languages
       lua

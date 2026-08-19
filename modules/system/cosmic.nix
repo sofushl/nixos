@@ -38,23 +38,10 @@
       opt = ron "optional";
     in
     {
-      xdg = {
-        userDirs = {
-          enable = true;
-          createDirectories = false;
-        };
-
+      xdg.portal = {
         enable = true;
-
-        portal = {
-          enable = true;
-          extraPortals = [
-            pkgs.xdg-desktop-portal-cosmic
-            pkgs.xdg-desktop-portal-wlr
-          ];
-
-          config.common.default = "cosmic";
-        };
+        extraPortals = [ pkgs.xdg-desktop-portal-cosmic ];
+        config.common.default = "cosmic";
       };
 
       wayland.desktopManager.cosmic = {
