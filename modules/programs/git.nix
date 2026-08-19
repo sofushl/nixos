@@ -31,7 +31,6 @@
             p = "push";
           };
         };
-
       };
 
       # REQUIRES PERSISTENT "./config/gh/hosts.yml"
@@ -53,6 +52,18 @@
         };
 
       };
+    };
+
+    home.shellAliases = {
+      "clone" = "git clone";
+      "push" = "git push";
+      "commit" = "git commit -m";
+      "add" = "git add -A";
+      "status" = "git status";
+      "stash" = "git stash";
+      "pop" = "git stash pop";
+      "pull" = "git pull";
+      "diff" = "git diff";
     };
   };
 }
