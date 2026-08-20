@@ -54,6 +54,7 @@
       prismlauncher
       element-desktop
       onlyoffice-desktopeditors
+      thonny
       ripes
       postman
     ];

@@ -35,6 +35,8 @@
           gtk.enable = false;
           obsidian.enable = false;
           ghostty.enable = false;
+          yazi.enable = false;
+          mako.enable = false;
         };
 
         cursor = {
