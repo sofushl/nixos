@@ -9,12 +9,13 @@
       ...
     }:
     {
-      home-manager.users.${userconf.username}.imports = [
-        self.homeModules.niri
+      home-manager.users.${userconf.username}.imports = with self.homeModules; [
+        niri
       ];
-      environment.systemPackages = [
-        pkgs.wezterm
-        pkgs.hyprlock
+
+      environment.systemPackages = with pkgs; [
+        wezterm
+        hyprlock
       ];
 
       programs.niri.enable = true;
@@ -51,13 +52,43 @@
         pkgs.writeShellScriptBin "my-menu" ''
           exec ${pkgs.lib.getExe pkgs.wlr-which-key} ${configFile}
         '';
+
+      term = "ghostty";
     in
     {
 
-      imports = [
+      imports = with self.homeModules; [
         inputs.niri.homeModules.niri
-        self.homeModules.waybar
+        waybar
+        ghostty
       ];
+
+      services.mako = {
+        enable = true;
+        settings = {
+          "actionable=true" = {
+            anchor = "top-left";
+          };
+          actions = true;
+          anchor = "top-right";
+          background-color = "#1E1E1E";
+          text-color = "#E3E0E0";
+          border-color = "#DC6666";
+          progress-color = "over #DC6666";
+          border-size = 2;
+          border-radius = 0;
+          default-timeout = 0;
+          font = "monospace 10";
+          height = 100;
+          icons = true;
+          ignore-timeout = false;
+          layer = "top";
+          margin = 10;
+          padding = 10;
+          markup = true;
+          width = 300;
+        };
+      };
 
       xdg = {
         enable = true;
@@ -200,7 +231,7 @@
             { command = [ "waybar" ]; }
             { command = [ "sunsetr" ]; }
             { command = [ "hyprlock" ]; }
-            { command = [ "nextcloud" ]; }
+            { command = [ "mako" ]; }
           ];
 
           hotkey-overlay = {
@@ -226,25 +257,25 @@
 
           binds = {
             # Core apps
-            "Mod+T".action.spawn = [ "wezterm" ];
-            "Mod+Return".action.spawn = [ "wezterm" ];
-            "Mod+C".action.spawn = [ "wezterm" ];
+            "Mod+T".action.spawn = [ term ];
+            "Mod+Return".action.spawn = [ term ];
+            "Mod+C".action.spawn = [ term ];
             "Mod+Space".action.spawn = [ "fuzzel" ];
             "Mod+R".action.spawn = [ "fuzzel" ];
 
             # Personal apps
             "Mod+Shift+T".action.spawn = [
-              "wezterm"
+              term
               "-e"
               "yazi"
             ];
             "Mod+D".action.spawn = [
-              "wezterm"
+              term
               "-e"
               "yazi"
             ];
             "Mod+E".action.spawn = [
-              "wezterm"
+              term
               "-e"
               "yazi"
             ];
@@ -254,7 +285,7 @@
               (pkgs.lib.getExe (mkMenu [
                 {
                   key = "a";
-                  desc = "All";
+                  desc = "Launcher";
                   cmd = (lib.getExe pkgs.fuzzel);
                 }
                 {
@@ -269,13 +300,18 @@
                 }
                 {
                   key = "f";
-                  desc = "Firefox";
-                  cmd = (lib.getExe pkgs.firefox);
+                  desc = "Onlyoffice";
+                  cmd = (lib.getExe pkgs.onlyoffice-desktopeditors);
+                }
+                {
+                  key = "g";
+                  desc = "Element";
+                  cmd = (lib.getExe pkgs.element-desktop);
                 }
                 {
                   key = "h";
-                  desc = "Wezterm";
-                  cmd = (lib.getExe pkgs.wezterm);
+                  desc = "Postman";
+                  cmd = (lib.getExe pkgs.postman);
                 }
                 {
                   key = "k";
