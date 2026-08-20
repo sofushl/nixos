@@ -8,6 +8,7 @@
         window-padding-y = 0;
         window-show-tab-bar = "auto";
         gtk-titlebar = false;
+        gtk-wide-tabs = false;
         confirm-close-surface = false;
         adjust-cell-height = "-10%";
 
