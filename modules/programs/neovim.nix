@@ -40,6 +40,7 @@
           claudecode-nvim
 
           render-markdown-nvim
+          typst-preview-nvim
 
           vscode-nvim
         ];
