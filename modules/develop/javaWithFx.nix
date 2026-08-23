@@ -13,6 +13,8 @@
       environment.systemPackages = with pkgs; [
         scenebuilder
         maven
+        jetbrains.idea
+        eclipses.eclipse-java
       ];
     };
 }
