@@ -12,6 +12,11 @@
       programs.claude-code = {
         enable = true;
         package = pkgs.claude-code;
+
+        mcpServers.nixos = {
+          type = "stdio";
+          command = lib.getExe pkgs.mcp-nixos;
+        };
       };
 
       home.packages = [ pkgs.claude-monitor ];
