@@ -2,7 +2,7 @@
   flake.homeModules.waybar =
     { pkgs, ... }:
     let
-      term = "wezterm";
+      term = "kitty";
     in
     {
       programs.waybar = {
@@ -58,8 +58,8 @@
 
             backlight = {
               format = "LUX {percent}%";
-              on-click = "hyprlock";
-              min-brightness = 0.01;
+              on-click = "sunsetr stop";
+              min-brightness = 0.02;
               scroll-step = 0.1;
             };
 
