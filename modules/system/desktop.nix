@@ -36,7 +36,10 @@
         thermald.enable = true;
       };
 
-      home-manager.users.${userconf.username}.imports = [ self.homeModules.desktop ];
+      home-manager.users.${userconf.username}.imports = with self.homeModules; [
+        desktop
+        kitty
+      ];
     };
 
   flake.homeModules.desktop = { pkgs, ... }: {
