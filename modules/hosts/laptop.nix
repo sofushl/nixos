@@ -58,7 +58,10 @@ in
 
             preservation.preserveAt."/persistent".users.${userconf.username} = {
               directories = [
+                "Desktop"
+                "Documents"
                 "Downloads"
+                "Public"
                 ".config/mozilla"
                 ".config/discord"
                 ".config/Element"
