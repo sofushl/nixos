@@ -96,7 +96,14 @@
       vscode-langservers-extracted
       tailwindcss-language-server
       yaml-language-server
+      asm-lsp
     ];
+
+    home.file.".config/asm-lsp/.asm-lsp.toml".text = ''
+      [default_config]
+      assembler = "go"
+      instruction_set = "riscv"
+    '';
   };
 
 }
