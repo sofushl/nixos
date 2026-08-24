@@ -4,6 +4,7 @@ vim.g.maplocalleader = " "
 -- LSP enabling
 vim.lsp.enable({
 	"python",
+	"asm",
 	"nix",
 	"rust",
 	"java",
