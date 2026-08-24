@@ -25,17 +25,25 @@ in
     modules = with self.homeModules; [
       base
       user
-
+      kitty
       niri
       desktop
       dev
       firefox
 
       {
+        home.packages = with pkgs; [ teams-for-linux ];
+
         programs.niri.settings = {
 
           spawn-at-startup = lib.mkForce [
             { command = [ "waybar" ]; }
+            {
+              command = [
+                "teams-for-linux"
+                "--no-sandbox"
+              ];
+            }
           ];
 
           binds = {
@@ -71,23 +79,22 @@ in
               y = 0;
             };
           };
-
         };
+
         home.shellAliases =
           let
-            launcher = "/home/soli/Workspace/launcher/";
-            shared = "/home/soli/Workspace/shared/";
+            dir = "/home/soli/Desktop/";
           in
           {
             "launch" = ''
-              sudo chown root:root /home/soli/Workspace/launcher/node_modules/electron/dist/chrome-sandbox
-              sudo chmod 4755 /home/soli/Workspace/launcher/node_modules/electron/dist/chrome-sandbox
-              ${launcher}node_modules/electron/dist/electron  ${launcher} --ozone-platform=wayland --enable-features=UseOzonePlatform
+              sudo chown root:root ${dir}launcher/node_modules/electron/dist/chrome-sandbox
+              sudo chmod 4755 ${dir}launcher/node_modules/electron/dist/chrome-sandbox
+              ${dir}launcher/node_modules/electron/dist/electron  ${dir}launcher --ozone-platform=wayland --enable-features=UseOzonePlatform
             '';
 
             "pack" = ''
-              tarball=$(cd ${shared} && npm pack --pack-destination ${shared} --ignore-scripts | grep -E '\.tgz$')
-              npm i --save-dev "${shared}$tarball"
+              tarball=$(cd ${dir}shared && npm pack --pack-destination ${dir}shared --ignore-scripts | grep -E '\.tgz$')
+              npm i --save-dev "${dir}shared$tarball"
               npm run build:dev
             '';
 

@@ -14,7 +14,6 @@
       ];
 
       environment.systemPackages = with pkgs; [
-        wezterm
         hyprlock
       ];
 
@@ -53,14 +52,14 @@
           exec ${pkgs.lib.getExe pkgs.wlr-which-key} ${configFile}
         '';
 
-      term = "ghostty";
+      term = "kitty";
     in
     {
 
       imports = with self.homeModules; [
         inputs.niri.homeModules.niri
         waybar
-        ghostty
+        kitty
       ];
 
       services.mako = {
@@ -97,7 +96,6 @@
           "sunsetr/sunsetr.toml".source = ../../dotfiles/sunsetr.toml;
           "fuzzel/fuzzel.ini".source = ../../dotfiles/fuzzel.ini;
           "hypr/hyprlock.conf".source = ../../dotfiles/hyprlock.conf;
-          "wezterm/wezterm.lua".source = ../../dotfiles/wezterm.lua;
         };
 
         portal = {
