@@ -1,29 +1,39 @@
 {
-  flake.homeModules.kitty = {
+  flake.homeModules.kitty = { pkgs, ... }: {
+
     programs.kitty = {
       enable = true;
 
-      settings = {
-        # window
-        hide_window_decorations = true;
-        window_padding_width = "0 4";
-        confirm_os_window_close = 0;
-        adjust_line_height = "-10%";
+      shellIntegration.enableBashIntegration = true;
 
-        # tab bar
+      font.name = "JetBrainsMonoNL NFM Medium";
+      font.size = 12;
+
+      settings = {
+        hide_window_decorations = true;
+        window_padding_width = "0 2";
+        confirm_os_window_close = 0;
+
+        modify_font = "cell_height 90%";
+
         tab_bar_style = "powerline";
         tab_bar_min_tabs = 2;
+        tab_bar_edge = "top";
 
-        # scrollback / misc
         enable_audio_bell = false;
 
-        # colors
         background = "#1E1E1E";
         foreground = "#E3E0E0";
         cursor = "#DC6666";
         cursor_text_color = "#1E1E1E";
         selection_background = "#DC6666";
         selection_foreground = "#1E1E1E";
+
+        active_tab_background = "#1E1E1E";
+        active_tab_foreground = "#E3E0E0";
+        inactive_tab_background = "#141414";
+        inactive_tab_foreground = "#7A7A7A";
+        tab_bar_background = "#141414";
 
         color0 = "#1E1E1E";
         color1 = "#DC6666";
