@@ -67,6 +67,8 @@
         settings = {
           "actionable=true" = {
             anchor = "top-left";
+            default-timeout = 3000;
+            ignore-timeout = "1";
           };
           actions = true;
           anchor = "top-right";
@@ -76,11 +78,11 @@
           progress-color = "over #DC6666";
           border-size = 2;
           border-radius = 0;
-          default-timeout = 0;
+          default-timeout = 3000;
           font = "monospace 10";
           height = 100;
           icons = true;
-          ignore-timeout = false;
+          ignore-timeout = "1";
           layer = "top";
           margin = 10;
           padding = 10;
