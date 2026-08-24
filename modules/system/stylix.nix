@@ -1,6 +1,11 @@
 { inputs, ... }: {
   flake.homeModules.stylix =
-    { pkgs, config, ... }:
+    {
+      userconf,
+      pkgs,
+      config,
+      ...
+    }:
     {
 
       imports = [ inputs.stylix.homeModules.stylix ];
@@ -9,24 +14,7 @@
       stylix = {
         enable = true;
         polarity = "dark";
-        base16Scheme = {
-          base00 = "1e1e1e"; # bg
-          base01 = "252526"; # panel/lighter bg
-          base02 = "264f78"; # selection
-          base03 = "6a9955"; # comments
-          base04 = "808080";
-          base05 = "d4d4d4"; # default fg
-          base06 = "e7e7e7";
-          base07 = "ffffff";
-          base08 = "f44747"; # red / errors
-          base09 = "b5cea8"; # numbers
-          base0A = "dcdcaa"; # functions / yellow
-          base0B = "ce9178"; # strings
-          base0C = "4ec9b0"; # types / cyan
-          base0D = "569cd6"; # keywords / blue
-          base0E = "c586c0"; # control keywords / magenta
-          base0F = "d16d9e";
-        };
+        base16Scheme = userconf.theme-vscode.alt;
 
         targets = {
           firefox.profileNames = [ "default" ];
@@ -36,6 +24,8 @@
           obsidian.enable = false;
           mako.enable = false;
           kitty.enable = false;
+          fuzzel.enable = false;
+          hyprlock.enable = false;
         };
 
         cursor = {

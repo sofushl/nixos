@@ -12,6 +12,7 @@ let
   };
   homeconf = import ../../lib/soli.nix;
   sshkeys = import ../../lib/sshkeys.nix;
+  theme = import ../../lib/theme.nix;
 in
 {
   flake.homeConfigurations.soli = inputs.home-manager.lib.homeManagerConfiguration {
@@ -19,7 +20,7 @@ in
 
     extraSpecialArgs = {
       inherit inputs;
-      userconf = homeconf // sshkeys;
+      userconf = homeconf // theme // sshkeys;
     };
 
     modules = with self.homeModules; [
