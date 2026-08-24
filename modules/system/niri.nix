@@ -13,10 +13,6 @@
         niri
       ];
 
-      environment.systemPackages = with pkgs; [
-        hyprlock
-      ];
-
       programs.niri.enable = true;
 
       # Fallback for xwayland-sattelite
@@ -27,20 +23,22 @@
     {
       pkgs,
       lib,
+      userconf,
       ...
     }:
 
     let
+      c = userconf.theme;
       mkMenu =
         menu:
         let
           configFile = pkgs.writeText "config.yaml" (
             pkgs.lib.generators.toYAML { } {
               anchor = "center";
-              background = "#1E1E1E";
-              color = "#E3E0E0";
+              background = c.bg.primary;
+              color = c.text.primary;
 
-              border = "#DC6666";
+              border = c.primary;
               border_width = 5;
               padding = 10;
 
@@ -60,6 +58,7 @@
         inputs.niri.homeModules.niri
         waybar
         kitty
+        hyprlock
       ];
 
       services.mako = {
@@ -72,10 +71,10 @@
           };
           actions = true;
           anchor = "top-right";
-          background-color = "#1E1E1E";
-          text-color = "#E3E0E0";
-          border-color = "#DC6666";
-          progress-color = "over #DC6666";
+          background-color = c.bg.primary;
+          text-color = c.text.primary;
+          border-color = c.primary;
+          progress-color = "over ${c.primary}";
           border-size = 2;
           border-radius = 0;
           default-timeout = 3000;
@@ -97,7 +96,6 @@
         configFile = {
           "sunsetr/sunsetr.toml".source = ../../dotfiles/sunsetr.toml;
           "fuzzel/fuzzel.ini".source = ../../dotfiles/fuzzel.ini;
-          "hypr/hyprlock.conf".source = ../../dotfiles/hyprlock.conf;
         };
 
         portal = {
@@ -117,9 +115,9 @@
             extraConfig.gtk-application-prefer-dark-theme = true;
 
             extraCss = ''
-              @define-color accent_color #DC6666;
-              @define-color accent_bg_color #DC6666;
-              @define-color accent_fg_color #ffffff;
+              @define-color accent_color ${c.primary}; 
+              @define-color accent_bg_color ${c.bg.selected};
+              @define-color accent_fg_color ${c.text.primary};
             '';
           };
         in
@@ -163,7 +161,7 @@
         settings = {
           "org/gnome/desktop/interface" = {
             color-scheme = "prefer-dark";
-            accent-color = "red";
+            accent-color = c.primary;
           };
         };
       };
@@ -206,8 +204,8 @@
             };
             focus-ring = {
               width = 2;
-              active.color = "#DC6666";
-              inactive.color = "#505050";
+              active.color = c.primary;
+              inactive.color = c.inactive;
             };
             shadow = {
               enable = true;

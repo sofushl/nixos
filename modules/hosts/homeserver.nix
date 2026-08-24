@@ -6,6 +6,7 @@ let
   serverconf = import ../../lib/server.nix { inherit pkgs; };
   sshkeys = import ../../lib/sshkeys.nix;
   secrets = import /etc/nixos/secrets.nix;
+  theme = import ../../lib/theme.nix;
 in
 {
   flake.nixosConfigurations.T2000 = inputs.nixpkgs.lib.nixosSystem {
@@ -13,7 +14,7 @@ in
 
     specialArgs = {
       inherit inputs;
-      userconf = userconf // sysconf // sshkeys // secrets // serverconf;
+      userconf = userconf // sysconf // sshkeys // theme // secrets // serverconf;
     };
 
     modules = with self.nixosModules; [
