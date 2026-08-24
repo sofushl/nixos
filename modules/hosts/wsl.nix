@@ -8,6 +8,7 @@ let
   userconf = import ../../lib/sofushl.nix;
   wslconf = import ../../lib/wsl.nix;
   sshkeys = import ../../lib/sshkeys.nix;
+  theme = import ../../lib/theme.nix;
 in
 {
   flake.nixosConfigurations.${wslconf.host} = inputs.nixpkgs.lib.nixosSystem {
@@ -15,7 +16,7 @@ in
 
     specialArgs = {
       inherit inputs;
-      userconf = userconf // wslconf // sshkeys;
+      userconf = userconf // wslconf // theme // sshkeys;
     };
 
     modules = with self.nixosModules; [

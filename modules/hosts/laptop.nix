@@ -12,6 +12,7 @@ let
         edupass = "";
         networks = { };
       };
+  theme = import ../../lib/theme.nix;
 in
 {
   flake.nixosConfigurations = builtins.mapAttrs (
@@ -21,7 +22,7 @@ in
 
       specialArgs = {
         inherit inputs;
-        userconf = sysconf // userconf // sshkeys // secrets;
+        userconf = sysconf // userconf // theme // sshkeys // secrets;
       };
 
       modules =

@@ -36,6 +36,7 @@
           tmux-nvim
           yazi-nvim
           snacks-nvim
+          nvim-highlight-colors
 
           claudecode-nvim
 
