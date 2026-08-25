@@ -77,6 +77,7 @@ in
 
                 ".local/share/PrismLauncher/"
 
+                ".vscode"
                 ".claude"
                 ".m2"
               ];
