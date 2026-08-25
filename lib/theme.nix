@@ -30,7 +30,7 @@ rec {
     bg = {
       primary = n.black;
       secondary = b.black;
-      selected = n.red;
+      selected = primary;
     };
 
     text = {
