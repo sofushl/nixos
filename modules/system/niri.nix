@@ -160,7 +160,7 @@
         settings = {
           "org/gnome/desktop/interface" = {
             color-scheme = "prefer-dark";
-            accent-color = c.primary;
+            accent-color = "red";
           };
         };
       };
