@@ -1,6 +1,9 @@
 {
   flake.nixosModules.javaWithFx =
     { lib, pkgs, ... }:
+
+    # RECCOMENDED PRESERVATION OF "$HOME/.m2" "$HOME/.local/share/JetBrains" "$HOME/.config/JetBrains"
+
     let
       jdkWithFX = pkgs.openjdk.override { enableJavaFX = true; };
 
@@ -18,11 +21,11 @@
       environment.variables.GSETTINGS_SCHEMA_DIR = lib.mkDefault (map pkgs.glib.getSchemaPath schemaPkgs);
 
       environment.systemPackages = with pkgs; [
-        maven
-        gsettings-desktop-schemas
         scenebuilder
         jetbrains.idea
-        eclipses.eclipse-java
+
+        maven
+        gsettings-desktop-schemas
 
         # libs
         mesa
