@@ -33,6 +33,8 @@ in
       firefox
 
       {
+        programs.hyprlock.enable = lib.mkForce false;
+
         home.packages = with pkgs; [ teams-for-linux ];
 
         programs.niri.settings = {
