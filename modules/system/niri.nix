@@ -50,15 +50,15 @@
           exec ${pkgs.lib.getExe pkgs.wlr-which-key} ${configFile}
         '';
 
-      term = "kitty";
+      term = userconf.terminal;
     in
     {
 
       imports = with self.homeModules; [
         inputs.niri.homeModules.niri
         waybar
-        kitty
         hyprlock
+        fuzzel
       ];
 
       services.mako = {
@@ -95,7 +95,6 @@
 
         configFile = {
           "sunsetr/sunsetr.toml".source = ../../dotfiles/sunsetr.toml;
-          "fuzzel/fuzzel.ini".source = ../../dotfiles/fuzzel.ini;
         };
 
         portal = {
