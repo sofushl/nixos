@@ -2,7 +2,7 @@
   flake.homeModules.waybar =
     { pkgs, userconf, ... }:
     let
-      term = "kitty";
+      term = userconf.terminal;
     in
     {
       programs.waybar = {

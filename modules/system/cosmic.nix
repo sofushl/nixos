@@ -12,9 +12,8 @@
       services.desktopManager.cosmic.xwayland.enable = true;
       services.displayManager.cosmic-greeter.enable = true;
 
-      home-manager.users.${userconf.username}.imports = [
-        self.homeModules.cosmic
-        self.homeModules.ghostty
+      home-manager.users.${userconf.username}.imports = with self.homeModules; [
+        cosmic
         inputs.cosmic-manager.homeManagerModules.cosmic-manager
       ];
 
@@ -31,7 +30,12 @@
     };
 
   flake.homeModules.cosmic =
-    { cosmicLib, pkgs, ... }:
+    {
+      cosmicLib,
+      pkgs,
+      userconf,
+      ...
+    }:
     let
       ron = cosmicLib.cosmic.mkRON;
       enum = ron "enum";
@@ -223,7 +227,7 @@
             key = "Super+Return";
             action = enum {
               variant = "Spawn";
-              value = [ "ghostty" ];
+              value = [ userconf.terminal ];
             };
             description = opt "Terminal";
           }

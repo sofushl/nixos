@@ -1,4 +1,6 @@
 rec {
+  terminal = "kitty";
+
   theme = pastelish-red;
 
   pastelish-red = rec {
