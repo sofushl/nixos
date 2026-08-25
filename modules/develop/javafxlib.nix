@@ -3,9 +3,12 @@
     { lib, pkgs, ... }:
     let
       libs = with pkgs; [
-        openjfx
+        javaPackages.compiler.openjdk21
+        openjfx21
+        maven
         mesa
         gtk3
+        gsettings-desktop-schemas
         glib
         libGL
         libglvnd
@@ -26,15 +29,13 @@
     in
     {
       environment = {
-        systemPackages = [
-          pkgs.javaPackages.compiler.openjdk25
-          pkgs.maven
-        ]
-        ++ libs;
+        systemPackages = libs ++ [ pkgs.gsettings-desktop-schemas ];
 
-        variables.JAVA_HOME = "${pkgs.javaPackages.compiler.openjdk25}";
-
-        sessionVariables.LD_LIBRARY_PATH = lib.makeLibraryPath libs;
+        variables = {
+          JAVA_HOME = "${pkgs.javaPackages.compiler.openjdk21}";
+          LD_LIBRARY_PATH = lib.makeLibraryPath libs;
+          GSETTINGS_SCHEMA_DIR = map pkgs.glib.getSchemaPath libs;
+        };
       };
       services.pipewire.jack.enable = lib.mkForce false;
 

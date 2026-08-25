@@ -63,14 +63,22 @@ in
                 "Documents"
                 "Downloads"
                 "Public"
+
                 ".config/mozilla"
                 ".config/discord"
                 ".config/Element"
                 ".config/spotify"
+
                 ".config/onlyoffice"
                 ".local/state/onlyoffice"
+
+                ".config/JetBrains"
+                ".local/share/JetBrains"
+
                 ".local/share/PrismLauncher/"
+
                 ".claude"
+                ".m2"
               ];
 
               files = [

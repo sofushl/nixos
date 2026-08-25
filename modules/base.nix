@@ -29,7 +29,7 @@
             "nix-command"
             "flakes"
           ];
-          sandbox = false;
+          sandbox = true;
           auto-optimise-store = true;
         };
       };
