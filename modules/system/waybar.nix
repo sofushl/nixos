@@ -1,6 +1,6 @@
 {
   flake.homeModules.waybar =
-    { pkgs, ... }:
+    { pkgs, userconf, ... }:
     let
       term = "kitty";
     in
@@ -99,7 +99,59 @@
           };
         };
 
-        style = builtins.readFile ../../dotfiles/waybar.css;
+        style =
+          let
+            c = userconf.theme;
+          in
+          ''
+            * {
+                border: none;
+                border-radius: 0;
+                font-family: JetbrainsMono Nerd Font;
+                font-size: 12px;
+                min-height: 0;
+                background: ${c.bg.primary};
+                color: ${c.text.primary};
+            }
+
+            window#waybar {
+                
+            }
+
+            #clock,
+            #memory,
+            #pulseaudio,
+            #backlight,
+            #network,
+            #battery,
+            #temperature,
+            #window {
+                padding: 0 5px;
+                margin: 1px 3px;
+            }
+
+            #pulseaudio,
+            #backlight,
+            #memory,
+            #network,
+            #battery,
+            #temperature {
+                border-bottom: 2px solid ${c.primary};
+                min-width: 30px;
+            }
+
+            #pulseaudio.muted,
+            #network.disabled,
+            #network.disconnected,
+            #network.linked,
+            #network.ethernet,
+            #battery.full {
+                color: ${c.text.selected};
+                background: ${c.bg.selected};
+            }
+
+          '';
+
       };
     };
 }
