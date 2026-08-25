@@ -95,7 +95,7 @@ in
 
             "pack" = ''
               tarball=$(cd ${dir}shared && npm pack --pack-destination ${dir}shared --ignore-scripts | grep -E '\.tgz$')
-              npm i --save-dev "${dir}shared$tarball"
+              npm i --save-dev "${dir}shared/$tarball"
               npm run build:dev
             '';
 
