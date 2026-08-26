@@ -8,6 +8,7 @@ require("conform").setup({
 		nix = { "nixfmt" },
 		kdl = { "kdlfmt" },
 		java = { "google-java-format" },
+		typst = { "typstyle" },
 	},
 	format_on_save = {
 		timeout_ms = 1000,

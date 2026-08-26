@@ -74,12 +74,13 @@ in
 
                 ".config/JetBrains"
                 ".local/share/JetBrains"
+                ".config/Code"
+                ".vscode"
+                ".m2"
 
                 ".local/share/PrismLauncher/"
 
-                ".vscode"
                 ".claude"
-                ".m2"
               ];
 
               files = [
