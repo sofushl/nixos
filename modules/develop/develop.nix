@@ -79,6 +79,7 @@
       black
       isort
       google-java-format
+      typstyle
 
       # LSP
       stylua
