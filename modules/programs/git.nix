@@ -64,6 +64,8 @@
       "pop" = "git stash pop";
       "pull" = "git pull";
       "diff" = "git diff";
+      "restore" = "git restore";
+      "restore-staged" = "git restore --staged";
     };
   };
 }
