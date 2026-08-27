@@ -22,7 +22,7 @@ map("n", "<leader>h", "<Cmd>BufferLineCyclePrev<CR>")
 map("n", "<leader>l", "<Cmd>BufferLineCycleNext<CR>")
 
 map("n", "gs", vim.lsp.buf.hover)
-map("n", "gd", vim.lsp.buf.definition)
+map("n", "gh", vim.diagnostic.open_float)
 
 -- claude
 map({ "n", "x" }, "<C-,>", "<cmd>ClaudeCodeFocus<cr>", { desc = "Claude" })
