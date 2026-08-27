@@ -20,7 +20,19 @@
         rustc
         cargo
         clippy
+        rust-analyzer
         rustlings
+
+        gcc
+        clang
+        clang-tools
+        cmake
+
+        asm-lsp
+
+        fd
+        fzf
+        ripgrep
       ];
 
       home-manager.users.${userconf.username}.imports = [ self.homeModules.dev ];
@@ -55,17 +67,16 @@
 
     home.packages = with pkgs; [
       # Tools
-      fd
       lazygit
-      fzf
       imagemagick
       ast-grep
+      lldpd
 
       # Languages
       lua
-      gcc
       nixd
       typescript
+      typst
 
       # Formatter
       nixfmt
@@ -80,24 +91,21 @@
       isort
       google-java-format
       typstyle
+      stylua
 
       # LSP
-      stylua
       pyright
       lua-language-server
       nil
-      rust-analyzer
       jdt-language-server
       typescript-language-server
-      lldpd
       ty
       taplo
-      clang-tools
       tinymist
       vscode-langservers-extracted
       tailwindcss-language-server
       yaml-language-server
-      asm-lsp
+      marksman
     ];
 
     home.file.".config/asm-lsp/.asm-lsp.toml".text = ''
