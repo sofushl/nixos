@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.micropython =
+  flake.nixosModules.python =
     { pkgs, ... }:
 
     let

@@ -29,19 +29,20 @@ in
         with self.nixosModules;
         [
           base
+          environment
           user
           disko
           preservation
-          develop
           openssh
-          hardware
           desktop
 
           # Development libraries
           icedDev
-          micropython
+          python
           javaWithFx
+          node
           rust
+          c
 
           # Services
           networkmanager
@@ -52,6 +53,7 @@ in
               firefox
               rclone
               obsidian
+              develop
             ];
 
             preservation.preserveAt."/persistent".directories = [
