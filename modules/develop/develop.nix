@@ -1,53 +1,6 @@
 { self, ... }:
-
 {
-  flake.nixosModules.develop =
-    { userconf, pkgs, ... }:
-    {
-      programs = {
-        npm = {
-          enable = true;
-          package = pkgs.nodejs_26;
-          npmrc = ''
-            prefix = ''${HOME}/.npm
-            init-license=MIT
-            color=true
-          '';
-        };
-      };
-
-      environment.systemPackages = with pkgs; [
-        gcc
-        clang
-        clang-tools
-        cmake
-
-        fd
-        fzf
-        ripgrep
-      ];
-
-      home-manager.users.${userconf.username}.imports = [ self.homeModules.dev ];
-    };
-
-  flake.homeModules.dev = { pkgs, ... }: {
-    programs = {
-      npm = {
-        enable = true;
-        package = pkgs.nodejs_26;
-        settings = {
-          color = true;
-          include = [
-            "dev"
-            "prod"
-          ];
-          init-license = "MIT";
-          prefix = "\${HOME}/.npm";
-        };
-      };
-      uv.enable = true;
-    };
-
+  flake.homeModules.develop = { pkgs, ... }: {
     imports = with self.homeModules; [
       neovim
       yazi

@@ -25,11 +25,12 @@ in
 
     modules = with self.homeModules; [
       base
+      environment
       user
       kitty
       niri
       desktop
-      dev
+      develop
       firefox
 
       {
@@ -103,7 +104,10 @@ in
 
           };
 
-        programs.npm.package = lib.mkForce pkgs.nodejs_22;
+        programs.npm = {
+          enable = true;
+          package = pkgs.nodejs_22;
+        };
       }
     ];
   };
