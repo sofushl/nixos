@@ -17,18 +17,10 @@
       };
 
       environment.systemPackages = with pkgs; [
-        rustc
-        cargo
-        clippy
-        rust-analyzer
-        rustlings
-
         gcc
         clang
         clang-tools
         cmake
-
-        asm-lsp
 
         fd
         fzf
@@ -106,6 +98,7 @@
       tailwindcss-language-server
       yaml-language-server
       marksman
+      asm-lsp
     ];
 
     home.file.".config/asm-lsp/.asm-lsp.toml".text = ''

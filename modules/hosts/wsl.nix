@@ -28,6 +28,7 @@ in
       icedDev
       javafxlib
       micropython
+      rust
 
       inputs.nixos-wsl.nixosModules.default
 

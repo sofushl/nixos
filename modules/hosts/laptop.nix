@@ -41,6 +41,7 @@ in
           icedDev
           micropython
           javaWithFx
+          rust
 
           # Services
           networkmanager
