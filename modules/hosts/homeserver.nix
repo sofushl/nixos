@@ -19,15 +19,16 @@ in
 
     modules = with self.nixosModules; [
       base
+      environment
       user
       disko
       preservation
-      develop
-      openssh
+
       hardware
       nvidia
 
       server
+      openssh
 
       nextcloudServer
       dnsUpdater
@@ -35,6 +36,10 @@ in
       ollama
 
       {
+        home-manager.users.${userconf.username}.imports = with self.homeModules; [
+          develop
+        ];
+
         preservation.preserveAt."/persistent".directories = [
           "/var/lib/"
           "/var/www"

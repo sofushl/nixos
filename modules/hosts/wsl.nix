@@ -21,23 +21,29 @@ in
 
     modules = with self.nixosModules; [
       base
+      environment
       user
-      develop
       openssh
 
       icedDev
       javafxlib
-      micropython
+      electron
+      python
+      node
       rust
+      c
 
       inputs.nixos-wsl.nixosModules.default
-
       {
         wsl = {
           enable = true;
           defaultUser = userconf.username;
           startMenuLaunchers = true;
         };
+
+        home-manager.users.${userconf.username}.imports = with self.homeModules; [
+          develop
+        ];
 
         home-manager.users.${userconf.username}.dconf.enable = lib.mkForce false;
       }

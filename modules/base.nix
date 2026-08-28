@@ -85,32 +85,6 @@
     }:
     {
 
-      home = {
-        shellAliases = {
-          home-switch = ''
-            git -C /${userconf.path} add -N -A
-            nix run nixpkgs#home-manager -- switch --flake /${userconf.path}#${userconf.host} -b back
-          '';
-
-          nix-clear = ''
-            nix-collect-garbage -d
-            nh clean all
-            nix store optimise
-            sudo fstrim -av
-          '';
-
-          home-pull = ''
-            git -C /${userconf.path} pull
-            home-switch
-          '';
-
-          home-manager = "home-manager --flake /${userconf.path}";
-        };
-        sessionVariables = {
-          NIXOS_OZONE_WL = "1";
-        };
-      };
-
       programs.home-manager = {
         enable = true;
       };
