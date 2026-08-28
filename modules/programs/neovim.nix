@@ -17,43 +17,41 @@
         ]
     );
 
-    programs = {
-      neovim = {
-        enable = true;
-        defaultEditor = true;
-        viAlias = true;
-        vimAlias = true;
-        vimdiffAlias = true;
-        waylandSupport = true;
+    programs.neovim = {
+      enable = true;
+      defaultEditor = true;
+      viAlias = true;
+      vimAlias = true;
+      vimdiffAlias = true;
+      waylandSupport = true;
 
-        plugins = with pkgs.vimPlugins; [
-          conform-nvim
-          blink-cmp
-          vim-test
+      plugins = with pkgs.vimPlugins; [
+        conform-nvim
+        blink-cmp
+        vim-test
 
-          lualine-nvim
-          bufferline-nvim
-          tmux-nvim
-          yazi-nvim
-          snacks-nvim
-          nvim-highlight-colors
+        lualine-nvim
+        bufferline-nvim
+        tmux-nvim
+        yazi-nvim
+        snacks-nvim
+        nvim-highlight-colors
 
-          claudecode-nvim
+        claudecode-nvim
 
-          render-markdown-nvim
-          typst-preview-nvim
+        render-markdown-nvim
+        typst-preview-nvim
 
-          vscode-nvim
-        ];
+        vscode-nvim
+      ];
 
-        coc.enable = false;
-        withPython3 = false;
-        withPerl = false;
-        withRuby = false;
-        withNodeJs = false;
+      coc.enable = false;
+      withPython3 = false;
+      withPerl = false;
+      withRuby = false;
+      withNodeJs = false;
 
-        initLua = builtins.readFile ../../dotfiles/nvim/init.lua;
-      };
+      initLua = builtins.readFile ../../dotfiles/nvim/init.lua;
     };
   };
 }

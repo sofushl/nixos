@@ -1,6 +1,5 @@
 {
   flake.nixosModules.micropython =
-    # ~/.config/home-manager/modules/python.nix (or inline in home.nix)
     { pkgs, ... }:
 
     let
@@ -8,19 +7,40 @@
         ps: with ps; [
           pip
           setuptools
+
           wheel
           virtualenv
           debugpy
+
+          matplotlib
+          numpy
+          pandas
+          numba
+
+          requests
+
+          pygame
+          seaborn
+
+          jupyter
+          ipykernel
+          ipywidgets
+          notebook
+
+          scikit-learn
+          statsmodels
+
+          keyboard
+          kernels
         ]
       );
     in
     {
-      environment.systemPackages = [
+      environment.systemPackages = with pkgs; [
         py
-        pkgs.mpremote # flash/repl/fs over USB-serial, the modern go-to
-        pkgs.esptool # if you ever touch ESP32/8266 boards too
-        pkgs.picotool # rp2 UF2/bootsel tooling
+        mpremote
+        esptool
+        picotool
       ];
-
     };
 }
