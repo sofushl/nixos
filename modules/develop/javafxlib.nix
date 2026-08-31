@@ -3,12 +3,14 @@
     { lib, pkgs, ... }:
     let
       libs = with pkgs; [
-        javaPackages.compiler.openjdk
+        javaPackages.compiler.openjdk25
         openjfx
         maven
-        mesa
+
         gtk3
         gsettings-desktop-schemas
+
+        mesa
         glib
         libGL
         libglvnd
@@ -24,7 +26,6 @@
         libxxf86vm
         libxfixes
         libxinerama
-        pipewire
       ];
     in
     {
@@ -32,7 +33,7 @@
         systemPackages = libs ++ [ pkgs.gsettings-desktop-schemas ];
 
         variables = {
-          JAVA_HOME = "${pkgs.javaPackages.compiler.openjdk}";
+          JAVA_HOME = "${pkgs.javaPackages.compiler.openjdk25}";
           LD_LIBRARY_PATH = lib.makeLibraryPath libs;
           GSETTINGS_SCHEMA_DIR = map pkgs.glib.getSchemaPath libs;
         };
