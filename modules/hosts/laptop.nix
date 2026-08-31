@@ -1,7 +1,7 @@
 { self, inputs, ... }:
 let
   homes = import ../../lib/homes.nix;
-  resolvehome = builtins.mapAttrs (_: h: homes.default // h) homes.username;
+  resolvehome = builtins.mapAttrs (_: h: homes.default // h) homes.homes;
   laptops = import ../../lib/laptops.nix;
   resolved = builtins.mapAttrs (_: h: laptops.default // h) laptops.hosts;
   sshkeys = import ../../lib/sshkeys.nix;
@@ -23,7 +23,7 @@ in
 
       specialArgs = {
         inherit inputs;
-        userconf = sysconf // resolvehome.${sysconf.username} // theme // sshkeys // secrets;
+        userconf = sysconf // resolvehome.laptop // theme // sshkeys // secrets;
       };
 
       modules =
@@ -50,7 +50,7 @@ in
           keyd
 
           {
-            home-manager.users.${userconf.username}.imports = with self.homeModules; [
+            home-manager.users.${resolvehome.laptop.username}.imports = with self.homeModules; [
               firefox
               rclone
               obsidian
@@ -61,7 +61,7 @@ in
               "/var/lib/bluetooth"
             ];
 
-            preservation.preserveAt."/persistent".users.${userconf.username} = {
+            preservation.preserveAt."/persistent".users.${sysconf.username} = {
               directories = [
                 "Desktop"
                 "Documents"

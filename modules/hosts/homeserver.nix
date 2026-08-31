@@ -1,7 +1,7 @@
 { self, inputs, ... }:
 let
   homes = import ../../lib/homes.nix;
-  resolvehome = builtins.mapAttrs (_: h: homes.default // h) homes.users;
+  resolvehome = builtins.mapAttrs (_: h: homes.default // h) homes.homes;
   homeconf = resolvehome.${sysconf.username};
   sysconf = import ../../lib/T2000.nix;
   pkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";
