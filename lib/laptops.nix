@@ -1,7 +1,12 @@
+let
+  homes = import ./homes.nix;
+  resolvehome = builtins.mapAttrs (_: h: homes.default // h) homes.homes;
+  homeconf = resolvehome.laptop;
+in
 {
   default = {
-    username = "sofushl";
-    displayname = "Sofus Lind";
+    username = homeconf.username;
+    displayname = homeconf.displayname;
     pinhash = "$y$j9T$/EEjqWS9HnfLJknQuxtzY.$jkG/dUYohj2VtSoacz4dbFhaEjqt61DEVfRDPD48so2";
     key = null;
 
