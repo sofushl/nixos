@@ -93,7 +93,7 @@
           home-switch
         '';
 
-        home-manager = "home-manager --flake /${userconf.path}";
+        home-manager = "home-manager --flake /${userconf.host}";
       };
       sessionVariables = {
         NIXOS_OZONE_WL = "1";

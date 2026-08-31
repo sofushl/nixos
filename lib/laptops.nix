@@ -1,7 +1,11 @@
 {
   default = {
-    host = "init";
+    username = "sofushl";
+    displayname = "Sofus Lind";
+    pinhash = "$6$INVALID$PLACEHOLDER";
     key = null;
+
+    host = "init";
     path = "/home/sofushl/nixos";
     state = "26.11";
     wifiboard = "eth0";

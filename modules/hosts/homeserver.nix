@@ -1,6 +1,8 @@
 { self, inputs, ... }:
 let
-  userconf = import ../../lib/sofushl.nix;
+  homes = import ../../lib/homes.nix;
+  resolvehome = builtins.mapAttrs (_: h: homes.default // h) homes.users;
+  homeconf = resolvehome.${sysconf.username};
   sysconf = import ../../lib/T2000.nix;
   pkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";
   serverconf = import ../../lib/server.nix { inherit pkgs; };
@@ -14,7 +16,7 @@ in
 
     specialArgs = {
       inherit inputs;
-      userconf = userconf // sysconf // sshkeys // theme // secrets // serverconf;
+      userconf = homeconf // sysconf // sshkeys // theme // secrets // serverconf;
     };
 
     modules = with self.nixosModules; [
