@@ -80,6 +80,5 @@
         };
         useDHCP = lib.mkForce false;
       };
-      home-manager.users.${userconf.username}.dconf.enable = lib.mkForce false;
     };
 }
