@@ -7,7 +7,7 @@
 let
   homes = import ../../lib/homes.nix;
   resolvehome = builtins.mapAttrs (_: h: homes.default // h) homes.homes;
-  homeconf = resolvehome.${wslconf.username};
+  homeconf = resolvehome.headless;
   wslconf = import ../../lib/wsl.nix;
   sshkeys = import ../../lib/sshkeys.nix;
   theme = import ../../lib/theme.nix;
@@ -39,16 +39,19 @@ in
       {
         wsl = {
           enable = true;
-          defaultUser = userconf.username;
+          defaultUser = homeconf.username;
           startMenuLaunchers = true;
         };
 
-        home-manager.users.${userconf.username}.imports = with self.homeModules; [
-          develop
+        home-manager.users.${homeconf.headless}.imports = with self.homeModules; [
+          headless
         ];
-
-        home-manager.users.${userconf.username}.dconf.enable = lib.mkForce false;
       }
     ];
+  };
+
+  flake.homeModules.headless = {
+    dconf.enable = lib.mkForce false;
+    imports = [ self.homeModules.develop ];
   };
 }
