@@ -6,7 +6,7 @@
 }:
 let
   homes = import ../../lib/homes.nix;
-  resolvehome = builtins.mapAttrs (_: h: homes.default // h) homes.username;
+  resolvehome = builtins.mapAttrs (_: h: homes.default // h) homes.homes;
   homeconf = resolvehome.${wslconf.username};
   wslconf = import ../../lib/wsl.nix;
   sshkeys = import ../../lib/sshkeys.nix;

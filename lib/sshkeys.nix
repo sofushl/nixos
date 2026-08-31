@@ -7,7 +7,7 @@ let
   laptopkeys = builtins.filter (k: k != null) (map (h: h.key) (builtins.attrValues resolvelaptop));
 
   homes = import ./homes.nix;
-  resolvehome = builtins.mapAttrs (_: h: homes.default // h) homes.username;
+  resolvehome = builtins.mapAttrs (_: h: homes.default // h) homes.homes;
   homekeys = builtins.filter (k: k != null) (map (h: h.key) (builtins.attrValues resolvehome));
 in
 rec {
