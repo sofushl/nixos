@@ -28,8 +28,10 @@
 
           serverid = 1;
 
-          log_type = "file";
+          log_type = "systemd";
           trusted_proxies = [ "192.168.1.1" ];
+
+          overwriteprotocol = "https";
         };
 
         phpOptions = {
@@ -50,13 +52,19 @@
         autoUpdateApps.enable = true;
 
         caching.redis = true;
-
       };
 
       services.nginx.virtualHosts = {
         ${userconf.cloudDom} = {
           forceSSL = true;
           enableACME = true;
+          extraConfig = ''
+            add_header X-Content-Type-Options nosniff;
+            add_header X-Robots-Tag "noindex, nofollow";
+            add_header X-Permitted-Cross-Domain-Policies none;
+            add_header X-Frame-Options sameorigin;
+            add_header Referrer-Policy no-referrer;
+          '';
         };
       };
 
