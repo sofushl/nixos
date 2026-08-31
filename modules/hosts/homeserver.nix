@@ -2,7 +2,7 @@
 let
   homes = import ../../lib/homes.nix;
   resolvehome = builtins.mapAttrs (_: h: homes.default // h) homes.homes;
-  homeconf = resolvehome.${sysconf.username};
+  homeconf = resolvehome.headless;
   sysconf = import ../../lib/T2000.nix;
   pkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";
   serverconf = import ../../lib/server.nix { inherit pkgs; };
@@ -38,8 +38,8 @@ in
       ollama
 
       {
-        home-manager.users.${userconf.username}.imports = with self.homeModules; [
-          develop
+        home-manager.users.${homeconf.username}.imports = with self.homeModules; [
+          headless
         ];
 
         preservation.preserveAt."/persistent".directories = [
@@ -52,7 +52,7 @@ in
           "/etc/searx.env"
         ];
 
-        preservation.preserveAt."/persistent".users.${userconf.username} = {
+        preservation.preserveAt."/persistent".users.${homeconf.username} = {
           directories = [
             ".local/share/opencode"
             ".local/state/opencode"

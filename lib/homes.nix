@@ -19,6 +19,11 @@
       host = "laptop";
     };
 
+    headless = {
+      host = "headless";
+      modules = [ "headless" ];
+    };
+
     work = {
       host = "work";
       username = "soli";
