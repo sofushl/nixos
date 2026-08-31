@@ -29,7 +29,7 @@ in
 
       icedDev
       javafxlib
-      electron
+      electronDev
       python
       node
       rust
@@ -43,7 +43,7 @@ in
           startMenuLaunchers = true;
         };
 
-        home-manager.users.${homeconf.headless}.imports = with self.homeModules; [
+        home-manager.users.${homeconf.username}.imports = with self.homeModules; [
           headless
         ];
       }
