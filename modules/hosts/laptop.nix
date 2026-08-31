@@ -63,8 +63,6 @@ in
 
             preservation.preserveAt."/persistent".users.${sysconf.username} = {
               directories = [
-                "Desktop"
-                "Documents"
                 "Downloads"
                 "Public"
 
