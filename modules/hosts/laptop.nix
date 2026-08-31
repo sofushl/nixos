@@ -1,6 +1,7 @@
 { self, inputs, ... }:
 let
-  userconf = import ../../lib/sofushl.nix;
+  homes = import ../../lib/homes.nix;
+  resolvehome = builtins.mapAttrs (_: h: homes.default // h) homes.username;
   laptops = import ../../lib/laptops.nix;
   resolved = builtins.mapAttrs (_: h: laptops.default // h) laptops.hosts;
   sshkeys = import ../../lib/sshkeys.nix;
@@ -22,7 +23,7 @@ in
 
       specialArgs = {
         inherit inputs;
-        userconf = sysconf // userconf // theme // sshkeys // secrets;
+        userconf = sysconf // resolvehome.${sysconf.username} // theme // sshkeys // secrets;
       };
 
       modules =

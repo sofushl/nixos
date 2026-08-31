@@ -5,7 +5,9 @@
   ...
 }:
 let
-  userconf = import ../../lib/sofushl.nix;
+  homes = import ../../lib/homes.nix;
+  resolvehome = builtins.mapAttrs (_: h: homes.default // h) homes.username;
+  homeconf = resolvehome.${wslconf.username};
   wslconf = import ../../lib/wsl.nix;
   sshkeys = import ../../lib/sshkeys.nix;
   theme = import ../../lib/theme.nix;
@@ -16,7 +18,7 @@ in
 
     specialArgs = {
       inherit inputs;
-      userconf = userconf // wslconf // theme // sshkeys;
+      userconf = homeconf // wslconf // theme // sshkeys;
     };
 
     modules = with self.nixosModules; [

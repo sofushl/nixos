@@ -1,10 +1,14 @@
 let
   wslzbookkey = (import ./wsl.nix).sshkey;
-  workkey = (import ./soli.nix).sshkey;
   T2000key = (import ./T2000.nix).sshkey;
+
   laptops = import ./laptops.nix;
-  resolved = builtins.mapAttrs (_: h: laptops.default // h) laptops.hosts;
-  laptopkeys = builtins.filter (k: k != null) (map (h: h.key) (builtins.attrValues resolved));
+  resolvelaptop = builtins.mapAttrs (_: h: laptops.default // h) laptops.hosts;
+  laptopkeys = builtins.filter (k: k != null) (map (h: h.key) (builtins.attrValues resolvelaptop));
+
+  homes = import ./homes.nix;
+  resolvehome = builtins.mapAttrs (_: h: homes.default // h) homes.username;
+  homekeys = builtins.filter (k: k != null) (map (h: h.key) (builtins.attrValues resolvehome));
 in
 rec {
   zbookkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFVOm4q1/v7MNNsnf6iNlFYUXsV/kxkAzmleWgd6JOr7 sofushl@ZBook";
@@ -14,10 +18,10 @@ rec {
   sshkeys = [
     T2000key
     wslzbookkey
-    workkey
     zbookkey
     phonekey
     tvkey
   ]
-  ++ laptopkeys;
+  ++ laptopkeys
+  ++ homekeys;
 }
