@@ -78,7 +78,7 @@
       shellAliases = {
         home-switch = ''
           git -C /${userconf.path} add -N -A
-          nix run nixpkgs#home-manager -- switch --flake /${userconf.path}#${userconf.host} -b back
+          nix run nixpkgs#home-manager -- switch --flake /${userconf.path}#${userconf.type} -b back
         '';
 
         nix-clear = ''
@@ -93,7 +93,7 @@
           home-switch
         '';
 
-        home-manager = "home-manager --flake /${userconf.host}";
+        home-manager = "home-manager --flake /${userconf.type}";
       };
       sessionVariables = {
         NIXOS_OZONE_WL = "1";
