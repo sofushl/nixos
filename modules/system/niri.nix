@@ -320,6 +320,11 @@
                   desc = "Loupe";
                   cmd = (lib.getExe pkgs.loupe);
                 }
+                {
+                  key = "b";
+                  desc = "Waybar";
+                  cmd = (lib.getExe pkgs.waybar);
+                }
               ]))
             ];
 
@@ -351,6 +356,15 @@
             "Mod+Shift+M".action.maximize-window-to-edges = { };
             "Mod+X".action.center-column = { };
             "Mod+Shift+X".action.reset-window-height = { };
+
+            # Display switching
+            "Mod+Ctrl+H".action.focus-monitor-left = { };
+            "Mod+Ctrl+L".action.focus-monitor-right = { };
+            "Mod+Ctrl+Shift+H".action.move-column-to-monitor-left = { };
+            "Mod+Ctrl+Shift+L".action.move-column-to-monitor-right = { };
+            "Mod+Ctrl+Shift+Aring".action.move-workspace-to-monitor-left = { };
+            "Mod+Ctrl+Shift+Diaeresis".action.move-workspace-to-monitor-right = { };
+            "Mod+Bar".action.toggle-overview = { };
 
             # Finer height and width adjustments
             "Mod+Minus".action.set-column-width = "-10%";
