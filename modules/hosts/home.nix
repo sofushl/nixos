@@ -17,7 +17,7 @@ let
 in
 {
   flake.homeConfigurations = builtins.mapAttrs (
-    host: homeconf:
+    type: homeconf:
     inputs.home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
 
