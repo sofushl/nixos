@@ -29,7 +29,7 @@ in
     };
     Elitebook = {
       host = "Elitebook";
-      key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKPEKgCTtW184uMBhL2ijmA2sDibWJN1Lln3y6NC61og sofushl@Elitebook";
+      key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH7TP6uO6pyFPdxJiXE69dL49GHgB0pDDiMKxuCCNCTP sofushl@Elitebook";
       disk = "nvme0n1";
     };
     Lenovo = {
