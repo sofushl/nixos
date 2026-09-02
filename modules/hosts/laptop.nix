@@ -31,6 +31,7 @@ in
         [
           base
           environment
+          hardware
           user
           disko
           preservation
