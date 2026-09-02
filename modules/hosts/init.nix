@@ -5,10 +5,14 @@
     specialArgs.userconf.disk = "nvme0n1";
     modules = with self.nixosModules; [
       disko
-      hardware
       {
         networking.networkmanager.enable = true;
-	users.users.root.initialPassword = "p";
+        users.users.root.initialPassword = "p";
+        boot.loader = {
+          systemd-boot.enable = true;
+          systemd-boot.configurationLimit = 3;
+          efi.canTouchEfiVariables = true;
+        };
       }
     ];
   };
