@@ -16,7 +16,7 @@
       boot = {
         loader = {
           systemd-boot.enable = true;
-          systemd-boot.configurationLimit = 5;
+          systemd-boot.configurationLimit = 3;
           efi.canTouchEfiVariables = true;
         };
 
@@ -31,6 +31,7 @@
           "usb_storage"
           "sd_mod"
           "rtsx_pci_sdmmc"
+          "thunderbolt"
         ];
 
         initrd.kernelModules = [ ];
