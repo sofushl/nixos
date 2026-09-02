@@ -13,6 +13,7 @@
           systemd-boot.configurationLimit = 3;
           efi.canTouchEfiVariables = true;
         };
+        programs.git.enable = true;
       }
     ];
   };
