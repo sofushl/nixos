@@ -3,9 +3,7 @@
 
     # REQUIRES PRESERVATION OF ".config/rclone/nextcloud.pass"
 
-    home.shellAliases."nc-setup" =
-      "mkdir -p ~/.config/rclone && (umask 077; rclone obscure \"$NCPASS\" > ~/.config/rclone/nextcloud.pass)";
-    # run  NCPASS='yourAppPassword' nc-setup
+    # run  rclone obscure 'APP_PASSWORD' > ~/.config/rclone/nextcloud.pass
 
     programs.rclone = {
       enable = true;
