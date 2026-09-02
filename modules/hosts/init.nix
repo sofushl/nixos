@@ -1,9 +1,10 @@
 { self, ... }:
 {
   flake.nixosConfigurations.init = self.inputs.nixpkgs.lib.nixosSystem {
-    specialArgs.userconf.disk = "sda";
-    modules = [
-      self.nixosModules.disko
+    system = "x86_64-linux";
+    specialArgs.userconf.disk = "nvme0n1";
+    modules = with self.nixosModules; [
+      disko
     ];
   };
 }
