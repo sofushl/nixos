@@ -83,9 +83,7 @@
 
             pulseaudio = {
               format = "{icon} {volume}%";
-              format-muted = "󰝟";
-              format-bluetooth = "{volume}%";
-              format-bluetooth-muted = "󰝟";
+              format-muted = "󰝟 {volume}%";
               format-icons = {
                 default = [
                   "󰖀"
@@ -115,8 +113,8 @@
 
             network = {
               format-wifi = "{essid}";
-              format-ethernet = "󰈀 ETH";
-              format-linked = "󰅛 {ifname}";
+              format-ethernet = "{ifname}";
+              format-linked = "{ifname}";
               format-disconnected = "󰖪 OFF";
               format-disabled = "󰀝 OFF";
               tooltip = true;
