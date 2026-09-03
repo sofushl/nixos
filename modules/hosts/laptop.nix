@@ -37,6 +37,7 @@ in
           preservation
           openssh
           desktop
+          bluetooth
 
           # Development libraries
           icedDev

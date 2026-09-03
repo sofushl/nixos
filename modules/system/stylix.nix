@@ -26,6 +26,7 @@
           kitty.enable = false;
           fuzzel.enable = false;
           hyprlock.enable = false;
+          waybar.enable = false;
         };
 
         cursor = {
