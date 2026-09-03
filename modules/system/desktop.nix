@@ -17,14 +17,9 @@
         };
       };
 
-      hardware = {
-        bluetooth.enable = true;
-        graphics.enable = true;
-      };
+      hardware.graphics.enable = true;
 
       services = {
-        # Enable sound with pipewire.
-        pulseaudio.enable = false;
         pipewire = {
           enable = true;
           alsa.enable = true;

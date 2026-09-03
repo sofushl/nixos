@@ -17,10 +17,14 @@
             margin-left = 0;
             margin-right = 0;
 
-            modules-left = [ "clock" ];
+            modules-left = [
+              "clock"
+              "tray"
+            ];
             modules-center = [ "niri/window" ];
             modules-right = [
               "network"
+              "bluetooth"
               "pulseaudio"
               "backlight"
               "temperature"
@@ -33,42 +37,88 @@
               format-alt = "{:%R - %A %U}";
               tooltip = false;
             };
-
             battery = {
+              states = {
+                warning = 30;
+                critical = 15;
+              };
+              format = "{icon} {capacity}%";
+              format-charging = "󰂄 {capacity}%";
+              format-plugged = "󰚥 {capacity}%";
+              format-icons = [
+                "󰁺"
+                "󰁻"
+                "󰁼"
+                "󰁽"
+                "󰁾"
+                "󰁿"
+                "󰂀"
+                "󰂁"
+                "󰂂"
+                "󰁹"
+              ];
               interval = 60;
-              format = "BAT {capacity}%";
               on-click = "shutdown now";
               format-time = "{H}:{m}";
-              format-full = "CHARGED";
-              format-charging = "POW {capacity}%";
-              format-plugged = "POW {capacity}%";
+              format-full = "󰁹 {capacity}%";
             };
 
             memory = {
-              format = "RAM {percentage}%";
+              format = " {percentage}%";
               interval = 3;
               on-click = "shutdown -r now";
             };
 
+            bluetooth = {
+              format = "󰂯 BT";
+              format-off = "󰂲 OFF";
+              format-disabled = "󰀝 OFF";
+              format-connected = "{num_connections}";
+              format-connected-battery = "{device_alias}";
+              tooltip-format = "{controller_alias}\t{controller_address}";
+              tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{device_enumerate}";
+              tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
+              on-click = "blueman-manager";
+            };
+
             pulseaudio = {
-              format = "VOL {volume}%";
-              format-muted = "MUTED";
+              format = "{icon} {volume}%";
+              format-muted = "󰝟";
+              format-bluetooth = "{volume}%";
+              format-bluetooth-muted = "󰝟";
+              format-icons = {
+                default = [
+                  "󰖀"
+                  "󰕾"
+                ];
+                headphone = "󰋋";
+                headset = "󰋎";
+              };
               on-click = "${term} -e ${pkgs.wiremix}/bin/wiremix";
             };
 
             backlight = {
-              format = "LUX {percent}%";
+              format = "{icon} {percent}%";
+              format-icons = [
+                "󰃚"
+                "󰃛"
+                "󰃜"
+                "󰃝"
+                "󰃞"
+                "󰃟"
+                "󰃠"
+              ];
               on-click = "sunsetr stop";
               min-brightness = 0.02;
-              scroll-step = 0.1;
+              scroll-step = 0.5;
             };
 
             network = {
               format-wifi = "{essid}";
-              format-ethernet = "ETHERNET";
-              format-linked = "LINKED";
-              format-disconnected = "OFFLINE";
-              format-disabled = "DISABLED";
+              format-ethernet = "󰈀 ETH";
+              format-linked = "󰅛 {ifname}";
+              format-disconnected = "󰖪 OFF";
+              format-disabled = "󰀝 OFF";
               tooltip = true;
               tooltip-format = "▼{bandwidthDownBits} ▲{bandwidthUpBits}";
               enable-wireless = true;
@@ -85,7 +135,7 @@
                 "/sys/class/thermal/thermal_zone0/temp"
                 # Append or rearrange after necessity
               ];
-              format = "CPU {temperatureC}°C";
+              format = "󰍛 {temperatureC}°C";
               interval = 3;
               on-click = "${term} -e ${pkgs.btop}/bin/btop";
             };
@@ -124,7 +174,9 @@
             #backlight,
             #network,
             #battery,
+            #tray,
             #temperature,
+            #bluetooth,
             #window {
                 padding: 0 5px;
                 margin: 1px 3px;
@@ -135,17 +187,16 @@
             #memory,
             #network,
             #battery,
+            #bluetooth,
             #temperature {
                 border-bottom: 2px solid ${c.primary};
                 min-width: 30px;
             }
 
-            #pulseaudio.muted,
             #network.disabled,
             #network.disconnected,
             #network.linked,
-            #network.ethernet,
-            #battery.full {
+            #network.ethernet {
                 color: ${c.text.selected};
                 background: ${c.bg.selected};
             }
