@@ -43,8 +43,9 @@
                 critical = 15;
               };
               format = "{icon} {capacity}%";
-              format-charging = "󰂄 {capacity}%";
-              format-plugged = "󰚥 {capacity}%";
+              format-full = "󰂄 {capacity}%";
+              format-charging = "󰚥 {capacity}%";
+              format-plugged = "󰚦 {capacity}%";
               format-icons = [
                 "󰁺"
                 "󰁻"
@@ -60,7 +61,6 @@
               interval = 60;
               on-click = "shutdown now";
               format-time = "{H}:{m}";
-              format-full = "󰁹 {capacity}%";
             };
 
             memory = {
@@ -145,6 +145,11 @@
               icon = true;
               icon-size = 12;
               separate-outputs = true;
+            };
+
+            tray = {
+              icon-size = 12;
+              spacing = 5;
             };
           };
         };
