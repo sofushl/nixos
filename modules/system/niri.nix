@@ -229,6 +229,7 @@
             { command = [ "sunsetr" ]; }
             { command = [ "hyprlock" ]; }
             { command = [ "mako" ]; }
+            { command = [ "blueman-applet" ]; }
           ];
 
           hotkey-overlay = {
