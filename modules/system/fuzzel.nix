@@ -15,13 +15,10 @@
             prompt = ''"$"'';
             dpi-aware = "yes";
             icons = true;
-            width = 40;
             terminal = "${userconf.terminal} -a '{cmd}' -T '{cmd}' {cmd}";
-            lines = 20;
             horizontal-pad = 8;
             font = "monospace:size=10";
             anchor = "top";
-            y-margin = 10;
           };
 
           colors = {
