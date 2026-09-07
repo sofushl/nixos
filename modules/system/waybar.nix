@@ -196,10 +196,10 @@
                 min-width: 30px;
             }
 
-            #network.disabled,
-            #network.disconnected,
             #network.linked,
-            #network.ethernet {
+            #network.ethernet,
+            #network.wifi,
+            #bluetooth.connected{
                 color: ${c.text.selected};
                 background: ${c.bg.selected};
             }
