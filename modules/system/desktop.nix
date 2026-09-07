@@ -1,4 +1,4 @@
-{ self, ... }: {
+{ inputs, self, ... }: {
   flake.nixosModules.desktop =
     {
       userconf,
@@ -29,6 +29,7 @@
         };
 
         thermald.enable = true;
+        udisks2.enable = true;
       };
 
       home-manager.users.${userconf.username}.imports = with self.homeModules; [
