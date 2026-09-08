@@ -8,9 +8,14 @@
       {
         networking.networkmanager.enable = true;
         users.users.root.initialPassword = "p";
+        initrd.availableKernelModules = [
+          "xhci_pci"
+          "ahci"
+          "nvme"
+          "sd_mod"
+        ];
         boot.loader = {
           systemd-boot.enable = true;
-          systemd-boot.configurationLimit = 3;
           efi.canTouchEfiVariables = true;
         };
         programs.git.enable = true;
