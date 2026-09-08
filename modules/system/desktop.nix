@@ -1,4 +1,4 @@
-{ inputs, self, ... }: {
+{ self, ... }: {
   flake.nixosModules.desktop =
     {
       userconf,
@@ -56,6 +56,7 @@
       thonny
       ripes
       postman
+      geogebra6
     ];
 
     services.udiskie = {
