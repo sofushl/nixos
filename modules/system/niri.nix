@@ -358,13 +358,19 @@
             "Mod+X".action.center-column = { };
             "Mod+Shift+X".action.reset-window-height = { };
 
-            # Display switching
+            # Display+workspace switching
             "Mod+Ctrl+H".action.focus-monitor-left = { };
             "Mod+Ctrl+L".action.focus-monitor-right = { };
+            "Mod+Ctrl+J".action.focus-workspace-down = { };
+            "Mod+Ctrl+K".action.focus-workspace-up = { };
+
+            # Display + Workspace movements
             "Mod+Ctrl+Shift+H".action.move-column-to-monitor-left = { };
             "Mod+Ctrl+Shift+L".action.move-column-to-monitor-right = { };
-            "Mod+Ctrl+Shift+Aring".action.move-workspace-to-monitor-left = { };
-            "Mod+Ctrl+Shift+Diaeresis".action.move-workspace-to-monitor-right = { };
+            "Mod+Ctrl+Shift+J".action.move-column-to-workspace-down = { };
+            "Mod+Ctrl+Shift+K".action.move-column-to-workspace-up = { };
+            "Mod+Ctrl+U".action.move-workspace-to-monitor-left = { };
+            "Mod+Ctrl+I".action.move-workspace-to-monitor-right = { };
             "Mod+Bar".action.toggle-overview = { };
 
             # Finer height and width adjustments
