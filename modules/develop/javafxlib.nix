@@ -3,8 +3,8 @@
     { lib, pkgs, ... }:
     let
       libs = with pkgs; [
-        javaPackages.compiler.openjdk25
-        openjfx
+        javaPackages.compiler.openjdk17
+        openjfx21
         maven
 
         gtk3
@@ -33,7 +33,7 @@
         systemPackages = libs ++ [ pkgs.gsettings-desktop-schemas ];
 
         variables = {
-          JAVA_HOME = "${pkgs.javaPackages.compiler.openjdk25}";
+          JAVA_HOME = "${pkgs.javaPackages.compiler.openjdk17}";
           LD_LIBRARY_PATH = lib.makeLibraryPath libs;
           GSETTINGS_SCHEMA_DIR = map pkgs.glib.getSchemaPath libs;
         };
