@@ -8,7 +8,8 @@
       {
         networking.networkmanager.enable = true;
         users.users.root.initialPassword = "p";
-        initrd.availableKernelModules = [
+        boot.initrd.availableKernelModules = [
+          "vmd"
           "xhci_pci"
           "ahci"
           "nvme"
