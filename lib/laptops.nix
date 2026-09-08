@@ -22,9 +22,8 @@ in
   };
 
   hosts = {
-    Acer = {
-      host = "Acer";
-      key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPCfUfHZ/WX05U6bH3Jvf/OxLxEWQlTX6mipQZ8vBjNl sofushl@Acer";
+    Aspire = {
+      host = "Aspire";
       disk = "nvme0n1";
     };
     Elitebook = {
