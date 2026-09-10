@@ -57,6 +57,7 @@
       ripes
       postman
       geogebra6
+      teams-for-linux
     ];
 
     services.udiskie = {
