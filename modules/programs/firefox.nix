@@ -50,7 +50,7 @@
               ];
 
               icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-              definedAliases = [ "@no" ];
+              definedAliases = [ "@np" ];
             };
 
             nix-packages = {
@@ -76,7 +76,7 @@
               ];
 
               icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-              definedAliases = [ "@np" ];
+              definedAliases = [ "@no" ];
             };
 
             nixos-wiki = {
