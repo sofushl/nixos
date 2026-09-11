@@ -7,7 +7,14 @@ let
   pkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";
   serverconf = import ../../lib/server.nix { inherit pkgs; };
   sshkeys = import ../../lib/sshkeys.nix;
-  secrets = import /etc/nixos/secrets.nix;
+  secrets =
+    if builtins.pathExists /etc/nixos/secrets.nix then
+      import /etc/nixos/secrets.nix
+    else
+      {
+        dnsUpdateLinks = [ ];
+        secretServices = [ ];
+      };
   theme = import ../../lib/theme.nix;
 in
 {
