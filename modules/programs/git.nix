@@ -66,6 +66,11 @@
       "diff" = "git diff";
       "restore" = "git restore";
       "restore-staged" = "git restore --staged";
+
+      "git-local" = ''
+        git config --local user.name "${userconf.localgitname}" && \
+        git config --local user.email "${userconf.localgitmail}"
+      '';
     };
   };
 }

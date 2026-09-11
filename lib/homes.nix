@@ -4,6 +4,8 @@
     displayname = "Sofus Lind";
     email = "sofushl@proton.me";
     gitmail = email;
+    localgitname = "Sofus Højberg Lind";
+    localgitmail = "sofushl@stud.ntnu.no";
     type = "headless";
     ghname = username;
     nextcloud = "cloud.sofus.privatedns.org";
@@ -18,6 +20,7 @@
   homes = {
     laptop = {
       type = "laptop";
+
     };
 
     headless = {
@@ -31,6 +34,8 @@
       path = "home/soli/nixos";
       key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN73JXdOkCMd8Jl34UVaNv5UfyLqwVgU56dD1qHmQSTO soli@Thinkso.nordicsemi.no";
       modules = [ "work" ];
+      localgitname = "Sofus Lind";
+      localgitmail = "sofus.lind@nordicsemi.no";
     };
   };
 }
