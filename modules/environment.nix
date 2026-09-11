@@ -56,6 +56,8 @@
             sudo fstrim -av
           '';
         };
+
+        enableAllTerminfo = true;
       };
     };
 
@@ -99,6 +101,5 @@
         NIXOS_OZONE_WL = "1";
       };
     };
-
   };
 }
