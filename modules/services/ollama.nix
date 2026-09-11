@@ -17,6 +17,7 @@
       hostName = userconf.aiDom;
 
       pkgsOllama = import inputs.nixpkgs-ollama {
+        system = pkgs.stdenv.hostPlatform.system;
         config.allowUnfree = true;
         config.cudaSupport = true;
       };
