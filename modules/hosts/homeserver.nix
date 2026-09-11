@@ -5,6 +5,11 @@ let
   homeconf = resolvehome.headless;
   sysconf = import ../../lib/T2000.nix;
   pkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";
+  stablepkgs = import inputs.stablepkgs {
+    system = pkgs.stdenv.hostPlatform.system;
+    config.allowUnfree = true;
+    config.cudaSupport = true;
+  };
   serverconf = import ../../lib/server.nix { inherit pkgs; };
   sshkeys = import ../../lib/sshkeys.nix;
   secrets =
@@ -22,7 +27,7 @@ in
     system = "x86_64-linux";
 
     specialArgs = {
-      inherit inputs;
+      inherit inputs stablepkgs;
       userconf = homeconf // sysconf // sshkeys // theme // secrets // serverconf;
     };
 
