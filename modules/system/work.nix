@@ -44,7 +44,7 @@
 
     home.shellAliases =
       let
-        dir = "/home/soli/Desktop/";
+        dir = "/home/soli/Public/";
       in
       {
         "launch" = ''
