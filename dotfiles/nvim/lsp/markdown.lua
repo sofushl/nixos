@@ -1,5 +1,5 @@
 return {
-	cmd = { "vscode-markdown-language-server", "--stdio" },
+	cmd = { "marksman" },
 	filetypes = { "markdown" },
-	root_markers = { ".marksman.toml", ".git" },
+	root_markers = { ".marksman.toml", ".git", "README.md" },
 }

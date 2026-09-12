@@ -17,6 +17,7 @@ vim.lsp.enable({
 	"tailwind",
 	"typescript",
 	"yaml",
+	"c",
 })
 
 -- Formatting option
