@@ -230,6 +230,8 @@
             { command = [ "hyprlock" ]; }
             { command = [ "mako" ]; }
             { command = [ "blueman-applet" ]; }
+            { command = [ "element-desktop --hidden" ]; }
+            { command = [ "discord" ]; }
           ];
 
           hotkey-overlay = {
