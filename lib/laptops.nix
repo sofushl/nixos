@@ -35,6 +35,7 @@ in
         "niri"
         "greetd-niri"
         "gaming"
+        "fingerprint"
       ];
     };
     Lenovo = {
