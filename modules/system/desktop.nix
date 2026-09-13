@@ -50,7 +50,6 @@
     home.packages = with pkgs; [
       spotify
       discord
-      prismlauncher
       element-desktop
       onlyoffice-desktopeditors
       thonny
