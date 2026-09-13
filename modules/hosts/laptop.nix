@@ -59,10 +59,6 @@ in
               develop
             ];
 
-            preservation.preserveAt."/persistent".directories = [
-              "/var/lib/bluetooth"
-            ];
-
             preservation.preserveAt."/persistent".users.${sysconf.username} = {
               directories = [
                 "Downloads"
