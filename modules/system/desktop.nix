@@ -20,6 +20,12 @@
       hardware.graphics.enable = true;
 
       services = {
+
+        logind.settings.Login = {
+          HandlePowerKey = "ignore";
+          HandlePowerKeyLongPress = "poweroff";
+        };
+
         pipewire = {
           enable = true;
           alsa.enable = true;
