@@ -55,7 +55,6 @@ in
         ];
 
         preservation.preserveAt."/persistent".directories = [
-          "/var/lib/"
           "/var/www"
           "/var/log"
         ];
@@ -66,13 +65,12 @@ in
 
         preservation.preserveAt."/persistent".users.${homeconf.username} = {
           directories = [
-            ".local/share/opencode"
-            ".local/state/opencode"
-            ".config/opencode"
+            ".claude"
           ];
 
           files = [
             ".config/gh/hosts.yml"
+            ".claude.json"
           ];
         };
 

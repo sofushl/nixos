@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
   flake.nixosModules.preservation =
-    { userconf, ... }:
+    { userconf, config, ... }:
     {
 
       imports = [ inputs.preservation.nixosModules.default ];
@@ -40,8 +40,10 @@
             directory = "/var/lib/nixos";
             inInitrd = true;
           }
+          "/var/lib"
           "/etc/nixos"
           "/etc/ssh"
+          (if config.networking.networkmanager.enable == true then "/etc/NetworkManager" else null)
         ];
 
         files = [
