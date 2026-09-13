@@ -43,7 +43,7 @@
           "/var/lib"
           "/etc/nixos"
           "/etc/ssh"
-          (if config.networking.networkmanager.enable == true then "/etc/NetworkManager" else null)
+          (if config.networking.networkmanager.enable == true then "/etc/NetworkManager" else "")
         ];
 
         files = [
