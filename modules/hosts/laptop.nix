@@ -82,8 +82,6 @@ in
                 ".vscode"
                 ".m2"
 
-                ".local/share/PrismLauncher/"
-
                 ".claude"
               ];
 
