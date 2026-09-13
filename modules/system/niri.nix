@@ -165,6 +165,26 @@
         };
       };
 
+      systemd.user.services.wayland-env = {
+        Unit = {
+          Description = "Import Wayland environment into systemd user session";
+          Before = [ "graphical-session.target" ];
+        };
+        Install.WantedBy = [ "graphical-session.target" ];
+        Service = {
+          Type = "oneshot";
+          RemainAfterExit = true;
+          ExecStart = "${pkgs.writeShellScript "wayland-env" ''
+            sock=$(ls -t "$XDG_RUNTIME_DIR"/wayland-[0-9]* 2>/dev/null | head -1)
+            [ -n "$sock" ] || exit 1
+            systemctl --user set-environment \
+              WAYLAND_DISPLAY="$(basename "$sock")" \
+              XDG_CURRENT_DESKTOP=niri \
+              XDG_SESSION_TYPE=wayland
+          ''}";
+        };
+      };
+
       programs.niri = {
         enable = true;
         package = pkgs.niri;
