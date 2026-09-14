@@ -375,8 +375,8 @@
             # Special Column movements
             "Mod+A".action.maximize-column = { };
             "Mod+Shift+A".action.set-window-width = "50%";
-            "Mod+M".action.expand-column-to-available-width = { };
-            "Mod+Shift+M".action.maximize-window-to-edges = { };
+            "Mod+M".action.maximize-window-to-edges = { };
+            "Mod+Shift+M".action.fullscreen-window = { };
             "Mod+X".action.center-column = { };
             "Mod+Shift+X".action.reset-window-height = { };
 
@@ -402,8 +402,8 @@
             "Mod+Shift+Plus".action.set-window-height = "+10%";
 
             # Move the focused window between the floating and the tiling layout.
-            "Mod+V".action.toggle-window-floating = { };
-            "Mod+Shift+V".action.switch-focus-between-floating-and-tiling = { };
+            "Mod+V".action.switch-focus-between-floating-and-tiling = { };
+            "Mod+Shift+V".action.toggle-window-floating = { };
 
             # Toggle tabbed column display mode.
             # Windows in this column will appear as vertical tabs,
