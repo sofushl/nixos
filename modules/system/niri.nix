@@ -279,34 +279,19 @@
             # Core apps
             "Mod+T".action.spawn = [ term ];
             "Mod+Return".action.spawn = [ term ];
-            "Mod+C".action.spawn = [ term ];
+            "Mod+D".action.spawn = [ term ];
             "Mod+Space".action.spawn = [ "fuzzel" ];
             "Mod+R".action.spawn = [ "fuzzel" ];
-
-            # Personal apps
-            "Mod+Shift+T".action.spawn = [
-              term
-              "-e"
-              "yazi"
-            ];
-            "Mod+D".action.spawn = [
-              term
-              "-e"
-              "yazi"
-            ];
-            "Mod+E".action.spawn = [
-              term
-              "-e"
-              "yazi"
-            ];
+            "Mod+E".action.spawn = [ "fuzzel" ];
             "Mod+B".action.spawn = [ "firefox" ];
             "Mod+F".action.spawn = [ "firefox" ];
+
             "Mod+S".action.spawn = [
               (pkgs.lib.getExe (mkMenu [
                 {
                   key = "a";
-                  desc = "Launcher";
-                  cmd = (lib.getExe pkgs.fuzzel);
+                  desc = "Element";
+                  cmd = (lib.getExe pkgs.element-desktop);
                 }
                 {
                   key = "s";
@@ -320,33 +305,46 @@
                 }
                 {
                   key = "f";
-                  desc = "Onlyoffice";
-                  cmd = (lib.getExe pkgs.onlyoffice-desktopeditors);
+                  desc = "Apps";
+                  submenu = [
+                    {
+                      key = "a";
+                      desc = "Onlyoffice";
+                      cmd = (lib.getExe pkgs.onlyoffice-desktopeditors);
+                    }
+                    {
+                      key = "s";
+                      desc = "Postman";
+                      cmd = (lib.getExe pkgs.postman);
+                    }
+                    {
+                      key = "d";
+                      desc = "Thonny";
+                      cmd = (lib.getExe pkgs.thonny);
+                    }
+                    {
+                      key = "f";
+                      desc = "Loupe";
+                      cmd = (lib.getExe pkgs.loupe);
+                    }
+                  ];
                 }
+
                 {
                   key = "g";
-                  desc = "Element";
-                  cmd = (lib.getExe pkgs.element-desktop);
-                }
-                {
-                  key = "h";
-                  desc = "Postman";
-                  cmd = (lib.getExe pkgs.postman);
-                }
-                {
-                  key = "k";
-                  desc = "Thonny";
-                  cmd = (lib.getExe pkgs.thonny);
-                }
-                {
-                  key = "l";
-                  desc = "Loupe";
-                  cmd = (lib.getExe pkgs.loupe);
-                }
-                {
-                  key = "b";
-                  desc = "Waybar";
-                  cmd = (lib.getExe pkgs.waybar);
+                  desc = "System";
+                  submenu = [
+                    {
+                      key = "a";
+                      desc = "Waybar";
+                      cmd = (lib.getExe pkgs.waybar);
+                    }
+                    {
+                      key = "s";
+                      desc = "Sunsetr";
+                      cmd = (lib.getExe pkgs.sunsetr);
+                    }
+                  ];
                 }
               ]))
             ];
@@ -462,7 +460,7 @@
                 "brightnessctl"
                 "--class=backlight"
                 "set"
-                "1"
+                "5%-"
               ];
             };
 
