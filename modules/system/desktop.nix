@@ -62,6 +62,8 @@
       ripes
       postman
       geogebra6
+      krita
+      inkscape
       teams-for-linux
     ];
 
