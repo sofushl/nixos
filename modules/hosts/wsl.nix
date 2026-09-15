@@ -27,13 +27,11 @@ in
       user
       openssh
 
-      icedDev
       javafxlib
       electronDev
       python
       node
-      rust
-      c
+      rustWASM
 
       inputs.nixos-wsl.nixosModules.default
       {
