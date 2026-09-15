@@ -36,7 +36,8 @@
 
       security = {
         rtkit.enable = true;
-        sudo.wheelNeedsPassword = false;
+        sudo.wheelNeedsPassword = true;
+        polkit.enablePkexecWrapper = true;
       };
 
       services = {
