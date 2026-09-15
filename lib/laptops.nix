@@ -17,7 +17,6 @@ in
     disk = "sda";
     modules = [
       "niri"
-      "greetd-niri"
     ];
   };
 
@@ -33,7 +32,6 @@ in
       disk = "nvme0n1";
       modules = [
         "niri"
-        "greetd-niri"
         "gaming"
         "fingerprint"
       ];
