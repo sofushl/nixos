@@ -13,6 +13,14 @@
         niri
       ];
 
+      services.greetd = {
+        enable = true;
+        settings.default_session = {
+          command = "${pkgs.niri}/bin/niri-session";
+          user = userconf.username;
+        };
+      };
+
       programs.niri.enable = true;
 
       # Fallback for xwayland-sattelite
@@ -61,42 +69,32 @@
         fuzzel
       ];
 
-      services = {
-        greetd = {
-          enable = true;
-          settings.default_session = {
-            command = "${pkgs.niri}/bin/niri-session";
-            user = userconf.username;
-          };
-        };
-
-        mako = {
-          enable = true;
-          settings = {
-            "actionable=true" = {
-              anchor = "top-left";
-              default-timeout = 3000;
-              ignore-timeout = "1";
-            };
-            actions = true;
-            anchor = "top-right";
-            background-color = c.bg.primary;
-            text-color = c.text.primary;
-            border-color = c.primary;
-            progress-color = "over ${c.primary}";
-            border-size = 2;
-            border-radius = 0;
+      services.mako = {
+        enable = true;
+        settings = {
+          "actionable=true" = {
+            anchor = "top-left";
             default-timeout = 3000;
-            font = "monospace 10";
-            height = 100;
-            icons = true;
             ignore-timeout = "1";
-            layer = "top";
-            margin = 10;
-            padding = 10;
-            markup = true;
-            width = 300;
           };
+          actions = true;
+          anchor = "top-right";
+          background-color = c.bg.primary;
+          text-color = c.text.primary;
+          border-color = c.primary;
+          progress-color = "over ${c.primary}";
+          border-size = 2;
+          border-radius = 0;
+          default-timeout = 3000;
+          font = "monospace 10";
+          height = 100;
+          icons = true;
+          ignore-timeout = "1";
+          layer = "top";
+          margin = 10;
+          padding = 10;
+          markup = true;
+          width = 300;
         };
       };
 
