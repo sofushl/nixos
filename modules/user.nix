@@ -26,6 +26,7 @@
             "networkmanager"
             "storage"
             "dialout"
+            "plugdev"
           ];
 
           hashedPassword = userconf.pinhash;
