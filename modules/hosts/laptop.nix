@@ -40,12 +40,12 @@ in
           bluetooth
 
           # Development libraries
-          icedDev
           python
           javaWithFx
           node
-          rust
-          c
+          rustWASM
+          clangGTK
+          mplab
 
           # Services
           networkmanager
@@ -59,33 +59,42 @@ in
               develop
             ];
 
-            preservation.preserveAt."/persistent".users.${sysconf.username} = {
-              directories = [
-                "Downloads"
-                "Public"
+            preservation.preserveAt."/persistent" = {
+              directories = [ "opt" ];
+              users.${sysconf.username} = {
+                directories = [
+                  "Downloads"
+                  "Public"
 
-                ".config/mozilla"
-                ".config/discord"
-                ".config/Element"
-                ".config/spotify"
+                  ".config/mozilla"
+                  ".config/discord"
+                  ".config/Element"
+                  ".config/spotify"
 
-                ".config/onlyoffice"
-                ".local/state/onlyoffice"
+                  ".config/onlyoffice"
+                  ".local/state/onlyoffice"
 
-                ".config/JetBrains"
-                ".local/share/JetBrains"
-                ".config/Code"
-                ".vscode"
-                ".m2"
+                  ".config/JetBrains"
+                  ".local/share/JetBrains"
+                  ".m2"
 
-                ".claude"
-              ];
+                  ".config/Code"
+                  ".vscode"
+                  ".vscode-shared"
 
-              files = [
-                ".config/gh/hosts.yml"
-                ".config/rclone/nextcloud.pass"
-                ".claude.json"
-              ];
+                  ".mplab"
+                  ".mplabcomm"
+                  ".mchp_packs"
+
+                  ".claude"
+                ];
+
+                files = [
+                  ".config/gh/hosts.yml"
+                  ".config/rclone/nextcloud.pass"
+                  ".claude.json"
+                ];
+              };
             };
 
             powerManagement.cpuFreqGovernor = "powersave";
