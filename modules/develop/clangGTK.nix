@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.c =
+  flake.nixosModules.clangGTK =
     {
       config,
       userconf,
