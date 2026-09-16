@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.networkmanager =
+  flake.nixosModules.eduroam =
     { userconf, lib, ... }:
     {
 
@@ -29,24 +29,7 @@
               "phase2-auth" = "mschapv2";
             };
           };
-        }
-        // lib.mapAttrs (ssid: password: {
-          connection = {
-            id = ssid;
-            type = "wifi";
-          };
-
-          wifi = {
-            mode = "infrastructure";
-            inherit ssid;
-          };
-
-          wifi-security = {
-            auth-alg = "open";
-            key-mgmt = "wpa-psk";
-            psk = password;
-          };
-        }) userconf.networks;
+        };
       };
     };
 }

@@ -35,9 +35,13 @@ in
           user
           disko
           preservation
-          openssh
           desktop
+
+          eduroam
+          openssh
           bluetooth
+          keyring
+          keyd
 
           # Development libraries
           python
@@ -46,10 +50,6 @@ in
           rustWASM
           clangGTK
           mplab
-
-          # Services
-          networkmanager
-          keyd
 
           {
             home-manager.users.${resolvehome.laptop.username}.imports = with self.homeModules; [
@@ -71,6 +71,7 @@ in
                   ".config/discord"
                   ".config/Element"
                   ".config/spotify"
+                  ".cache/spotify"
 
                   ".config/onlyoffice"
                   ".local/state/onlyoffice"
