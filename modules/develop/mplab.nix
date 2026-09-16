@@ -12,6 +12,9 @@
       };
 
       libs = with pkgs; [
+        libusb1
+        usbutils
+
         libx11
         libxext
         libxi
