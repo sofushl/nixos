@@ -18,6 +18,7 @@
           gzip
           zip
           git-filter-repo
+          git-secrets
           ripgrep
           fd
           fzf
@@ -55,6 +56,12 @@
             sudo nh clean all
             sudo nix store optimise
             sudo fstrim -av
+          '';
+
+          mkpin = ''
+            sudo install -d -m 0700 -o root -g root /var/lib/secrets
+            mkpasswd -m yescrypt | sudo tee /var/lib/secrets/${userconf.username}.hash
+            sudo chmod 0400 /var/lib/secrets/${userconf.username}.hash
           '';
         };
 

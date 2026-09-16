@@ -29,7 +29,7 @@
             "plugdev"
           ];
 
-          hashedPassword = userconf.pinhash;
+          hashedPasswordFile = "/var/lib/secrets/${userconf.username}.hash";
 
           openssh.authorizedKeys.keys = userconf.sshkeys;
         };

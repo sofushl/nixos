@@ -5,14 +5,6 @@ let
   laptops = import ../../lib/laptops.nix;
   resolved = builtins.mapAttrs (_: h: laptops.default // h) laptops.hosts;
   sshkeys = import ../../lib/sshkeys.nix;
-  secrets =
-    if builtins.pathExists /etc/nixos/secrets.nix then
-      import /etc/nixos/secrets.nix
-    else
-      {
-        edupass = "";
-        networks = { };
-      };
   theme = import ../../lib/theme.nix;
 in
 {
@@ -23,7 +15,7 @@ in
 
       specialArgs = {
         inherit inputs;
-        userconf = sysconf // resolvehome.laptop // theme // sshkeys // secrets;
+        userconf = sysconf // resolvehome.laptop // theme // sshkeys;
       };
 
       modules =
@@ -37,7 +29,6 @@ in
           preservation
           desktop
 
-          eduroam
           openssh
           bluetooth
           keyring
