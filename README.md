@@ -56,38 +56,22 @@ Boilerplate for nixosModules and/or homeModules:
 
 This system is meant for one single user and user configuration relies on ```./lib/sofushl.nix```
 
-userconf includes several parts from ```./lib``` defined in```.modules/hosts/*``` and a secret part (Working on removing this):
+userconf includes several parts from ```./lib``` defined in```.modules/hosts/*``` 
+
+For server config theres an optional secret import
 
 Make ```/etc/nixos/secrets.nix``` like this:
 
 ``` nix
 {
- # For Desktop
- edupass = "your eduroam network password";
-  networks = {
-    "ssid1" = "password1";
-  }; # for declarative wifi management
-  
-
-  # For Server
   dnsUpdateLinks = [
     "yourUpdateLink1"
-  ]; # for freedns dynamic ip updater cron job
+  ]; # for dynamic ip updater cron job
 
   secretServices = [
-        {
-          name = "secretpage";
-          root = "/dist";
-          repo = "github link for the secret domain";
-          domain = "yoursecretdomain";
-          build = ''
-            npm i
-            npm build
-          '';
-          start = ''
-            npm start
-          ''
-        }
+    {
+        # See git-sites service nixosModule for details
+    }
   ]; # Used in git-sites service
 }
 ```
@@ -118,13 +102,14 @@ sudo nixos-generate-config --no-filesystems --dir ./hardware-tmp
 
 sudo mv ./hardware-tmp/hardware-configuration.nix ./hardware.nix
 
-# Lastly make secrets.nix run and run the installer
+# Lastly make the pinhash
 
-sudo vi /etc/nixos/secrets.nix # You will have to remake this when in the system
+mkpasswd -m yescrypt | sudo tee /var/lib/secrets/${userconf.username}.hash 
+
+# You will have to remake the pin when in the system
 
 cd /nixos
 
-# Remember to update ./lib/YOUR_HOST.nix before and after installing
 
 sudo nix --extra-experimental-features "nix-command flakes" \
   run 'github:nix-community/disko/latest#disko-install' -- \
@@ -133,6 +118,8 @@ sudo nix --extra-experimental-features "nix-command flakes" \
 
 # After rebooting:
 
+mkpasswd -m yescrypt | sudo tee /var/lib/secrets/${userconf.username}.hash 
+
 ssh-keygen
 cat .ssh/id_ed25519.pub 
 
@@ -140,10 +127,9 @@ cat .ssh/id_ed25519.pub
 
 git clone git@github.com:sofushl/nixos.git # My link
 
-# Update ./lib/YOUR_HOST.nix and ./lib/sshkeys.nix and 
+# Update ./lib/YOUR_HOST.nix and ./lib/sshkeys.nix and rebuild with correct hostname
 
-# Rebuild with correct hostname make sure you did everything right
-
+mkpin # Does the same as the mkpasswd commands but hides it
 ```
 
 ## Home-manager installation
@@ -185,7 +171,7 @@ sudo apt autoclean
 home-switch
 ```
 
-## Dual boot installation
+## Dual boot installation (Likely outdated)
 
 Using a simple nixos configuration you can make a ultra bare bones nix config with the sole purpose of rebuilding into a different system. This is an old and weird way to go about doing things in nix, which is why I moved it into the bottom of my README file. This example of shell commands is intended for when you have windows installed (without recovery partition) and already have established an xfs linux partition on the 4th partition. The example is quite niche but I'm replacing it with disko anyway...
 

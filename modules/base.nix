@@ -16,7 +16,7 @@
       i18n.extraLocaleSettings.LANG = "en_GB.UTF-8";
       console.useXkbConfig = true;
 
-      users.users.root.hashedPassword = userconf.pinhash;
+      users.users.root.hashedPasswordFile = "/var/lib/secrets/${userconf.username}.hash";
       security.sudo.wheelNeedsPassword = true;
 
       boot.kernelPackages = pkgs.linuxPackages_latest;
