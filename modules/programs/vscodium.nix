@@ -62,7 +62,6 @@
               with pkgs.vscode-marketplace;
               [
                 eclipse-cdt.memory-inspector
-                microchip.mplab-ai-coding-assistant
                 microchip.mplab-clangd
                 microchip.mplab-code-configurator
                 microchip.mplab-core-da
