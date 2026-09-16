@@ -8,7 +8,7 @@
     }:
 
     {
-      networking.networkmanager.enable = lib.mkDefault true;
+      networking.networkmanager.enable = true;
 
       programs = {
         captive-browser = {
@@ -20,7 +20,6 @@
       hardware.graphics.enable = true;
 
       services = {
-
         logind.settings.Login = {
           HandlePowerKey = "ignore";
           HandlePowerKeyLongPress = "poweroff";
@@ -37,6 +36,8 @@
         thermald.enable = true;
         udisks2.enable = true;
       };
+
+      security.rtkit.enable = true;
 
       home-manager.users.${userconf.username}.imports = with self.homeModules; [
         desktop

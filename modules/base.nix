@@ -17,7 +17,10 @@
       console.useXkbConfig = true;
 
       users.users.root.hashedPassword = userconf.pinhash;
+      security.sudo.wheelNeedsPassword = true;
+
       boot.kernelPackages = pkgs.linuxPackages_latest;
+
       networking.hostName = userconf.host;
       system.stateVersion = userconf.state;
 
@@ -34,12 +37,6 @@
         };
       };
 
-      security = {
-        rtkit.enable = true;
-        sudo.wheelNeedsPassword = true;
-        polkit.enablePkexecWrapper = true;
-      };
-
       services = {
         xserver = {
           xkb = {
@@ -47,6 +44,7 @@
             variant = "nodeadkeys";
           };
         };
+        gnome.gnome-keyring.enable = true;
       };
 
       programs = {

@@ -57,6 +57,7 @@
           directories = [
             "nixos"
             ".ssh"
+            ".local/share/keyrings"
           ];
 
           files = [

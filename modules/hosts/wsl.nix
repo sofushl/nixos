@@ -26,6 +26,7 @@ in
       environment
       user
       openssh
+      keyring
 
       javafxlib
       electronDev

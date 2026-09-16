@@ -43,6 +43,7 @@ in
 
       server
       openssh
+      keyring
 
       nextcloudServer
       dnsUpdater
