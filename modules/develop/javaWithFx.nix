@@ -2,7 +2,7 @@
   flake.nixosModules.javaWithFx =
     { lib, pkgs, ... }:
 
-    # RECCOMENDED PRESERVATION OF "$HOME/.m2" "$HOME/.local/share/JetBrains" "$HOME/.config/JetBrains" "$HOME/.vscode"
+    # RECCOMENDED PRESERVATION OF "$HOME/.m2" "$HOME/.local/share/JetBrains" "$HOME/.config/JetBrains"
 
     let
       jdkWithFX = pkgs.openjdk.override { enableJavaFX = true; };
@@ -23,7 +23,6 @@
       environment.systemPackages = with pkgs; [
         scenebuilder
         jetbrains.idea
-        vscode
 
         maven
         gsettings-desktop-schemas

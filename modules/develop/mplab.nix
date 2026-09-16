@@ -27,7 +27,6 @@
             ${pkgs.glibc}/lib/ld-linux-x86-64.so.2 ${xc8src}
           '')
           cmake
-          vscode
         ]
         ++ libs;
 

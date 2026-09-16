@@ -27,6 +27,7 @@
           fuzzel.enable = false;
           hyprlock.enable = false;
           waybar.enable = false;
+          vscodium.enable = false;
         };
 
         cursor = {

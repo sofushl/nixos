@@ -57,6 +57,7 @@ in
               rclone
               obsidian
               develop
+              vscodium
             ];
 
             preservation.preserveAt."/persistent" = {
