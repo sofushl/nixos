@@ -1,5 +1,5 @@
 return {
 	cmd = { "marksman" },
 	filetypes = { "markdown" },
-	root_markers = { ".marksman.toml", ".git", "README.md" },
+	root_markers = { ".marksman.toml", ".git", "README.md", ".obsidian" },
 }

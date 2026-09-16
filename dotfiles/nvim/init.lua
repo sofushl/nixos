@@ -18,6 +18,7 @@ vim.lsp.enable({
 	"typescript",
 	"yaml",
 	"c",
+	"tinymist",
 })
 
 -- Formatting option
