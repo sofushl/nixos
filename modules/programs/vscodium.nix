@@ -24,6 +24,15 @@
         vscodevim.vim
         anthropic.claude-code
       ];
+
+      # Explaination in readme
+      mplab-ui-patched = pkgs.vscode-marketplace.microchip.mplab-ui.overrideAttrs (old: {
+        postInstall = (old.postInstall or "") + ''
+          substituteInPlace "$out/$installPrefix/dist/extension.js" \
+            --replace-fail 'c.join(__dirname,"data")' \
+              '(process.env.HOME + "/.mplab/mplab-ui-data")'
+        '';
+      });
     in
     {
 
@@ -69,10 +78,10 @@
                 microchip.mplab-extensions-core
                 microchip.mplab-extensions-platforms
                 microchip.mplab-kconfig
-                microchip.mplab-ui
                 microchip.mplabx-importer
                 microchip.runcmake
                 microchip.toolchains
+                mplab-ui-patched
               ]
               ++ extensions;
           };
