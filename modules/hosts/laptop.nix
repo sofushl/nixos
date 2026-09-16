@@ -79,9 +79,8 @@ in
                   ".local/share/JetBrains"
                   ".m2"
 
-                  ".config/Code"
-                  ".vscode"
-                  ".vscode-shared"
+                  ".config/VSCodium"
+                  ".vscode-oss-shared"
 
                   ".mplab"
                   ".mplabcomm"

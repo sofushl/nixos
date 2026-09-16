@@ -2,7 +2,7 @@
   flake.nixosModules.mplab =
     { pkgs, userconf, ... }:
 
-    # REQUIRES PRESERVATION OF "opt" "$HOME.config/Code" "$HOME.vscode" "$HOME.vscode-shared" "$HOME.mplab" "$HOME.mplabcomm" "$HOME.mchp_packs"
+    # REQUIRES PRESERVATION OF "opt" "$HOME.mplab" "$HOME.mplabcomm" "$HOME.mchp_packs"
 
     let
 

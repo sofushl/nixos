@@ -9,6 +9,8 @@
       ...
     }:
 
+    # RECCOMENDED PERSISTANCE OF "$HOME/.config/VSCodium" "$HOME/.vscode-oss-shared"
+
     let
       settings = {
         "editor.formatOnSave" = true;
