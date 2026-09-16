@@ -459,7 +459,7 @@
                 "brightnessctl"
                 "--class=backlight"
                 "set"
-                "5%+"
+                "1%+"
               ];
             };
             "XF86MonBrightnessDown" = {
@@ -468,7 +468,7 @@
                 "brightnessctl"
                 "--class=backlight"
                 "set"
-                "5%-"
+                "1%-"
               ];
             };
 

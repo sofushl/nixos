@@ -107,8 +107,7 @@
                 "󰃠"
               ];
               on-click = "sunsetr stop";
-              min-brightness = 0.02;
-              scroll-step = 0.5;
+              scroll-step = 5;
             };
 
             network = {
