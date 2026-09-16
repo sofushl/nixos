@@ -1,7 +1,6 @@
 {
   username = "sofushl";
   displayname = "Sofus Lind";
-  pinhash = "$6$INVALID$PLACEHOLDER";
 
   sshkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG4ZvT/w/qm2UO4zxxdhXZDVFjqORwVpJiUgpSl3CdjC sofushl@Zbook";
   host = "Zbook";

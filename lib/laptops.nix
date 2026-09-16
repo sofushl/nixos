@@ -7,7 +7,6 @@ in
   default = {
     username = homeconf.username;
     displayname = homeconf.displayname;
-    pinhash = "$6$INVALID$PLACEHOLDER";
     key = null;
 
     host = "init";

@@ -1,7 +1,6 @@
 {
   username = "sofushl";
   displayname = "Sofus Lind";
-  pinhash = "$6$INVALID$PLACEHOLDER";
 
   sshkey = "";
   host = "T2000";
