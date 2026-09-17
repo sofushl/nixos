@@ -40,6 +40,13 @@
             directory = "/var/lib/nixos";
             inInitrd = true;
           }
+          {
+            directory = "/var/lib/secrets";
+            inInitrd = true;
+            mode = "0700";
+            user = "root";
+            group = "root";
+          }
           "/var/lib"
           "/etc/nixos"
           "/etc/ssh"

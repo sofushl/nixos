@@ -20,6 +20,11 @@
       security.pam.services = {
         login.enableGnomeKeyring = true;
         greetd.enableGnomeKeyring = true;
+        hyprlock = {
+          enable = true;
+          enableGnomeKeyring = true;
+          fprintAuth = false;
+        };
       };
 
       security.polkit = {
