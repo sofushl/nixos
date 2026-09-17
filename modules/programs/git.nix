@@ -27,8 +27,8 @@
           alias = {
             ci = "commit";
             co = "checkout";
-            s = "status";
-            p = "push";
+            stat = "status";
+            res = "restore";
           };
         };
       };
@@ -55,17 +55,11 @@
     };
 
     home.shellAliases = {
-      "clone" = "git clone";
       "push" = "git push";
-      "commit" = "git commit -m";
-      "add" = "git add -A";
-      "status" = "git status";
       "stash" = "git stash";
       "pop" = "git stash pop";
       "pull" = "git pull";
       "diff" = "git diff";
-      "restore" = "git restore";
-      "restore-staged" = "git restore --staged";
 
       "git-local" = ''
         git config --local user.name "${userconf.localgitname}" && \
