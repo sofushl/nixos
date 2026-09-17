@@ -10,6 +10,8 @@
       boot.tmp.cleanOnBoot = true;
 
       fileSystems."/nix".neededForBoot = true;
+      fileSystems."/persistent".neededForBoot = true;
+      systemd.suppressedSystemUnits = [ "systemd-machine-id-commit.service" ];
 
       disko.devices.nodev = {
         "/" = {

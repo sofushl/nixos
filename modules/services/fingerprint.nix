@@ -4,13 +4,7 @@
     { userconf, pkgs, ... }:
     {
       services.fprintd.enable = true;
-
-      # Only if lsusb shows Goodix/Broadcom — mainline Synaptics/Elan don't need this:
-      # services.fprintd.tod = {
-      #   enable = true;
-      #   driver = pkgs.libfprint-2-tod1-goodix;   # or libfprint-2-tod1-broadcom
-      # };
-
+      security.pam.services.hyprlock.fprintAuth = false;
       home-manager.users.${userconf.username}.imports = [ self.homeModules.fingerprint ];
     };
 
