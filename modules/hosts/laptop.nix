@@ -29,6 +29,7 @@ in
           preservation
           desktop
 
+          eduroam
           openssh
           bluetooth
           keyring

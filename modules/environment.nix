@@ -63,6 +63,16 @@
             mkpasswd -m yescrypt | sudo tee /var/lib/secrets/${userconf.username}.hash
             sudo chmod 0400 /var/lib/secrets/${userconf.username}.hash
           '';
+
+          # Eduroam password for the declarative NetworkManager profile
+          mkedupass = ''
+            sudo install -d -m 0700 -o root -g root /var/lib/secrets
+            read -rsp "eduroam password: " p && echo
+            printf 'EDUROAM_PASSWORD=%s\n' "$p" | sudo tee /var/lib/secrets/eduroam.env > /dev/null
+            unset p
+            sudo chmod 0400 /var/lib/secrets/eduroam.env
+            sudo systemctl restart NetworkManager-ensure-profiles.service
+          '';
         };
 
         enableAllTerminfo = true;
@@ -76,12 +86,14 @@
       gzip
       zip
       git-filter-repo
+      git-secrets
       ripgrep
       fd
       fzf
       btop
       unzip
       dnsutils
+      trash-cli
     ];
 
     home = {

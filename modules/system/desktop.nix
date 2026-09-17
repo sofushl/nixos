@@ -66,7 +66,6 @@
       krita
       inkscape
       teams-for-linux
-      geteduroam
     ];
 
     services.udiskie = {
