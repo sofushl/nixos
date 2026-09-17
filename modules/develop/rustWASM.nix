@@ -28,9 +28,10 @@
             pkg-config
             openssl
 
-            lld
             trunk
+            wasm
             cargo-wasi
+            wasm-bindgen-cli
             tailwindcss_4
           ]
           ++ libs;
