@@ -58,9 +58,7 @@ This system is meant for one single user and user configuration relies on ```./l
 
 userconf includes several parts from ```./lib``` defined in```.modules/hosts/*``` 
 
-For server config theres an optional secret import
-
-Make ```/etc/nixos/secrets.nix``` like this:
+The [homeserver](./modules/hosts/homeserver.nix) has a secret import ```/etc/nixos/secrets.nix``` like this:
 
 ``` nix
 {
@@ -76,9 +74,40 @@ Make ```/etc/nixos/secrets.nix``` like this:
 }
 ```
 
+### Out of store secrets
+
+Secrets that must not enter the nix store live root owned in
+```/var/lib/secrets/``` (preserved through ```/persistent/var/lib```):
+
+| File | Command | Used by |
+| --- | --- | --- |
+| ```sofushl.hash``` | ```mkpin``` | [ ```users.users.*.hashedPasswordFile```](./modules/user.nix) |
+| ```eduroam.env``` | ```mkedupass``` | the [```eduroam```](./modules/services/eduroam.nix) nixosModule |
+
+```eduroam.env``` holds ```EDUROAM_PASSWORD=...``` and is substituted into
+```/run/NetworkManager/system-connections/eduroam.nmconnection``` by
+NetworkManager's ```ensureProfiles```. A literal ```$``` in the password has
+to be written as ```$$```.
+
 ## Dotfiles
 
 All non nix files used for the config is in ```./dotfiles/```.
+
+#### [Neovim config](./dotfiles/nvim/)
+
+Uses home-manager module for plugin management, and a couple other settings.
+
+[nvim/init.lua](./dotfiles/nvim/init.lua) Is added to the generated init.lua
+
+[abacordlogo.txt](./dotfiles/abacordlogo.txt) ASCII logo for the Abacord interest group under the Abakus student org
+
+[librewolf.css](./dotfiles/librewolf.css) ExtraCss for librewolf / firefox.
+
+[ntnu-root-ca.pem](./dotfiles/ntnu-root-ca.pem) Public CA for ntnu eduroam.
+
+[sunsetr.toml](./dotfiles/sunsetr.toml) Config for sunsetr red light service.
+
+[wezterm.lua](./dotfiles/wezterm.lua) Old wezterm config in plain lua.
 
 ## Disko installation
 
