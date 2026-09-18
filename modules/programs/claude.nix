@@ -45,7 +45,6 @@
 
         settings = {
           model = "opus";
-          fallbackModel = [ "sonnet" ];
           modelSettings = {
             "claude-sonnet-5".effortLevel = "low";
             "claude-opus-5".effortLevel = "medium";
@@ -61,12 +60,10 @@
           };
 
           editorMode = "vim";
-          viewMode = "verbose"; # default | verbose | focus
-          tui = "fullscreen"; # default | fullscreen (flicker-free alt screen)
+          viewMode = "verbose";
           outputStyle = "default";
 
-          verbose = true; # full tool output instead of summaries
-          autoScrollEnabled = true; # fullscreen renderer only
+          verbose = true;
           showTurnDuration = true;
           showMessageTimestamps = true;
           spinnerTipsEnabled = true;
@@ -89,29 +86,6 @@
 
           respectGitignore = true;
           defaultShell = "bash";
-
-          sandbox = {
-            enabled = true;
-            failIfUnavailable = false;
-            allowUnsandboxedCommands = true;
-            network = {
-              allowedDomains = [
-                "cache.nixos.org"
-                "github.com"
-                "*.githubusercontent.com"
-              ];
-              deniedDomains = [ ];
-              strictAllowlist = false;
-            };
-            filesystem = {
-              denyRead = [
-                "~/.ssh/**"
-                "~/.gnupg/**"
-              ];
-              denyWrite = [ "~/.ssh/**" ];
-            };
-          };
-
           permissions.defaultMode = "default";
 
           # Never allowed, whatever else matches.
