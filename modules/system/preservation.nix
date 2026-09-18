@@ -37,17 +37,9 @@
       preservation.preserveAt."/persistent" = {
         directories = [
           {
-            directory = "/var/lib/nixos";
+            directory = "/var/lib";
             inInitrd = true;
           }
-          {
-            directory = "/var/lib/secrets";
-            inInitrd = true;
-            mode = "0700";
-            user = "root";
-            group = "root";
-          }
-          "/var/lib"
           "/etc/nixos"
           "/etc/ssh"
           (if config.networking.networkmanager.enable == true then "/etc/NetworkManager" else "")
