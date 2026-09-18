@@ -115,7 +115,7 @@
           home-switch
         '';
 
-        home-manager = "home-manager --flake /${userconf.type}";
+        home-manager = "home-manager --flake /${userconf.path}#${userconf.type}";
       };
       sessionVariables = {
         NIXOS_OZONE_WL = "1";
