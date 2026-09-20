@@ -35,6 +35,18 @@ in
         "fingerprint"
       ];
     };
+    Zbook = {
+      host = "Zbook";
+      key = "";
+      disk = "nvme0n1";
+      modules = [
+        "niri"
+        "gaming"
+        "fingerprint"
+        "nvidia"
+      ];
+    };
+
     Lenovo = {
       host = "Lenovo";
       key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDWrMHaQJytYaXu8akiijr+eAs+Psa1w6T0yLawLMk4d sofushl@Lenovo";
