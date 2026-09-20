@@ -44,11 +44,9 @@
         package = pkgs.claude-code;
 
         settings = {
-          model = "opus";
           modelSettings = {
-            "claude-sonnet-5".effortLevel = "low";
+            "claude-sonnet-5".effortLevel = "medium";
             "claude-opus-5".effortLevel = "medium";
-            "claude-opus-5[1m]".effortLevel = "high";
           };
           showThinkingSummaries = true;
           switchModelsOnFlag = true;
