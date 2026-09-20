@@ -58,6 +58,7 @@ in
                 directories = [
                   "Downloads"
                   "Public"
+                  "Cloud"
 
                   ".config/mozilla"
                   ".config/discord"
