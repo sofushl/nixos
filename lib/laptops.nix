@@ -33,12 +33,13 @@ in
         "niri"
         "gaming"
         "fingerprint"
+        "ciscovpn"
       ];
     };
     Zbook = {
       host = "Zbook";
       key = "";
-      disk = "nvme0n1";
+      disk = "nvme1n1";
       modules = [
         "niri"
         "gaming"
