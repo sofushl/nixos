@@ -15,6 +15,8 @@
         font.size = 12;
 
         settings = {
+          scrollback_lines = 10000;
+
           hide_window_decorations = true;
           window_padding_width = "0 2";
           confirm_os_window_close = 0;
