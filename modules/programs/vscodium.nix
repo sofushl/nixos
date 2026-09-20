@@ -18,6 +18,9 @@
         "workbench.colorTheme" = "Dark Modern";
         "workbench.activityBar.location" = "top";
         "claudeCode.preferredLocation" = "panel";
+        "redhat.telemetry.enabled" = false;
+        "git.confirmSync" = false;
+
       };
 
       extensions = with pkgs.vscode-marketplace; [
@@ -62,6 +65,7 @@
                 vscjava.vscode-java-debug
                 vscjava.vscode-java-test
                 shengchen.vscode-checkstyle
+                jebbs.plantuml
               ]
               ++ extensions;
           };
