@@ -30,7 +30,6 @@ in
           desktop
 
           ciscovpn
-
           eduroam
           openssh
           bluetooth
@@ -60,6 +59,7 @@ in
                 directories = [
                   "Downloads"
                   "Public"
+                  "Cloud"
 
                   ".config/mozilla"
                   ".config/discord"

@@ -11,9 +11,17 @@ After building with rclone in the config and .config/rclone/nextcloud.pass prese
 rclone obscure 'APP_PASSWORD' > ~/.config/rclone/nextcloud.pass
 ```
 
-with APP_PASSWORD being the app password you generated on your nextcloud server.
+APP_PASSWORD being the app password you generated on your nextcloud server.
 
-after rebuilding and restarting the rclone service your mount should now be on ~/Cloud
+
+First bisync run must be done manually to establish the baseline:
+
+```bash
+rclone bisync nextcloud: ~/Cloud --resync # Rerun until it passes without network related failures
+```
+
+
+After restarting the rclone service you should now be bisyncing to ~/Cloud
 
 
 #### [vscodium](./vscodium.nix)
