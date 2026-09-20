@@ -52,6 +52,15 @@ Boilerplate for nixosModules and/or homeModules:
 }
 ```
 
+## Packages
+
+Own package definitions for software missing from nixpkgs, called with
+`pkgs.callPackage` from whichever module needs them.
+
+#### [pkgs](./pkgs/README.md)
+Currently just [cisco-secure-client](./pkgs/cisco-secure-client.nix), the
+NTNU VPN client.
+
 ## Library
 
 This system is meant for one single user and user configuration relies on ```./lib/sofushl.nix```

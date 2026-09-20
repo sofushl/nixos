@@ -29,6 +29,8 @@ in
           preservation
           desktop
 
+          ciscovpn
+
           eduroam
           openssh
           bluetooth
