@@ -28,6 +28,7 @@
             pkg-config
             openssl
 
+            lld
             trunk
             wasm
             cargo-wasi
