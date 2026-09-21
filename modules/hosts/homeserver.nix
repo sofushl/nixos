@@ -48,7 +48,7 @@ in
       nextcloudServer
       dnsUpdater
       gitService
-      ollama
+      minecraftServer
 
       {
         home-manager.users.${homeconf.username}.imports = with self.homeModules; [
