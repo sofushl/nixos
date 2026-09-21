@@ -12,7 +12,7 @@
     in
     {
 
-      # REQUIRES PRESERVATION OF "$HOME/.config/rclone/nextcloud.pass" and "$HOME/Cloud"
+      # REQUIRES PRESERVATION OF "$HOME/.config/rclone/nextcloud.pass" "$HOME/Cloud" "$HOME/.cache/rclone"
 
       programs.rclone = {
         enable = true;
