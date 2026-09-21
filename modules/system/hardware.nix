@@ -30,6 +30,7 @@
           "nvme"
           "usb_storage"
           "sd_mod"
+          "usbhid"
           "rtsx_pci_sdmmc"
           "thunderbolt"
         ];

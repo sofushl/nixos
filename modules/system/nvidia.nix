@@ -1,6 +1,6 @@
 {
   flake.nixosModules.nvidia =
-    { config, ... }:
+    { config, lib, ... }:
     {
       nixpkgs.config.allowUnfree = true;
       nixpkgs.config.cudaCapabilities = [ "7.5" ];
@@ -22,7 +22,7 @@
       hardware.nvidia = {
         modesetting.enable = true;
         nvidiaSettings = true;
-        package = config.boot.kernelPackages.nvidiaPackages.stable;
+        branch = "latest";
 
         open = false;
 
