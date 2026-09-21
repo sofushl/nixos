@@ -35,5 +35,10 @@
           nvidiaBusId = "PCI:1:0:0";
         };
       };
+
+      environment.sessionVariables = {
+        #__EGL_VENDOR_LIBRARY_FILENAMES = "/run/opengl-driver/share/glvnd/egl_vendor.d/50_mesa.json";
+        __GLX_VENDOR_LIBRARY_NAME = "mesa";
+      };
     };
 }
