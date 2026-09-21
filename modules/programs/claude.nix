@@ -12,6 +12,20 @@
     let
       vscodeLangservers = pkgs.vscode-langservers-extracted;
 
+      ponytail = pkgs.fetchFromGitHub {
+        owner = "DietrichGebert";
+        repo = "ponytail";
+        rev = "e3ba2aa6f1e6f0bc4d69eb09c9f0d0a93af56156";
+        hash = "sha256-PES5XrSYx0VBXWVHEDRykGy0SAmJfV/luzy8Gfg0aAQ=";
+      };
+
+      agentSkills = pkgs.fetchFromGitHub {
+        owner = "addyosmani";
+        repo = "agent-skills";
+        rev = "dc27a9c2e13721158157632de61b4106c6c2a2a1";
+        hash = "sha256-mliEs4QGO3W1vm5i4PfTNXCGtYVNUmEedWVmt5l7sxY=";
+      };
+
       statusLine = pkgs.writeShellApplication {
         name = "claude-statusline";
         runtimeInputs = [
@@ -37,7 +51,10 @@
       };
     in
     {
-      home.packages = [ pkgs.claude-monitor ];
+      home.packages = [
+        pkgs.claude-monitor
+        pkgs.graphify
+      ];
 
       programs.claude-code = {
         enable = true;
@@ -46,7 +63,7 @@
         settings = {
           modelSettings = {
             "claude-sonnet-5".effortLevel = "medium";
-            "claude-opus-5".effortLevel = "medium";
+            "claude-opus-5".effortLevel = "high";
           };
           showThinkingSummaries = true;
           switchModelsOnFlag = true;
@@ -157,6 +174,16 @@
             "Bash(systemctl is-active *)"
             "Bash(systemctl is-enabled *)"
           ];
+        };
+
+        plugins = {
+          ponytail = ponytail;
+          agent-skills = agentSkills;
+        };
+
+        skills.graphify = pkgs.fetchurl {
+          url = "https://raw.githubusercontent.com/Graphify-Labs/graphify/refs/heads/v8/graphify/skill.md";
+          hash = "sha256-Pk0w31qTaWWsqiURcjCm8/9ENTwTfmMDDoXjvDo5H7c=";
         };
 
         mcpServers.nixos = {
