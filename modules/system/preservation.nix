@@ -23,11 +23,11 @@
         }
       ];
 
-      preservation.preserveAt."/tmp" = {
-        users.${userconf.username} = {
-          directories = [ ".cache" ];
-        };
-      };
+      #preservation.preserveAt."/tmp" = {
+      #  users.${userconf.username} = {
+      #    directories = [ ".cache" ];
+      #  };
+      #};
 
       systemd.tmpfiles.rules = [
         "R! /home/sofushl/.cache - - - - -"
