@@ -27,10 +27,17 @@
           max-players = 100;
           motd = "Abellan minecraft server";
           white-list = false;
-          allow-cheats = false;
+
+          world-border = 100;
           simulation-distance = 5;
           spawn-protection = 0;
           view-distance = 16;
+
+          enforce-secure-profile = false;
+
+          player-idle-timeout = 0;
+          entity-broadcast-range-percentage = 100;
+          sync-chunk-writes = false;
         };
       };
     };
