@@ -87,6 +87,11 @@ in
                   ".mchp_packs"
 
                   ".claude"
+
+                  ".ollama"
+                  ".local/share/opencode"
+                  ".local/state/opencode"
+                  ".config/opencode"
                 ];
 
                 files = [

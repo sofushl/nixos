@@ -1,16 +1,17 @@
 {
   flake.homeModules.opencode =
     {
-      config,
       pkgs,
       lib,
       stablepkgs,
+      userconf,
       ...
     }:
 
-    # REQURIES PRESERVATION OF "$HOME/.local/share/opencode/" "$HOME/.local/state/opencode/" "$HOME/.config/opencode"
+    # REQURIES PRESERVATION OF "$HOME/.ollama" "$HOME/.local/share/opencode" "$HOME/.local/state/opencode" "$HOME/.config/opencode"
 
     let
+
       ponytail = pkgs.fetchFromGitHub {
         owner = "DietrichGebert";
         repo = "ponytail";
@@ -47,7 +48,7 @@
 
       services.ollama = {
         enable = true;
-        package = stablepkgs.ollama-cuda;
+        package = pkgs.ollama-cuda;
         acceleration = "cuda";
       };
 
