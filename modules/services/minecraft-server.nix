@@ -15,7 +15,7 @@
         declarative = true;
 
         package = pkgs.purpur-server;
-        jvmOpts = "-Xms100M -Xmx10G";
+        jvmOpts = "-Xms20M -Xmx20G";
 
         whitelist = {
           Sofudge = "001c8e90-4e3e-4b82-91e0-f3f3c2b7d1d3";
@@ -24,13 +24,13 @@
         serverProperties = {
           difficulty = 3;
           gamemode = 2;
-          max-players = 1;
-          motd = "Excore minecraft server";
-          white-list = true;
+          max-players = 100;
+          motd = "Abellan minecraft server";
+          white-list = false;
           allow-cheats = false;
-          simulation-distance = 32;
+          simulation-distance = 5;
           spawn-protection = 0;
-          view-distance = 128;
+          view-distance = 16;
         };
       };
     };
