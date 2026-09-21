@@ -2,6 +2,14 @@
   flake.nixosModules.homeSetup = { userconf, ... }: {
     home-manager.users.${userconf.username}.imports = with self.homeModules; [
       homeSetup
+      opencode
+    ];
+
+    preservation.preserveAt."/persistent".users.${userconf.username}.directories = [
+      ".ollama"
+      ".local/share/opencode"
+      ".local/state/opencode"
+      ".config/opencode"
     ];
 
   };
