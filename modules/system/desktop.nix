@@ -66,6 +66,8 @@
       krita
       inkscape
       teams-for-linux
+      watchmate
+      siglo
     ];
 
     services.udiskie = {
