@@ -16,6 +16,7 @@
       imagemagick
       ast-grep
       lldpd
+      graphviz
 
       # Languages
       lua

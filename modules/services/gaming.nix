@@ -17,6 +17,7 @@
 
         ".local/share/PrismLauncher/"
 
+        "Games"
         "Gaming"
       ];
 
