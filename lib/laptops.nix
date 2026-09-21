@@ -38,13 +38,14 @@ in
     };
     Zbook = {
       host = "Zbook";
-      key = "";
+      key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBy09roMaMEGDDAw8M7eEjHbmxlyiPBAgoOxh6N5qou+ sofushl@Zbook";
       disk = "nvme1n1";
       modules = [
         "niri"
         "gaming"
         "fingerprint"
         "nvidia"
+        "homeSetup"
       ];
     };
 
