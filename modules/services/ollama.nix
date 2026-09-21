@@ -21,11 +21,9 @@
         enable = true;
         package = stablepkgs.ollama-cuda;
         loadModels = [
-          "qwen3:0.6b"
-          "qwen3.6:latest"
-          "glm-4.7-flash:latest"
-          "mistral-small3.2:latest"
+          "qwen3.8:latest"
         ];
+        acceleration = "cuda";
       };
 
       services.searx = {

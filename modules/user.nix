@@ -3,6 +3,7 @@
     {
       userconf,
       pkgs,
+      stablepkgs,
       ...
     }:
     {
@@ -12,7 +13,7 @@
         useGlobalPkgs = false;
         useUserPackages = true;
         backupFileExtension = "back";
-        extraSpecialArgs = { inherit userconf; };
+        extraSpecialArgs = { inherit userconf inputs stablepkgs; };
         users.${userconf.username} = self.homeModules.user;
       };
 

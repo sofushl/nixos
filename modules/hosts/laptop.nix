@@ -6,6 +6,11 @@ let
   resolved = builtins.mapAttrs (_: h: laptops.default // h) laptops.hosts;
   sshkeys = import ../../lib/sshkeys.nix;
   theme = import ../../lib/theme.nix;
+  stablepkgs = import inputs.stablepkgs {
+    system = "x86_64-linux";
+    config.allowUnfree = true;
+    config.cudaSupport = true;
+  };
 in
 {
   flake.nixosConfigurations = builtins.mapAttrs (
@@ -14,7 +19,7 @@ in
       system = "x86_64-linux";
 
       specialArgs = {
-        inherit inputs;
+        inherit inputs stablepkgs;
         userconf = sysconf // resolvehome.laptop // theme // sshkeys;
       };
 
@@ -50,6 +55,7 @@ in
               obsidian
               develop
               vscodium
+              opencode
             ];
 
             preservation.preserveAt."/persistent" = {

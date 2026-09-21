@@ -11,13 +11,18 @@ let
   wslconf = import ../../lib/wsl.nix;
   sshkeys = import ../../lib/sshkeys.nix;
   theme = import ../../lib/theme.nix;
+  stablepkgs = import inputs.stablepkgs {
+    system = "x86_64-linux";
+    config.allowUnfree = true;
+    config.cudaSupport = true;
+  };
 in
 {
   flake.nixosConfigurations.${wslconf.host} = inputs.nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
 
     specialArgs = {
-      inherit inputs;
+      inherit inputs stablepkgs;
       userconf = homeconf // wslconf // theme // sshkeys;
     };
 
