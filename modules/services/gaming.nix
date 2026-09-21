@@ -1,6 +1,11 @@
 {
   flake.nixosModules.gaming =
-    { pkgs, userconf, ... }:
+    {
+      pkgs,
+      userconf,
+      config,
+      ...
+    }:
 
     {
       preservation.preserveAt."/persistent".users.${userconf.username}.directories = [
@@ -27,8 +32,23 @@
       environment.systemPackages = with pkgs; [
         protonup-qt
         wine
-        prismlauncher
         heroic
+
+        (
+          if config.hardware.nvidia.enabled then
+            (pkgs.symlinkJoin {
+              name = "prismlauncher-nvidia";
+              paths = [ pkgs.prismlauncher ];
+              nativeBuildInputs = [ pkgs.makeWrapper ];
+              postBuild = ''
+                wrapProgram $out/bin/prismlauncher \
+                  --set __NV_PRIME_RENDER_OFFLOAD 1 \
+                  --set __GLX_VENDOR_LIBRARY_NAME nvidia
+              '';
+            })
+          else
+            pkgs.prismlauncher
+        )
       ];
     };
 }
