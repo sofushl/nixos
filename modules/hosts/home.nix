@@ -11,7 +11,11 @@ let
   };
   homes = import ../../lib/homes.nix;
   resolvehome = builtins.mapAttrs (_: h: homes.default // h) homes.homes;
-
+  stablepkgs = import inputs.stablepkgs {
+    system = pkgs.stdenv.hostPlatform.system;
+    config.allowUnfree = true;
+    config.cudaSupport = true;
+  };
   sshkeys = import ../../lib/sshkeys.nix;
   theme = import ../../lib/theme.nix;
 in
@@ -22,7 +26,7 @@ in
       inherit pkgs;
 
       extraSpecialArgs = {
-        inherit inputs;
+        inherit inputs stablepkgs;
         userconf = homeconf // theme // sshkeys;
       };
 
