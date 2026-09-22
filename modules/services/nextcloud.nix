@@ -10,7 +10,7 @@
         hostName = userconf.cloudDom;
         https = true;
         database.createLocally = true;
-        package = pkgs.nextcloud34;
+        package = pkgs.nextcloud35;
 
         config = {
           adminuser = null;
@@ -28,7 +28,7 @@
 
           serverid = 1;
 
-          log_type = "systemd";
+          log_type = "file";
           trusted_proxies = [ "192.168.1.1" ];
 
           overwriteprotocol = "https";
