@@ -16,8 +16,19 @@
         polarity = "dark";
         base16Scheme = userconf.theme-vscode.alt;
 
-        autoEnable = false;
-        targets.yazi.enable = true;
+        targets = {
+          firefox.profileNames = [ "default" ];
+
+          neovim.enable = false;
+          gtk.enable = false;
+          obsidian.enable = false;
+          mako.enable = false;
+          kitty.enable = false;
+          fuzzel.enable = false;
+          hyprlock.enable = false;
+          waybar.enable = false;
+          vscodium.enable = false;
+        };
 
         cursor = {
           package = pkgs.bibata-cursors;
