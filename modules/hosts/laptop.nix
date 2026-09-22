@@ -72,6 +72,8 @@ in
                   ".config/spotify"
                   ".cache/spotify"
 
+                  ".local/state/wireplumber"
+
                   ".cache/rclone"
 
                   ".config/onlyoffice"
