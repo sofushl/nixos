@@ -45,8 +45,6 @@
       ...
     }:
     {
-      imports = [ self.homeModules.stylix ];
-
       nixpkgs.config.allowUnfree = true;
 
       home = {

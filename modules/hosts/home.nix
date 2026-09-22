@@ -1,8 +1,4 @@
-{
-  self,
-  inputs,
-  ...
-}:
+{ self, inputs, ... }:
 let
   system = "x86_64-linux";
   pkgs = import inputs.nixpkgs {
@@ -36,6 +32,7 @@ in
           base
           environment
           user
+          fonts
           kitty
           niri
           desktop

@@ -55,6 +55,7 @@ in
               obsidian
               develop
               vscodium
+              fonts
             ];
 
             preservation.preserveAt."/persistent" = {

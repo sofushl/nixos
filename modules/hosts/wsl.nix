@@ -1,9 +1,4 @@
-{
-  self,
-  inputs,
-  lib,
-  ...
-}:
+{ self, inputs, ... }:
 let
   homes = import ../../lib/homes.nix;
   resolvehome = builtins.mapAttrs (_: h: homes.default // h) homes.homes;
@@ -48,14 +43,10 @@ in
         };
 
         home-manager.users.${homeconf.username}.imports = with self.homeModules; [
-          headless
+          develop
+          fonts
         ];
       }
     ];
-  };
-
-  flake.homeModules.headless = {
-    dconf.enable = lib.mkForce false;
-    imports = [ self.homeModules.develop ];
   };
 }
