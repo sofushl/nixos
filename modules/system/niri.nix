@@ -13,6 +13,9 @@
         niri
       ];
 
+      hardware.sensor.iio.enable = true;
+      services.iio-niri.enable = true;
+
       services.greetd = {
         enable = true;
         settings.default_session = {

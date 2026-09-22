@@ -18,7 +18,6 @@
         ".local/share/PrismLauncher/"
 
         "Games"
-        "Gaming"
       ];
 
       programs.steam = {
