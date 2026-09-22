@@ -52,7 +52,8 @@ in
 
       {
         home-manager.users.${homeconf.username}.imports = with self.homeModules; [
-          headless
+          develop
+          fonts
         ];
 
         preservation.preserveAt."/persistent".directories = [
