@@ -4,11 +4,19 @@
       userconf,
       config,
       lib,
+      pkgs,
       ...
     }:
     let
       cloudDir = "${config.home.homeDirectory}/Cloud";
       rcloneExe = lib.getExe config.programs.rclone.package;
+      bisyncCmd = "${rcloneExe} bisync nextcloud: ${cloudDir} --resilient --recover --conflict-resolve newer";
+      bisyncUntilSuccess = pkgs.writeShellScript "rclone-bisync-nextcloud-retry" ''
+        until ${bisyncCmd}; do
+          sleep 5
+        done
+      '';
+      notifySendExe = lib.getExe pkgs.libnotify;
     in
     {
 
@@ -27,21 +35,51 @@
         };
       };
 
-      systemd.user.services.rclone-bisync-nextcloud = {
-        Unit.Description = "Bisync ~/Cloud with Nextcloud";
+      systemd.user.services."unit-status-failure-notify@" = {
+        Unit.Description = "Notify about failure of %i";
         Service = {
           Type = "oneshot";
-          ExecStart = "${rcloneExe} bisync nextcloud: ${cloudDir} --resilient --recover --conflict-resolve newer";
+          ExecStart = "${notifySendExe} --urgency=critical -i error 'Unit failed' '%i failed'";
+        };
+      };
+
+      systemd.user.services.rclone-bisync-nextcloud = {
+        Unit = {
+          Description = "Bisync ~/Cloud with Nextcloud";
+          OnFailure = [ "unit-status-failure-notify@%n.service" ];
+        };
+        Service = {
+          Type = "oneshot";
+          ExecStart = bisyncCmd;
         };
       };
 
       systemd.user.timers.rclone-bisync-nextcloud = {
-        Unit.Description = "Run nextcloud bisync every minute";
+        Unit.Description = "Run nextcloud bisync on boot and every 5 minutes";
         Timer = {
           OnBootSec = "1m";
-          OnUnitActiveSec = "1m";
+          OnUnitActiveSec = "2m";
         };
         Install.WantedBy = [ "timers.target" ];
+      };
+
+      systemd.user.services.rclone-bisync-nextcloud-shutdown = {
+        Unit = {
+          Description = "Bisync ~/Cloud with Nextcloud on shutdown";
+          Before = [ "shutdown.target" ];
+          OnFailure = [ "unit-status-failure-notify@%n.service" ];
+        };
+        Service = {
+          Type = "oneshot";
+          RemainAfterExit = true;
+          ExecStart = "${pkgs.coreutils}/bin/true";
+          ExecStop = bisyncUntilSuccess;
+          TimeoutStopSec = 300;
+        };
+        Install.WantedBy = [
+          "default.target"
+          "shutdown.target"
+        ];
       };
     };
 }
