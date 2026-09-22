@@ -5,7 +5,7 @@
         enable = true;
         enableBashIntegration = true;
 
-        flavors.vscode-dark-plus =
+        theme.mgr.syntect_theme =
           let
             src = pkgs.fetchFromGitHub {
               owner = "956MB";
@@ -14,20 +14,12 @@
               hash = "sha256-aYw4HuF8GaOhJEQDkgsdJn/uCdEme6kFrBkL80SFikA=";
             };
           in
-          pkgs.runCommand "vscode-dark-plus-noicons" { } ''
-            cp -r ${src} $out
-            chmod -R u+w $out
-            sed -i '/^\[icon\]/,$d' $out/flavor.toml
-          '';
+          "${src}/tmtheme.xml";
 
-        theme.flavor.dark = "vscode-dark-plus";
-
-        settings = {
-          mgr = {
-            show_hidden = false;
-            sort_dir_first = true;
-            sort_reverse = false;
-          };
+        settings.mgr = {
+          show_hidden = false;
+          sort_dir_first = true;
+          sort_reverse = false;
         };
 
         plugins = {
