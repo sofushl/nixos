@@ -11,11 +11,6 @@
       cloudDir = "${config.home.homeDirectory}/Cloud";
       rcloneExe = lib.getExe config.programs.rclone.package;
       bisyncCmd = "${rcloneExe} bisync nextcloud: ${cloudDir} --resilient --recover --conflict-resolve newer";
-      bisyncUntilSuccess = pkgs.writeShellScript "rclone-bisync-nextcloud-retry" ''
-        until ${bisyncCmd}; do
-          sleep 5
-        done
-      '';
       notifySendExe = lib.getExe pkgs.libnotify;
     in
     {
@@ -61,25 +56,6 @@
           OnUnitActiveSec = "2m";
         };
         Install.WantedBy = [ "timers.target" ];
-      };
-
-      systemd.user.services.rclone-bisync-nextcloud-shutdown = {
-        Unit = {
-          Description = "Bisync ~/Cloud with Nextcloud on shutdown";
-          Before = [ "shutdown.target" ];
-          OnFailure = [ "unit-status-failure-notify@%n.service" ];
-        };
-        Service = {
-          Type = "oneshot";
-          RemainAfterExit = true;
-          ExecStart = "${pkgs.coreutils}/bin/true";
-          ExecStop = bisyncUntilSuccess;
-          TimeoutStopSec = 300;
-        };
-        Install.WantedBy = [
-          "default.target"
-          "shutdown.target"
-        ];
       };
     };
 }
