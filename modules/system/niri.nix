@@ -13,8 +13,8 @@
         niri
       ];
 
-      hardware.sensor.iio.enable = true;
-      services.iio-niri.enable = true;
+      #hardware.sensor.iio.enable = true;
+      #services.iio-niri.enable = true;
 
       services.greetd = {
         enable = true;
