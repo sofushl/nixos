@@ -21,6 +21,7 @@
         "redhat.telemetry.enabled" = false;
         "git.confirmSync" = false;
         "git.openRepositoryInParentFolders" = "always";
+        "git.enableSmartCommit" = true;
       };
 
       extensions = with pkgs.vscode-marketplace; [
