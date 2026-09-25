@@ -27,6 +27,7 @@
       # Formatter
       nixfmt
       kdlfmt
+      xmlformat
       yamlfmt
       rustfmt
       clippy
