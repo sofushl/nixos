@@ -49,6 +49,7 @@ in
       dnsUpdater
       gitService
       minecraftServer
+      tmux
 
       {
         home-manager.users.${homeconf.username}.imports = with self.homeModules; [
