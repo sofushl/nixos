@@ -20,12 +20,14 @@
         "claudeCode.preferredLocation" = "panel";
         "redhat.telemetry.enabled" = false;
         "git.confirmSync" = false;
-
+        "git.openRepositoryInParentFolders" = "always";
       };
 
       extensions = with pkgs.vscode-marketplace; [
         vscodevim.vim
         anthropic.claude-code
+        vivaxy.vscode-conventional-commits
+        eamodio.gitlens
       ];
 
       # Explaination in readme
@@ -53,6 +55,23 @@
             enableUpdateCheck = false;
             extensions = extensions;
             userSettings = settings;
+          };
+          node = {
+            userSettings = settings;
+            extensions =
+              with pkgs.vscode-marketplace;
+              [
+                connor4312.esbuild-problem-matchers
+                dbaeumer.vscode-eslint
+                orta.vscode-jest
+                firsttris.vscode-jest-runner
+                esbenp.prettier-vscode
+                bradlc.vscode-tailwindcss
+                hbenl.vscode-test-explorer
+                ms-vscode.test-adapter-converter
+                ms-vscode.vscode-js-profile-flame
+              ]
+              ++ extensions;
           };
           java = {
             userSettings = settings;
@@ -99,7 +118,6 @@
                 ms-python.vscode-python-envs
                 ms-python.vscode-pylance
                 paulober.pico-w-go
-
               ]
               ++ extensions;
           };

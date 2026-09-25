@@ -38,6 +38,7 @@ in
           desktop
           develop
           firefox
+          vscodium
         ]
         ++ map (n: self.homeModules.${n}) homeconf.modules;
     }
