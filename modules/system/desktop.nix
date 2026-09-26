@@ -68,6 +68,7 @@
       teams-for-linux
       watchmate
       siglo
+      wl-clicker
     ];
 
     services.udiskie = {
