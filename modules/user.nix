@@ -29,6 +29,7 @@
             "dialout"
             "plugdev"
             "input"
+            "minecraft"
           ];
 
           hashedPasswordFile = "/var/lib/secrets/${userconf.username}.hash";
