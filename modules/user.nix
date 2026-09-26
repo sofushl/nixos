@@ -28,6 +28,7 @@
             "storage"
             "dialout"
             "plugdev"
+            "input"
           ];
 
           hashedPasswordFile = "/var/lib/secrets/${userconf.username}.hash";
