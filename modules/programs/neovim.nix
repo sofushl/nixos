@@ -53,6 +53,8 @@
 
           micropython-nvim
           render-markdown-nvim
+
+          markdown-preview-nvim
           typst-preview-nvim
 
           vscode-nvim
