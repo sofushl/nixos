@@ -178,11 +178,6 @@
           agent-skills = agentSkills;
         };
 
-        skills.graphify = pkgs.fetchurl {
-          url = "https://raw.githubusercontent.com/Graphify-Labs/graphify/refs/heads/v8/graphify/skill.md";
-          hash = "sha256-Pk0w31qTaWWsqiURcjCm8/9ENTwTfmMDDoXjvDo5H7c=";
-        };
-
         mcpServers.nixos = {
           type = "stdio";
           command = lib.getExe pkgs.mcp-nixos;
