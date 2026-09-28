@@ -14,12 +14,21 @@ in
     state = "26.11";
     wifiboard = "wlp0s20f3";
     disk = "sda";
-    modules = [
-      "niri"
-    ];
+    home = "integrated";
+    macaddress = null;
+    system = "x86_64-linux";
   };
 
   hosts = {
+
+    T2000 = {
+      host = "T2000";
+      path = "/home/sofushl/nixos";
+      state = "26.11";
+      disk = "nvme0n1";
+
+      macaddress = "48:9e:bd:75:c0:68";
+    };
     Aspire = {
       host = "Aspire";
       key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICSIsf/7nVF/zBnRUB2ekOhECX7S1H75lq+8l+idSjbC sofushl@Aspire";
@@ -29,30 +38,26 @@ in
       host = "Elitebook";
       key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH7TP6uO6pyFPdxJiXE69dL49GHgB0pDDiMKxuCCNCTP sofushl@Elitebook";
       disk = "nvme0n1";
-      modules = [
-        "niri"
-        "gaming"
-        "fingerprint"
-        "ciscovpn"
-      ];
     };
     Zbook = {
       host = "Zbook";
       key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBy09roMaMEGDDAw8M7eEjHbmxlyiPBAgoOxh6N5qou+ sofushl@Zbook";
       disk = "nvme1n1";
-      modules = [
-        "niri"
-        "gaming"
-        "fingerprint"
-        "nvidia"
-        "homeSetup"
-      ];
     };
 
     Lenovo = {
       host = "Lenovo";
       key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDWrMHaQJytYaXu8akiijr+eAs+Psa1w6T0yLawLMk4d sofushl@Lenovo";
       wifiboard = "wlp0s26u1u4i2";
+    };
+
+    WSL = {
+      host = "WSL";
+      wifiboard = "eth0";
+    };
+
+    init = {
+      host = "init";
     };
   };
 }

@@ -1,6 +1,25 @@
+{ self, ... }:
 {
   flake.homeModules.work = { lib, pkgs, ... }: {
     programs.hyprlock.enable = lib.mkForce false;
+
+    home.packages = with pkgs; [
+      teams-for-linux
+      postman
+    ];
+
+    imports = with self.homeModules; [
+      base
+      environment
+      user
+      fonts
+      kitty
+      niri
+      desktop
+      develop
+      firefox
+      vscodium
+    ];
 
     programs.niri.settings = {
 

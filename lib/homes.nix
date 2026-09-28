@@ -13,19 +13,12 @@
     key = null;
     path = "/home/sofushl/nixos";
     state = "26.11";
-    modules = [
-    ];
+    system = "x86_64-linux";
   };
 
   homes = {
-    laptop = {
-      type = "laptop";
-
-    };
-
-    headless = {
-      type = "headless";
-      modules = [ "headless" ];
+    integrated = {
+      type = "integrated";
     };
 
     work = {
@@ -33,7 +26,6 @@
       username = "soli";
       path = "home/soli/nixos";
       key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN73JXdOkCMd8Jl34UVaNv5UfyLqwVgU56dD1qHmQSTO soli@Thinkso.nordicsemi.no";
-      modules = [ "work" ];
       localgitname = "Sofus Lind";
       localgitmail = "sofus.lind@nordicsemi.no";
     };
