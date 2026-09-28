@@ -2,7 +2,6 @@
 
 rec {
   topDom = "sofus.privatedns.org";
-  secondaryDom = "sofus.undo.it";
   apiDom = "api.${topDom}";
 
   cloudDom = "cloud.${topDom}";
@@ -14,7 +13,6 @@ rec {
 
   domains = [
     topDom
-    secondaryDom
     apiDom
 
     cloudDom
