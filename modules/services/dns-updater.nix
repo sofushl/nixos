@@ -1,36 +1,36 @@
 {
   flake.nixosModules.dnsUpdater =
-    { userconf, pkgs, ... }:
-    let
-      pack = [ pkgs.wget ];
-    in
     {
-
-      services.cron = {
-        enable = true;
-        systemCronJobs = map (
-          link: "0 * * * * wget -q --read-timeout=0.0 --waitretry=5 --tries=100 --background ${link}"
-        ) userconf.dnsUpdateLinks;
-      };
-
+      userconf,
+      lib,
+      pkgs,
+      ...
+    }:
+    {
       systemd.services.dns-update = {
-        path = pack;
+        after = [ "network-online.target" ];
+        wants = [ "network-online.target" ];
 
-        script = builtins.concatStringsSep "\n" (
-          map (link: ''
-            wget -q --read-timeout=0.0 --waitretry=5 --tries=100 --background ${link}
-          '') userconf.dnsUpdateLinks
-        );
+        script = lib.concatMapStringsSep "\n" (
+          link:
+          "${lib.getExe pkgs.wget} -q -O /dev/null --read-timeout=0.0 --waitretry=20 --tries=50 ${lib.escapeShellArg link} || true"
+        ) userconf.dnsUpdateLinks;
 
-        serviceConfig.Type = "oneshot";
+        serviceConfig = {
+          Type = "oneshot";
+          DynamicUser = true;
+          ProtectSystem = "strict";
+          ProtectHome = true;
+          PrivateTmp = true;
+          NoNewPrivileges = true;
+        };
       };
 
       systemd.timers.dns-update = {
         wantedBy = [ "timers.target" ];
-
         timerConfig = {
-          OnStartupSec = "1m";
-          OnUnitActiveSec = "30m";
+          OnBootSec = "1m";
+          OnUnitActiveSec = "15m";
         };
       };
     };
