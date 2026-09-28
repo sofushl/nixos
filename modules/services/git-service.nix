@@ -32,9 +32,48 @@
         git
         bash
       ];
+
+      user = "git-service";
+      hardening = service: {
+        User = user;
+        Group = user;
+        ProtectSystem = "strict";
+        ReadWritePaths = [ "/var/www/${service.name}" ];
+        ProtectHome = true;
+        PrivateTmp = true;
+        NoNewPrivileges = true;
+      };
     in
     {
       environment.systemPackages = pack;
+
+      users.users.${user} = {
+        isSystemUser = true;
+        group = user;
+        home = "/var/www";
+      };
+      users.groups.${user} = { };
+
+      systemd.tmpfiles.rules = [
+        "d /var/www 0755 root root -"
+      ]
+      ++ lib.concatMap (service: [
+        "d /var/www/${service.name} 0755 ${user} ${user} -"
+        "Z /var/www/${service.name} - ${user} ${user} -"
+      ]) gitServices;
+
+      security.polkit.enable = true;
+      security.polkit.extraConfig = ''
+        polkit.addRule(function(action, subject) {
+          var units = ${builtins.toJSON (map (service: "app-${service.name}.service") running)};
+          if (action.id == "org.freedesktop.systemd1.manage-units" &&
+              subject.user == "${user}" &&
+              action.lookup("verb") == "restart" &&
+              units.indexOf(action.lookup("unit")) >= 0) {
+            return polkit.Result.YES;
+          }
+        });
+      '';
 
       systemd.services = lib.listToAttrs (
         map (service: {
@@ -48,8 +87,9 @@
               GIT_CONFIG_VALUE_0 = "/var/www/${service.name}";
             }
             // service.env;
+            after = [ "network-online.target" ];
+            wants = [ "network-online.target" ];
             script = ''
-              mkdir -p /var/www
               if [ ! -d /var/www/${service.name}/.git ]; then
                 git clone ${service.repo} /var/www/${service.name}
 
@@ -74,23 +114,27 @@
                 fi
               fi
             '';
-            serviceConfig.Type = "oneshot";
+            serviceConfig = hardening service // {
+              Type = "oneshot";
+            };
           };
         }) gitServices
         ++ map (service: {
           name = "app-${service.name}";
           value = {
             path = pack ++ service.pack;
-            environment =
-              lib.optionalAttrs (service.port != null) {
-                PORT = toString service.port;
-              }
-              // service.env;
+            environment = {
+              HOME = "/var/www/${service.name}";
+            }
+            // lib.optionalAttrs (service.port != null) {
+              PORT = toString service.port;
+            }
+            // service.env;
             script = ''
               cd /var/www/${service.name}
               ${service.start}
             '';
-            serviceConfig = {
+            serviceConfig = hardening service // {
               Type = "simple";
               Restart = "always";
               RestartSec = 5;
