@@ -59,15 +59,6 @@
       discord
       element-desktop
       onlyoffice-desktopeditors
-      thonny
-      ripes
-      postman
-      geogebra6
-      krita
-      inkscape
-      teams-for-linux
-      watchmate
-      siglo
       wl-clicker
     ];
 

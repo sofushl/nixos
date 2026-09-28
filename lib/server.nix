@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ stablepkgs, ... }:
 
 rec {
   topDom = "sofus.privatedns.org";
@@ -70,9 +70,9 @@ rec {
       domain = emailApi;
       env = {
         CARGO_HOME = "/var/www/email-backend/.cargo";
-        PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
+        PKG_CONFIG_PATH = "${stablepkgs.openssl.dev}/lib/pkgconfig";
       };
-      pack = with pkgs; [
+      pack = with stablepkgs; [
         cargo
         rustc
         stdenv.cc

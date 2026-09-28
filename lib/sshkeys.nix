@@ -1,9 +1,8 @@
 let
-  T2000key = (import ./T2000.nix).sshkey;
 
-  laptops = import ./laptops.nix;
-  resolvelaptop = builtins.mapAttrs (_: h: laptops.default // h) laptops.hosts;
-  laptopkeys = builtins.filter (k: k != null) (map (h: h.key) (builtins.attrValues resolvelaptop));
+  hosts = import ./hosts.nix;
+  resolvehosts = builtins.mapAttrs (_: h: hosts.default // h) hosts.hosts;
+  hostkeys = builtins.filter (k: k != null) (map (h: h.key) (builtins.attrValues resolvehosts));
 
   homes = import ./homes.nix;
   resolvehome = builtins.mapAttrs (_: h: homes.default // h) homes.homes;
@@ -14,10 +13,9 @@ rec {
   winkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPkgE78Nlc92AUcetKRsdpo9jOBzDYO/DhCgYlixvPDX sofushl@Win";
 
   sshkeys = [
-    T2000key
     phonekey
     winkey
   ]
-  ++ laptopkeys
+  ++ hostkeys
   ++ homekeys;
 }

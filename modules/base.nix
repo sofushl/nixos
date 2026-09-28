@@ -24,7 +24,10 @@
       networking.hostName = userconf.host;
       system.stateVersion = userconf.state;
 
-      nixpkgs.config.allowUnfree = true;
+      nixpkgs = {
+        hostPlatform = userconf.system;
+        config.allowUnfree = true;
+      };
 
       nix = {
         settings = {
@@ -83,6 +86,7 @@
       ...
     }:
     {
+      nixpkgs.config.allowUnfree = true;
 
       programs.home-manager = {
         enable = true;

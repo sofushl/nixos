@@ -26,21 +26,7 @@ in
         userconf = homeconf // theme // sshkeys;
       };
 
-      modules =
-        with self.homeModules;
-        [
-          base
-          environment
-          user
-          fonts
-          kitty
-          niri
-          desktop
-          develop
-          firefox
-          vscodium
-        ]
-        ++ map (n: self.homeModules.${n}) homeconf.modules;
+      modules = [ self.homeModules.${homeconf.type} ];
     }
   ) resolvehome;
 }
