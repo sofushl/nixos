@@ -14,7 +14,6 @@
       gaming
       fingerprint
 
-      ciscovpn
       eduroam
       openssh
       bluetooth
