@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.javaWithFx =
+  flake.homeModules.javaWithFx =
     { lib, pkgs, ... }:
 
     # RECCOMENDED PRESERVATION OF "$HOME/.m2" "$HOME/.local/share/JetBrains" "$HOME/.config/JetBrains"
@@ -18,9 +18,11 @@
         enable = true;
       };
 
-      environment.variables.GSETTINGS_SCHEMA_DIR = lib.mkDefault (map pkgs.glib.getSchemaPath schemaPkgs);
+      home.sessionVariables.GSETTINGS_SCHEMA_DIR = (
+        lib.concatStringsSep ":" (map pkgs.glib.getSchemaPath schemaPkgs)
+      );
 
-      environment.systemPackages = with pkgs; [
+      home.packages = with pkgs; [
         scenebuilder
         jetbrains.idea
 

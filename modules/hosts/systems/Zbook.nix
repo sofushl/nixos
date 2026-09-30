@@ -23,8 +23,6 @@
       keyd
 
       python
-      javaWithFx
-      node
       rustWASM
       clangGTK
       mplab
@@ -32,13 +30,24 @@
 
     home-manager.users.${userconf.username}.imports = with self.homeModules; [
       firefox
-      rclone
       obsidian
-      develop
       vscodium
-      fonts
+      neovim
+      yazi
+      git
+
+      bash
       homeMonitor
+      fonts
+      rclone
+      fastfetch
+
+      claude
       opencode
+
+      node
+      javaWithFx
+
       {
         home.packages = with pkgs; [
           watchmate

@@ -39,6 +39,11 @@
               '(process.env.HOME + "/.mplab/mplab-ui-data")'
         '';
       });
+
+      dependencies = with pkgs; [
+        graphviz
+        typst
+      ];
     in
     {
 
@@ -134,5 +139,7 @@
           };
         };
       };
+
+      home.packages = with pkgs; [ ] ++ dependencies;
     };
 }

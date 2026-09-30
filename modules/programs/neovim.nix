@@ -11,23 +11,44 @@
           hash = "sha256-R/YfQWOtUoPxp0s7lOxPIOuPgwuIWk0O5h/EoJGixHw=";
         };
       };
+
+      dependencies = with pkgs; [
+        fd
+        ripgrep
+        fzf
+        zoxide
+        resvg
+        imagemagick
+        ast-grep
+        lldpd
+        wl-clipboard
+        lazygit
+      ];
     in
     {
-      home.file = lib.listToAttrs (
-        map
-          (path: {
-            name = ".config/nvim/${path}";
-            value = {
-              source = ../../dotfiles/nvim/${path};
-              force = true;
-              recursive = true;
-            };
-          })
-          [
-            "lsp"
-            "plugin"
-          ]
-      );
+      home.file =
+        lib.listToAttrs (
+          map
+            (path: {
+              name = ".config/nvim/${path}";
+              value = {
+                source = ../../dotfiles/nvim/${path};
+                force = true;
+                recursive = true;
+              };
+            })
+            [
+              "lsp"
+              "plugin"
+            ]
+        )
+        // {
+          ".config/asm-lsp/.asm-lsp.toml".text = ''
+            [default_config]
+            assembler = "go"
+            instruction_set = "riscv"
+          '';
+        };
 
       programs.neovim = {
         enable = true;
@@ -69,6 +90,42 @@
         initLua = builtins.readFile ../../dotfiles/nvim/init.lua;
       };
 
-      programs.uv.enable = true;
+      home.packages =
+        with pkgs;
+        [
+          # Languages
+          lua
+          nixd
+
+          # Formatter
+          nixfmt
+          kdlfmt
+          xmlformat
+          yamlfmt
+          rustfmt
+          prettierd
+          black
+          isort
+          google-java-format
+          typstyle
+          stylua
+
+          # LSP
+          pyright
+          lua-language-server
+          nil
+          jdt-language-server
+          typescript-language-server
+          ty
+          taplo
+          tinymist
+          vscode-langservers-extracted
+          tailwindcss-language-server
+          yaml-language-server
+          marksman
+          asm-lsp
+        ]
+        ++ dependencies;
+
     };
 }

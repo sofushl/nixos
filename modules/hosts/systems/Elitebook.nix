@@ -21,10 +21,7 @@
       keyring
       keyd
 
-      # Development libraries
       python
-      javaWithFx
-      node
       rustWASM
       clangGTK
       mplab
@@ -32,11 +29,21 @@
 
     home-manager.users.${userconf.username}.imports = with self.homeModules; [
       firefox
-      rclone
       obsidian
-      develop
       vscodium
+      neovim
+      yazi
+      git
+      claude
+
+      bash
       fonts
+      rclone
+      fastfetch
+
+      node
+      javaWithFx
+
       {
         home.packages = with pkgs; [
           watchmate
