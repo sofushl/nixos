@@ -12,6 +12,8 @@
       environment = {
         systemPackages = with pkgs; [
           cacert
+          kitty.terminfo
+          ncurses
         ];
 
         # Custom build commands for using the flake instead of configuration.nix
@@ -60,8 +62,6 @@
             sudo systemctl restart NetworkManager-ensure-profiles.service
           '';
         };
-
-        enableAllTerminfo = true;
       };
     };
 

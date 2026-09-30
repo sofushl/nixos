@@ -1,8 +1,13 @@
 {
   flake.nixosModules.rustWASM =
-    { lib, pkgs, ... }:
+    {
+      lib,
+      stablepkgs,
+      pkgs,
+      ...
+    }:
     let
-      libs = with pkgs; [
+      libs = with stablepkgs; [
         libxkbcommon
         vulkan-loader
         libGL
@@ -16,7 +21,7 @@
     {
       environment = {
         systemPackages =
-          with pkgs;
+          with stablepkgs;
           [
             rustc
             cargo
