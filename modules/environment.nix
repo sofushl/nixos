@@ -12,19 +12,6 @@
       environment = {
         systemPackages = with pkgs; [
           cacert
-          wget
-          curl
-          gzip
-          zip
-          git-filter-repo
-          git-secrets
-          ripgrep
-          fd
-          fzf
-          btop
-          unzip
-          dnsutils
-          trash-cli
         ];
 
         # Custom build commands for using the flake instead of configuration.nix
@@ -80,19 +67,27 @@
 
   flake.homeModules.environment = { pkgs, userconf, ... }: {
     home.packages = with pkgs; [
+      btop
+      lazygit
+      trash-cli
+
+      git-filter-repo
+      git-secrets
+      commitlint
+
       wget
       curl
       gzip
       zip
-      git-filter-repo
-      git-secrets
       ripgrep
       fd
       fzf
-      btop
       unzip
+      imagemagick
+      ast-grep
+      lldpd
       dnsutils
-      trash-cli
+      pciutils
     ];
 
     home = {

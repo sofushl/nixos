@@ -23,8 +23,13 @@
     };
 
     home-manager.users.${userconf.username}.imports = with self.homeModules; [
-      develop
-      fonts
+      neovim
+      yazi
+      claude
+      git
+      bash
+      fastfetch
+      node
     ];
   };
 }

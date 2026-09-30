@@ -15,14 +15,20 @@
       eduroam
       openssh
       keyd
-
-      node
     ];
 
     home-manager.users.${userconf.username}.imports = with self.homeModules; [
       firefox
-      develop
+      neovim
+      yazi
+      git
+
+      bash
       fonts
+      fastfetch
+
+      claude
+      node
     ];
 
     preservation.preserveAt."/persistent" = {
@@ -47,7 +53,6 @@
 
         files = [
           ".config/gh/hosts.yml"
-          ".config/rclone/nextcloud.pass"
           ".claude.json"
         ];
       };
