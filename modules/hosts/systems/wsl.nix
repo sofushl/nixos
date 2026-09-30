@@ -11,7 +11,6 @@
       javafxlib
       electronDev
       python
-      node
       rustWASM
 
       inputs.nixos-wsl.nixosModules.default
