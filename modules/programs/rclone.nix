@@ -11,7 +11,6 @@
       cloudDir = "${config.home.homeDirectory}/Cloud";
       rcloneExe = lib.getExe config.programs.rclone.package;
       bisyncCmd = "${rcloneExe} bisync nextcloud: ${cloudDir} --resilient --recover --conflict-resolve newer";
-      notifySendExe = lib.getExe pkgs.libnotify;
     in
     {
 
@@ -34,7 +33,16 @@
         Unit.Description = "Notify about failure of %i";
         Service = {
           Type = "oneshot";
-          ExecStart = "${notifySendExe} --urgency=critical -i error 'Unit failed' '%i failed'";
+          ExecStart = "${pkgs.writeShellScript "notify-failure" ''
+            stamp="$2/rclone-bisync/last-success"
+            if [ -r "$stamp" ]; then
+              last=$(cat "$stamp")
+            else
+              last="never"
+            fi
+            ${lib.getExe pkgs.libnotify} --urgency=critical -i error \
+              "$1 failed" "Last bisync success: $last"
+          ''} %i %S";
         };
       };
 
@@ -45,7 +53,9 @@
         };
         Service = {
           Type = "oneshot";
+          StateDirectory = "rclone-bisync"; # creates ~/.local/state/rclone-bisync
           ExecStart = bisyncCmd;
+          ExecStartPost = "${pkgs.runtimeShell} -c '${pkgs.coreutils}/bin/date > %S/rclone-bisync/last-success'";
         };
       };
 
