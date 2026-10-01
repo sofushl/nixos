@@ -1,7 +1,7 @@
 { self, ... }:
 
 {
-  flake.nixosModules.Lenovo = { userconf, ... }: {
+  flake.nixosModules.Lenovo = { pkgs, userconf, ... }: {
     imports = with self.nixosModules; [
       base
       environment
@@ -19,33 +19,7 @@
     ];
 
     home-manager.users.${userconf.username}.imports = with self.homeModules; [
-      base
-      environment
-      user
-      desktop
-      niri
-
-      kitty
-      firefox
-      neovim
-      yazi
-      git
-
-      bash
-      fonts
-      fastfetch
-
-      claude
-
-      {
-        home.packages = with pkgs; [
-          spotify
-          discord
-          element-desktop
-          onlyoffice-desktopeditors
-          wl-clicker
-        ];
-      }
+      niriMin
     ];
 
     preservation.preserveAt."/persistent" = {
