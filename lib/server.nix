@@ -23,8 +23,6 @@ rec {
     emailApi
   ];
 
-  wifiboard = "eth";
-
   gitServices = [
     {
       name = "portfolio";
