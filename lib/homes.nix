@@ -6,7 +6,7 @@
     gitmail = email;
     localgitname = "Sofus Højberg Lind";
     localgitmail = "sofushl@stud.ntnu.no";
-    type = "headless";
+    type = "default";
     ghname = username;
     nextcloud = "cloud.sofus.privatedns.org";
     nextclouduser = username;
@@ -17,8 +17,12 @@
   };
 
   homes = {
-    integrated = {
-      type = "integrated";
+    default = {
+      type = "default";
+    };
+
+    laptop = {
+      type = "laptop";
     };
 
     work = {

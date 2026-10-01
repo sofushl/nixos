@@ -1,5 +1,7 @@
 { self, inputs, ... }:
 
+# REQUIRES HOME AND NIXOS IMPORT "niri"
+
 {
   flake.nixosModules.niri =
     {
@@ -9,9 +11,6 @@
       ...
     }:
     {
-      home-manager.users.${userconf.username}.imports = with self.homeModules; [
-        niri
-      ];
 
       #hardware.sensor.iio.enable = true;
       #services.iio-niri.enable = true;

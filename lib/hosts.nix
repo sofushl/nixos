@@ -14,7 +14,7 @@ in
     state = "26.11";
     wifiboard = "wlp0s20f3";
     disk = "sda";
-    home = "integrated";
+    home = "default";
     macaddress = null;
     system = "x86_64-linux";
   };

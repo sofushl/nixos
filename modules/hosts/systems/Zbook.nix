@@ -29,6 +29,12 @@
     ];
 
     home-manager.users.${userconf.username}.imports = with self.homeModules; [
+      base
+      environment
+      desktop
+      niri
+
+      kitty
       firefox
       obsidian
       vscodium
@@ -50,6 +56,12 @@
 
       {
         home.packages = with pkgs; [
+          spotify
+          discord
+          element-desktop
+          onlyoffice-desktopeditors
+          wl-clicker
+
           watchmate
           siglo
           postman

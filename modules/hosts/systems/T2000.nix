@@ -5,6 +5,7 @@
     imports = with self.nixosModules; [
       base
       environment
+      home
       user
       disko
       preservation
@@ -24,6 +25,10 @@
     ];
 
     home-manager.users.${userconf.username}.imports = with self.homeModules; [
+      base
+      environment
+      user
+
       neovim
       yazi
       claude
