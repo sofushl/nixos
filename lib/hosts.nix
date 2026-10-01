@@ -26,6 +26,7 @@ in
       path = "/home/sofushl/nixos";
       state = "26.11";
       disk = "nvme0n1";
+      wifiboard = "eth";
 
       macaddress = "48:9e:bd:75:c0:68";
     };
