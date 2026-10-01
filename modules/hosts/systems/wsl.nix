@@ -23,16 +23,7 @@
     };
 
     home-manager.users.${userconf.username}.imports = with self.homeModules; [
-      base
-      environment
-      user
-      neovim
-      yazi
-      claude
-      git
-      bash
-      fastfetch
-      node
+      headless
     ];
   };
 }

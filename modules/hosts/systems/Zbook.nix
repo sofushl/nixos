@@ -6,6 +6,7 @@
       base
       environment
       hardware
+      home
       user
       disko
       preservation
