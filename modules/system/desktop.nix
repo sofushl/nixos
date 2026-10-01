@@ -1,4 +1,5 @@
-{ self, ... }: {
+# REQUIRES HOME AND NIXOS IMPORT "desktop"
+{
   flake.nixosModules.desktop =
     {
       userconf,
@@ -38,11 +39,6 @@
       };
 
       security.rtkit.enable = true;
-
-      home-manager.users.${userconf.username}.imports = with self.homeModules; [
-        desktop
-        kitty
-      ];
     };
 
   flake.homeModules.desktop = { pkgs, ... }: {
@@ -53,14 +49,6 @@
         createDirectories = false;
       };
     };
-
-    home.packages = with pkgs; [
-      spotify
-      discord
-      element-desktop
-      onlyoffice-desktopeditors
-      wl-clicker
-    ];
 
     services.udiskie = {
       enable = true;

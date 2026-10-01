@@ -5,6 +5,7 @@
       base
       environment
       user
+      home
       openssh
       keyring
 
@@ -22,6 +23,9 @@
     };
 
     home-manager.users.${userconf.username}.imports = with self.homeModules; [
+      base
+      environment
+      user
       neovim
       yazi
       claude

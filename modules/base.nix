@@ -1,3 +1,4 @@
+# REQUIRES HOME AND NIXOS IMPORT "base"
 {
   flake.nixosModules.base =
 
@@ -97,5 +98,7 @@
         gpu.enable = true;
         nixGL.vulkan.enable = true;
       };
+
+      home.stateVersion = userconf.state;
     };
 }

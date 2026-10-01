@@ -6,6 +6,7 @@
       base
       environment
       hardware
+      home
       user
       disko
       preservation
@@ -18,6 +19,13 @@
     ];
 
     home-manager.users.${userconf.username}.imports = with self.homeModules; [
+      base
+      environment
+      user
+      desktop
+      niri
+
+      kitty
       firefox
       neovim
       yazi
@@ -28,7 +36,16 @@
       fastfetch
 
       claude
-      node
+
+      {
+        home.packages = with pkgs; [
+          spotify
+          discord
+          element-desktop
+          onlyoffice-desktopeditors
+          wl-clicker
+        ];
+      }
     ];
 
     preservation.preserveAt."/persistent" = {

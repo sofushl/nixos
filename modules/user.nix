@@ -1,4 +1,8 @@
-{ self, inputs, ... }: {
+{ inputs, ... }:
+
+# REQUIRES HOME AND NIXOS IMPORT "user"
+
+{
   flake.nixosModules.user =
     {
       userconf,
@@ -7,15 +11,6 @@
       ...
     }:
     {
-      imports = [ inputs.home-manager.nixosModules.home-manager ];
-
-      home-manager = {
-        useGlobalPkgs = false;
-        useUserPackages = true;
-        backupFileExtension = "back";
-        extraSpecialArgs = { inherit userconf inputs stablepkgs; };
-        users.${userconf.username} = self.homeModules.user;
-      };
 
       users = {
         users.${userconf.username} = {
@@ -41,6 +36,18 @@
       };
     };
 
+  flake.nixosModules.home = { userconf, stablepkgs, ... }: {
+
+    imports = [ inputs.home-manager.nixosModules.home-manager ];
+
+    home-manager = {
+      useGlobalPkgs = false;
+      useUserPackages = true;
+      backupFileExtension = "back";
+      extraSpecialArgs = { inherit userconf inputs stablepkgs; };
+    };
+  };
+
   flake.homeModules.user =
     {
       userconf,
@@ -63,6 +70,5 @@
           enable = true;
         };
       };
-
     };
 }

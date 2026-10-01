@@ -6,11 +6,14 @@
       base
       environment
       hardware
+      home
       user
       disko
       preservation
+
       desktop
       niri
+
       gaming
       fingerprint
 
@@ -27,6 +30,13 @@
     ];
 
     home-manager.users.${userconf.username}.imports = with self.homeModules; [
+      base
+      environment
+      user
+      desktop
+      niri
+
+      kitty
       firefox
       obsidian
       vscodium
@@ -45,6 +55,12 @@
 
       {
         home.packages = with pkgs; [
+          spotify
+          discord
+          element-desktop
+          onlyoffice-desktopeditors
+          wl-clicker
+
           watchmate
           siglo
           postman

@@ -1,4 +1,8 @@
-{ self, inputs, ... }: {
+{ inputs, ... }:
+
+# REQUIRES HOME AND NIXOS IMPORT "cosmic"
+
+{
   flake.nixosModules.cosmic =
     {
       config,
@@ -11,11 +15,6 @@
       services.desktopManager.cosmic.enable = true;
       services.desktopManager.cosmic.xwayland.enable = true;
       services.displayManager.cosmic-greeter.enable = true;
-
-      home-manager.users.${userconf.username}.imports = with self.homeModules; [
-        cosmic
-        inputs.cosmic-manager.homeManagerModules.cosmic-manager
-      ];
 
       services.desktopManager.cosmic.showExcludedPkgsWarning = false;
 
@@ -42,6 +41,11 @@
       opt = ron "optional";
     in
     {
+
+      imports = [
+        inputs.cosmic-manager.homeManagerModules.cosmic-manager
+      ];
+
       xdg.portal = {
         enable = true;
         extraPortals = [ pkgs.xdg-desktop-portal-cosmic ];

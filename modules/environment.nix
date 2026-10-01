@@ -1,3 +1,4 @@
+# REQUIRES HOME AND NIXOS IMPORT "environment"
 {
   flake.nixosModules.environment =
 
@@ -39,7 +40,7 @@
             nixos-switch
           '';
 
-          nix-clear = ''
+          nixos-clean = ''
             sudo nix-collect-garbage -d
             sudo nh clean all
             sudo nix store optimise
@@ -97,7 +98,7 @@
           nix run nixpkgs#home-manager -- switch --flake /${userconf.path}#${userconf.type} -b back
         '';
 
-        nix-clear = ''
+        home-clean = ''
           nix-collect-garbage -d
           nh clean all
           nix store optimise
