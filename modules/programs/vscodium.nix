@@ -80,7 +80,9 @@
               ++ extensions;
           };
           java = {
-            userSettings = settings;
+            userSettings = settings // {
+              "editor.defaultFormatter" = "redhat.java";
+            };
             extensions =
               with pkgs.vscode-marketplace;
               [
