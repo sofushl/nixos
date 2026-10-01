@@ -280,6 +280,14 @@
               ];
               open-floating = true;
             }
+            {
+              matches = [
+                {
+                  app-id = "ui.App";
+                }
+              ];
+              open-floating = true;
+            }
           ];
 
           gestures.hot-corners.enable = false;
