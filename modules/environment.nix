@@ -72,10 +72,6 @@
       lazygit
       trash-cli
 
-      git-filter-repo
-      git-secrets
-      commitlint
-
       wget
       curl
       gzip
