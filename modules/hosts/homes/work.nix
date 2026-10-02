@@ -12,13 +12,20 @@
       base
       environment
       user
-      fonts
-      kitty
-      niri
       desktop
-      develop
+      niri
+
+      kitty
       firefox
       vscodium
+      neovim
+      yazi
+      git
+      claude
+
+      bash
+      fonts
+      fastfetch
     ];
 
     programs.niri.settings = {
