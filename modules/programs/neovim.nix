@@ -50,6 +50,24 @@
           '';
         };
 
+      nixpkgs.overlays = [
+        (final: prev: {
+          vimPlugins = prev.vimPlugins.extend (
+            vfinal: vprev: {
+              conform-nvim = vprev.conform-nvim.overrideAttrs (old: {
+                src = prev.fetchFromGitHub {
+                  owner = "stevearc";
+                  repo = "conform.nvim";
+                  rev = "016802de402556da54c36bd7359b441266b01cdd";
+                  hash = "sha256-7VkQLpkDak/O5tphT/EWX/rE9r0Dd2UCF5CFbl4rK+A=";
+                  fetchSubmodules = false;
+                };
+              });
+            }
+          );
+        })
+      ];
+
       programs.neovim = {
         enable = true;
         defaultEditor = true;
