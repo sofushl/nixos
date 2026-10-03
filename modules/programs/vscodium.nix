@@ -139,6 +139,16 @@
               ]
               ++ extensions;
           };
+          docker = {
+            userSettings = settings;
+            extensions =
+              with pkgs.vscode-marketplace;
+              [
+                ms-azuretools.vscode-docker
+                ms-azuretools.vscode-containers
+              ]
+              ++ extensions;
+          };
         };
       };
 
