@@ -21,62 +21,24 @@
           order = [
             "ddg"
             "wikipedia"
+            "np"
             "no"
             "nw"
-            "np"
           ];
 
           engines = {
             nix-options = {
               name = "Nix Options";
-              urls = [
-                {
-                  template = "https://search.nixos.org/packages";
-                  params = [
-                    {
-                      name = "type";
-                      value = "options";
-                    }
-                    {
-                      name = "query";
-                      value = "{searchTerms}";
-                    }
-                    {
-                      name = "channel";
-                      value = "unstable";
-                    }
-                  ];
-                }
-              ];
-
+              urls = [ { template = "https://search.nixos.org/options?query={searchTerms}"; } ];
               icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-              definedAliases = [ "@np" ];
+              definedAliases = [ "@no" ];
             };
 
             nix-packages = {
               name = "Nix Packages";
-              urls = [
-                {
-                  template = "https://search.nixos.org/options";
-                  params = [
-                    {
-                      name = "type";
-                      value = "packages";
-                    }
-                    {
-                      name = "query";
-                      value = "{searchTerms}";
-                    }
-                    {
-                      name = "channel";
-                      value = "unstable";
-                    }
-                  ];
-                }
-              ];
-
+              urls = [ { template = "https://search.nixos.org/packages?query={searchTerms}"; } ];
               icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-              definedAliases = [ "@no" ];
+              definedAliases = [ "@np" ];
             };
 
             nixos-wiki = {
@@ -91,7 +53,6 @@
 
             bing.metaData.hidden = true;
             perplexity.metaData.hidden = true;
-
           };
         };
       };
@@ -103,6 +64,5 @@
         "application/pdf" = "firefox.desktop";
       };
     };
-
   };
 }
