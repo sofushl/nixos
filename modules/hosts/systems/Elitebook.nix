@@ -22,6 +22,7 @@
       bluetooth
       keyring
       keyd
+      docker
 
       python
       rustWASM
@@ -61,6 +62,9 @@
           onlyoffice-desktopeditors
           wl-clicker
 
+          cursor-cli
+          code-cursor
+
           watchmate
           siglo
           postman
@@ -77,6 +81,7 @@
       directories = [ "opt" ];
       users.${userconf.username} = {
         directories = [
+          "Documents"
           "Downloads"
           "Public"
           "Cloud"
@@ -106,6 +111,10 @@
           ".mchp_packs"
 
           ".claude"
+
+          ".cursor"
+          ".config/Cursor"
+          ".local/share/docker"
         ];
 
         files = [
