@@ -114,6 +114,7 @@
 
           ".cursor"
           ".config/Cursor"
+          ".config/cursor"
           ".local/share/docker"
         ];
 
