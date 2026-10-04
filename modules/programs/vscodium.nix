@@ -13,22 +13,21 @@
 
     let
       settings = {
+        "claudeCode.hideOnboarding" = true;
+        "claudeCode.preferredLocation" = "panel";
         "editor.formatOnSave" = true;
         "files.autoSave" = "onFocusChange";
-        "workbench.colorTheme" = "Dark Modern";
-        "workbench.activityBar.location" = "top";
-        "claudeCode.preferredLocation" = "panel";
-        "redhat.telemetry.enabled" = false;
         "git.confirmSync" = false;
-        "git.openRepositoryInParentFolders" = "always";
         "git.enableSmartCommit" = true;
+        "git.openRepositoryInParentFolders" = "always";
+        "workbench.activityBar.location" = "top";
+        "workbench.colorTheme" = "Dark Modern";
       };
 
       extensions = with pkgs.vscode-marketplace; [
         vscodevim.vim
         anthropic.claude-code
         vivaxy.vscode-conventional-commits
-        eamodio.gitlens
       ];
 
       # Explaination in readme
@@ -51,7 +50,7 @@
 
       programs.vscodium = {
         enable = true;
-        package = pkgs.vscodium;
+        package = pkgs.vscodium-fhs;
         argvSettings = { };
         mutableExtensionsDir = false;
 
@@ -82,6 +81,7 @@
           java = {
             userSettings = settings // {
               "editor.defaultFormatter" = "redhat.java";
+              "redhat.telemetry.enabled" = false;
             };
             extensions =
               with pkgs.vscode-marketplace;
@@ -125,7 +125,22 @@
                 ms-python.debugpy
                 ms-python.vscode-python-envs
                 ms-python.vscode-pylance
-                paulober.pico-w-go
+                raspberry-pi.raspberry-pi-pico
+                marus25.cortex-debug
+                mcu-debug.debug-tracker-vscode
+                mcu-debug.memory-view
+                mcu-debug.rtos-views
+                mcu-debug.peripheral-viewer
+                # 4.4.0+ requires VS Code ^1.137
+                (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
+                  mktplcRef = {
+                    publisher = "paulober";
+                    name = "pico-w-go";
+                    version = "4.3.4";
+                    arch = "linux-x64";
+                    hash = "sha256-BJW/rXLU3LvAT6FVwE2yoDfC4H5d559g82Qw5mK1rMQ=";
+                  };
+                })
               ]
               ++ extensions;
           };
