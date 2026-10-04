@@ -68,8 +68,10 @@
             22
             80
             443
+            25565
           ];
           allowedUDPPorts = [
+            25565
           ];
         };
         useDHCP = lib.mkForce false;
