@@ -1,8 +1,14 @@
 require("conform").setup({
+	formatters = {
+		topcoat = {
+			command = "topcoat",
+			args = { "fmt", "--stdin" },
+		},
+	},
 	formatters_by_ft = {
 		lua = { "stylua" },
 		python = { "black", "isort" },
-		rust = { "rustfmt" },
+		rust = { "rustfmt", "topcoat" },
 		javascript = { "prettierd" },
 		typescript = { "prettierd" },
 		nix = { "nixfmt" },

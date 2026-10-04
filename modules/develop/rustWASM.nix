@@ -7,7 +7,7 @@
       ...
     }:
     let
-      libs = with stablepkgs; [
+      libs = with pkgs; [
         libxkbcommon
         vulkan-loader
         libGL
@@ -21,7 +21,7 @@
     {
       environment = {
         systemPackages =
-          with stablepkgs;
+          with pkgs;
           [
             rustc
             cargo
@@ -33,8 +33,7 @@
             pkg-config
             openssl
 
-            lld
-            trunk
+            topcoat-cli
             wasm
             cargo-wasi
             wasm-bindgen-cli
