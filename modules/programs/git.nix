@@ -28,6 +28,16 @@
                   "github:"
                 ];
               };
+              "https://github.com/sofushl/" = {
+                insteadOf = [
+                  "shl:"
+                ];
+              };
+              "https://codeberg.org/" = {
+                insteadOf = [
+                  "cb:"
+                ];
+              };
             };
 
             init.defaultBranch = "main";
@@ -64,6 +74,9 @@
       };
 
       home.shellAliases = {
+        "pull" = "git pull";
+        "push" = "git push";
+
         "git-local" = ''
           git config --local user.name "${userconf.localgitname}" && \
           git config --local user.email "${userconf.localgitmail}"
