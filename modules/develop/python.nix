@@ -41,6 +41,7 @@
         mpremote
         esptool
         picotool
+        openocd-rp2040
       ];
     };
 }
