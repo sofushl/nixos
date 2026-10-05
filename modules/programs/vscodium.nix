@@ -16,6 +16,7 @@
         "claudeCode.hideOnboarding" = true;
         "claudeCode.preferredLocation" = "panel";
         "editor.formatOnSave" = true;
+        "explorer.confirmDragAndDrop" = false;
         "files.autoSave" = "onFocusChange";
         "git.confirmSync" = false;
         "git.enableSmartCommit" = true;
