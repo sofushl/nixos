@@ -71,6 +71,11 @@
             command = lib.getExe statusLine;
           };
 
+          voice = {
+            enabled = true;
+            mode = "hold";
+          };
+
           editorMode = "vim";
           viewMode = "verbose";
           outputStyle = "default";
