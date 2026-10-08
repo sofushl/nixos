@@ -11,7 +11,12 @@ let
     config.allowUnfree = true;
     config.cudaSupport = true;
   };
-  serverconf = import ../../lib/server.nix { inherit stablepkgs; };
+  nixpkgs = import inputs.nixpkgs {
+    system = "x86_64-linux";
+    config.allowUnfree = true;
+    config.cudaSupport = true;
+  };
+  serverconf = import ../../lib/server.nix { inherit nixpkgs stablepkgs; };
   secrets =
     if builtins.pathExists /etc/nixos/secrets.nix then
       import /etc/nixos/secrets.nix

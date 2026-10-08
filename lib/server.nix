@@ -1,4 +1,4 @@
-{ stablepkgs, ... }:
+{ nixpkgs, stablepkgs, ... }:
 
 rec {
   topDom = "sofus.privatedns.org";
@@ -58,6 +58,43 @@ rec {
       start = ''
         npm start
       '';
+    }
+    {
+      name = "LightsUI";
+      repo = "https://github.com/sofushl/LightsUI.git";
+      start = "IP=http://192.168.1.100/ ./target/release/LightsUI";
+      build = ''
+        cargo build --release --locked && \
+        topcoat asset bundle --release
+      '';
+      port = 4210;
+      domain = rgbDom;
+      env = {
+        CARGO_HOME = "/var/www/LightsUI/.cargo";
+        PKG_CONFIG_PATH = "${stablepkgs.openssl.dev}/lib/pkgconfig";
+      };
+      pack = with nixpkgs; [
+        cargo
+        rustc
+        stdenv.cc
+        pkg-config
+        openssl
+        topcoat-cli
+      ];
+      locations = {
+        "/" = {
+          proxyPass = "http://127.0.0.1:4210";
+          extraConfig = ''
+            allow 127.0.0.1;
+            allow ::1;
+            allow 192.168.0.0/16;
+            allow 10.0.0.0/8;
+            allow fe80::/10;
+            allow fc00::/7; 
+            deny all;
+          '';
+        };
+      };
     }
     {
       name = "email-backend";
