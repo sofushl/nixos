@@ -22,7 +22,10 @@
       gitService
       minecraftServer
       tmux
+      docker
     ];
+
+    users.users.${userconf.username}.linger = true;
 
     home-manager.users.${userconf.username}.imports = with self.homeModules; [
       headless
@@ -40,6 +43,8 @@
     preservation.preserveAt."/persistent".users.${userconf.username} = {
       directories = [
         ".claude"
+        "Documents"
+        ".local/share/docker"
       ];
 
       files = [
