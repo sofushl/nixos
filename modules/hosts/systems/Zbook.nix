@@ -22,6 +22,7 @@
       bluetooth
       keyring
       keyd
+      docker
 
       python
       rustWASM
@@ -62,6 +63,9 @@
           element-desktop
           onlyoffice-desktopeditors
           wl-clicker
+
+          cursor-cli
+          code-cursor
 
           watchmate
           siglo
@@ -112,6 +116,11 @@
           ".local/share/opencode"
           ".local/state/opencode"
           ".config/opencode"
+
+          ".cursor"
+          ".config/Cursor"
+          ".config/cursor"
+          ".local/share/docker"
 
         ];
 
