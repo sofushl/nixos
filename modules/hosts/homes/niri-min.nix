@@ -6,9 +6,10 @@
       user
       desktop
       niri
+      mimeapps
 
       kitty
-      firefox
+      browser
       neovim
       yazi
       git

@@ -6,6 +6,8 @@
     home.packages = with pkgs; [
       teams-for-linux
       postman
+      vlc
+      loupe
     ];
 
     imports = with self.homeModules; [
@@ -14,9 +16,10 @@
       user
       desktop
       niri
+      mimeapps
 
       kitty
-      firefox
+      browser
       vscodium
       neovim
       yazi

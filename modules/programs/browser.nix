@@ -1,10 +1,20 @@
 {
-  flake.homeModules.firefox = { pkgs, ... }: {
+  flake.homeModules.browser = { pkgs, ... }: {
 
     # REQUIRES PRESERVATION OF ".config/mozilla"
 
     programs.firefox = {
       enable = true;
+      package = pkgs.firefox;
+
+      #settings = {
+      #  "librewolf.webgl.promt" = false;
+      #  "privacy.resistFingerprinting" = false;
+      #  "identity.fxaccount.enabled" = true;
+      #  "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+      #  "browser.policies.runOncePerModification.setDefaultSearchEngine" = "DuckDuckGo";
+      #  "browser.toolbars.bookmarks.visibility" = "never";
+      #};
 
       profiles.default = {
 
