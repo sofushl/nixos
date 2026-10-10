@@ -86,6 +86,7 @@
       users.${userconf.username} = {
         directories = [
           "Downloads"
+          "Documents"
           "Public"
           "Cloud"
 
