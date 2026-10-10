@@ -35,9 +35,10 @@
       environment
       desktop
       niri
+      mimeapps
 
       kitty
-      firefox
+      browser
       obsidian
       vscodium
       neovim
@@ -70,6 +71,8 @@
           watchmate
           siglo
           postman
+          vlc
+          loupe
           geogebra6
           krita
           inkscape

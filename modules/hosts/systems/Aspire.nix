@@ -30,9 +30,10 @@
       user
       desktop
       niri
+      mimeapps
 
       kitty
-      firefox
+      browser
       obsidian
       vscodium
       neovim
