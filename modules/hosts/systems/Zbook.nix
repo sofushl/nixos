@@ -163,15 +163,27 @@
         "eDP-1".enable = false;
 
         "DP-6" = {
+          mode = {
+            width = 1360;
+            height = 768;
+            refresh = 60.015;
+          };
           position = {
             x = 0;
             y = 0;
           };
         };
 
-        "DP-5".position = {
-          x = 1700;
-          y = 0;
+        "DP-5" = {
+          mode = {
+            width = 2560;
+            height = 1440;
+            refresh = 59.951;
+          };
+          position = {
+            x = 1360;
+            y = 0;
+          };
         };
       };
     };
