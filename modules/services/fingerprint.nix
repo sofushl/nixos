@@ -1,11 +1,9 @@
-{ self, ... }:
 {
   flake.nixosModules.fingerprint =
     { userconf, pkgs, ... }:
     {
       services.fprintd.enable = true;
       security.pam.services.hyprlock.fprintAuth = false;
-      home-manager.users.${userconf.username}.imports = [ self.homeModules.fingerprint ];
     };
 
   flake.homeModules.fingerprint =

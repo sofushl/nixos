@@ -14,7 +14,6 @@
 
       niri
       gaming
-      fingerprint
       nvidia
 
       eduroam
@@ -31,54 +30,9 @@
     ];
 
     home-manager.users.${userconf.username}.imports = with self.homeModules; [
-      base
-      environment
-      desktop
-      niri
-      mimeapps
-
-      kitty
-      browser
-      obsidian
-      vscodium
-      neovim
-      yazi
-      git
-
-      bash
+      niriMax
       homeMonitor
-      fonts
-      rclone
-      fastfetch
-
-      claude
       opencode
-
-      node
-      javaWithFx
-
-      {
-        home.packages = with pkgs; [
-          spotify
-          discord
-          element-desktop
-          onlyoffice-desktopeditors
-          wl-clicker
-
-          cursor-cli
-          code-cursor
-
-          watchmate
-          siglo
-          postman
-          vlc
-          loupe
-          geogebra6
-          krita
-          inkscape
-          thonny
-        ];
-      }
     ];
 
     preservation.preserveAt."/persistent" = {

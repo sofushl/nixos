@@ -13,12 +13,11 @@
       neovim
       yazi
       git
+      claude
 
       bash
       fonts
       fastfetch
-
-      claude
 
       {
         home.packages = with pkgs; [
@@ -26,6 +25,8 @@
           discord
           element-desktop
           onlyoffice-desktopeditors
+          vlc
+          loupe
         ];
       }
     ];

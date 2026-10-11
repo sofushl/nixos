@@ -1,4 +1,4 @@
-{ self, ... }: {
+{
   flake.nixosModules.docker =
     { pkgs, userconf, ... }:
 
@@ -24,8 +24,6 @@
         docker-compose
         gnumake
       ];
-
-      home-manager.users.${userconf.username}.imports = [ self.homeModules.docker ];
     };
 
   flake.homeModules.docker = {
