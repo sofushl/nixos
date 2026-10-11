@@ -25,47 +25,15 @@
     ];
 
     home-manager.users.${userconf.username}.imports = with self.homeModules; [
-      base
-      environment
-      user
-      desktop
-      niri
-      mimeapps
-
-      kitty
-      browser
+      niriMin
       obsidian
       vscodium
-      neovim
-      yazi
-      git
-      claude
 
-      bash
       fonts
       rclone
-      fastfetch
 
       node
       javaWithFx
-
-      {
-        home.packages = with pkgs; [
-          spotify
-          discord
-          element-desktop
-          onlyoffice-desktopeditors
-
-          watchmate
-          siglo
-          postman
-          geogebra6
-          krita
-          inkscape
-          thonny
-        ];
-      }
-
     ];
 
     preservation.preserveAt."/persistent" = {

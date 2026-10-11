@@ -1,11 +1,4 @@
-{ self, inputs, ... }:
 {
-  flake.nixosModules.mimeapps =
-    { userconf, ... }:
-    {
-      home-manager.users.${userconf.username}.imports = [ self.homeModules.mimeapps ];
-    };
-
   flake.homeModules.mimeapps =
     { lib, ... }:
     let

@@ -5,6 +5,7 @@
       environment
       user
 
+      docker
       neovim
       yazi
       claude
