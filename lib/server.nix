@@ -8,6 +8,7 @@ rec {
   aiDom = "ai.${topDom}";
   mcDom = "mc.${topDom}";
   rgbDom = "rgb.${topDom}";
+  sfDom = "sf.${topDom}";
 
   emailApi = "email.${apiDom}";
 
@@ -19,6 +20,7 @@ rec {
     aiDom
     mcDom
     rgbDom
+    sfDom
 
     emailApi
   ];
