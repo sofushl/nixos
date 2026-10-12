@@ -1,78 +1,81 @@
 {
-  flake.homeModules.browser = { pkgs, ... }: {
+  flake.homeModules.browser =
+    {
+      config,
+      pkgs,
+      userconf,
+      ...
+    }:
+    {
 
-    # REQUIRES PRESERVATION OF ".config/mozilla"
+      # REQUIRES PRESERVATION OF "$HOME/.librewolf"
 
-    programs.firefox = {
-      enable = true;
-      package = pkgs.firefox;
+      home.file.".config/mozilla/firefox".source =
+        config.lib.file.mkOutOfStoreSymlink "/home/${userconf.username}/.librewolf";
 
-      #settings = {
-      #  "librewolf.webgl.promt" = false;
-      #  "privacy.resistFingerprinting" = false;
-      #  "identity.fxaccount.enabled" = true;
-      #  "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-      #  "browser.policies.runOncePerModification.setDefaultSearchEngine" = "DuckDuckGo";
-      #  "browser.toolbars.bookmarks.visibility" = "never";
-      #};
+      programs.librewolf = {
+        enable = true;
+        package = pkgs.librewolf;
 
-      profiles.default = {
+        settings = {
+          "librewolf.webgl.promt" = false;
+          "privacy.resistFingerprinting" = false;
+          "identity.fxaccounts.enabled" = true;
+          "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+          "browser.policies.runOncePerModification.setDefaultSearchEngine" = "DuckDuckGo";
+          "browser.toolbars.bookmarks.visibility" = "never";
+        };
 
-        isDefault = true;
+        profiles.default = {
 
-        userChrome = ../../dotfiles/librewolf.css;
+          isDefault = true;
 
-        search = {
+          userChrome = ../../dotfiles/librewolf.css;
 
-          default = "ddg";
+          search = {
 
-          force = true;
+            default = "ddg";
 
-          order = [
-            "ddg"
-            "wikipedia"
-            "np"
-            "no"
-            "nw"
-          ];
+            force = true;
 
-          engines = {
-            nix-options = {
-              name = "Nix Options";
-              urls = [ { template = "https://search.nixos.org/options?query={searchTerms}"; } ];
-              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-              definedAliases = [ "@no" ];
+            order = [
+              "ddg"
+              "wikipedia"
+              "np"
+              "no"
+              "nw"
+            ];
+
+            engines = {
+              nix-options = {
+                name = "Nix Options";
+                urls = [ { template = "https://search.nixos.org/options?query={searchTerms}"; } ];
+                icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+                definedAliases = [ "@no" ];
+              };
+
+              nix-packages = {
+                name = "Nix Packages";
+                urls = [ { template = "https://search.nixos.org/packages?query={searchTerms}"; } ];
+                icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+                definedAliases = [ "@np" ];
+              };
+
+              nixos-wiki = {
+                name = "NixOS Wiki";
+                urls = [ { template = "https://wiki.nixos.org/w/index.php?search={searchTerms}"; } ];
+                iconMapObj."16" = "https://wiki.nixos.org/favicon.ico";
+                definedAliases = [ "@nw" ];
+              };
+
+              google.metaData.alias = "@g";
+              wikipedia.metaData.alias = "@w";
+
+              bing.metaData.hidden = true;
+              perplexity.metaData.hidden = true;
             };
-
-            nix-packages = {
-              name = "Nix Packages";
-              urls = [ { template = "https://search.nixos.org/packages?query={searchTerms}"; } ];
-              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-              definedAliases = [ "@np" ];
-            };
-
-            nixos-wiki = {
-              name = "NixOS Wiki";
-              urls = [ { template = "https://wiki.nixos.org/w/index.php?search={searchTerms}"; } ];
-              iconMapObj."16" = "https://wiki.nixos.org/favicon.ico";
-              definedAliases = [ "@nw" ];
-            };
-
-            google.metaData.alias = "@g";
-            wikipedia.metaData.alias = "@w";
-
-            bing.metaData.hidden = true;
-            perplexity.metaData.hidden = true;
           };
         };
       };
     };
-
-    xdg.mimeApps = {
-      enable = true;
-      defaultApplications = {
-        "application/pdf" = "firefox.desktop";
-      };
-    };
-  };
 }

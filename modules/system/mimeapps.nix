@@ -3,7 +3,7 @@
     { lib, ... }:
     let
       apps = {
-        browser = "firefox.desktop";
+        browser = "librewolf.desktop";
         fileManager = "yazi.desktop";
         editor = "nvim.desktop";
         image = "loupe.desktop";
