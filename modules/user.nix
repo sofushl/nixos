@@ -22,9 +22,9 @@
             "networkmanager"
             "storage"
             "dialout"
-            "plugdev"
             "input"
             "minecraft"
+            "satisfactory"
           ];
 
           hashedPasswordFile = "/var/lib/secrets/${userconf.username}.hash";

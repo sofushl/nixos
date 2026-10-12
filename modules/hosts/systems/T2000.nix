@@ -21,6 +21,7 @@
       dnsUpdater
       gitService
       minecraftServer
+      satisfactoryServer
       tmux
       docker
     ];

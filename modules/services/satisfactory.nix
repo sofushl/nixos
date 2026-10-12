@@ -1,117 +1,117 @@
 {
   flake.nixosModules.satisfactoryServer =
     {
-      userconf,
+      config,
       pkgs,
       lib,
+      userconf,
       ...
     }:
-
-    # REQUIRES PRESERVATION OF "/var/lib/satisfactory", "/var/lib/containers" AND "/etc/satisfactory-api.env"
-
     let
-      unit = "podman-satisfactory.service";
-      user = "satisfactory-api";
-      systemctl = lib.getExe' pkgs.systemd "systemctl";
+      installDir = "/var/lib/satisfactory/SatisfactoryDedicatedServer";
+      configDir = "${installDir}/FactoryGame/Saved/Config/LinuxServer";
+      beta = false;
+      address = "0.0.0.0";
+      maxPlayers = 4;
+      autoPause = true;
+      autoSaveOnDisconnect = true;
     in
     {
-      virtualisation.oci-containers.containers = {
-        satisfactory = {
-          image = "ghcr.io/robtme/satisfactory-server:latest";
+      users.users.satisfactory = {
+        home = "/var/lib/satisfactory";
+        createHome = true;
+        isSystemUser = true;
+        group = "satisfactory";
+        uid = 9134;
+      };
+      users.groups.satisfactory = {
+        gid = 9134;
+      };
 
-          autoStart = false;
+      networking.firewall = {
+        allowedUDPPorts = [ 7777 ];
+        allowedTCPPorts = [
+          7777
+          8888
+        ];
+      };
 
-          ports = [
-            "7777:7777/tcp"
-            "7777:7777/udp"
-            "8888:8888/tcp"
-          ];
+      systemd.services.satisfactory = {
+        description = "Satisfactory Dedicated Server";
+        restartIfChanged = false;
+        #wantedBy = [ "multi-user.target" ];
+        after = [ "network-online.target" ];
+        wants = [ "network-online.target" ];
 
-          volumes = [ "/var/lib/satisfactory:/config" ];
+        preStart = ''
+          ${pkgs.steamcmd}/bin/steamcmd \
+            +force_install_dir ${installDir} \
+            +login anonymous \
+            +app_update 1690800 ${if beta then "-beta experimental" else ""} \
+            validate \
+            +quit < /dev/null || [ -x ${installDir}/Engine/Binaries/Linux/FactoryServer-Linux-Shipping ]
 
-          environment = {
-            MAXPLAYERS = "3";
-            PUID = "1000";
-            PGID = "1000";
-            STEAMBETA = "false";
-            SKIPUPDATE = "true";
-          };
+          # Steam SDK symlink expected by the server 
+          mkdir -p /var/lib/satisfactory/.steam/sdk64
+          ln -sfn ${installDir}/linux64/steamclient.so \
+          /var/lib/satisfactory/.steam/sdk64/steamclient.so
 
-          extraOptions = [
-            "--memory=12g"
-            "--memory-reservation=4g"
+          # Write server config
+          mkdir -p ${configDir}
+
+          ${pkgs.crudini}/bin/crudini --set \
+            ${configDir}/Game.ini \
+            '/Script/Engine.GameSession' \
+            MaxPlayers \
+            ${toString maxPlayers}
+
+          ${pkgs.crudini}/bin/crudini --set \
+            ${configDir}/ServerSettings.ini \
+            '/Script/FactoryGame.FGServerSubsystem' \
+            mAutoPause \
+            ${if autoPause then "True" else "False"}
+
+          ${pkgs.crudini}/bin/crudini --set \
+            ${configDir}/ServerSettings.ini \
+            '/Script/FactoryGame.FGServerSubsystem' \
+            mAutoSaveOnDisconnect \
+            ${if autoSaveOnDisconnect then "True" else "False"}
+
+          for i in $(seq 90); do
+            ${pkgs.iproute2}/bin/ss -Htan '( sport = :7777 )' | ${pkgs.gnugrep}/bin/grep -q . || break
+            sleep 1
+          done
+        '';
+
+        script = ''
+          ${pkgs.steam-run}/bin/steam-run \
+            ${installDir}/Engine/Binaries/Linux/FactoryServer-Linux-Shipping \
+            FactoryGame \
+            -multihome=${address} \
+            -Port=7777 \
+            -ReliablePort=8888
+        '';
+
+        serviceConfig = {
+          User = "satisfactory";
+          Group = "satisfactory";
+          StateDirectory = "satisfactory";
+          StateDirectoryMode = "0750";
+          WorkingDirectory = "/var/lib/satisfactory";
+          Restart = "on-failure";
+          RestartSec = "10s";
+          TimeoutStartSec = "30min";
+          Nice = "-5";
+        }
+        // userconf.minecraft.prioServiceConfig;
+
+        environment = {
+          LD_LIBRARY_PATH = lib.concatStringsSep ":" [
+            "${installDir}/linux64"
+            "${installDir}/Engine/Binaries/Linux"
+            "${installDir}/Engine/Binaries/ThirdParty/PhysX3/Linux/x86_64-unknown-linux-gnu"
           ];
         };
-      };
-
-      networking.firewall.allowedTCPPorts = [
-        7777
-        8888
-      ];
-      networking.firewall.allowedUDPPorts = [ 7777 ];
-
-      users.users.${user} = {
-        isSystemUser = true;
-        group = user;
-      };
-      users.groups.${user} = { };
-
-      services.webhook = {
-        enable = true;
-        ip = "127.0.0.1";
-        port = 9010;
-        inherit user;
-        group = user;
-
-        # One hook per systemctl verb, served at /hooks/<verb>.
-        # hooksTemplated (literal JSON strings) is used instead of `hooks` because the token
-        # check uses Go template syntax, which would get mangled by Nix's JSON escaping.
-        hooksTemplated = lib.genAttrs [ "start" "stop" "is-active" ] (verb: ''
-          {
-            "id": "${verb}",
-            "http-methods": ["POST"],
-            "execute-command": "${systemctl}",
-            "pass-arguments-to-command": [
-              { "source": "string", "name": "${verb}" },
-              { "source": "string", "name": "${unit}" }
-            ],
-            "include-command-output-in-response": true,
-            "include-command-output-in-response-on-error": true,
-            "trigger-rule": {
-              "match": {
-                "type": "value",
-                "value": "Bearer {{ getenv "SATISFACTORY_API_TOKEN" }}",
-                "parameter": { "source": "header", "name": "Authorization" }
-              }
-            }
-          }
-        '');
-      };
-
-      # Provides SATISFACTORY_API_TOKEN to webhook without putting the token in the Nix store.
-      # Changing the token requires `systemctl restart webhook`.
-      systemd.services.webhook.serviceConfig.EnvironmentFile = "/etc/satisfactory-api.env";
-
-      # webhook runs as an unprivileged user; this grants it start/stop on the game unit only.
-      # `is-active` is read-only and needs no permission.
-      security.polkit.enable = true;
-      security.polkit.extraConfig = ''
-        polkit.addRule(function(action, subject) {
-          var verbs = ["start", "stop"];
-          if (action.id == "org.freedesktop.systemd1.manage-units" &&
-              subject.user == "${user}" &&
-              action.lookup("unit") == "${unit}" &&
-              verbs.indexOf(action.lookup("verb")) >= 0) {
-            return polkit.Result.YES;
-          }
-        });
-      '';
-
-      # Public HTTPS entrypoint; only /hooks/ is proxied.
-      services.nginx.virtualHosts.${userconf.sfDom} = {
-        forceSSL = true;
-        enableACME = true;
-        locations."/hooks/".proxyPass = "http://127.0.0.1:9010";
       };
     };
 }
