@@ -44,7 +44,7 @@
           "Public"
           "Cloud"
 
-          ".config/mozilla"
+          ".librewolf"
           ".config/discord"
           ".config/Element"
           ".config/spotify"

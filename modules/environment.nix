@@ -22,12 +22,12 @@
 
           nixos-switch = ''
             git -C /${userconf.path} add -N -A
-            sudo nixos-rebuild switch --flake /${userconf.path}/#${userconf.host} --impure
+            sudo nixos-rebuild switch --flake /${userconf.path}/#${userconf.host}
           '';
 
           nixos-boot = ''
             git -C /${userconf.path} add -N -A
-            sudo nixos-rebuild boot --flake /${userconf.path}/#${userconf.host} --impure
+            sudo nixos-rebuild boot --flake /${userconf.path}/#${userconf.host}
           '';
 
           nixos-update = ''
