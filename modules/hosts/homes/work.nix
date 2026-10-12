@@ -77,9 +77,9 @@
       in
       {
         "launch" = ''
-          sudo chown root:root ${dir}launcher/node_modules/electron/dist/chrome-sandbox
+          sudo chown root ${dir}launcher/node_modules/electron/dist/chrome-sandbox
           sudo chmod 4755 ${dir}launcher/node_modules/electron/dist/chrome-sandbox
-          ${dir}launcher/node_modules/electron/dist/electron  ${dir}launcher --ozone-platform=wayland --enable-features=UseOzonePlatform
+          npm --prefix ${dir}launcher run app
         '';
 
         "pack" = ''
