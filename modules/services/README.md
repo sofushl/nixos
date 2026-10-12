@@ -18,37 +18,7 @@ That is intended, it is a public certificate and wpa_supplicant must be able to 
   
 ## [satisfactory](./satisfactory.nix)
 
-### Satisfactory dedicated server
+Based on [this gist](https://gist.github.com/dunderrrrrr/98339b04ad457f688110ab78ac827b63)
 
-Runs as a container and opened/closed through an HTTP API.
-
- #### How it fits together:
-1. oci-containers runs the robtme/satisfactory-server image as the systemd unit podman-satisfactory.service. It does NOT start on boot (autoStart = false).
-2. webhook (a small Go HTTP server) listens on localhost and runs `systemctl <verb> podman-satisfactory.service` when a request has the right token.
-3. A polkit rule lets the unprivileged webhook user start/stop that ONE unit.
-4. nginx exposes webhook over HTTPS at https://satisfactory.<topDom>/hooks/<verb>.
-
- #### Usage:
-   curl -X POST -H "Authorization: Bearer $TOKEN" https://satisfactory.<topDom>/hooks/start
-   curl -X POST -H "Authorization: Bearer $TOKEN" https://satisfactory.<topDom>/hooks/stop
-   curl -X POST -H "Authorization: Bearer $TOKEN" https://satisfactory.<topDom>/hooks/is-active
-
-#### One-time setup on the host:
-
-```bash
-echo "SATISFACTORY_API_TOKEN=$(openssl rand -hex 32)" | sudo tee /etc/satisfactory-api.env
-sudo chmod 600 /etc/satisfactory-api.env
-```
-
-DNS for satisfactory.<topDom> must point at this machine so ACME can issue a cert.
-
- Debugging:
-
-```bash
-journalctl -u podman-satisfactory   game server output (steamcmd update + game log)
-journalctl -u webhook               API requests and hook results
-```
-
-Game data lives in /var/lib/satisfactory (saves in saved/, backups in backups/).
-
+Game data lives in /var/lib/satisfactory
 
