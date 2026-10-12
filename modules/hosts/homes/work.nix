@@ -8,6 +8,7 @@
       postman
       vlc
       loupe
+      spotify
     ];
 
     imports = with self.homeModules; [
