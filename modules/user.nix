@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ self, inputs, ... }:
 
 # REQUIRES HOME AND NIXOS IMPORT "user"
 
@@ -45,6 +45,10 @@
       useUserPackages = true;
       backupFileExtension = "back";
       extraSpecialArgs = { inherit userconf inputs stablepkgs; };
+      users.${userconf.username}.imports = [
+        self.homeModules.${userconf.home}
+      ]
+      ++ map (m: self.homeModules.${m}) userconf.extra;
     };
   };
 

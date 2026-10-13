@@ -30,11 +30,6 @@
       mplab
     ];
 
-    home-manager.users.${userconf.username}.imports = with self.homeModules; [
-      niriMax
-      fingerprint
-    ];
-
     preservation.preserveAt."/persistent" = {
       directories = [ "opt" ];
       users.${userconf.username} = {

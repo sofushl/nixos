@@ -17,6 +17,7 @@ in
     home = "headless";
     macaddress = null;
     system = "x86_64-linux";
+    extra = [ ];
   };
 
   hosts = {
@@ -41,6 +42,7 @@ in
       key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH7TP6uO6pyFPdxJiXE69dL49GHgB0pDDiMKxuCCNCTP sofushl@Elitebook";
       disk = "nvme0n1";
       home = "niriMax";
+      extra = [ "fingerprint" ];
     };
     Zbook = {
       host = "Zbook";
