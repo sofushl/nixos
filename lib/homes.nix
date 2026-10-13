@@ -14,6 +14,8 @@
     path = "/home/sofushl/nixos";
     state = "26.11";
     system = "x86_64-linux";
+    browser = "librewolf";
+    terminal = "kitty";
   };
 
   homes = {

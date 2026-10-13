@@ -61,6 +61,8 @@
         '';
 
       term = userconf.terminal;
+      browser = userconf.browser;
+      launcher = "fuzzel";
     in
     {
 
@@ -142,7 +144,6 @@
         packages = with pkgs; [
 
           # Environment applications
-          fuzzel
           wl-clipboard
           wlr-which-key
 
@@ -273,7 +274,7 @@
             {
               matches = [
                 {
-                  app-id = "firfox$";
+                  app-id = "${browser}$";
                   title = "^Picture-in-Picture$";
                 }
               ];
@@ -298,11 +299,11 @@
             "Mod+T".action.spawn = [ term ];
             "Mod+Return".action.spawn = [ term ];
             "Mod+D".action.spawn = [ term ];
-            "Mod+Space".action.spawn = [ "fuzzel" ];
-            "Mod+R".action.spawn = [ "fuzzel" ];
-            "Mod+E".action.spawn = [ "fuzzel" ];
-            "Mod+B".action.spawn = [ "firefox" ];
-            "Mod+F".action.spawn = [ "firefox" ];
+            "Mod+Space".action.spawn = [ launcher ];
+            "Mod+R".action.spawn = [ launcher ];
+            "Mod+E".action.spawn = [ launcher ];
+            "Mod+B".action.spawn = [ browser ];
+            "Mod+F".action.spawn = [ browser ];
 
             "Mod+S".action.spawn = [
               (pkgs.lib.getExe (mkMenu [

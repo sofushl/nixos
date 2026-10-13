@@ -25,7 +25,6 @@
           cosmic-term
         ];
       };
-      programs.firefox.preferences."widget.gtk.libadwaita-colors.enabled" = false;
     };
 
   flake.homeModules.cosmic =
