@@ -6,7 +6,6 @@
       base
       environment
       hardware
-      home
       user
       disko
       preservation
@@ -16,10 +15,6 @@
       eduroam
       openssh
       keyd
-    ];
-
-    home-manager.users.${userconf.username}.imports = with self.homeModules; [
-      niriMin
     ];
 
     preservation.preserveAt."/persistent" = {

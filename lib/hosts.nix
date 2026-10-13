@@ -14,7 +14,7 @@ in
     state = "26.11";
     wifiboard = "wlp0s20f3";
     disk = "sda";
-    home = "default";
+    home = "headless";
     macaddress = null;
     system = "x86_64-linux";
   };
@@ -34,22 +34,26 @@ in
       host = "Aspire";
       key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICSIsf/7nVF/zBnRUB2ekOhECX7S1H75lq+8l+idSjbC sofushl@Aspire";
       disk = "nvme0n1";
+      home = "niriMin";
     };
     Elitebook = {
       host = "Elitebook";
       key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH7TP6uO6pyFPdxJiXE69dL49GHgB0pDDiMKxuCCNCTP sofushl@Elitebook";
       disk = "nvme0n1";
+      home = "niriMax";
     };
     Zbook = {
       host = "Zbook";
       key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBy09roMaMEGDDAw8M7eEjHbmxlyiPBAgoOxh6N5qou+ sofushl@Zbook";
       disk = "nvme1n1";
+      home = "niriMax";
     };
 
     Lenovo = {
       host = "Lenovo";
       key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDWrMHaQJytYaXu8akiijr+eAs+Psa1w6T0yLawLMk4d sofushl@Lenovo";
       wifiboard = "wlp0s26u1u4i2";
+      home = "niriMin";
     };
 
     WSL = {

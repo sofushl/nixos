@@ -17,12 +17,16 @@
   };
 
   homes = {
-    default = {
-      type = "default";
+    headless = {
+      type = "headless";
     };
 
-    laptop = {
-      type = "laptop";
+    niriMax = {
+      type = "niriMax";
+    };
+
+    niriMin = {
+      type = "niriMin";
     };
 
     work = {
