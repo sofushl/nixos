@@ -1,173 +1,84 @@
 {
-  flake.homeModules.fastfetch = { userconf, ... }: {
+  flake.homeModules.fastfetch = { pkgs, ... }: {
     programs.fastfetch = {
       enable = true;
 
       settings = {
         logo = {
-          type = "file";
-          source = "/${userconf.path}/dotfiles/abacordlogo.txt";
-          padding.right = 0;
-          padding.left = 3;
-          printRemaining = true;
+          type = "kitty-direct";
+          source = "${pkgs.nixos-icons}/share/icons/hicolor/512x512/apps/nix-snowflake.png";
+          width = 18;
+          height = 9;
+          padding.right = 2;
+          padding.left = 1;
         };
 
         display = {
-          separator = ": ";
+          separator = "";
           disableLinewrap = true;
-          brightColor = false;
-          color = {
-            title = "red";
-            keys = "red";
-          };
-          key = {
-            width = 12;
-            type = "both";
-          };
+          key.type = "string";
+          percent.type = 1;
         };
 
         modules = [
           {
-            type = "title";
-            key = " ";
-            keyIcon = "";
+            type = "command";
+            key = "{#38;2;82;119;195} ";
+            text = ". /etc/os-release; echo \"$PRETTY_NAME  $(uname -sr)\"";
           }
-          "break"
-
-          {
-            type = "os";
-            keyIcon = "";
-            key = "{#blue}OS";
-          }
-
           {
             type = "host";
-            keyIcon = "󰌢";
-            key = "{#blue}Host";
+            key = "{#38;2;126;186;228}󰌢 ";
           }
-
-          {
-            type = "kernel";
-            keyIcon = "";
-            key = "{#blue}Kernel";
-          }
-
-          {
-            type = "uptime";
-            keyIcon = "";
-            key = "{#blue}Uptime";
-          }
-
-          {
-            type = "packages";
-            keyIcon = "󰏖";
-            key = "{#blue}Packages";
-          }
-
-          {
-            type = "shell";
-            keyIcon = "";
-            key = "{#blue}Shell";
-          }
-
-          "break"
-
-          {
-            type = "display";
-            keyIcon = "󰍹";
-            key = "{#magenta}Display";
-          }
-
-          {
-            type = "de";
-            keyIcon = "";
-            key = "{#magenta}DE";
-          }
-
-          {
-            type = "wm";
-            keyIcon = "";
-            key = "{#magenta}WM";
-          }
-
-          {
-            type = "wmtheme";
-            keyIcon = "󰓸";
-            key = "{#magenta}WMTheme";
-          }
-
-          {
-            type = "theme";
-            keyIcon = "󰉼";
-            key = "{#magenta}Theme";
-          }
-
-          {
-            type = "icons";
-            keyIcon = "";
-            key = "{#magenta}Icons";
-          }
-
-          {
-            type = "cursor";
-            keyIcon = "󰆿";
-            key = "{#magenta}Cursor";
-          }
-
-          {
-            type = "terminal";
-            keyIcon = "";
-            key = "{#magenta}Terminal";
-          }
-
-          "break"
-
           {
             type = "cpu";
-            keyIcon = "";
-            key = "{#green}CPU";
+            key = "{#38;2;82;119;195} ";
           }
-
           {
-            type = "gpu";
-            keyIcon = "󰾲";
-            key = "{#green}GPU";
+            type = "command";
+            key = "{#38;2;126;186;228}󰾲 ";
+            text = "fastfetch --pipe false -c ~/.config/fastfetch/gpu.json | sed 's/$/ /' | paste -sd' '";
           }
-
           {
-            type = "memory";
-            keyIcon = "";
-            key = "{#green}Memory";
+            type = "command";
+            key = "{#38;2;82;119;195} ";
+            text = "fastfetch --pipe false -c ~/.config/fastfetch/disk.json | sed 's/$/ /' | paste -sd' '";
           }
-
           {
-            type = "swap";
-            keyIcon = "󰓡";
-            key = "{#green}Swap";
+            type = "command";
+            key = "{#38;2;126;186;228} ";
+            text = "fastfetch --pipe false -c ~/.config/fastfetch/mem.json | paste -sd' '";
           }
-
-          {
-            type = "disk";
-            keyIcon = "";
-            key = "{#green}Disk";
-
-            showExternal = true;
-            showRegular = true;
-          }
-
           {
             type = "battery";
-            keyIcon = "";
-            key = "{#green}Battery";
+            key = "{#38;2;82;119;195} ";
           }
-
           {
-            type = "poweradapter";
-            keyIcon = "󰚥";
-            key = "{#green}Power";
+            type = "packages";
+            key = "{#38;2;126;186;228}󰏖 ";
+          }
+          {
+            type = "uptime";
+            key = "{#38;2;82;119;195} ";
           }
         ];
       };
+    };
+
+    xdg.configFile = {
+      "fastfetch/gpu.json".text = ''
+        { "logo": {"type": "none"}, "display": {"separator": "", "percent": {"type": 1}, "key": {"type": "string"}}, "modules": [
+          { "type": "gpu", "key": "{#38;2;126;186;228}", "format": "{vendor} {name}" } ] }
+      '';
+      "fastfetch/disk.json".text = ''
+        { "logo": {"type": "none"}, "display": {"separator": "", "percent": {"type": 1}, "key": {"type": "string"}}, "modules": [
+          { "type": "disk", "key": "{#38;2;82;119;195}", "showRegular": true, "showExternal": true, "format": "{filesystem} {size-used}/{size-total}" } ] }
+      '';
+      "fastfetch/mem.json".text = ''
+        { "logo": {"type": "none"}, "display": {"separator": "", "percent": {"type": 1}, "key": {"type": "string"}}, "modules": [
+          { "type": "memory", "key": "{#38;2;126;186;228}", "format": "{used}/{total} ({percentage})" },
+          { "type": "swap", "key": "{#38;2;126;186;228}  ", "format": "{used}/{total} ({percentage})" } ] }
+      '';
     };
   };
 }
