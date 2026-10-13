@@ -15,7 +15,7 @@
 
       programs.librewolf = {
         enable = true;
-        package = pkgs.librewolf;
+        package = pkgs.${userconf.browser};
 
         settings = {
           "librewolf.webgl.promt" = false;
