@@ -24,18 +24,6 @@
       clangGTK
     ];
 
-    home-manager.users.${userconf.username}.imports = with self.homeModules; [
-      niriMin
-      obsidian
-      vscodium
-
-      fonts
-      rclone
-
-      node
-      javaWithFx
-    ];
-
     preservation.preserveAt."/persistent" = {
       directories = [ "opt" ];
       users.${userconf.username} = {

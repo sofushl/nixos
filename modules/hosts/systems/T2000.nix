@@ -26,12 +26,6 @@
       docker
     ];
 
-    users.users.${userconf.username}.linger = true;
-
-    home-manager.users.${userconf.username}.imports = with self.homeModules; [
-      headless
-    ];
-
     preservation.preserveAt."/persistent".directories = [
       "/var/www"
       "/var/log"

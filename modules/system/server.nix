@@ -10,6 +10,8 @@
     {
       services.resolved.enable = true;
 
+      users.users.${userconf.username}.linger = true;
+
       security.acme = {
         acceptTerms = true;
         defaults = {

@@ -36,6 +36,13 @@ in
       key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICSIsf/7nVF/zBnRUB2ekOhECX7S1H75lq+8l+idSjbC sofushl@Aspire";
       disk = "nvme0n1";
       home = "niriMin";
+      extra = [
+        "obsidian"
+        "vscodium"
+        "rclone"
+        "node"
+        "javaWithFx"
+      ];
     };
     Elitebook = {
       host = "Elitebook";
@@ -49,6 +56,10 @@ in
       key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBy09roMaMEGDDAw8M7eEjHbmxlyiPBAgoOxh6N5qou+ sofushl@Zbook";
       disk = "nvme1n1";
       home = "niriMax";
+      extra = [
+        "homeMonitor"
+        "opencode"
+      ];
     };
 
     Lenovo = {

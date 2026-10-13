@@ -16,14 +16,11 @@
 
       inputs.nixos-wsl.nixosModules.default
     ];
+
     wsl = {
       enable = true;
       defaultUser = userconf.username;
       startMenuLaunchers = true;
     };
-
-    home-manager.users.${userconf.username}.imports = with self.homeModules; [
-      headless
-    ];
   };
 }
