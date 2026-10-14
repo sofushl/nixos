@@ -113,5 +113,63 @@
           ];
         };
       };
+      services.webhook = {
+        verbose = true;
+        enable = true;
+        ip = "127.0.0.1";
+        port = 9000;
+        enableTemplates = true;
+        hooksTemplated = builtins.listToAttrs (
+          map
+            (action: {
+              name = "satisfactory-${action}";
+              value = ''
+                {
+                  "id": "satisfactory-${action}",
+                  "execute-command": "${pkgs.systemd}/bin/systemctl",
+                  "include-command-output-in-response": true,
+                  "include-command-output-in-response-on-error": true,
+                  "pass-arguments-to-command": [
+                    { "source": "string", "name": "${action}" },
+                    { "source": "string", "name": "satisfactory.service" }
+                  ],
+                  "http-methods": ["POST"],
+                  "trigger-rule": {
+                    "match": {
+                      "type": "value",
+                      "value": "{{ getenv "SATISFACTORY_TOKEN" | js }}",
+                      "parameter": { "source": "header", "name": "X-Token" }
+                    }
+                  }
+                }
+              '';
+            })
+            [
+              "start"
+              "stop"
+              "restart"
+              "is-active"
+            ]
+        );
+      };
+
+      # file contains: SATISFACTORY_TOKEN=<long random string>
+      systemd.services.webhook.serviceConfig.EnvironmentFile = "/var/lib/secrets/webhook.env";
+
+      security.polkit.extraConfig = ''
+        polkit.addRule(function(action, subject) {
+          if (action.id == "org.freedesktop.systemd1.manage-units" &&
+              action.lookup("unit") == "satisfactory.service" &&
+              subject.user == "${config.services.webhook.user}") {
+            return polkit.Result.YES;
+          }
+        });
+      '';
+
+      services.nginx.virtualHosts.${userconf.sfDom} = {
+        enableACME = true;
+        forceSSL = true;
+        locations."/hooks/".proxyPass = "http://127.0.0.1:9000";
+      };
     };
 }
