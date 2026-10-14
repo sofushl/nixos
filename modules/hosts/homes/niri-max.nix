@@ -30,7 +30,7 @@
       spotify
       discord
       element-desktop
-      onlyoffice-desktopeditors
+      libreoffice
       vlc
       loupe
 

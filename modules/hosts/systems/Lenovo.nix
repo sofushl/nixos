@@ -31,9 +31,6 @@
 
           ".local/state/wireplumber"
 
-          ".config/onlyoffice"
-          ".local/state/onlyoffice"
-
           ".claude"
         ];
 

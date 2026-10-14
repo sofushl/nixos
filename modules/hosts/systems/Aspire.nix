@@ -42,9 +42,6 @@
 
           ".cache/rclone"
 
-          ".config/onlyoffice"
-          ".local/state/onlyoffice"
-
           ".config/JetBrains"
           ".local/share/JetBrains"
           ".m2"

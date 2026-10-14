@@ -24,7 +24,6 @@
           spotify
           discord
           element-desktop
-          onlyoffice-desktopeditors
           vlc
           loupe
         ];
