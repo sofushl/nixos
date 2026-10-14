@@ -12,7 +12,7 @@
       configDir = "${installDir}/FactoryGame/Saved/Config/LinuxServer";
       beta = false;
       address = "0.0.0.0";
-      maxPlayers = 4;
+      maxPlayers = 5;
       autoPause = true;
       autoSaveOnDisconnect = true;
     in
