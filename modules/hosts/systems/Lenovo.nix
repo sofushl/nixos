@@ -11,6 +11,7 @@
       preservation
       niri
       desktop
+      home
 
       eduroam
       openssh
