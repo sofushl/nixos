@@ -31,11 +31,6 @@
       "/var/log"
     ];
 
-    preservation.preserveAt."/persistent".files = [
-      "/etc/searx.env"
-      "/etc/satisfactory-api.env"
-    ];
-
     preservation.preserveAt."/persistent".users.${userconf.username} = {
       directories = [
         ".claude"
