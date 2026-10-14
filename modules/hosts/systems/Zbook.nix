@@ -48,8 +48,7 @@
 
           ".cache/rclone"
 
-          ".config/onlyoffice"
-          ".local/state/onlyoffice"
+          ".config/libreoffice"
 
           ".config/JetBrains"
           ".local/share/JetBrains"

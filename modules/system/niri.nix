@@ -261,7 +261,12 @@
             { command = [ "hyprlock" ]; }
             { command = [ "mako" ]; }
             { command = [ "blueman-applet" ]; }
-            { command = [ "element-desktop --hidden" ]; }
+            {
+              command = [
+                "element-desktop"
+                "--hidden"
+              ];
+            }
             { command = [ "discord" ]; }
           ];
 
@@ -324,42 +329,25 @@
                 }
                 {
                   key = "f";
-                  desc = "Apps";
+                  desc = "Other";
                   submenu = [
                     {
                       key = "a";
-                      desc = "Onlyoffice";
-                      cmd = (lib.getExe pkgs.onlyoffice-desktopeditors);
+                      desc = "VLC Media Player";
+                      cmd = (lib.getExe pkgs.vlc);
                     }
                     {
                       key = "s";
-                      desc = "Postman";
-                      cmd = (lib.getExe pkgs.postman);
-                    }
-                    {
-                      key = "d";
-                      desc = "Thonny";
-                      cmd = (lib.getExe pkgs.thonny);
-                    }
-                    {
-                      key = "f";
                       desc = "Loupe";
                       cmd = (lib.getExe pkgs.loupe);
                     }
-                  ];
-                }
-
-                {
-                  key = "g";
-                  desc = "System";
-                  submenu = [
                     {
-                      key = "a";
+                      key = "d";
                       desc = "Waybar";
                       cmd = (lib.getExe pkgs.waybar);
                     }
                     {
-                      key = "s";
+                      key = "f";
                       desc = "Sunsetr";
                       cmd = (lib.getExe pkgs.sunsetr);
                     }
