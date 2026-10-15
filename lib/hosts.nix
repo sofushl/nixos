@@ -39,7 +39,6 @@ in
       extra = [
         "obsidian"
         "vscodium"
-        "rclone"
         "node"
         "javaWithFx"
       ];
