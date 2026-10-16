@@ -61,7 +61,6 @@
         package = pkgs.claude-code;
 
         settings = {
-          model = "opus";
           showThinkingSummaries = true;
           switchModelsOnFlag = true;
           theme = "dark";
@@ -77,10 +76,9 @@
           };
 
           editorMode = "vim";
-          viewMode = "verbose";
-          outputStyle = "default";
+          viewMode = "default";
+          outputStyle = "learning";
 
-          verbose = true;
           showTurnDuration = true;
           showMessageTimestamps = true;
           spinnerTipsEnabled = true;
