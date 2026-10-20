@@ -15,6 +15,7 @@
           cacert
           kitty.terminfo
           ncurses
+          sbctl
         ];
 
         # Custom build commands for using the flake instead of configuration.nix

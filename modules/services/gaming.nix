@@ -21,13 +21,17 @@
       ];
 
       programs.steam = {
+        package = pkgs.steam;
         enable = true;
         remotePlay.openFirewall = true;
         dedicatedServer.openFirewall = false;
         gamescopeSession.enable = true;
       };
 
-      hardware.graphics.enable32Bit = true;
+      hardware.graphics = {
+        enable = true;
+        enable32Bit = true;
+      };
 
       environment.systemPackages = with pkgs; [
         protonup-qt
