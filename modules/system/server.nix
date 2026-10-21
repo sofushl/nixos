@@ -8,7 +8,13 @@
       ...
     }:
     {
-      services.resolved.enable = true;
+      services.resolved = {
+        enable = true;
+        settings.Resolve = {
+          LLMNR = "false";
+          MulticastDNS = "false";
+        };
+      };
 
       users.users.${userconf.username}.linger = true;
 
