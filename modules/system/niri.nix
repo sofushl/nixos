@@ -71,6 +71,7 @@
         waybar
         hyprlock
         fuzzel
+        sunsetr
       ];
 
       services.mako = {
@@ -104,11 +105,6 @@
 
       xdg = {
         enable = true;
-
-        configFile = {
-          "sunsetr/sunsetr.toml".source = ../../dotfiles/sunsetr.toml;
-        };
-
         portal = {
           enable = true;
           extraPortals = [
@@ -142,22 +138,16 @@
 
       home = {
         packages = with pkgs; [
-
-          # Environment applications
           wl-clipboard
           wlr-which-key
 
-          # Environment controllers
           bluetui
           pavucontrol
           playerctl
           brightnessctl
-          sunsetr
 
-          # Customization
           bibata-cursors
 
-          # X11 support for niri
           xwayland-satellite
         ];
 
@@ -257,7 +247,6 @@
 
           spawn-at-startup = [
             { command = [ "waybar" ]; }
-            { command = [ "sunsetr" ]; }
             { command = [ "hyprlock" ]; }
             { command = [ "mako" ]; }
             { command = [ "blueman-applet" ]; }
