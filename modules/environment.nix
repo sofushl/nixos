@@ -72,6 +72,7 @@
       btop
       lazygit
       trash-cli
+      is-fast
 
       wget
       curl
