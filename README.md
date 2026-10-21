@@ -1,6 +1,6 @@
 # NixOS Dendritic Config
 
-Dendritic flake-parts + import tree based config, should be cleaner and more managable than [my old config](https://github.com/sofushl/nixos-old).
+Dendritic flake-parts + import tree based config. Merged history with my old config because it looks better on GitHub profile.
 
 ## Modules
 
