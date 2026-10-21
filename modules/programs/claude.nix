@@ -186,7 +186,7 @@
           command = lib.getExe pkgs.mcp-nixos;
         };
 
-        # Mirrors the servers in dotfiles/nvim/lsp
+        # Mirrors the servers in dotfiles/lsp
         lspServers = {
           asm = {
             command = lib.getExe pkgs.asm-lsp;

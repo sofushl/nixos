@@ -32,7 +32,7 @@
             (path: {
               name = ".config/nvim/${path}";
               value = {
-                source = ../../dotfiles/nvim/${path};
+                source = ../../dotfiles/${path};
                 force = true;
                 recursive = true;
               };
@@ -105,7 +105,7 @@
         withRuby = false;
         withNodeJs = false;
 
-        initLua = builtins.readFile ../../dotfiles/nvim/init.lua;
+        initLua = builtins.readFile ../../dotfiles/init.lua;
       };
 
       home.packages =
