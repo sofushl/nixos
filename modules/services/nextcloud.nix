@@ -63,7 +63,6 @@
             add_header X-Frame-Options sameorigin;
             add_header Referrer-Policy no-referrer;
             allow 192.168.0.0/16;
-            allow 10.0.0.0/8;
             allow 127.0.0.1;
             allow ::1;
             deny all;

@@ -90,9 +90,6 @@ rec {
             allow 127.0.0.1;
             allow ::1;
             allow 192.168.0.0/16;
-            allow 10.0.0.0/8;
-            allow fe80::/10;
-            allow fc00::/7; 
             deny all;
           '';
         };
