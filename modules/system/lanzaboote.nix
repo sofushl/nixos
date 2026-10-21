@@ -11,5 +11,7 @@
         enable = true;
         pkiBundle = "/var/lib/sbctl";
       };
+
+      environment.systemPackages = [ pkgs.sbctl ];
     };
 }

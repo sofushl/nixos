@@ -11,6 +11,7 @@
       disko
       preservation
       desktop
+      lanzaboote
 
       niri
       gaming

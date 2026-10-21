@@ -15,7 +15,6 @@
           cacert
           kitty.terminfo
           ncurses
-          sbctl
           efibootmgr
         ];
 
