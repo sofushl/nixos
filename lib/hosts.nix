@@ -59,6 +59,7 @@ in
         "homeMonitor"
         "opencode"
       ];
+      windows-esp-label = "7e3c9738-c768-454e-93b2-281d01df73db";
     };
 
     Lenovo = {

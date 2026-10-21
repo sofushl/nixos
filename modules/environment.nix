@@ -16,6 +16,7 @@
           kitty.terminfo
           ncurses
           sbctl
+          efibootmgr
         ];
 
         # Custom build commands for using the flake instead of configuration.nix
