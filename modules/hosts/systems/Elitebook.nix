@@ -10,6 +10,7 @@
       user
       disko
       preservation
+      lanzaboote
 
       desktop
       niri
