@@ -19,25 +19,111 @@
 
         settings = {
           "librewolf.webgl.promt" = false;
-          "privacy.resistFingerprinting" = false;
           "identity.fxaccounts.enabled" = true;
           "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
           "browser.policies.runOncePerModification.setDefaultSearchEngine" = "DuckDuckGo";
           "browser.toolbars.bookmarks.visibility" = "never";
+          "privacy.resistFingerprinting" = false;
+          "privacy.fingerprintingProtection" = true;
+          "privacy.fingerprintingProtection.pbmode" = true;
+          "privacy.fingerprintingProtection.overrides" = "+AllTargets,-CSSPrefersColorScheme";
+          "layout.css.prefers-color-scheme.content-override" = 0;
+          "media.peerconnection.ice.default_address_only" = true;
+          "browser.compactmode.show" = true;
+          "browser.uidensity" = 1;
+          "widget.use-xdg-desktop-portal.file-picker" = 1;
+          "widget.use-xdg-desktop-portal.mime-handler" = 1;
+          "widget.use-xdg-desktop-portal.open-uri" = 1;
+          "widget.wayland.fractional-scale.enabled" = true;
         };
 
         profiles.default = {
-
           isDefault = true;
+          userChrome = ''
+            :root {
+              --ui-bg: #1E1E1E;
+              --ui-bg-raised: #2A2A2A;
+              --ui-fg: #E0E0E3;
+              --ui-border: #505050;
+              --ui-accent: #DC6666;
 
-          userChrome = ../../dotfiles/librewolf.css;
+              /* surfaces */
+              --lwt-accent-color: var(--ui-bg) !important;
+              --toolbar-bgcolor: var(--ui-bg) !important;
+              --toolbar-color: var(--ui-fg) !important;
+              --toolbar-field-background-color: var(--ui-bg) !important;
+              --toolbar-field-focus-background-color: var(--ui-bg) !important;
+              --toolbar-field-color: var(--ui-fg) !important;
+              --toolbar-field-border-color: var(--ui-border) !important;
+              --sidebar-background-color: var(--ui-bg) !important;
+              --sidebar-text-color: var(--ui-fg) !important;
+              --panel-background: var(--ui-bg) !important;
+              --panel-color: var(--ui-fg) !important;
+              --arrowpanel-background: var(--ui-bg) !important;
+              --arrowpanel-color: var(--ui-fg) !important;
+              --arrowpanel-border-color: var(--ui-border) !important;
+
+              /* tabs */
+              --tab-background-color: var(--ui-bg) !important;
+              --tab-background-color-hover: var(--ui-bg-raised) !important;
+              --tab-background-color-selected: var(--ui-bg-raised) !important;
+              --tab-border-color-selected: var(--ui-accent) !important;
+
+              /* accent */
+              --color-accent-primary: var(--ui-accent) !important;
+              --color-accent-primary-hover: var(--ui-accent) !important;
+              --color-accent-primary-active: var(--ui-accent) !important;
+              --button-primary-bgcolor: var(--ui-accent) !important;
+              --button-primary-hover-bgcolor: var(--ui-accent) !important;
+              --button-primary-active-bgcolor: var(--ui-accent) !important;
+              --focus-outline-color: var(--ui-accent) !important;
+              --toolbar-field-focus-border-color: var(--ui-accent) !important;
+              --tab-loading-fill: var(--ui-accent) !important;
+              --link-color: var(--ui-accent) !important;
+              accent-color: var(--ui-accent) !important;
+
+              /* no rounding */
+              --border-radius-small: 0 !important;
+              --border-radius-medium: 0 !important;
+              --border-radius-large: 0 !important;
+              --border-radius-circle: 0 !important;
+              --tab-border-radius: 0 !important;
+              --toolbarbutton-border-radius: 0 !important;
+              --urlbar-border-radius: 0 !important;
+              --arrowpanel-border-radius: 0 !important;
+              --menuitem-border-radius: 0 !important;
+            }
+
+            *, *::before, *::after {
+              border-radius: 0 !important;
+            }
+
+            menuitem:hover,
+            treechildren::-moz-tree-row(selected) {
+              background-color: var(--ui-accent) !important;
+              color: var(--ui-bg) !important;
+            }
+
+            :is(#navigator-toolbox, #TabsToolbar, #nav-bar, #PersonalToolbar) {
+              background-color: var(--ui-bg) !important; 
+              color: var(--ui-fg) !important; 
+              border: none !important; 
+            } 
+
+            .tab-background { 
+              border: none !important; 
+              outline: none !important; 
+              box-shadow: none !important; 
+            } 
+
+            .tab-background[selected] { 
+              border-bottom: 2px solid var(--ui-accent) !important; 
+            }
+          '';
 
           search = {
-
             default = "ddg";
-
             force = true;
-
             order = [
               "ddg"
               "wikipedia"
