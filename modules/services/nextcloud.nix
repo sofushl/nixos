@@ -1,6 +1,11 @@
 {
   flake.nixosModules.nextcloudServer =
-    { userconf, pkgs, ... }:
+    {
+      userconf,
+      stablepkgs,
+      pkgs,
+      ...
+    }:
 
     # REQUIRES PRESERVATION OF "/var/lib/nextcloud" AND "/var/lib/postgresql/"
 
@@ -11,6 +16,7 @@
         https = true;
         database.createLocally = true;
         package = pkgs.nextcloud35;
+        phpPackage = stablepkgs.php84;
 
         config = {
           dbtype = "pgsql";
