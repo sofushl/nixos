@@ -67,7 +67,7 @@
               --tab-background-color: var(--ui-bg) !important;
               --tab-background-color-hover: var(--ui-bg-raised) !important;
               --tab-background-color-selected: var(--ui-bg-raised) !important;
-              --tab-border-color-selected: var(--ui-accent) !important;
+              --uc-nav-width: max(420px, 35vw);
 
               /* accent */
               --color-accent-primary: var(--ui-accent) !important;
@@ -105,19 +105,55 @@
             }
 
             :is(#navigator-toolbox, #TabsToolbar, #nav-bar, #PersonalToolbar) {
-              background-color: var(--ui-bg) !important; 
-              color: var(--ui-fg) !important; 
-              border: none !important; 
-            } 
+              background-color: var(--ui-bg) !important;
+              color: var(--ui-fg) !important;
+              border: none !important;
+            }
 
-            .tab-background { 
-              border: none !important; 
-              outline: none !important; 
-              box-shadow: none !important; 
-            } 
+            /* tabs: no border, selected tab gets a 2px accent line at the bottom */
+            .tab-background {
+              border: none !important;
+              outline: none !important;
+              box-shadow: none !important;
+            }
 
-            .tab-background[selected] { 
-              border-bottom: 2px solid var(--ui-accent) !important; 
+            .tab-background[selected] {
+              border-bottom: 2px solid var(--ui-accent) !important;
+            }
+
+            /* single row: nav bar left, tabs right */
+            #navigator-toolbox {
+              display: grid !important;
+              grid-template-columns: var(--uc-nav-width) minmax(0, 1fr) !important;
+              grid-auto-rows: auto !important;
+            }
+
+            #titlebar {
+              display: contents !important;
+            }
+
+            #navigator-toolbox > #nav-bar {
+              grid-column: 1 !important;
+              grid-row: 1 !important;
+            }
+
+            #TabsToolbar {
+              grid-column: 2 !important;
+              grid-row: 1 !important;
+              min-width: 0 !important;
+              overflow: hidden !important;
+            }
+
+            #TabsToolbar #tabbrowser-tabs {
+              min-width: 0 !important;
+            }
+
+            /* everything else goes on its own row below */
+            #toolbar-menubar,
+            #PersonalToolbar,
+            #navigator-toolbox > :not(#titlebar, #nav-bar, #TabsToolbar) {
+              grid-column: 1 / -1 !important;
+              grid-row: auto !important;
             }
           '';
 
