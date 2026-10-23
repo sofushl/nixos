@@ -1,26 +1,20 @@
 name: flake checker
-
 on:
-  push:
   pull_request:
-  workflow_dispatch:
-
+    branches: [main]
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
-
 jobs:
   check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - uses: cachix/install-nix-action@v31
         with:
           extra_nix_config: |
             experimental-features = nix-command flakes
             accept-flake-config = true
-
       - uses: nix-community/cache-nix-action@v6
         with:
           primary-key: nix-${{ runner.os }}-${{ hashFiles('flake.lock', '**/*.nix') }}
@@ -30,5 +24,4 @@ jobs:
           purge-prefixes: nix-${{ runner.os }}-
           purge-created: 0
           purge-primary-key: never
-
       - run: nix flake check --all-systems --no-build --keep-going --print-build-logs
