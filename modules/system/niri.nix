@@ -246,7 +246,6 @@
           screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
 
           spawn-at-startup = [
-            { command = [ "waybar" ]; }
             { command = [ "hyprlock" ]; }
             { command = [ "mako" ]; }
             { command = [ "blueman-applet" ]; }
