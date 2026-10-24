@@ -37,6 +37,7 @@
         protonup-qt
         wine
         heroic
+        r2modman
 
         (
           if config.hardware.nvidia.enabled then
