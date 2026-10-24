@@ -332,7 +332,7 @@
                     {
                       key = "d";
                       desc = "Waybar";
-                      cmd = (lib.getExe pkgs.waybar);
+                      cmd = "${pkgs.systemd}/bin/systemctl --user restart waybar";
                     }
                     {
                       key = "f";
