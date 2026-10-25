@@ -4,6 +4,7 @@
       pkgs,
       lib,
       userconf,
+      stablepkgs,
       ...
     }:
 
@@ -51,11 +52,6 @@
       };
     in
     {
-      home.packages = [
-        pkgs.claude-monitor
-        pkgs.graphify
-      ];
-
       programs.claude-code = {
         enable = true;
         package = pkgs.claude-code;
@@ -183,7 +179,7 @@
 
         mcpServers.nixos = {
           type = "stdio";
-          command = lib.getExe pkgs.mcp-nixos;
+          command = lib.getExe stablepkgs.mcp-nixos;
         };
 
         # Mirrors the servers in dotfiles/lsp
@@ -319,12 +315,13 @@
 
         rules = {
           "nix" = ''
-             - Host config lives in ${userconf.path}, a flake-parts repo; modules under `modules/`, dotfiles under `dotfiles/`.
-             - Prefer `nix eval` or the nixos MCP server over guessing option names and package attributes.
-             - Never run `nixos-rebuild switch` unprompted; propose the command instead.
-
-            - One module per file; keep related options grouped.
-            - Use `lib.getExe` / `lib.getExe'` instead of hardcoding a package's `/bin/...` path.
+            - Host config: ${userconf.path} (flake-parts; `modules/`, `dotfiles/`). One module per file, related options grouped.
+            - Prefer `nix eval` or the nixos MCP server over guessing option names and package attributes.
+            - Never run `nixos-rebuild switch` unprompted; propose it instead.
+          '';
+          "communication" = ''
+            - Write in ASD-STE100 (Simplified Technical English): short, unambiguous, quantified statements; separate observation from inference; flag uncertainty.
+            - Explain yourself: what you did, why over the alternatives, what was verified versus assumed.
           '';
         };
       };
