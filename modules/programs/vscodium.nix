@@ -62,23 +62,23 @@
             extensions = extensions;
             userSettings = settings;
           };
-          node = {
-            userSettings = settings;
-            extensions =
-              with pkgs.vscode-marketplace;
-              [
-                connor4312.esbuild-problem-matchers
-                dbaeumer.vscode-eslint
-                orta.vscode-jest
-                firsttris.vscode-jest-runner
-                esbenp.prettier-vscode
-                bradlc.vscode-tailwindcss
-                hbenl.vscode-test-explorer
-                ms-vscode.test-adapter-converter
-                ms-vscode.vscode-js-profile-flame
-              ]
-              ++ extensions;
-          };
+          #node = {
+          #  userSettings = settings;
+          #  extensions =
+          #    with pkgs.vscode-marketplace;
+          #    [
+          #      connor4312.esbuild-problem-matchers
+          #      dbaeumer.vscode-eslint
+          #      orta.vscode-jest
+          #      firsttris.vscode-jest-runner
+          #      esbenp.prettier-vscode
+          #      bradlc.vscode-tailwindcss
+          #      hbenl.vscode-test-explorer
+          #      ms-vscode.test-adapter-converter
+          #      ms-vscode.vscode-js-profile-flame
+          #    ]
+          #    ++ extensions;
+          #};
           java = {
             userSettings = settings // {
               "editor.defaultFormatter" = "redhat.java";
@@ -97,26 +97,26 @@
               ]
               ++ extensions;
           };
-          mplab = {
-            userSettings = settings;
-            extensions =
-              with pkgs.vscode-marketplace;
-              [
-                eclipse-cdt.memory-inspector
-                microchip.mplab-clangd
-                microchip.mplab-code-configurator
-                microchip.mplab-core-da
-                microchip.mplab-data-visualizer
-                microchip.mplab-extensions-core
-                microchip.mplab-extensions-platforms
-                microchip.mplab-kconfig
-                microchip.mplabx-importer
-                microchip.runcmake
-                microchip.toolchains
-                mplab-ui-patched
-              ]
-              ++ extensions;
-          };
+          #mplab = {
+          #  userSettings = settings;
+          #  extensions =
+          #    with pkgs.vscode-marketplace;
+          #    [
+          #      eclipse-cdt.memory-inspector
+          #      microchip.mplab-clangd
+          #      microchip.mplab-code-configurator
+          #      microchip.mplab-core-da
+          #      microchip.mplab-data-visualizer
+          #      microchip.mplab-extensions-core
+          #      microchip.mplab-extensions-platforms
+          #      microchip.mplab-kconfig
+          #      microchip.mplabx-importer
+          #      microchip.runcmake
+          #      microchip.toolchains
+          #      mplab-ui-patched
+          #    ]
+          #    ++ extensions;
+          #};
           python = {
             userSettings = settings;
             extensions =
@@ -132,16 +132,7 @@
                 mcu-debug.memory-view
                 mcu-debug.rtos-views
                 mcu-debug.peripheral-viewer
-                # 4.4.0+ requires VS Code ^1.137
-                (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
-                  mktplcRef = {
-                    publisher = "paulober";
-                    name = "pico-w-go";
-                    version = "4.3.4";
-                    arch = "linux-x64";
-                    hash = "sha256-BJW/rXLU3LvAT6FVwE2yoDfC4H5d559g82Qw5mK1rMQ=";
-                  };
-                })
+                paulober.pico-w-go
               ]
               ++ extensions;
           };
@@ -155,19 +146,19 @@
               ]
               ++ extensions;
           };
-          docker = {
-            userSettings = settings;
-            extensions =
-              with pkgs.vscode-marketplace;
-              [
-                ms-azuretools.vscode-docker
-                ms-azuretools.vscode-containers
-              ]
-              ++ extensions;
-          };
+          #docker = {
+          #  userSettings = settings;
+          #  extensions =
+          #    with pkgs.vscode-marketplace;
+          #    [
+          #      ms-azuretools.vscode-docker
+          #      ms-azuretools.vscode-containers
+          #    ]
+          #    ++ extensions;
+          #};
         };
       };
 
-      home.packages = with pkgs; [ ] ++ dependencies;
+      home.packages = dependencies;
     };
 }
