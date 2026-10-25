@@ -40,7 +40,6 @@
             directory = "/var/lib";
             inInitrd = true;
           }
-          "/etc/nixos"
           "/etc/ssh"
           (if config.networking.networkmanager.enable == true then "/etc/NetworkManager" else "")
         ];
