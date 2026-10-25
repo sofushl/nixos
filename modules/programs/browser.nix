@@ -39,6 +39,13 @@
 
         profiles.default = {
           isDefault = true;
+
+          userContent = ''
+            * {
+              border-radius: 0 !important;
+            }
+          '';
+
           userChrome = ''
             :root {
               --ui-bg: #1E1E1E;
