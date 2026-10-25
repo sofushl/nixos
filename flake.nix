@@ -28,7 +28,7 @@
     };
 
     preservation = {
-      url = "github:nix-community/preservation";
+      url = "github:mjm/preservation/ed8dbeaac0ad240341259c814cade7163a53fc1f";
     };
 
     lanzaboote = {
