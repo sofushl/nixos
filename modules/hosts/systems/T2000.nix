@@ -23,8 +23,6 @@
       minecraftServer
       satisfactoryServer
       tmux
-      docker
-      omniroute
     ];
 
     preservation.preserveAt."/persistent".directories = [

@@ -24,14 +24,6 @@
         };
       };
 
-      systemd.tmpfiles.rules = [ "d /var/lib/omniroute 0750 1000 1000 -" ];
-      users.users.omniroute = {
-        uid = 1000;
-        group = "omniroute";
-        isSystemUser = true;
-      };
-      users.groups.omniroute.gid = 1000;
-
       services.nginx.virtualHosts.${userconf.aiDom} = {
         forceSSL = true;
         enableACME = true;
