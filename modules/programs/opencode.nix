@@ -8,7 +8,7 @@
       ...
     }:
 
-    # REQURIES PRESERVATION OF "$HOME/.ollama" "$HOME/.local/share/opencode" "$HOME/.local/state/opencode" "$HOME/.config/opencode"
+    # REQURIES PRESERVATION OF "$HOME/.local/share/opencode" "$HOME/.local/state/opencode" "$HOME/.config/opencode"
 
     let
 
@@ -41,15 +41,24 @@
             ponytail
             agentSkills
           ];
+
+          provider.omniroute = {
+            npm = "@ai-sdk/openai-compatible";
+            name = "OmniRoute";
+            options = {
+              baseURL = "https://omniroute.${userconf.domain}/v1";
+              apiKey = "{env:OMNIROUTE_API_KEY}";
+            };
+            models = {
+              "auto".name = "OmniRoute auto";
+              "auto/coding".name = "OmniRoute coding";
+              "auto/cheap".name = "OmniRoute cheap";
+              "auto/fast".name = "OmniRoute fast";
+            };
+          };
         };
 
         enableMcpIntegration = true;
-      };
-
-      services.ollama = {
-        enable = true;
-        package = pkgs.ollama-cuda;
-        acceleration = "cuda";
       };
 
       home.shellAliases."claude-auth" =

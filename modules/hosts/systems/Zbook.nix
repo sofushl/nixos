@@ -27,7 +27,6 @@
       python
       rustWASM
       clangGTK
-      mplab
     ];
 
     preservation.preserveAt."/persistent" = {
