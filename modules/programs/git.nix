@@ -54,6 +54,11 @@
           };
         };
 
+        delta = {
+          enable = true;
+          enableGitIntegration = true;
+        };
+
         gh = {
           enable = true;
 
