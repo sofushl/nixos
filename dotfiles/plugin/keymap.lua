@@ -38,15 +38,15 @@ map("n", "<leader>ax", "<cmd>ClaudeCodeDiffDeny<cr>", { desc = "Deny diff" })
 local tmux = require("tmux")
 
 for k, fn in pairs({ h = tmux.move_left, j = tmux.move_bottom, k = tmux.move_top, l = tmux.move_right }) do
-	map({ "n", "x" }, "<C-" .. k .. ">", fn)
-	map("i", "<C-" .. k .. ">", function()
-		vim.cmd("stopinsert")
-		fn()
-	end)
-	map("t", "<C-" .. k .. ">", function()
-		vim.cmd("stopinsert")
-		fn()
-	end)
+    map({ "n", "x" }, "<C-" .. k .. ">", fn)
+    map("i", "<C-" .. k .. ">", function()
+        vim.cmd("stopinsert")
+        fn()
+    end)
+    map("t", "<C-" .. k .. ">", function()
+        vim.cmd("stopinsert")
+        fn()
+    end)
 end
 
 --vimtest
@@ -56,262 +56,262 @@ map("n", "<leader>ts", "<cmd>TestSuite<cr>", { desc = "Test suite" })
 map("n", "<leader>tl", "<cmd>TestLast<cr>", { desc = "Test last" })
 
 -- snacks: files (`f` prefix)
-map("n", "<leader>f", function()
-	Snacks.picker.smart()
+map("n", "<leader>fs", function()
+    Snacks.picker.smart()
 end, { desc = "Smart find" })
 
-map("n", "ff", function()
-	Snacks.picker.files()
+map("n", "<leader>ff", function()
+    Snacks.picker.files()
 end, { desc = "Files" })
 
-map("n", "fg", function()
-	Snacks.picker.grep()
+map("n", "<leader>fg", function()
+    Snacks.picker.grep()
 end, { desc = "Grep" })
 
-map("n", "fn", function()
-	Snacks.picker.grep_buffers()
+map("n", "<leader>fn", function()
+    Snacks.picker.grep_buffers()
 end, { desc = "Grep open buffers" })
 
-map("n", "fl", function()
-	Snacks.picker.lines()
+map("n", "<leader>fl", function()
+    Snacks.picker.lines()
 end, { desc = "Lines" })
 
-map("n", "fb", function()
-	Snacks.picker.buffers()
+map("n", "<leader>fb", function()
+    Snacks.picker.buffers()
 end, { desc = "Buffers" })
 
-map("n", "fh", function()
-	Snacks.picker.help()
+map("n", "<leader>fh", function()
+    Snacks.picker.help()
 end, { desc = "Help" })
 
-map("n", "fr", function()
-	Snacks.picker.resume()
+map("n", "<leader>fr", function()
+    Snacks.picker.resume()
 end, { desc = "Resume" })
 
-map("n", "fc", function()
-	Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
+map("n", "<leader>fc", function()
+    Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
 end, { desc = "Config files" })
 
-map("n", "fG", function()
-	Snacks.picker.git_files()
+map("n", "<leader>fG", function()
+    Snacks.picker.git_files()
 end, { desc = "Git files" })
 
-map("n", "fp", function()
-	Snacks.picker.projects()
+map("n", "<leader>fp", function()
+    Snacks.picker.projects()
 end, { desc = "Projects" })
 
-map("n", "fo", function()
-	Snacks.picker.recent()
+map("n", "<leader>fo", function()
+    Snacks.picker.recent()
 end, { desc = "Recent" })
 
 map("n", "<leader>e", function()
-	Snacks.explorer()
+    Snacks.explorer()
 end, { desc = "Explorer" })
 
 -- snacks: search (`<leader>s` prefix)
 map("n", "<leader>:", function()
-	Snacks.picker.command_history()
+    Snacks.picker.command_history()
 end, { desc = "Command history" })
 
 map("n", '<leader>s"', function()
-	Snacks.picker.registers()
+    Snacks.picker.registers()
 end, { desc = "Registers" })
 
 map("n", "<leader>s/", function()
-	Snacks.picker.search_history()
+    Snacks.picker.search_history()
 end, { desc = "Search history" })
 
 map("n", "<leader>sa", function()
-	Snacks.picker.autocmds()
+    Snacks.picker.autocmds()
 end, { desc = "Autocmds" })
 
 map("n", "<leader>sb", function()
-	Snacks.picker.lines()
+    Snacks.picker.lines()
 end, { desc = "Buffer lines" })
 
 map("n", "<leader>sB", function()
-	Snacks.picker.grep_buffers()
+    Snacks.picker.grep_buffers()
 end, { desc = "Grep open buffers" })
 
 map("n", "<leader>sc", function()
-	Snacks.picker.command_history()
+    Snacks.picker.command_history()
 end, { desc = "Command history" })
 
 map("n", "<leader>sC", function()
-	Snacks.picker.commands()
+    Snacks.picker.commands()
 end, { desc = "Commands" })
 
 map("n", "<leader>sd", function()
-	Snacks.picker.diagnostics()
+    Snacks.picker.diagnostics()
 end, { desc = "Diagnostics" })
 
 map("n", "<leader>sD", function()
-	Snacks.picker.diagnostics_buffer()
+    Snacks.picker.diagnostics_buffer()
 end, { desc = "Buffer diagnostics" })
 
 map("n", "<leader>sg", function()
-	Snacks.picker.grep()
+    Snacks.picker.grep()
 end, { desc = "Grep" })
 
 map({ "n", "x" }, "<leader>sw", function()
-	Snacks.picker.grep_word()
+    Snacks.picker.grep_word()
 end, { desc = "Visual selection or word" })
 
 map("n", "<leader>sh", function()
-	Snacks.picker.help()
+    Snacks.picker.help()
 end, { desc = "Help pages" })
 
 map("n", "<leader>sH", function()
-	Snacks.picker.highlights()
+    Snacks.picker.highlights()
 end, { desc = "Highlights" })
 
 map("n", "<leader>si", function()
-	Snacks.picker.icons()
+    Snacks.picker.icons()
 end, { desc = "Icons" })
 
 map("n", "<leader>sj", function()
-	Snacks.picker.jumps()
+    Snacks.picker.jumps()
 end, { desc = "Jumps" })
 
 map("n", "<leader>sk", function()
-	Snacks.picker.keymaps()
+    Snacks.picker.keymaps()
 end, { desc = "Keymaps" })
 
 map("n", "<leader>sl", function()
-	Snacks.picker.loclist()
+    Snacks.picker.loclist()
 end, { desc = "Location list" })
 
 map("n", "<leader>sm", function()
-	Snacks.picker.marks()
+    Snacks.picker.marks()
 end, { desc = "Marks" })
 
 map("n", "<leader>sM", function()
-	Snacks.picker.man()
+    Snacks.picker.man()
 end, { desc = "Man pages" })
 
 map("n", "<leader>sq", function()
-	Snacks.picker.qflist()
+    Snacks.picker.qflist()
 end, { desc = "Quickfix list" })
 
 map("n", "<leader>sR", function()
-	Snacks.picker.resume()
+    Snacks.picker.resume()
 end, { desc = "Resume" })
 
 map("n", "<leader>su", function()
-	Snacks.picker.undo()
+    Snacks.picker.undo()
 end, { desc = "Undo history" })
 
 map("n", "<leader>n", function()
-	Snacks.picker.notifications()
+    Snacks.picker.notifications()
 end, { desc = "Notification history" })
 
 -- lsp
 map("n", "gd", function()
-	vim.lsp.buf.definition()
+    vim.lsp.buf.definition()
 end, { desc = "Goto definition" })
 
 map("n", "gD", function()
-	Snacks.picker.lsp_declarations()
+    Snacks.picker.lsp_declarations()
 end, { desc = "Goto declaration" })
 
 map("n", "gr", function()
-	Snacks.picker.lsp_references()
+    Snacks.picker.lsp_references()
 end, { nowait = true, desc = "References" })
 
 map("n", "gI", function()
-	Snacks.picker.lsp_implementations()
+    Snacks.picker.lsp_implementations()
 end, { desc = "Goto implementation" })
 
 map("n", "gy", function()
-	Snacks.picker.lsp_type_definitions()
+    Snacks.picker.lsp_type_definitions()
 end, { desc = "Goto t[y]pe definition" })
 
 map("n", "gai", function()
-	Snacks.picker.lsp_incoming_calls()
+    Snacks.picker.lsp_incoming_calls()
 end, { desc = "C[a]lls incoming" })
 
 map("n", "gao", function()
-	Snacks.picker.lsp_outgoing_calls()
+    Snacks.picker.lsp_outgoing_calls()
 end, { desc = "C[a]lls outgoing" })
 
 map("n", "<leader>ss", function()
-	Snacks.picker.lsp_symbols()
+    Snacks.picker.lsp_symbols()
 end, { desc = "LSP symbols" })
 
 map("n", "<leader>sS", function()
-	Snacks.picker.lsp_workspace_symbols()
+    Snacks.picker.lsp_workspace_symbols()
 end, { desc = "LSP workspace symbols" })
 
 map({ "n", "t" }, "]]", function()
-	Snacks.words.jump(vim.v.count1)
+    Snacks.words.jump(vim.v.count1)
 end, { desc = "Next reference" })
 
 map({ "n", "t" }, "[[", function()
-	Snacks.words.jump(-vim.v.count1)
+    Snacks.words.jump(-vim.v.count1)
 end, { desc = "Prev reference" })
 
 -- git
 map("n", "<leader>gg", function()
-	Snacks.lazygit()
+    Snacks.lazygit()
 end, { desc = "Lazygit" })
 
 map({ "n", "v" }, "<leader>gb", function()
-	Snacks.gitbrowse()
+    Snacks.gitbrowse()
 end, { desc = "Git browse" })
 
 map("n", "<leader>gB", function()
-	Snacks.picker.git_branches()
+    Snacks.picker.git_branches()
 end, { desc = "Git branches" })
 
 map("n", "<leader>gl", function()
-	Snacks.picker.git_log()
+    Snacks.picker.git_log()
 end, { desc = "Git log" })
 
 map("n", "<leader>gL", function()
-	Snacks.picker.git_log_line()
+    Snacks.picker.git_log_line()
 end, { desc = "Git log line" })
 
 map("n", "<leader>gf", function()
-	Snacks.picker.git_log_file()
+    Snacks.picker.git_log_file()
 end, { desc = "Git log file" })
 
 map("n", "<leader>gs", function()
-	Snacks.picker.git_status()
+    Snacks.picker.git_status()
 end, { desc = "Git status" })
 
 map("n", "<leader>gS", function()
-	Snacks.picker.git_stash()
+    Snacks.picker.git_stash()
 end, { desc = "Git stash" })
 
 map("n", "<leader>gd", function()
-	Snacks.picker.git_diff()
+    Snacks.picker.git_diff()
 end, { desc = "Git diff (hunks)" })
 
 -- gh
 map("n", "<leader>gi", function()
-	Snacks.picker.gh_issue()
+    Snacks.picker.gh_issue()
 end, { desc = "GitHub issues (open)" })
 
 map("n", "<leader>gI", function()
-	Snacks.picker.gh_issue({ state = "all" })
+    Snacks.picker.gh_issue({ state = "all" })
 end, { desc = "GitHub issues (all)" })
 
 map("n", "<leader>gp", function()
-	Snacks.picker.gh_pr()
+    Snacks.picker.gh_pr()
 end, { desc = "GitHub PRs (open)" })
 
 map("n", "<leader>gP", function()
-	Snacks.picker.gh_pr({ state = "all" })
+    Snacks.picker.gh_pr({ state = "all" })
 end, { desc = "GitHub PRs (all)" })
 
 local function close(force)
-	return function()
-		if #vim.api.nvim_tabpage_list_wins(0) > 1 then
-			vim.cmd(force and "close!" or "close")
-		else
-			Snacks.bufdelete({ force = force })
-		end
-	end
+    return function()
+        if #vim.api.nvim_tabpage_list_wins(0) > 1 then
+            vim.cmd(force and "close!" or "close")
+        else
+            Snacks.bufdelete({ force = force })
+        end
+    end
 end
 
 map({ "n", "v", "x" }, "<C-q>", close(false), { desc = "Delete buffer" })
@@ -319,31 +319,31 @@ map({ "n", "v", "x" }, "<C-q>", close(false), { desc = "Delete buffer" })
 map({ "n", "v", "x" }, "Q", close(true), { desc = "Delete buffer!" })
 
 map("n", "<leader>un", function()
-	Snacks.notifier.hide()
+    Snacks.notifier.hide()
 end, { desc = "Dismiss notifs" })
 
 map("n", "<C-.>", function()
-	Snacks.terminal()
+    Snacks.terminal()
 end, { desc = "Terminal" })
 
 map("n", "<leader>.", function()
-	Snacks.scratch()
+    Snacks.scratch()
 end, { desc = "Scratch" })
 
 map("n", "<leader>S", function()
-	Snacks.scratch.select()
+    Snacks.scratch.select()
 end, { desc = "Select scratch buffer" })
 
 map("n", "<leader>z", function()
-	Snacks.zen()
+    Snacks.zen()
 end, { desc = "Zen mode" })
 
 map("n", "<leader>Z", function()
-	Snacks.zen.zoom()
+    Snacks.zen.zoom()
 end, { desc = "Zoom" })
 
 map("n", "<leader>cR", function()
-	Snacks.rename.rename_file()
+    Snacks.rename.rename_file()
 end, { desc = "Rename file" })
 
 -- toggles
@@ -356,5 +356,5 @@ Snacks.toggle.indent():map("<leader>ug")
 Snacks.toggle.dim():map("<leader>uD")
 
 map("n", "<leader>uC", function()
-	Snacks.picker.colorschemes()
+    Snacks.picker.colorschemes()
 end, { desc = "Colorschemes" })
