@@ -30,6 +30,7 @@
       bash
       fonts
       fastfetch
+      node
     ];
 
     programs.niri.settings = {
@@ -90,10 +91,5 @@
         '';
 
       };
-
-    programs.npm = {
-      enable = true;
-      package = pkgs.nodejs_22;
-    };
   };
 }
