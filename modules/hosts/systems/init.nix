@@ -2,6 +2,8 @@
 {
   flake.nixosModules.init = { userconf, ... }: {
 
+    system.stateVersion = "26.11";
+
     imports = with self.nixosModules; [ disko ];
 
     networking.networkmanager.enable = true;
