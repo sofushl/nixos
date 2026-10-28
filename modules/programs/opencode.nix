@@ -53,7 +53,7 @@
             name = "OmniRoute";
             options = {
               baseURL = "https://${userconf.aiDom}/v1";
-              apiKey = "{file:~/.config/opencode/omniroute}";
+              apiKey = "{file:~/Cloud/.omniroute}";
             };
             models = {
               "auto".name = "OmniRoute auto";
@@ -68,7 +68,7 @@
             name = "NTNU LiteLLM";
             options = {
               baseURL = "https://llm.hpc.ntnu.no/v1";
-              apiKey = "{file:~/.config/opencode/ntnuai}";
+              apiKey = "{file:~/Cloud/.ntnuai}";
             };
             models =
               let

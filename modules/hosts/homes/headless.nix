@@ -9,6 +9,7 @@
       neovim
       yazi
       claude
+      opencode
       git
       bash
       fastfetch

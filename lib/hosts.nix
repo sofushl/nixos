@@ -51,7 +51,6 @@ in
       home = "niriMax";
       extra = [
         "fingerprint"
-        "opencode"
       ];
     };
     Zbook = {
