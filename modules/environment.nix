@@ -52,13 +52,8 @@
           mkpin = ''
             sudo install -d -m 0700 -o root -g root /var/lib/secrets
 
-            echo "Type user pin:"
             mkpasswd -m yescrypt | sudo tee /var/lib/secrets/${userconf.username}.hash
             sudo chmod 0400 /var/lib/secrets/${userconf.username}.hash
-
-            echo "Type root pin:"
-            mkpasswd -m yescrypt | sudo tee /var/lib/secrets/root.hash
-            sudo chmod 0400 /var/lib/secrets/root.hash
           '';
 
           # Eduroam password for the declarative NetworkManager profile
