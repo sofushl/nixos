@@ -11,7 +11,9 @@
 
     {
       home.file.".ssh/allowed_signers".text = ''
-        ${userconf.gitmail} namespaces="git" ${userconf.key}
+        ${userconf.email} namespaces="git" ${userconf.key}
+        ${userconf.workmail} namespaces="git" ${userconf.key}
+        ${userconf.studmail} namespaces="git" ${userconf.key}
       '';
 
       programs = {
@@ -26,7 +28,7 @@
 
             user = {
               name = userconf.displayname;
-              email = userconf.gitmail;
+              email = userconf.email;
               signingkey = userconf.key;
             };
 
@@ -61,6 +63,22 @@
               filter-repo = "!${lib.getExe pkgs.git-filter-repo}";
             };
           };
+
+          includes = [
+            {
+              condition = "hasconfig:remote.*.url:https://github.com/nordicsemi/**";
+              contents.user = {
+                email = userconf.workmail;
+              };
+            }
+            {
+              condition = "hasconfig:remote.*.url:git@git.ntnu.no:*/**";
+              contents.user = {
+                name = "Sofus Højberg Lind";
+                email = userconf.studmail;
+              };
+            }
+          ];
         };
 
         delta = {
@@ -90,11 +108,6 @@
       home.shellAliases = {
         "pull" = "git pull";
         "push" = "git push";
-
-        "git-local" = ''
-          git config --local user.name "${userconf.localgitname}" && \
-          git config --local user.email "${userconf.localgitmail}"
-        '';
       };
     };
 }
