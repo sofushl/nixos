@@ -6,6 +6,7 @@ let
   theme = import ../../lib/theme.nix;
   homes = import ../../lib/homes.nix;
   resolvehome = builtins.mapAttrs (_: h: homes.default // h) homes.homes;
+  stripNulls = nixpkgs.lib.filterAttrs (_: v: v != null);
   stablepkgs = import inputs.stablepkgs {
     system = "x86_64-linux";
     config.allowUnfree = true;
@@ -35,7 +36,8 @@ in
 
       specialArgs = {
         inherit inputs stablepkgs;
-        userconf = sysconf // theme // sshkeys // resolvehome.${sysconf.home} // serverconf // secrets;
+        userconf =
+          sysconf // theme // sshkeys // stripNulls (resolvehome.${sysconf.home}) // serverconf // secrets;
       };
 
       modules = [ self.nixosModules.${sysconf.host} ];

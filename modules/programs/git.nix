@@ -10,6 +10,9 @@
     # REQUIRES PERSISTENT "./config/gh/hosts.yml"
 
     {
+      home.file.".ssh/allowed_signers".text = ''
+        ${userconf.gitmail} namespaces="git" ${userconf.key}
+      '';
 
       programs = {
         git = {
@@ -19,11 +22,12 @@
             commit.gpgsign = true;
             tag.gpgsign = true;
             gpg.format = "ssh";
+            gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
 
             user = {
               name = userconf.displayname;
               email = userconf.gitmail;
-              signingkey = "~/.ssh/id_ed25519.pub";
+              signingkey = userconf.key;
             };
 
             url = {
