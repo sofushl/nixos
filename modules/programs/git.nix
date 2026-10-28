@@ -14,24 +14,26 @@
       configs = gconf.configs;
     in
     {
-      home.file.".ssh/allowed_signers".text = lib.concatMapStringsSep "\n" (
-        c: "${c.email} namespaces=\"git\" ${userconf.key}"
-      ) configs;
-
       programs = {
         git = {
           enable = true;
 
+          signing = {
+            format = "ssh";
+            key = "~/.ssh/id_ed25519";
+            signByDefault = true;
+            allowedSigners = lib.concatMapStringsSep "\n" (
+              c: "${c.email} namespaces=\"git\" ${userconf.key}"
+            ) configs;
+          };
+
           settings = {
             commit.gpgsign = true;
             tag.gpgsign = true;
-            gpg.format = "ssh";
-            gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
 
             user = {
               name = userconf.displayname;
               email = userconf.email;
-              signingkey = userconf.key;
             };
 
             url = lib.listToAttrs (
