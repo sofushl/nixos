@@ -16,7 +16,7 @@ Dendritic flake-parts + import tree based config. Merged history with my old con
 Declaration of dependencies, tools installation and development libraries.
 
 #### [hosts](./modules/hosts/README.md)
-Host machine configurations, including special configs and presets for desktop setups.
+Host machine and home manager configurations, including special configs and presets for desktop setups.
 
 #### [programs](./modules/programs/README.md)
 Home manager based program configuration.
@@ -40,7 +40,6 @@ Boilerplate for nixosModules and/or homeModules:
     {
       # Your config here
 
-      home-manager.users.${userconf.username}.imports = [ self.homeModules.HOMEMODULE ];
     };
   
   flake.homeModules.HOMEMODULE = 
@@ -81,8 +80,13 @@ Secrets that must not enter the nix store live root owned in
 
 | File | Command | Used by |
 | --- | --- | --- |
-| ```sofushl.hash``` | ```mkpin``` | [ ```users.users.*.hashedPasswordFile```](./modules/user.nix) |
+| ```{username}.hash``` | ```mkpin``` | [ ```users.users.*.hashedPasswordFile```](./modules/user.nix) |
+| ```root.hash``` | ```mkpin``` | [ ```users.users.root.hashedPasswordFile```](./modules/base.nix) |
 | ```eduroam.env``` | ```mkedupass``` | the [```eduroam```](./modules/services/eduroam.nix) nixosModule |
+
+```{username}.hash``` is generated at activation with a hash of ```p``` if no
+file has been made, and ```root.hash``` falls back to a copy of it, so a fresh
+install can be logged into with ```p``` until ```mkpin``` is run.
 
 ```eduroam.env``` holds ```EDUROAM_PASSWORD=...``` and is substituted into
 ```/run/NetworkManager/system-connections/eduroam.nmconnection``` by

@@ -15,7 +15,7 @@
             prompt = ''"$"'';
             dpi-aware = "yes";
             icons = true;
-            terminal = "${userconf.terminal} -a '{cmd}' -T '{cmd}' {cmd}";
+            terminal = "${userconf.terminal} -T '{cmd}' {cmd}";
             horizontal-pad = 8;
             font = "monospace:size=10";
             anchor = "top";
