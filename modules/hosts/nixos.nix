@@ -6,7 +6,7 @@ let
   theme = import ../../lib/theme.nix;
   homes = import ../../lib/homes.nix;
   resolvehome = builtins.mapAttrs (_: h: homes.default // h) homes.homes;
-  stripNulls = nixpkgs.lib.filterAttrs (_: v: v != null);
+  stripNulls = nixpkgs.lib.filterAttrs (_: v: v != null && v != "");
   stablepkgs = import inputs.stablepkgs {
     system = "x86_64-linux";
     config.allowUnfree = true;
