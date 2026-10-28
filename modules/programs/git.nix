@@ -16,9 +16,14 @@
           enable = true;
 
           settings = {
+            commit.gpgsign = true;
+            tag.gpgsign = true;
+            gpg.format = "ssh";
+
             user = {
               name = userconf.displayname;
               email = userconf.gitmail;
+              signingkey = "~/.ssh/id_ed25519.pub";
             };
 
             url = {
