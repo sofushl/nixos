@@ -28,6 +28,7 @@ in
       state = "26.11";
       disk = "nvme0n1";
       wifiboard = "eth";
+      key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMa7/X+I2BUnqYYtpIF33llzsJkU214MWAA7R5JOM94i sofushl@T2000";
 
       macaddress = "48:9e:bd:75:c0:68";
     };
@@ -74,6 +75,7 @@ in
     WSL = {
       host = "WSL";
       wifiboard = "eth0";
+      key = "";
     };
 
     init = {

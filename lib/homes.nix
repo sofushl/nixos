@@ -3,13 +3,11 @@
     username = "sofushl";
     displayname = "Sofus Lind";
     email = "sofushl@proton.me";
-    workmail = "sofus.lind@nordicsemi.no";
-    studmail = "sofushl@stud.ntnu.no";
-    type = "default";
+    type = null;
     ghname = username;
     nextcloud = "cloud.sofus.privatedns.org";
     nextclouduser = username;
-    key = null;
+    key = "";
     path = "/home/sofushl/nixos";
     state = "26.11";
     system = "x86_64-linux";
