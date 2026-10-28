@@ -19,6 +19,20 @@ vim.lsp.enable({
 	"yaml",
 	"c",
 	"tinymist",
+	"mcfunction",
+})
+
+vim.filetype.add({
+	extension = {
+		mcfunction = "mcfunction",
+	},
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "mcfunction",
+	callback = function(args)
+		vim.treesitter.start(args.buf, "mcfunction")
+	end,
 })
 
 -- Formatting option
