@@ -179,7 +179,7 @@
 
         mcpServers.nixos = {
           type = "stdio";
-          command = lib.getExe stablepkgs.mcp-nixos;
+          command = lib.getExe pkgs.mcp-nixos;
         };
 
         # Mirrors the servers in dotfiles/lsp
