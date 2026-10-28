@@ -27,14 +27,9 @@
         settings = {
           maintenance_window_start = 2;
           default_phone_region = "NO";
-          server_id = "main";
           integrity.check.disabled = false;
-
-          serverid = 1;
-
           log_type = "file";
           trusted_proxies = [ "192.168.1.1" ];
-
           overwriteprotocol = "https";
         };
 

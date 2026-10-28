@@ -1,4 +1,4 @@
-{
+{ inputs, ... }: {
   flake.nixosModules.gaming =
     {
       pkgs,
@@ -16,6 +16,8 @@
         ".local/state/Heroic"
 
         ".local/share/PrismLauncher/"
+
+        ".var"
 
         "Games"
       ];
@@ -55,5 +57,20 @@
             pkgs.prismlauncher
         )
       ];
+
+      imports = [ inputs.nix-flatpak.nixosModules.nix-flatpak ];
+
+      services.flatpak = {
+        enable = true;
+        packages = [
+          "org.vinegarhq.Sober" # Roblox
+        ];
+        remotes = [
+          {
+            name = "flathub";
+            location = "https://flathub.org/repo/flathub.flatpakrepo";
+          }
+        ];
+      };
     };
 }

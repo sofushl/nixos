@@ -3,7 +3,7 @@
     services.openssh = {
       enable = true;
       allowSFTP = false;
-      openFirewall = false;
+      openFirewall = true;
 
       settings = {
         PasswordAuthentication = false;

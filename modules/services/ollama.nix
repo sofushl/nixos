@@ -37,7 +37,7 @@
             bind_address = "127.0.0.1";
             # secret_key MUST be set. Provide it via environmentFile (below),
             # NOT inline — inline puts it in the world-readable Nix store.
-            secret_key = "@SEARX_SECRET_KEY@";
+            secret_key = "$SEARX_SECRET_KEY";
           };
           search = {
             # Open WebUI: Queries the JSON API.
