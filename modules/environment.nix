@@ -22,22 +22,22 @@
         shellAliases = {
 
           nixos-switch = ''
-            git -C /${userconf.path} add -N -A
-            sudo nixos-rebuild switch --flake /${userconf.path}/#${userconf.host}
+            git -C ${userconf.path} add -N -A
+            sudo nixos-rebuild switch --flake ${userconf.path}/#${userconf.host}
           '';
 
           nixos-boot = ''
-            git -C /${userconf.path} add -N -A
-            sudo nixos-rebuild boot --flake /${userconf.path}/#${userconf.host}
+            git -C ${userconf.path} add -N -A
+            sudo nixos-rebuild boot --flake ${userconf.path}/#${userconf.host}
           '';
 
           nixos-update = ''
-            sudo nix flake update --flake /${userconf.path}
+            sudo nix flake update --flake ${userconf.path}
             nixos-switch
           '';
 
           nixos-pull = ''
-            git -C /${userconf.path} pull
+            git -C ${userconf.path} pull
             nixos-switch
           '';
 
@@ -92,8 +92,8 @@
     home = {
       shellAliases = {
         home-switch = ''
-          git -C /${userconf.path} add -N -A
-          nix run nixpkgs#home-manager -- switch --flake /${userconf.path}#${userconf.type} -b back
+          git -C ${userconf.path} add -N -A
+          nix run nixpkgs#home-manager -- switch --flake ${userconf.path}#${userconf.type} -b back
         '';
 
         home-clean = ''
@@ -104,11 +104,11 @@
         '';
 
         home-pull = ''
-          git -C /${userconf.path} pull
+          git -C ${userconf.path} pull
           home-switch
         '';
 
-        home-manager = "home-manager --flake /${userconf.path}#${userconf.type}";
+        home-manager = "home-manager --flake ${userconf.path}#${userconf.type}";
       };
       sessionVariables = {
         NIXOS_OZONE_WL = "1";

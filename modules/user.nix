@@ -11,7 +11,6 @@
       ...
     }:
     {
-
       users = {
         users.${userconf.username} = {
           isNormalUser = true;
@@ -68,7 +67,7 @@
 
       programs.nh = {
         enable = true;
-        flake = "/${userconf.path}";
+        flake = userconf.path;
 
         clean = {
           enable = true;
