@@ -88,8 +88,6 @@
         };
       };
 
-      services.ssh-agent.enable = true;
-
       home.shellAliases = {
         "pull" = "git pull";
         "push" = "git push";
