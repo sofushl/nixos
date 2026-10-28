@@ -65,6 +65,10 @@
 
           ".claude"
 
+          ".local/share/opencode"
+          ".local/state/opencode"
+          ".config/opencode"
+
           ".cursor"
           ".config/Cursor"
           ".config/cursor"
