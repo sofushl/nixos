@@ -13,6 +13,7 @@
         clang-tools
         cmake
         gnumake
+        gdb
 
         pkg-config
 
