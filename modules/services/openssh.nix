@@ -7,6 +7,7 @@
 
       settings = {
         PasswordAuthentication = true;
+        AuthenticationMethods = "publickey,password";
         KbdInteractiveAuthentication = false;
         PermitRootLogin = "no";
         AllowUsers = [ userconf.username ];
