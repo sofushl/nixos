@@ -6,30 +6,10 @@
     home.packages = with pkgs; [
       teams-for-linux
       postman
-      vlc
-      loupe
-      spotify
     ];
 
     imports = with self.homeModules; [
-      base
-      environment
-      user
-      desktop
-      niri
-      mimeapps
-
-      kitty
-      browser
-      vscodium
-      neovim
-      yazi
-      git
-      claude
-
-      bash
-      fonts
-      fastfetch
+      niriMin
       node
     ];
 
