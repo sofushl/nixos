@@ -37,7 +37,7 @@
             bind_address = "127.0.0.1";
             # secret_key MUST be set. Provide it via environmentFile (below),
             # NOT inline — inline puts it in the world-readable Nix store.
-            secret_key = "@SEARX_SECRET_KEY@";
+            secret_key = "$SEARX_SECRET_KEY";
           };
           search = {
             # Open WebUI: Queries the JSON API.
@@ -66,7 +66,7 @@
           ];
         };
 
-        # Substitutes @SEARX_SECRET_KEY@ from a file kept out of the Nix store.
+        # $SEARX_SECRET_KEY in settings is expanded by envsubst from a file kept out of the Nix store.
         # Create /etc/searx.env with a line:  SEARX_SECRET_KEY=<run: openssl rand -hex 32>
         environmentFile = "/etc/searx.env";
       };

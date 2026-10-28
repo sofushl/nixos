@@ -3,10 +3,10 @@
     services.openssh = {
       enable = true;
       allowSFTP = false;
-      openFirewall = false;
+      openFirewall = true;
 
       settings = {
-        PasswordAuthentication = false;
+        PasswordAuthentication = true;
         KbdInteractiveAuthentication = false;
         PermitRootLogin = "no";
         AllowUsers = [ userconf.username ];
