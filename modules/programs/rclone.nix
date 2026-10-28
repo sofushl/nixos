@@ -60,7 +60,7 @@
       };
 
       systemd.user.timers.rclone-bisync-nextcloud = {
-        Unit.Description = "Run nextcloud bisync on boot and every 5 minutes";
+        Unit.Description = "Run nextcloud bisync periodically";
         Timer = {
           OnBootSec = "1m";
           OnUnitActiveSec = "2m";
