@@ -30,7 +30,6 @@
     ];
 
     preservation.preserveAt."/persistent" = {
-      directories = [ "opt" ];
       users.${userconf.username} = {
         directories = [
           "Downloads"
@@ -57,13 +56,8 @@
           ".config/VSCodium"
           ".vscode-oss-shared"
 
-          ".mplab"
-          ".mplabcomm"
-          ".mchp_packs"
-
           ".claude"
 
-          ".ollama"
           ".local/share/opencode"
           ".local/state/opencode"
           ".config/opencode"
@@ -72,7 +66,6 @@
           ".config/Cursor"
           ".config/cursor"
           ".local/share/docker"
-
         ];
 
         files = [

@@ -32,7 +32,6 @@
     ];
 
     preservation.preserveAt."/persistent" = {
-      directories = [ "opt" ];
       users.${userconf.username} = {
         directories = [
           "Documents"
@@ -58,10 +57,6 @@
 
           ".config/VSCodium"
           ".vscode-oss-shared"
-
-          ".mplab"
-          ".mplabcomm"
-          ".mchp_packs"
 
           ".claude"
 

@@ -1,7 +1,12 @@
 { inputs, ... }:
 {
   flake.nixosModules.preservation =
-    { userconf, config, ... }:
+    {
+      userconf,
+      config,
+      lib,
+      ...
+    }:
     {
 
       imports = [ inputs.preservation.nixosModules.default ];
@@ -23,17 +28,6 @@
         }
       ];
 
-      #preservation.preserveAt."/tmp" = {
-      #  users.${userconf.username} = {
-      #    directories = [ ".cache" ];
-      #  };
-      #};
-
-      systemd.tmpfiles.rules = [
-        "R! /home/sofushl/.cache - - - - -"
-        "R! /persistent/home/sofushl/.cache - - - - -"
-      ];
-
       preservation.preserveAt."/persistent" = {
         directories = [
           {
@@ -41,8 +35,8 @@
             inInitrd = true;
           }
           "/etc/ssh"
-          (if config.networking.networkmanager.enable == true then "/etc/NetworkManager" else "")
-        ];
+        ]
+        ++ lib.optional config.networking.networkmanager.enable "/etc/NetworkManager";
 
         files = [
           {
