@@ -67,7 +67,7 @@
           config = {
             user = {
               name = userconf.displayname;
-              email = userconf.gitmail;
+              email = userconf.email;
             };
 
             init.defaultBranch = "main";
