@@ -8,7 +8,6 @@
           compose = "layer(nav)";
           copilot = "layer(nav)";
           rightcontrol = "layer(meta)";
-          leftalt = "layer(meta)";
           capslock = "esc";
         };
         nav = {

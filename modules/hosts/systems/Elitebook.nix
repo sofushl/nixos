@@ -28,7 +28,11 @@
       python
       rustWASM
       clangGTK
-      mplab
+    ];
+
+    environment.systemPackages = with pkgs; [
+      blender
+      prusa-slicer
     ];
 
     preservation.preserveAt."/persistent" = {
