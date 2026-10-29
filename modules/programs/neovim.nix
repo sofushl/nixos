@@ -130,7 +130,6 @@
           # Formatter
           nixfmt
           kdlfmt
-          xmlformat
           yamlfmt
           rustfmt
           prettierd
@@ -155,6 +154,7 @@
           marksman
           asm-lsp
           mcfunction-lsp
+          lemminx
         ]
         ++ dependencies;
 

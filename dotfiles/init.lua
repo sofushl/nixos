@@ -20,6 +20,7 @@ vim.lsp.enable({
 	"c",
 	"tinymist",
 	"mcfunction",
+	"xml",
 })
 
 vim.filetype.add({
