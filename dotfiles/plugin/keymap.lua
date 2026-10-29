@@ -322,15 +322,15 @@ map("n", "<leader>un", function()
     Snacks.notifier.hide()
 end, { desc = "Dismiss notifs" })
 
-map("n", "<C-.>", function()
+map("n", "<leader>T", function()
     Snacks.terminal()
 end, { desc = "Terminal" })
 
-map("n", "<leader>.", function()
+map("n", "<leader>S", function()
     Snacks.scratch()
 end, { desc = "Scratch" })
 
-map("n", "<leader>S", function()
+map("n", "<leader>Ss", function()
     Snacks.scratch.select()
 end, { desc = "Select scratch buffer" })
 

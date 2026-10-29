@@ -2,16 +2,6 @@
   flake.homeModules.neovim =
     { pkgs, lib, ... }:
     let
-      micropython-nvim = pkgs.vimUtils.buildVimPlugin {
-        name = "micropython-nvim";
-        src = pkgs.fetchFromGitHub {
-          owner = "jim-at-jibba";
-          repo = "micropython.nvim";
-          rev = "v2.0.0";
-          hash = "sha256-R/YfQWOtUoPxp0s7lOxPIOuPgwuIWk0O5h/EoJGixHw=";
-        };
-      };
-
       mcfunction-grammar = pkgs.tree-sitter.buildGrammar {
         language = "mcfunction";
         version = "0.4.0";
@@ -34,6 +24,17 @@
         };
         vendorHash = "sha256-qkBpSVLWZPRgS9bqOVUWHpyj8z/nheQJON3vJOwPUj4=";
         subPackages = [ "." ];
+      };
+
+      # nixpkgs opencode-nvim is v1.0.2 (OpenCode v1 only); main supports OpenCode v2
+      opencode-nvim = pkgs.vimUtils.buildVimPlugin {
+        name = "opencode-nvim";
+        src = pkgs.fetchFromGitHub {
+          owner = "nickjvandyke";
+          repo = "opencode.nvim";
+          rev = "f8e8cf02be7340489df1b67b518ce2842c65520f";
+          hash = "sha256-vPTAB62yN2T7+5yJqjBD3EN0hzIeLvaYpUs2RrKTJQk=";
+        };
       };
 
       dependencies = with pkgs; [
@@ -80,24 +81,6 @@
           };
         };
 
-      nixpkgs.overlays = [
-        (final: prev: {
-          vimPlugins = prev.vimPlugins.extend (
-            vfinal: vprev: {
-              conform-nvim = vprev.conform-nvim.overrideAttrs (old: {
-                src = prev.fetchFromGitHub {
-                  owner = "stevearc";
-                  repo = "conform.nvim";
-                  rev = "016802de402556da54c36bd7359b441266b01cdd";
-                  hash = "sha256-7VkQLpkDak/O5tphT/EWX/rE9r0Dd2UCF5CFbl4rK+A=";
-                  fetchSubmodules = false;
-                };
-              });
-            }
-          );
-        })
-      ];
-
       programs.neovim = {
         enable = true;
         defaultEditor = true;
@@ -119,10 +102,9 @@
           nvim-highlight-colors
 
           claudecode-nvim
+          opencode-nvim
 
-          micropython-nvim
           render-markdown-nvim
-
           markdown-preview-nvim
           typst-preview-nvim
 
