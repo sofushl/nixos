@@ -12,12 +12,12 @@
     }:
     let
       githubDatapacks = {
-        achievementcomp = pkgs.fetchFromGitHub {
-          owner = "sofushl";
-          repo = "achievementcomp";
-          rev = "v1.0.0";
-          hash = "sha256-L4mhN3uwUGvcdNgUXC3UrFx7dFJjXNoXSnrTV2VTpRY=";
-        };
+        #achievementcomp = pkgs.fetchFromGitHub {
+        #  owner = "sofushl";
+        #  repo = "achievementcomp";
+        #  rev = "v1.0.0";
+        #  hash = "sha256-L4mhN3uwUGvcdNgUXC3UrFx7dFJjXNoXSnrTV2VTpRY=";
+        #};
       };
     in
     {
@@ -37,7 +37,7 @@
           socketPath = name: "/run/minecraft/${name}.sock";
         };
 
-        servers.main = {
+        servers.test = {
           enable = true;
           autoStart = false;
           package = pkgs.purpur-server;
