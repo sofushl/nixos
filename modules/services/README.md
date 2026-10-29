@@ -22,3 +22,18 @@ Based on [this gist](https://gist.github.com/dunderrrrrr/98339b04ad457f688110ab7
 
 Game data lives in /var/lib/satisfactory
 
+
+## [minecraft](./minecraft.nix)
+
+Purpur server `comp`. Data lives in `/var/lib/minecraft` (keep it in backups). Does not autostart.
+
+### BlueMap
+
+Web map with live players at `mc.<topDom>`.
+
+- The BlueMap Paper plugin runs inside the server. It renders the map and serves it on `127.0.0.1:8100`.
+- nginx proxies `mc.<topDom>` to that port and handles TLS.
+- Tiles are stored in `/var/lib/minecraft/test/bluemap/web`.
+- Nix generates the plugin config (`plugins/BlueMap/`). Edit it in `minecraft.nix`, then restart the server.
+- Console: `tmux -S /run/minecraft/test.sock send-keys 'bluemap tasks' Enter`, then read `logs/latest.log`.
+- Map stays black? Run `bluemap purge <map>` and `bluemap update <map>`.

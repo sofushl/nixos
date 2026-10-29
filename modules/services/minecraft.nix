@@ -11,14 +11,49 @@
       ...
     }:
     let
+      serverName = "comp";
+
       githubDatapacks = {
-        #achievementcomp = pkgs.fetchFromGitHub {
-        #  owner = "sofushl";
-        #  repo = "achievementcomp";
-        #  rev = "v1.0.0";
-        #  hash = "sha256-L4mhN3uwUGvcdNgUXC3UrFx7dFJjXNoXSnrTV2VTpRY=";
-        #};
+        achievementcomp = pkgs.fetchFromGitHub {
+          owner = "sofushl";
+          repo = "achievementcomp";
+          rev = "main";
+          hash = lib.fakeHash;
+        };
       };
+
+      hocon = pkgs.formats.hocon { };
+      bluemapMaps =
+        lib.mapAttrs
+          (_: dimension: {
+            world = "/var/lib/minecraft/${serverName}/world";
+            inherit dimension;
+          })
+          {
+            overworld = "minecraft:overworld";
+            nether = "minecraft:the_nether";
+            end = "minecraft:the_end";
+          };
+
+      bluemapPlugin = pkgs.fetchurl {
+        url = "https://github.com/BlueMap-Minecraft/BlueMap/releases/download/v5.29/bluemap-5.29-paper.jar";
+        hash = "sha256-e/R1k2wmEH1HbGMVHHbVtJ6GXuvq2hLJ59khVd6He58=";
+      };
+      bluemapConf = {
+        "plugins/BlueMap/core.conf" = hocon.generate "core.conf" { accept-download = true; };
+        "plugins/BlueMap/webserver.conf" = hocon.generate "webserver.conf" {
+          enabled = true;
+          ip = "127.0.0.1";
+          port = 8100;
+        };
+        "plugins/BlueMap/storages/file.conf" = hocon.generate "file.conf" {
+          storage-type = "FILE";
+          root = "bluemap/web/maps";
+        };
+      }
+      // lib.mapAttrs' (
+        n: v: lib.nameValuePair "plugins/BlueMap/maps/${n}.conf" (hocon.generate "${n}.conf" v)
+      ) bluemapMaps;
     in
     {
       imports = [ inputs.nix-minecraft.nixosModules.minecraft-servers ];
@@ -37,7 +72,7 @@
           socketPath = name: "/run/minecraft/${name}.sock";
         };
 
-        servers.test = {
+        servers.${serverName} = {
           enable = true;
           autoStart = false;
           package = pkgs.purpur-server;
@@ -63,8 +98,19 @@
             sync-chunk-writes = false;
           };
 
-          symlinks = lib.mapAttrs' (n: v: lib.nameValuePair "world/datapacks/${n}" v) githubDatapacks;
+          symlinks =
+            lib.mapAttrs' (n: v: lib.nameValuePair "world/datapacks/${n}" v) githubDatapacks
+            // bluemapConf
+            // {
+              "plugins/BlueMap.jar" = bluemapPlugin;
+            };
         };
+      };
+
+      services.nginx.virtualHosts.${userconf.mcDom} = {
+        forceSSL = true;
+        enableACME = true;
+        locations."/".proxyPass = "http://127.0.0.1:8100";
       };
 
       systemd.services.minecraft-server.serviceConfig = userconf.minecraft.prioServiceConfig;
