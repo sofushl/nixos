@@ -81,7 +81,12 @@
           #};
           java = {
             userSettings = settings // {
-              "editor.defaultFormatter" = "redhat.java";
+              "[xml]" = {
+                "editor.defaultFormatter" = "redhat.vscode-xml";
+              };
+              "[java]" = {
+                "editor.defaultFormatter" = "redhat.java";
+              };
               "redhat.telemetry.enabled" = false;
             };
             extensions =
@@ -94,6 +99,7 @@
                 vscjava.vscode-java-test
                 shengchen.vscode-checkstyle
                 jebbs.plantuml
+                redhat.vscode-xml
               ]
               ++ extensions;
           };
