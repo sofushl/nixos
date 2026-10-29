@@ -18,6 +18,7 @@
         "editor.formatOnSave" = true;
         "explorer.confirmDragAndDrop" = false;
         "files.autoSave" = "onFocusChange";
+        "git.autofetch" = true;
         "git.confirmSync" = false;
         "git.enableSmartCommit" = true;
         "git.openRepositoryInParentFolders" = "always";
