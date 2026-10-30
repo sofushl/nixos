@@ -16,7 +16,6 @@
     programs.niri.settings = {
 
       spawn-at-startup = lib.mkForce [
-        { command = [ "waybar" ]; }
         {
           command = [
             "teams-for-linux"
