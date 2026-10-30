@@ -31,7 +31,7 @@
     work = {
       type = "work";
       username = "soli";
-      path = "home/soli/nixos";
+      path = "/home/soli/nixos";
       key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN73JXdOkCMd8Jl34UVaNv5UfyLqwVgU56dD1qHmQSTO soli@Thinkso.nordicsemi.no";
     };
   };
