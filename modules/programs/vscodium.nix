@@ -101,6 +101,7 @@
                 shengchen.vscode-checkstyle
                 jebbs.plantuml
                 redhat.vscode-xml
+                stkb.rewrap
               ]
               ++ extensions;
           };
