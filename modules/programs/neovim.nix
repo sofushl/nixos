@@ -126,6 +126,7 @@
           # Languages
           lua
           nixd
+          go
 
           # Formatter
           nixfmt
@@ -148,6 +149,7 @@
           ty
           taplo
           tinymist
+          gopls
           vscode-langservers-extracted
           tailwindcss-language-server
           yaml-language-server
