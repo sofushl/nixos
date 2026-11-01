@@ -16,6 +16,7 @@
       server
       openssh
       keyring
+      vaultwarden
 
       nextcloudServer
       dnsUpdater
@@ -28,6 +29,7 @@
     preservation.preserveAt."/persistent".directories = [
       "/var/www"
       "/var/log"
+      "/var/backup"
     ];
 
     preservation.preserveAt."/persistent".users.${userconf.username} = {
