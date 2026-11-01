@@ -33,7 +33,7 @@
           "Cloud"
 
           ".librewolf"
-          ".config/discord"
+          ".config/vesktop/sessionData/Local Storage"
           ".config/Element"
           ".config/spotify"
           ".cache/spotify"
@@ -53,6 +53,7 @@
         ];
 
         files = [
+          ".config/vesktop/sessionData/Cookies"
           ".config/gh/hosts.yml"
           ".config/rclone/nextcloud.pass"
           ".claude.json"

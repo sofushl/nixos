@@ -1,46 +1,91 @@
 {
-  flake.homeModules.vesktop = {
-    programs.vesktop = {
-      enable = true;
+  flake.homeModules.vesktop =
+    {
+      pkgs,
+      lib,
+      ...
+    }:
+    {
+      home.file.".config/vesktop/state.json".text = ''{"firstLaunch": false}'';
 
-      settings = {
-        appBadge = false;
-        arRPC = true;
-        checkUpdates = false;
-        customTitleBar = false;
-        disableMinSize = true;
-        minimizeToTray = false;
-        tray = false;
-        splashBackground = "#000000";
-        splashColor = "#ffffff";
-        splashTheming = true;
-        staticTitle = true;
-        hardwareAcceleration = true;
-        discordBranch = "stable";
-      };
-
-      vencord = {
+      programs.vesktop = {
+        enable = true;
+        package = pkgs.vesktop;
 
         settings = {
-          autoUpdate = true;
-          autoUpdateNotification = false;
-          notifyAboutUpdates = true;
+          appBadge = false;
+          arRPC = true;
+          checkUpdates = false;
+          customTitleBar = false;
           disableMinSize = true;
-          plugins = {
-            MessageLogger = {
-              enabled = true;
-              ignoreSelf = true;
-            };
-            FakeNitro.enabled = true;
-
-            FriendsSince.enabled = true;
-          };
+          minimizeToTray = true;
+          tray = true;
+          enableSplashScreen = false;
+          splashBackground = "#000000";
+          splashColor = "#ffffff";
+          splashTheming = true;
+          staticTitle = true;
+          hardwareAcceleration = true;
+          discordBranch = "canary";
         };
 
-        useSystem = true;
+        vencord = {
+          settings = {
+            autoUpdate = true;
+            autoUpdateNotification = false;
+            notifyAboutUpdates = true;
+            disableMinSize = true;
+            plugins = {
+              MessageLogger = {
+                enabled = true;
+                ignoreSelf = true;
+              };
+              FakeNitro.enabled = true;
+              FriendsSince.enabled = true;
 
+              ShowHiddenChannels.enabled = true;
+              ViewRaw.enabled = true;
+              MessageLinkEmbeds.enabled = true;
+              NoTypingAnimation.enabled = true;
+              FixCodeblockGap.enabled = true;
+              CopyUserURLs.enabled = true;
+              ServerInfo.enabled = true;
+              ImageZoom.enabled = true;
+              MessageClickActions.enabled = true;
+              NoReplyMention.enabled = true;
+              ReplyTimestamp.enabled = true;
+              BetterSettings.enabled = true;
+              CallTimer.enabled = true;
+              ClearURLs.enabled = true;
+              ReverseImageSearch.enabled = true;
+              WhoReacted.enabled = true;
+              SpotifyControls.enabled = true;
+              PinDMs.enabled = true;
+              FavoriteGifSearch.enabled = true;
+              PlatformIndicators.enabled = true;
+              NormalizeMessageLinks.enabled = true;
+              BiggerStreamPreview.enabled = true;
+              SilentTyping.enabled = true;
+              ReadAllNotificationsButton.enabled = true;
+              GifPaste.enabled = true;
+              OpenInApp.enabled = true;
+              ShowConnections.enabled = true;
+            };
+          };
+
+          useSystem = true;
+        };
+      };
+
+      systemd.user.services.vesktop = {
+        Unit = {
+          Description = "Vesktop";
+          PartOf = [ "graphical-session.target" ];
+          After = [ "graphical-session.target" ];
+        };
+        Service.ExecStart = "${pkgs.vesktop}/bin/vesktop";
+        Install.WantedBy = [ "graphical-session.target" ];
       };
 
     };
-  };
 }

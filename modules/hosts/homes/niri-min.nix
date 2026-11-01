@@ -7,6 +7,7 @@
       desktop
       niri
       mimeapps
+      vesktop
 
       kitty
       browser
@@ -22,7 +23,6 @@
       {
         home.packages = with pkgs; [
           spotify
-          discord
           element-desktop
           vlc
           loupe

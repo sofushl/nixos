@@ -255,7 +255,6 @@
                 "--hidden"
               ];
             }
-            { command = [ "discord" ]; }
           ];
 
           hotkey-overlay = {
@@ -312,8 +311,8 @@
                 }
                 {
                   key = "d";
-                  desc = "Discord";
-                  cmd = (lib.getExe pkgs.discord);
+                  desc = "Vesktop";
+                  cmd = (lib.getExe pkgs.vesktop);
                 }
                 {
                   key = "f";

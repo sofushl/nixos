@@ -10,7 +10,7 @@
         video = "vlc.desktop";
         audio = "vlc.desktop";
         spotify = "spotify.desktop";
-        discord = "discord.desktop";
+        vesktop = "vesktop.desktop";
         steam = "steam.desktop";
         torrent = "org.qbittorrent.qBittorrent.desktop";
       };
@@ -109,7 +109,7 @@
             "x-scheme-handler/spotify"
           ])
 
-          (assign apps.discord [ "x-scheme-handler/discord" ])
+          (assign apps.vesktop [ "x-scheme-handler/discord" ])
           (assign apps.steam [
             "x-scheme-handler/steam"
             "x-scheme-handler/steamlink"
