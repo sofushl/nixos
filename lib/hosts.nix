@@ -46,7 +46,7 @@ in
     };
     Elitebook = {
       host = "Elitebook";
-      key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH7TP6uO6pyFPdxJiXE69dL49GHgB0pDDiMKxuCCNCTP sofushl@Elitebook";
+      key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGAcSwH3R5VjlCT0zu2lpH9uMB9wjRbKhBY7uSsceQF2 sofushl@Elitebook";
       disk = "nvme0n1";
       home = "niriMax";
       extra = [

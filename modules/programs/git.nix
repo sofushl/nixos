@@ -1,6 +1,7 @@
 {
   flake.homeModules.git =
     {
+      config,
       userconf,
       pkgs,
       lib,
@@ -8,10 +9,13 @@
     }:
 
     # REQUIRES PERSISTENT "$HOME/.config/gh/hosts.yml" "$HOME/.ssh/"
+    # Signing needs an impure build: builtins.pathExists reads $HOME/.ssh/signingkey.
 
     let
       gconf = import ../../lib/git.nix;
       configs = gconf.configs;
+      signingKey = "${config.home.homeDirectory}/.ssh/signingkey";
+      hasSigningKey = builtins.pathExists signingKey;
     in
     {
       programs = {
@@ -20,16 +24,16 @@
 
           signing = {
             format = "ssh";
-            key = "~/.ssh/id_ed25519";
-            signByDefault = false;
-            allowedSigners = lib.concatMapStringsSep "\n" (
-              c: "${c.email} namespaces=\"git\" ${userconf.key}"
-            ) configs;
+            key = signingKey;
+            signByDefault = hasSigningKey;
+            allowedSigners = lib.optionalString hasSigningKey (
+              lib.concatMapStringsSep "\n" (c: "${c.email} namespaces=\"git\" ${gconf.signingKey}") configs
+            );
           };
 
           settings = {
-            commit.gpgsign = true;
-            tag.gpgsign = true;
+            commit.gpgsign = hasSigningKey;
+            tag.gpgsign = hasSigningKey;
 
             user = {
               name = userconf.displayname;
