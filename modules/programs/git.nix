@@ -95,13 +95,15 @@
         "push" = "git push";
       };
 
+      home.file.".ssh/signingkey.pub".text = gconf.signingKey;
+
       home.activation.gitSigning = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-        if [ -e "$HOME/.ssh/signingkey" ]; then
-	  mkdir -p ${gitConfigDir}
-          printf '[commit]\n\tgpgsign = true\n[tag]\n\tgpgsign = true\n' > "${signingFile}"
-        else
-          rm -f "${signingFile}"
-        fi
+                if [ -e "$HOME/.ssh/signingkey" ]; then
+        	  mkdir -p ${gitConfigDir}
+                  printf '[commit]\n\tgpgsign = true\n[tag]\n\tgpgsign = true\n' > "${signingFile}"
+                else
+                  rm -f "${signingFile}"
+                fi
       '';
     };
 }
