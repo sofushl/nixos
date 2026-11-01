@@ -40,5 +40,5 @@ in
       remote = "https://github.com/nordicsemi/**";
     }
   ];
-  signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH7TP6uO6pyFPdxJiXE69dL49GHgB0pDDiMKxuCCNCTP";
+  signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHVgSEg+7EtoRtLO9OykAGw1kj99xUIMOV181SdBN/aw sofushl signing";
 }

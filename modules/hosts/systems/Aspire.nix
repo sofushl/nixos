@@ -50,6 +50,10 @@
           ".vscode-oss-shared"
 
           ".claude"
+
+          ".local/share/opencode"
+          ".local/state/opencode"
+          ".config/opencode"
         ];
 
         files = [

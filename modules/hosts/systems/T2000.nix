@@ -34,6 +34,10 @@
 
     preservation.preserveAt."/persistent".users.${userconf.username} = {
       directories = [
+        ".local/share/opencode"
+        ".local/state/opencode"
+        ".config/opencode"
+
         ".claude"
         "Documents"
         ".local/share/docker"

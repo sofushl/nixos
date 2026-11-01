@@ -13,7 +13,8 @@
     let
       gconf = import ../../lib/git.nix;
       configs = gconf.configs;
-      signingFile = "${config.xdg.configHome}/git/signing";
+      gitConfigDir = "${config.xdg.configHome}/git";
+      signingFile = "${gitConfigDir}/signing";
     in
     {
       programs = {
@@ -96,6 +97,7 @@
 
       home.activation.gitSigning = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
         if [ -e "$HOME/.ssh/signingkey" ]; then
+	  mkdir -p ${gitConfigDir}
           printf '[commit]\n\tgpgsign = true\n[tag]\n\tgpgsign = true\n' > "${signingFile}"
         else
           rm -f "${signingFile}"

@@ -32,6 +32,10 @@
 
           ".local/state/wireplumber"
 
+          ".local/share/opencode"
+          ".local/state/opencode"
+          ".config/opencode"
+
           ".claude"
         ];
 

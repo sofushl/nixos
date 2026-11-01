@@ -50,6 +50,7 @@
             "nixos"
             ".ssh"
             ".local/share/keyrings"
+            ".config/Bitwarden CLI"
           ];
 
           files = [

@@ -3,7 +3,6 @@
     imports = with self.homeModules; [
       niriMin
 
-      opencode
       obsidian
       vscodium
 
