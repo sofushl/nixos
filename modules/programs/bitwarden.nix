@@ -92,14 +92,16 @@
           file = "$HOME/.ssh/signingkey";
         }
       ]
-      ++ mkSync "apikeys" [
-        {
-          item = "omniroute-apikey";
-          file = "$HOME/.config/opencode/.omniroute";
-        }
+      ++ mkSync "ntnuai-apikey" [
         {
           item = "ntnuai-apikey";
           file = "$HOME/.config/opencode/.ntnuai";
+        }
+      ]
+      ++ mkSync "omniroute-apikey" [
+        {
+          item = "omniroute-apikey";
+          file = "$HOME/.config/opencode/.omniroute";
         }
       ];
     };
