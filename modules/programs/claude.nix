@@ -52,6 +52,13 @@
       };
     in
     {
+
+      home.shellAliases = {
+        "haiku" = "claude --model haiku --effort low";
+        "sonnet" = "claude --model sonnet --effort medium";
+        "opus" = "claude --model opus --effort medium";
+      };
+
       programs.claude-code = {
         enable = true;
         package = pkgs.claude-code;
