@@ -82,7 +82,7 @@
   flake.homeModules.homeMonitor = { lib, pkgs, ... }: {
     programs.niri.settings = {
       outputs = {
-        "eDP-1".enable = false;
+        "eDP-1".enable = true;
 
         "DP-6" = {
           mode = {
