@@ -14,6 +14,7 @@
       yazi
       git
       claude
+      bitwarden
 
       bash
       fonts

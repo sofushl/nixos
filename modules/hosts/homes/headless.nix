@@ -5,6 +5,7 @@
       environment
       user
 
+      bitwarden
       docker
       neovim
       yazi
