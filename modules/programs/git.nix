@@ -9,13 +9,11 @@
     }:
 
     # REQUIRES PERSISTENT "$HOME/.config/gh/hosts.yml" "$HOME/.ssh/"
-    # Signing needs an impure build: builtins.pathExists reads $HOME/.ssh/signingkey.
 
     let
       gconf = import ../../lib/git.nix;
       configs = gconf.configs;
-      signingKey = "${config.home.homeDirectory}/.ssh/signingkey";
-      hasSigningKey = builtins.pathExists signingKey;
+      signingFile = "${config.xdg.configHome}/git/signing";
     in
     {
       programs = {
@@ -24,17 +22,13 @@
 
           signing = {
             format = "ssh";
-            key = signingKey;
-            signByDefault = hasSigningKey;
-            allowedSigners = lib.optionalString hasSigningKey (
-              lib.concatMapStringsSep "\n" (c: "${c.email} namespaces=\"git\" ${gconf.signingKey}") configs
-            );
+            key = "${config.home.homeDirectory}/.ssh/signingkey";
+            allowedSigners = lib.concatMapStringsSep "\n" (
+              c: "${c.email} namespaces=\"git\" ${gconf.signingKey}"
+            ) configs;
           };
 
           settings = {
-            commit.gpgsign = hasSigningKey;
-            tag.gpgsign = hasSigningKey;
-
             user = {
               name = userconf.displayname;
               email = userconf.email;
@@ -62,7 +56,10 @@
             };
           };
 
-          includes = map (c: {
+          includes = [
+            { path = "~/.config/git/signing"; }
+          ]
+          ++ map (c: {
             condition = "hasconfig:remote.*.url:${c.remote}";
             contents.user = { inherit (c) name email; };
           }) (lib.filter (v: v.remote != null) configs);
@@ -96,5 +93,13 @@
         "pull" = "git pull";
         "push" = "git push";
       };
+
+      home.activation.gitSigning = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        if [ -e "$HOME/.ssh/signingkey" ]; then
+          printf '[commit]\n\tgpgsign = true\n[tag]\n\tgpgsign = true\n' > "${signingFile}"
+        else
+          rm -f "${signingFile}"
+        fi
+      '';
     };
 }
