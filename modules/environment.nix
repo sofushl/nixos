@@ -16,7 +16,8 @@
           kitty.terminfo
           ncurses
           efibootmgr
-          mkpasswd # used by mkpin and the pinfile fallback in base.nix
+          mkpasswd
+          sbctl
         ];
 
         # Custom build commands for using the flake instead of configuration.nix

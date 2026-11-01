@@ -10,6 +10,8 @@
       user
       disko
       preservation
+      lanzaboote
+
       audio
       niri
 
