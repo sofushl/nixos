@@ -9,6 +9,8 @@
       user
       disko
       preservation
+      lanzaboote
+
       niri
       audio
       home
