@@ -26,23 +26,32 @@
           splashTheming = true;
           staticTitle = true;
           hardwareAcceleration = true;
-          discordBranch = "canary";
+          discordBranch = "stable";
         };
 
         vencord = {
+          useSystem = true;
+
           settings = {
             autoUpdate = true;
             autoUpdateNotification = false;
             notifyAboutUpdates = true;
             disableMinSize = true;
+
             plugins = {
               MessageLogger = {
                 enabled = true;
                 ignoreSelf = true;
               };
-              FakeNitro.enabled = true;
+              FakeNitro = {
+                enabled = true;
+                enableStreamQualityBypass = false;
+              };
+              MessageClickActions = {
+                enabled = true;
+                enableDeleteOnClick = false;
+              };
               FriendsSince.enabled = true;
-
               ShowHiddenChannels.enabled = true;
               ViewRaw.enabled = true;
               MessageLinkEmbeds.enabled = true;
@@ -51,8 +60,6 @@
               CopyUserURLs.enabled = true;
               ServerInfo.enabled = true;
               ImageZoom.enabled = true;
-              MessageClickActions.enabled = true;
-              NoReplyMention.enabled = true;
               ReplyTimestamp.enabled = true;
               BetterSettings.enabled = true;
               CallTimer.enabled = true;
@@ -72,8 +79,6 @@
               ShowConnections.enabled = true;
             };
           };
-
-          useSystem = true;
         };
       };
 
@@ -83,9 +88,8 @@
           PartOf = [ "graphical-session.target" ];
           After = [ "graphical-session.target" ];
         };
-        Service.ExecStart = "${pkgs.vesktop}/bin/vesktop";
+        Service.ExecStart = "${lib.getExe pkgs.vesktop} --start-minimized --password-store=gnome-libsecret";
         Install.WantedBy = [ "graphical-session.target" ];
       };
-
     };
 }
