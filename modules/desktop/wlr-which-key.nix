@@ -62,7 +62,7 @@
                 {
                   key = "f";
                   desc = "Sunsetr";
-                  cmd = lib.getExe pkgs.sunsetr;
+                  cmd = "${pkgs.systemd}/bin/systemctl --user restart sunsetr";
                 }
               ];
             }
