@@ -60,6 +60,14 @@
           };
         };
         gnome.gnome-keyring.enable = true;
+
+        logind.settings.Login = {
+          HandlePowerKey = "ignore";
+          HandlePowerKeyLongPress = "poweroff";
+        };
+
+        thermald.enable = true;
+        udisks2.enable = true;
       };
 
       programs = {
@@ -99,6 +107,25 @@
     }:
     {
       nixpkgs.config.allowUnfree = true;
+
+      xdg = {
+        enable = true;
+        userDirs = {
+          enable = true;
+          createDirectories = false;
+        };
+      };
+
+      services.udiskie = {
+        enable = true;
+        automount = true;
+        settings = {
+          program_options = {
+            udisks_version = 2;
+          };
+          icon_names.media = [ "media-optical" ];
+        };
+      };
 
       programs.home-manager = {
         enable = true;

@@ -10,10 +10,10 @@
       user
       disko
       preservation
-      desktop
+      audio
       niri
 
-      eduroam
+      wifi
       openssh
       bluetooth
       keyring

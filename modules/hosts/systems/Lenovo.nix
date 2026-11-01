@@ -10,10 +10,10 @@
       disko
       preservation
       niri
-      desktop
+      audio
       home
 
-      eduroam
+      wifi
       openssh
       keyd
     ];

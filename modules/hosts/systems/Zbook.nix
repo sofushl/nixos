@@ -10,14 +10,14 @@
       user
       disko
       preservation
-      desktop
+      audio
       lanzaboote
 
       niri
       gaming
       nvidia
 
-      eduroam
+      wifi
       openssh
       bluetooth
       keyring

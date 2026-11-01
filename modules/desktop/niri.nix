@@ -1,0 +1,396 @@
+{ self, inputs, ... }:
+
+# REQUIRES HOME AND NIXOS IMPORT "niri"
+
+{
+  flake.homeModules.niri =
+    {
+      pkgs,
+      lib,
+      userconf,
+      ...
+    }:
+
+    let
+      c = userconf.theme;
+
+      term = userconf.terminal;
+      browser = userconf.browser;
+      launcher = "fuzzel";
+    in
+    {
+
+      imports = with self.homeModules; [
+        inputs.niri.homeModules.niri
+        waybar
+        hyprlock
+        fuzzel
+        sunsetr
+        mako
+        wlrWhichKey
+      ];
+
+      xdg = {
+        enable = true;
+        portal = {
+          enable = true;
+          extraPortals = [
+            pkgs.xdg-desktop-portal-gtk
+            pkgs.xdg-desktop-portal-wlr
+            pkgs.xdg-desktop-portal-gnome
+          ];
+          config.common.default = [ "gtk" ];
+        };
+      };
+
+      gtk =
+        let
+          gtkConf = {
+            extraConfig.gtk-application-prefer-dark-theme = true;
+
+            extraCss = ''
+              @define-color accent_color ${c.primary}; 
+              @define-color accent_bg_color ${c.bg.selected};
+              @define-color accent_fg_color ${c.text.primary};
+            '';
+          };
+        in
+        {
+          enable = true;
+          colorScheme = "dark";
+
+          gtk3 = gtkConf;
+          gtk4 = gtkConf;
+        };
+
+      home = {
+        packages = with pkgs; [
+          wl-clipboard
+
+          bluetui
+          pavucontrol
+          playerctl
+          brightnessctl
+
+          bibata-cursors
+
+          xwayland-satellite
+        ];
+
+        sessionVariables = {
+          XDG_CURRENT_DESKTOP = "niri";
+        };
+      };
+
+      services.blueman-applet.enable = true;
+
+      dconf = {
+        enable = true;
+        settings = {
+          "org/gnome/desktop/interface" = {
+            color-scheme = "prefer-dark";
+            accent-color = "red";
+          };
+        };
+      };
+
+      systemd.user.services.polkit-gnome-authentication-agent-1 = {
+        Unit = {
+          Description = "polkit-gnome-authentication-agent-1";
+          Wants = [ "graphical-session.target" ];
+          After = [ "graphical-session.target" ];
+        };
+        Install = {
+          WantedBy = [ "graphical-session.target" ];
+        };
+        Service = {
+          Type = "simple";
+          ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+          Restart = "on-failure";
+          RestartSec = 1;
+          TimeoutStopSec = 10;
+        };
+      };
+
+      systemd.user.services.wayland-env = {
+        Unit = {
+          Description = "Import Wayland environment into systemd user session";
+          Before = [ "graphical-session.target" ];
+        };
+        Install.WantedBy = [ "graphical-session.target" ];
+        Service = {
+          Type = "oneshot";
+          RemainAfterExit = true;
+          ExecStart = "${pkgs.writeShellScript "wayland-env" ''
+            sock=$(ls -t "$XDG_RUNTIME_DIR"/wayland-[0-9]* 2>/dev/null | head -1)
+            [ -n "$sock" ] || exit 1
+            systemctl --user set-environment \
+              WAYLAND_DISPLAY="$(basename "$sock")" \
+              XDG_CURRENT_DESKTOP=niri \
+              XDG_SESSION_TYPE=wayland
+          ''}";
+        };
+      };
+
+      programs.niri = {
+        enable = true;
+        package = pkgs.niri;
+
+        settings = {
+          input = {
+            keyboard.xkb = {
+              layout = "no";
+              variant = "nodeadkeys";
+            };
+            touchpad = {
+              tap = true;
+              drag = true;
+              drag-lock = true;
+              scroll-method = "two-finger";
+            };
+            warp-mouse-to-focus.enable = true;
+            focus-follows-mouse.max-scroll-amount = "0%";
+          };
+
+          cursor = {
+            theme = "Bibata-Modern-Classic";
+            size = 20;
+            hide-when-typing = true;
+          };
+
+          layout = {
+            gaps = 2;
+            center-focused-column = "never";
+            preset-column-widths = [
+              { proportion = 0.5; }
+              { proportion = 1.0; }
+            ];
+            default-column-width = {
+              proportion = 0.5;
+            };
+            focus-ring = {
+              width = 2;
+              active.color = c.primary;
+              inactive.color = c.inactive;
+            };
+            shadow = {
+              enable = true;
+              draw-behind-window = true;
+              softness = 30;
+              spread = 5;
+              offset = {
+                x = 0;
+                y = 5;
+              };
+              color = "#0007";
+            };
+            struts = { };
+          };
+
+          prefer-no-csd = true;
+
+          screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
+
+          spawn-at-startup = [
+            { command = [ "hyprlock" ]; }
+            {
+              command = [
+                "element-desktop"
+                "--hidden"
+              ];
+            }
+          ];
+
+          hotkey-overlay = {
+            skip-at-startup = true;
+            hide-not-bound = true;
+          };
+
+          window-rules = [
+            {
+              matches = [
+                {
+                  app-id = "${browser}$";
+                  title = "^Picture-in-Picture$";
+                }
+              ];
+              open-floating = true;
+            }
+            {
+              matches = [
+                {
+                  app-id = "ui.App";
+                }
+              ];
+              open-floating = true;
+            }
+          ];
+
+          gestures.hot-corners.enable = false;
+
+          switch-events.lid-close.action.spawn = [ "hyprlock" ];
+
+          binds = {
+            # Core apps
+            "Mod+T".action.spawn = [ term ];
+            "Mod+Return".action.spawn = [ term ];
+            "Mod+D".action.spawn = [ term ];
+            "Mod+Space".action.spawn = [ launcher ];
+            "Mod+R".action.spawn = [ launcher ];
+            "Mod+E".action.spawn = [ launcher ];
+            "Mod+B".action.spawn = [ browser ];
+            "Mod+F".action.spawn = [ browser ];
+
+            "Mod+S".action.spawn = [
+              (lib.getExe pkgs.wlr-which-key)
+              "apps.yaml"
+            ];
+
+            # Window control
+            "Mod+Q".action.close-window = { };
+
+            # Column navigation
+            "Mod+H".action.focus-column-left = { };
+            "Mod+L".action.focus-column-right = { };
+            "Mod+Shift+H".action.move-column-left = { };
+            "Mod+Shift+L".action.move-column-right = { };
+            "Mod+Aring".action.focus-column-first = { };
+            "Mod+Diaeresis".action.focus-column-last = { };
+            "Mod+Shift+Aring".action.move-column-to-first = { };
+            "Mod+Shift+Diaeresis".action.move-column-to-last = { };
+
+            # Inside columns
+            "Mod+Shift+J".action.move-window-down = { };
+            "Mod+Shift+K".action.move-window-up = { };
+            "Mod+J".action.focus-window-down = { };
+            "Mod+K".action.focus-window-up = { };
+            "Mod+Shift+U".action.consume-or-expel-window-left = { };
+            "Mod+Shift+I".action.consume-or-expel-window-right = { };
+
+            # Special Column movements
+            "Mod+A".action.maximize-column = { };
+            "Mod+Shift+A".action.set-window-width = "50%";
+            "Mod+M".action.maximize-window-to-edges = { };
+            "Mod+Shift+M".action.fullscreen-window = { };
+            "Mod+X".action.center-column = { };
+            "Mod+Shift+X".action.reset-window-height = { };
+
+            # Display+workspace switching
+            "Mod+Ctrl+H".action.focus-monitor-left = { };
+            "Mod+Ctrl+L".action.focus-monitor-right = { };
+            "Mod+Ctrl+J".action.focus-workspace-down = { };
+            "Mod+Ctrl+K".action.focus-workspace-up = { };
+
+            # Display + Workspace movements
+            "Mod+Ctrl+Shift+H".action.move-column-to-monitor-left = { };
+            "Mod+Ctrl+Shift+L".action.move-column-to-monitor-right = { };
+            "Mod+Ctrl+Shift+J".action.move-column-to-workspace-down = { };
+            "Mod+Ctrl+Shift+K".action.move-column-to-workspace-up = { };
+            "Mod+Ctrl+U".action.move-workspace-to-monitor-left = { };
+            "Mod+Ctrl+I".action.move-workspace-to-monitor-right = { };
+            "Mod+Bar".action.toggle-overview = { };
+
+            # Finer height and width adjustments
+            "Mod+Minus".action.set-column-width = "-10%";
+            "Mod+Plus".action.set-column-width = "+10%";
+            "Mod+Shift+Minus".action.set-window-height = "-10%";
+            "Mod+Shift+Plus".action.set-window-height = "+10%";
+
+            # Move the focused window between the floating and the tiling layout.
+            "Mod+V".action.switch-focus-between-floating-and-tiling = { };
+            "Mod+Shift+V".action.toggle-window-floating = { };
+
+            # Toggle tabbed column display mode.
+            # Windows in this column will appear as vertical tabs,
+            # rather than stacked on top of each other.
+            "Mod+W".action.toggle-column-tabbed-display = { };
+
+            "Print".action.screenshot = { };
+            "Ctrl+Print".action.screenshot-screen = { };
+            "Alt+Print".action.screenshot-window = { };
+
+            # Applications such as remote-desktop clients and software KVM switches may
+            # request that niri stops processing the keyboard shortcuts defined here
+            # so they may, for example, forward the key presses as-is to a remote machine.
+            # It's a good idea to bind an escape hatch to toggle the inhibitor,
+            # so a buggy application can't hold your session hostage.
+            "Mod+Escape" = {
+              allow-inhibiting = false;
+              action.toggle-keyboard-shortcuts-inhibit = { };
+            };
+
+            # The quit action will show a confirmation dialog to avoid accidental exits.
+            "Mod+Shift+E".action.quit = { };
+            "Ctrl+Alt+Delete".action.quit = { };
+
+            # Audio
+            "XF86AudioRaiseVolume" = {
+              allow-when-locked = true;
+              action.spawn-sh = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0";
+            };
+            "XF86AudioLowerVolume" = {
+              allow-when-locked = true;
+              action.spawn-sh = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-";
+            };
+            "XF86AudioMute" = {
+              allow-when-locked = true;
+              action.spawn-sh = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+            };
+            "XF86AudioMicMute" = {
+              allow-when-locked = true;
+              action.spawn-sh = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
+            };
+
+            # Brightness
+            "XF86MonBrightnessUp" = {
+              allow-when-locked = true;
+              action.spawn = [
+                "brightnessctl"
+                "--class=backlight"
+                "set"
+                "2%+"
+              ];
+            };
+            "XF86MonBrightnessDown" = {
+              allow-when-locked = true;
+              action.spawn = [
+                "brightnessctl"
+                "--class=backlight"
+                "set"
+                "2%-"
+              ];
+            };
+
+            # Player
+            "XF86AudioPlay" = {
+              allow-when-locked = true;
+              action.spawn-sh = "playerctl play-pause";
+            };
+            "XF86AudioStop" = {
+              allow-when-locked = true;
+              action.spawn-sh = "playerctl stop";
+            };
+            "XF86AudioPrev" = {
+              allow-when-locked = true;
+              action.spawn-sh = "playerctl previous";
+            };
+            "XF86AudioNext" = {
+              allow-when-locked = true;
+              action.spawn-sh = "playerctl next";
+            };
+
+            # Sleep
+            "XF86Sleep".action.spawn = [
+              "hyprlock"
+              "power-off-monitors"
+            ];
+
+            "Mod+Shift+W".action.spawn = [
+              "hyprlock"
+            ];
+          };
+
+        };
+      };
+    };
+}

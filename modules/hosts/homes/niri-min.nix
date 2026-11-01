@@ -4,7 +4,6 @@
       base
       environment
       user
-      desktop
       niri
       mimeapps
       vesktop

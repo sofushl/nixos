@@ -3,7 +3,7 @@
 Services config for various purposes.
 
 
-## [eduroam](./eduroam.nix)
+## [wifi](../system/wifi.nix)
 
 Claude generated secure version of my older configs:
 

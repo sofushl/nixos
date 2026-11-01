@@ -12,13 +12,13 @@
       preservation
       lanzaboote
 
-      desktop
+      audio
       niri
 
       gaming
       fingerprint
 
-      eduroam
+      wifi
       openssh
       bluetooth
       keyring

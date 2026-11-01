@@ -1,7 +1,12 @@
 {
-  flake.nixosModules.eduroam =
+  flake.nixosModules.wifi =
     { userconf, pkgs, ... }:
     {
+      programs.captive-browser = {
+        enable = true;
+        interface = userconf.wifiboard;
+      };
+
       networking.networkmanager = {
         enable = true;
 

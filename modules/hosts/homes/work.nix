@@ -22,9 +22,6 @@
             "--no-sandbox"
           ];
         }
-        { command = [ "mako" ]; }
-        { command = [ "blueman-applet" ]; }
-
       ];
 
       outputs = {
