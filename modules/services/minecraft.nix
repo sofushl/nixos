@@ -18,7 +18,7 @@
           owner = "sofushl";
           repo = "achievementcomp";
           rev = "main";
-          hash = lib.fakeHash;
+          hash = "sha256-OTC/y6v0SbDwCDrP8bNQdzPDcZUXNS93Uu1ULZKAnrg=";
         };
       };
 
@@ -113,6 +113,7 @@
         locations."/".proxyPass = "http://127.0.0.1:8100";
       };
 
-      systemd.services.minecraft-server.serviceConfig = userconf.minecraft.prioServiceConfig;
+      systemd.services.${"minecraft-server-" + serverName}.serviceConfig =
+        userconf.minecraft.prioServiceConfig;
     };
 }
