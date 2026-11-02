@@ -82,16 +82,25 @@
   flake.homeModules.homeMonitor = { lib, pkgs, ... }: {
     programs.niri.settings = {
       outputs = {
-        "eDP-1".enable = true;
+        "eDP-1" = {
+          enable = false;
+          mode = {
+            width = 1920;
+            height = 1080;
+          };
+          position = {
+            x = 0;
+            y = 0;
+          };
+        };
 
         "DP-6" = {
           mode = {
             width = 1360;
             height = 768;
-            refresh = 60.015;
           };
           position = {
-            x = 0;
+            x = 1920;
             y = 0;
           };
         };
@@ -100,10 +109,9 @@
           mode = {
             width = 2560;
             height = 1440;
-            refresh = 59.951;
           };
           position = {
-            x = 1360;
+            x = 3280;
             y = 0;
           };
         };

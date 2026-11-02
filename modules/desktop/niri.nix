@@ -244,6 +244,10 @@
             "Mod+B".action.spawn = [ browser ];
             "Mod+F".action.spawn = [ browser ];
 
+            # Toggle the laptop screen
+            "Mod+N".action.spawn-sh = "niri msg output eDP-1 on";
+            "Mod+Shift+N".action.spawn-sh = "niri msg output eDP-1 off";
+
             "Mod+S".action.spawn = [
               (lib.getExe pkgs.wlr-which-key)
               "apps.yaml"
