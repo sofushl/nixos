@@ -9,6 +9,7 @@
       user
       disko
       preservation
+      lanzaboote
 
       hardware
       nvidia
