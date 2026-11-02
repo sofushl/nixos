@@ -137,7 +137,7 @@
 
       programs.niri = {
         enable = true;
-        package = inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.niri-unstable;
+        package = pkgs.niri;
 
         settings = {
           input = {
@@ -229,7 +229,12 @@
             }
           ];
 
-          gestures.hot-corners.enable = false;
+          gestures.hot-corners = {
+            top-left = false;
+            top-right = true;
+            bottom-left = false;
+            bottom-right = false;
+          };
 
           switch-events.lid-close.action.spawn = [ "hyprlock" ];
 

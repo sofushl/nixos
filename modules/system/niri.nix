@@ -13,16 +13,14 @@
       services.greetd = {
         enable = true;
         settings.default_session = {
-          command = "${
-            inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.niri-unstable
-          }/bin/niri-session";
+          command = "${pkgs.niri}/bin/niri-session";
           user = userconf.username;
         };
       };
 
       programs.niri = {
         enable = true;
-        package = inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.niri-unstable;
+        package = pkgs.niri;
         useNautilus = true;
       };
 
