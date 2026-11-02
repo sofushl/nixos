@@ -105,6 +105,7 @@
           respectGitignore = true;
           defaultShell = "bash";
           permissions.defaultMode = "default";
+          attribution = false;
 
           # Never allowed, whatever else matches.
           permissions.deny = [
