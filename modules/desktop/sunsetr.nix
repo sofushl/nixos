@@ -1,13 +1,10 @@
 {
   flake.homeModules.sunsetr =
-    { pkgs, ... }:
+    { lib, pkgs, ... }:
     let
       tomlFormat = pkgs.formats.toml { };
-    in
-    {
-      home.packages = [ pkgs.sunsetr ];
 
-      xdg.configFile."sunsetr/sunsetr.toml".source = tomlFormat.generate "sunsetr.toml" {
+      baseConfig = {
         backend = "wayland";
         transition_mode = "finish_by";
 
@@ -16,8 +13,8 @@
         shutdown_duration = 0.5;
         adaptive_interval = 1;
 
-        day_gamma = 101;
-        day_temp = 6000;
+        day_gamma = 100;
+        day_temp = 5000;
         night_gamma = 60;
         night_temp = 2000;
 
@@ -27,6 +24,34 @@
         sunrise = "06:00:00";
         transition_duration = 60;
       };
+
+      presets = {
+        dark = {
+          day_temp = 3000;
+          day_gamma = 70;
+          night_temp = 1500;
+          night_gamma = 40;
+        };
+        bright = {
+          day_temp = 6000;
+          day_gamma = 105;
+          night_temp = 4000;
+          night_gamma = 85;
+        };
+      };
+    in
+    {
+      home.packages = [ pkgs.sunsetr ];
+
+      xdg.configFile = {
+        "sunsetr/sunsetr.toml".source = tomlFormat.generate "sunsetr.toml" baseConfig;
+      }
+      // lib.mapAttrs' (
+        name: overrides:
+        lib.nameValuePair "sunsetr/presets/${name}/sunsetr.toml" {
+          source = tomlFormat.generate "sunsetr-${name}.toml" (baseConfig // overrides);
+        }
+      ) presets;
 
       systemd.user.services.sunsetr = {
         Unit = {

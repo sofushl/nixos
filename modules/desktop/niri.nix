@@ -242,7 +242,6 @@
             # Core apps
             "Mod+T".action.spawn = [ term ];
             "Mod+Return".action.spawn = [ term ];
-            "Mod+D".action.spawn = [ term ];
             "Mod+Space".action.spawn = [ launcher ];
             "Mod+R".action.spawn = [ launcher ];
             "Mod+E".action.spawn = [ launcher ];
@@ -256,6 +255,10 @@
             "Mod+S".action.spawn = [
               (lib.getExe pkgs.wlr-which-key)
               "apps.yaml"
+            ];
+            "Mod+D".action.spawn = [
+              (lib.getExe pkgs.wlr-which-key)
+              "system.yaml"
             ];
 
             # Window control
