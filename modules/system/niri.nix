@@ -26,8 +26,6 @@
         useNautilus = true;
       };
 
-      environment.systemPackages = [ pkgs.nautilus ];
-
       xdg.portal = {
         enable = true;
         extraPortals = [

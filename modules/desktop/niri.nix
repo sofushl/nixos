@@ -75,6 +75,9 @@
           bibata-cursors
 
           xwayland-satellite
+
+          nirimon
+          nautilus
         ];
 
         sessionVariables = {
