@@ -2,7 +2,6 @@
   flake.nixosModules.nextcloudServer =
     {
       userconf,
-      stablepkgs,
       pkgs,
       ...
     }:
@@ -16,7 +15,7 @@
         https = true;
         database.createLocally = true;
         package = pkgs.nextcloud35;
-        phpPackage = stablepkgs.php84;
+        phpPackage = pkgs.php84;
 
         config = {
           dbtype = "pgsql";
@@ -63,10 +62,10 @@
             add_header X-Permitted-Cross-Domain-Policies none;
             add_header X-Frame-Options sameorigin;
             add_header Referrer-Policy no-referrer;
-            allow 192.168.0.0/16;
-            allow 127.0.0.1;
-            allow ::1;
-            deny all;
+            # allow 192.168.0.0/16;
+            # allow 127.0.0.1;
+            # allow ::1;
+            # deny all;
           '';
         };
       };
