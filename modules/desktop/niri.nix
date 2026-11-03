@@ -224,6 +224,9 @@
                 {
                   app-id = "ui.App";
                 }
+                {
+                  app-id = "^org\\.testfx\\.";
+                }
               ];
               open-floating = true;
             }
