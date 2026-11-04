@@ -4,26 +4,34 @@
     programs.hyprlock.enable = lib.mkForce false;
 
     home.packages = with pkgs; [
-      teams-for-linux
       postman
+      spotify
+      vlc
+      loupe
     ];
 
     imports = with self.homeModules; [
-      niriMin
+      base
+      environment
+      user
+      niri
+      mimeapps
+
+      kitty
+      browser
+      neovim
+      yazi
+      git
+      claude
+      bitwarden
+
+      bash
+      fonts
+      fastfetch
       node
     ];
 
     programs.niri.settings = {
-
-      spawn-at-startup = lib.mkForce [
-        {
-          command = [
-            "teams-for-linux"
-            "--no-sandbox"
-          ];
-        }
-      ];
-
       outputs = {
         "eDP-1" = {
           position = {
