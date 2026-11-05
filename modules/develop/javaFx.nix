@@ -4,8 +4,6 @@
   flake.nixosModules.javaFx =
     { lib, pkgs, ... }:
     let
-      jdkWithFx = pkgs.openjdk.override { enableJavaFX = true; };
-
       libs = with pkgs; [
         mesa
         gtk3
@@ -37,7 +35,7 @@
       programs = {
         java = {
           enable = true;
-          package = jdkWithFx;
+          package = pkgs.openjdk;
           binfmt = true;
         };
 
@@ -54,14 +52,17 @@
             scenebuilder
             jetbrains.idea
             maven
+            openjfx21
           ]
           ++ libs
           ++ schemaPkgs;
 
         variables = {
-          JAVA_HOME = "${jdkWithFx}";
+          JAVA_HOME = "${pkgs.openjdk}";
           GSETTINGS_SCHEMA_DIR = (lib.concatStringsSep ":" (map pkgs.glib.getSchemaPath schemaPkgs));
         };
+
+        shellAliases.mvn = "env LD_LIBRARY_PATH=${lib.makeLibraryPath libs} mvn";
       };
     };
 }
