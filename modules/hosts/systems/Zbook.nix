@@ -27,6 +27,7 @@
       python
       rustWASM
       clangGTK
+      javaFx
     ];
 
     preservation.preserveAt."/persistent" = {

@@ -41,7 +41,6 @@ in
         "obsidian"
         "vscodium"
         "node"
-        "javaWithFx"
       ];
     };
     Elitebook = {

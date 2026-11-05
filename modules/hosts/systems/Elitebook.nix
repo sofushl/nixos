@@ -28,6 +28,7 @@
       python
       rustWASM
       clangGTK
+      javaFx
     ];
 
     environment.systemPackages = with pkgs; [

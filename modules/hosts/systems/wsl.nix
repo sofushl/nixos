@@ -9,7 +9,6 @@
       openssh
       keyring
 
-      javafxlib
       electronDev
       python
       rustWASM
