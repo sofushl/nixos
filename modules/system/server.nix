@@ -16,6 +16,12 @@
         };
       };
 
+      services.logind.settings.Login = {
+        HandleLidSwitch = "ignore";
+        HandleLidSwitchExternalPower = "ignore";
+        HandleLidSwitchDocked = "ignore";
+      };
+
       users.users.${userconf.username}.linger = true;
 
       security.acme = {
