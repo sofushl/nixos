@@ -62,7 +62,11 @@
           GSETTINGS_SCHEMA_DIR = (lib.concatStringsSep ":" (map pkgs.glib.getSchemaPath schemaPkgs));
         };
 
-        shellAliases.mvn = "env LD_LIBRARY_PATH=${lib.makeLibraryPath libs} mvn";
+        shellAliases = {
+          javafx = "env LD_LIBRARY_PATH=${lib.makeLibraryPath libs}";
+          mvn = "env LD_LIBRARY_PATH=${lib.makeLibraryPath libs} mvn";
+        };
+
       };
     };
 }
