@@ -57,11 +57,14 @@ rec {
       name = "AbaCordium";
       repo = "https://github.com/AbaCord/AbaCordium.git";
       build = ''
-        npm i
+        bun install
       '';
       start = ''
-        npm start
+        bun run start
       '';
+      pack = with nixpkgs; [
+        bun
+      ];
     }
     {
       name = "LightsUI";
