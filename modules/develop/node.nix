@@ -17,6 +17,7 @@
       home.packages = with pkgs; [
         typescript
         typescript-language-server
+        bun
         pnpm
         prettierd
         eslint_d
