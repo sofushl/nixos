@@ -44,6 +44,8 @@
               }) gconf.hosts
             );
 
+            credential."https://git.ntnu.no".helper = "!${lib.getExe pkgs.gh} auth git-credential";
+
             init.defaultBranch = "main";
             pull.rebase = true;
             core.editor = "nvim";
@@ -75,18 +77,15 @@
           enable = true;
 
           settings = {
-            git_protocol = "ssh";
-
+            git_protocol = "https";
+            editor = "nvim";
             prompt = "enabled";
 
             aliases = {
               co = "pr checkout";
               pv = "pr view";
             };
-
-            editor = "nvim";
           };
-
         };
       };
 
@@ -98,12 +97,12 @@
       home.file.".ssh/signingkey.pub".text = gconf.signingKey;
 
       home.activation.gitSigning = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-                if [ -e "$HOME/.ssh/signingkey" ]; then
-        	  mkdir -p ${gitConfigDir}
-                  printf '[commit]\n\tgpgsign = true\n[tag]\n\tgpgsign = true\n' > "${signingFile}"
-                else
-                  rm -f "${signingFile}"
-                fi
+        if [ -e "$HOME/.ssh/signingkey" ]; then
+          mkdir -p ${gitConfigDir}
+          printf '[commit]\n\tgpgsign = true\n[tag]\n\tgpgsign = true\n' > "${signingFile}"
+        else
+          rm -f "${signingFile}"
+        fi
       '';
     };
 }
