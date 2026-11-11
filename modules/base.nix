@@ -108,14 +108,6 @@
     {
       nixpkgs.config.allowUnfree = true;
 
-      xdg = {
-        enable = true;
-        userDirs = {
-          enable = true;
-          createDirectories = false;
-        };
-      };
-
       services.udiskie = {
         enable = true;
         automount = true;

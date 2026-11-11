@@ -31,10 +31,6 @@
       directories = [ "opt" ];
       users.${userconf.username} = {
         directories = [
-          "Downloads"
-          "Public"
-          "Cloud"
-
           ".librewolf"
           ".config/vesktop"
           ".config/Element"

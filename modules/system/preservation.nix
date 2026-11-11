@@ -47,6 +47,8 @@
 
         users.${userconf.username} = {
           directories = [
+            "Library"
+            "Downloads"
             "nixos"
             ".ssh"
             ".local/share/keyrings"

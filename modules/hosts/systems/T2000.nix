@@ -40,7 +40,6 @@
         ".config/opencode"
 
         ".claude"
-        "Documents"
         ".local/share/docker"
       ];
 

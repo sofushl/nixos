@@ -17,7 +17,7 @@ APP_PASSWORD being the app password you generated on your nextcloud server.
 First bisync run must be done manually to establish the baseline:
 
 ```bash
-rclone bisync nextcloud: ~/Cloud --resync --verbose 
+rclone bisync nextcloud: ~/Library --resync --verbose
 # Rerun until it passes without network related failures
 ```
 

@@ -5,6 +5,7 @@
     email = "sofushl@proton.me";
     type = null;
     ghname = username;
+    cloud = "/home/${username}/Library";
     nextcloud = "cloud.sofus.privatedns.org";
     nextclouduser = username;
     key = "";
@@ -29,6 +30,7 @@
     };
 
     work = {
+      cloud = "/home/soli/Onedrive";
       type = "work";
       username = "soli";
       path = "/home/soli/nixos";

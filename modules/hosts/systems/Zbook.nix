@@ -33,11 +33,6 @@
     preservation.preserveAt."/persistent" = {
       users.${userconf.username} = {
         directories = [
-          "Downloads"
-          "Documents"
-          "Public"
-          "Cloud"
-
           ".librewolf"
           ".config/vesktop"
           ".config/Element"

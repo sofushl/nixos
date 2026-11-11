@@ -14,6 +14,7 @@
       base
       environment
       user
+      xdg
       niri
       mimeapps
 

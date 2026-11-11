@@ -8,9 +8,8 @@
       ...
     }:
     let
-      cloudDir = "${config.home.homeDirectory}/Cloud";
       rcloneExe = lib.getExe config.programs.rclone.package;
-      bisyncCmd = "${rcloneExe} bisync nextcloud: ${cloudDir} --resilient --recover --conflict-resolve newer";
+      bisyncCmd = "${rcloneExe} bisync nextcloud: ${userconf.cloud} --resilient --recover --conflict-resolve newer";
     in
     {
 
@@ -48,12 +47,12 @@
 
       systemd.user.services.rclone-bisync-nextcloud = {
         Unit = {
-          Description = "Bisync ~/Cloud with Nextcloud";
+          Description = "Bisync ${userconf.cloud} with Nextcloud";
           OnFailure = [ "unit-status-failure-notify@%n.service" ];
         };
         Service = {
           Type = "oneshot";
-          StateDirectory = "rclone-bisync"; # creates ~/.local/state/rclone-bisync
+          StateDirectory = "rclone-bisync";
           ExecStart = bisyncCmd;
           ExecStartPost = "${pkgs.runtimeShell} -c '${pkgs.coreutils}/bin/date > %S/rclone-bisync/last-success'";
         };
