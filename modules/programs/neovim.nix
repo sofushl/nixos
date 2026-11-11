@@ -134,7 +134,6 @@
           lua-language-server
           nil
           jdt-language-server
-          typescript-language-server
           ty
           taplo
           tinymist

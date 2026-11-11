@@ -2,13 +2,24 @@
   flake.homeModules.node =
     { pkgs, config, ... }:
     {
-      programs.npm = {
-        enable = true;
-        package = pkgs.nodejs_26;
-        settings = {
-          prefix = "${config.home.homeDirectory}/.npm";
-          init-license = "MIT";
-          color = true;
+      programs = {
+        npm = {
+          enable = true;
+          package = pkgs.nodejs_26;
+          settings = {
+            init-license = "AGPL-3.0-or-later";
+            fund = false;
+            update-notifier = false;
+          };
+        };
+
+        bun = {
+          enable = true;
+          package = pkgs.bun;
+          enableGitIntegration = true;
+          settings = {
+            telemetry = false;
+          };
         };
       };
 
@@ -16,9 +27,6 @@
 
       home.packages = with pkgs; [
         typescript
-        typescript-language-server
-        bun
-        pnpm
         prettierd
         eslint_d
       ];

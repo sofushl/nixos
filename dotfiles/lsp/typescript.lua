@@ -1,15 +1,10 @@
 return {
-	cmd = { "typescript-language-server", "--stdio" },
+	cmd = { "tsc", "--lsp", "-stdio" },
 	filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
 	root_markers = { { "tsconfig.json", "jsconfig.json" }, "package.json" },
-	init_options = {
-		hostInfo = "neovim",
-		maxTsServerMemory = 4096,
-	},
 	settings = {
 		completions = { completeFunctionCalls = false },
 		typescript = {
-			tsserver = { useSyntaxServer = "auto" },
 			preferences = { includePackageJsonAutoImports = "off" },
 			updateImportsOnFileMove = { enabled = "never" },
 			inlayHints = {
