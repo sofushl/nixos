@@ -109,6 +109,14 @@
         home-pull = ''
           git -C ${userconf.path} pull
           home-switch
+          nix store optimise
+        '';
+
+        home-update = ''
+          yes | sudo apt update
+          yes | sudo apt upgrade
+          yes | sudo apt autopurge
+          home-pull
         '';
 
         home-manager = "home-manager --flake ${userconf.path}#${userconf.type}";
