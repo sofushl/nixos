@@ -4,28 +4,29 @@
   flake.nixosModules.javaFx =
     { lib, pkgs, ... }:
     let
-      libs = with pkgs; [
-        mesa
-        gtk3
-        gsettings-desktop-schemas
-        glib
-        libGL
-        libglvnd
-        libpulseaudio
-        libva
-        libx11
-        libxtst
-        libxrender
-        libxext
-        libxi
-        libxcursor
-        libxrandr
-        libxxf86vm
-        libxfixes
-        libxinerama
-      ];
+      libs =
+        with pkgs;
+        [
+          mesa
+          glib
+          libGL
+          libglvnd
+          libpulseaudio
+          libva
+          libx11
+          libxtst
+          libxrender
+          libxext
+          libxi
+          libxcursor
+          libxrandr
+          libxxf86vm
+          libxfixes
+          libxinerama
+        ]
+        ++ schema;
 
-      schemaPkgs = with pkgs; [
+      schema = with pkgs; [
         gtk3
         gsettings-desktop-schemas
       ];
@@ -35,7 +36,7 @@
       programs = {
         java = {
           enable = true;
-          package = pkgs.openjdk;
+          package = pkgs.openjdk25;
           binfmt = true;
         };
 
@@ -46,20 +47,11 @@
       };
 
       environment = {
-        systemPackages =
-          with pkgs;
-          [
-            scenebuilder
-            jetbrains.idea
-            maven
-            openjfx21
-          ]
-          ++ libs
-          ++ schemaPkgs;
+        systemPackages = [ pkgs.maven ] ++ libs ++ schema;
 
         variables = {
           JAVA_HOME = "${pkgs.openjdk}";
-          GSETTINGS_SCHEMA_DIR = (lib.concatStringsSep ":" (map pkgs.glib.getSchemaPath schemaPkgs));
+          GSETTINGS_SCHEMA_DIR = (lib.concatStringsSep ":" (map pkgs.glib.getSchemaPath schema));
         };
 
         shellAliases = {
