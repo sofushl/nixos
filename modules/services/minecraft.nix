@@ -116,6 +116,11 @@
         locations."/".proxyPass = "http://127.0.0.1:8100";
       };
 
+      networking.firewall = {
+        allowedUDPPorts = [ 25565 ];
+        allowedTCPPorts = [ 25565 ];
+      };
+
       systemd.services.${"minecraft-server-" + serverName}.serviceConfig =
         userconf.minecraft.prioServiceConfig;
     };

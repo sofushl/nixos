@@ -102,6 +102,9 @@
           WEBUI_AUTH = "True";
 
           ENABLE_SEARCH_QUERY = "True";
+
+          # Accounts must already exist. Set to "True" to allow new signups.
+          ENABLE_SIGNUP = "False";
           # Behind nginx on a single host; relax if you see CORS/websocket issues.
           # WEBUI_URL = "http://${hostName}";
         };

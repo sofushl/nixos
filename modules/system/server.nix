@@ -50,6 +50,14 @@
         recommendedProxySettings = true;
         recommendedTlsSettings = true;
         recommendedGzipSettings = true;
+
+        virtualHosts."_" = {
+          default = true;
+          serverName = "_";
+          addSSL = true;
+          useACMEHost = userconf.topDom;
+          locations."/".return = "444";
+        };
       };
 
       systemd.network = {
@@ -85,14 +93,6 @@
             22
             80
             443
-            25565
-            7777
-            8888
-          ];
-          allowedUDPPorts = [
-            25565
-            7777
-            8888
           ];
         };
         useDHCP = lib.mkForce false;
