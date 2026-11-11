@@ -26,17 +26,6 @@
         subPackages = [ "." ];
       };
 
-      # nixpkgs opencode-nvim is v1.0.2 (OpenCode v1 only); main supports OpenCode v2
-      opencode-nvim = pkgs.vimUtils.buildVimPlugin {
-        name = "opencode-nvim";
-        src = pkgs.fetchFromGitHub {
-          owner = "nickjvandyke";
-          repo = "opencode.nvim";
-          rev = "f8e8cf02be7340489df1b67b518ce2842c65520f";
-          hash = "sha256-vPTAB62yN2T7+5yJqjBD3EN0hzIeLvaYpUs2RrKTJQk=";
-        };
-      };
-
       dependencies = with pkgs; [
         fd
         ripgrep
