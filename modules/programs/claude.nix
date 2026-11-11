@@ -316,11 +316,18 @@
           "nix" = ''
             - Host config: ${userconf.path} (flake-parts; `modules/`, `dotfiles/`). One module per file, related options grouped.
             - Prefer `nix eval` or the nixos MCP server over guessing option names and package attributes.
-            - Never run `nixos-rebuild switch` unprompted; propose it instead.
           '';
           "communication" = ''
             - Write in ASD-STE100 (Simplified Technical English): short, unambiguous, quantified statements; separate observation from inference; flag uncertainty.
             - Explain yourself: what you did, why over the alternatives, what was verified versus assumed.
+          '';
+          "limits" = ''
+            - Never author PRs or commits; the user is the author.
+            - Never approve or review others' work, and never assign tasks to others.
+            - Never write business logic; explain or review it only when asked.
+            - Never run the development workflow end to end; propose steps for the user to run.
+            - Flag customer-facing code for human review.
+            - Keep output small enough for the user to review and maintain.
           '';
         };
       };
