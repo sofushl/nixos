@@ -59,7 +59,7 @@
 
     home.shellAliases =
       let
-        dir = "/home/soli/Public/";
+        dir = "/home/soli/OneDrive/Workspace/";
       in
       {
         "launch" = ''
