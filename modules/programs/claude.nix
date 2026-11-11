@@ -190,16 +190,7 @@
           command = lib.getExe pkgs.mcp-nixos;
         };
 
-        # Mirrors the servers in dotfiles/lsp
         lspServers = {
-          asm = {
-            command = lib.getExe pkgs.asm-lsp;
-            extensionToLanguage = {
-              ".s" = "asm";
-              ".asm" = "asm";
-            };
-          };
-
           clangd = {
             command = lib.getExe' pkgs.clang-tools "clangd";
             extensionToLanguage = {

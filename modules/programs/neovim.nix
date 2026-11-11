@@ -143,7 +143,6 @@
           tailwindcss-language-server
           yaml-language-server
           marksman
-          asm-lsp
           mcfunction-lsp
           lemminx
         ]
