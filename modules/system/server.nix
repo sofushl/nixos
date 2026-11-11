@@ -1,3 +1,6 @@
+# Copyright (C) 2026 Sofus Højberg Lind
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 {
   flake.nixosModules.server =
     {

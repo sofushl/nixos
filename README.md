@@ -32,14 +32,15 @@ Essential configuration of system, session and environment.
 Boilerplate for nixosModules and/or homeModules:
 
 ```nix
-{ self, inputs, ... }:
+# Copyright (C) 2026 Sofus Højberg Lind
+# SPDX-License-Identifier: AGPL-3.0-or-later
 
+{ self, inputs, ... }:
 {
   flake.nixosModules.MODULENAME = 
     {userconf, pkgs, ...}:
     {
       # Your config here
-
     };
   
   flake.homeModules.HOMEMODULE = 
@@ -47,7 +48,6 @@ Boilerplate for nixosModules and/or homeModules:
     {
       # Your homemanager config heredd
     };
-    
 }
 ```
 
@@ -273,3 +273,11 @@ sudo nixos-install
 }
 
 ```
+
+## License
+
+Copyright (C) 2026 Sofus Højberg Lind
+
+This program is free software: you can redistribute it and/or modify it under the terms of the [GNU Affero General Public License](./LICENSE) as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+SPDX-License-Identifier: AGPL-3.0-or-later
