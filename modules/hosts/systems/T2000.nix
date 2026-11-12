@@ -49,6 +49,7 @@
       files = [
         ".config/gh/hosts.yml"
         ".claude.json"
+        ".npmrc"
       ];
     };
 

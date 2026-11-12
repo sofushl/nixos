@@ -4,16 +4,14 @@
 {
   flake.homeModules.node =
     { pkgs, config, ... }:
+
+    # RECOMMENDED PRESERVATION OF "$HOME/.npmrc"
+
     {
       programs = {
         npm = {
           enable = true;
           package = pkgs.nodejs_26;
-          settings = {
-            init-license = "AGPL-3.0-or-later";
-            fund = false;
-            update-notifier = false;
-          };
         };
 
         bun = {

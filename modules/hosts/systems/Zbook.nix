@@ -71,6 +71,7 @@
           ".config/gh/hosts.yml"
           ".config/rclone/nextcloud.pass"
           ".claude.json"
+          ".npmrc"
         ];
       };
     };
