@@ -12,7 +12,12 @@
     }:
     let
       rcloneExe = lib.getExe config.programs.rclone.package;
-      bisyncCmd = "${rcloneExe} bisync nextcloud: ${userconf.cloud} --resilient --recover --conflict-resolve newer --exclude '.venv/**' --exclude 'node_modules/**'";
+      bisyncCmd = lib.concatStringsSep " --exclude " [
+        "${rcloneExe} bisync nextcloud: ${userconf.cloud} --resilient --recover --conflict-resolve newer"
+        "'.venv/**'"
+        "'node_modules/**'"
+        "'Trash-1000/**'"
+      ];
     in
     {
 
