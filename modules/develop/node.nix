@@ -5,28 +5,22 @@
   flake.homeModules.node =
     { pkgs, config, ... }:
 
-    # RECOMMENDED PRESERVATION OF "$HOME/.npmrc"
+    # RECOMMENDED PRESERVATION OF "$HOME/.npmrc" "$HOME/.npm/"
 
     {
-      programs = {
-        npm = {
-          enable = true;
-          package = pkgs.nodejs_26;
-        };
-
-        bun = {
-          enable = true;
-          package = pkgs.bun;
-          enableGitIntegration = true;
-          settings = {
-            telemetry = false;
-          };
+      programs.bun = {
+        enable = true;
+        package = pkgs.bun;
+        enableGitIntegration = true;
+        settings = {
+          telemetry = false;
         };
       };
 
       home.sessionPath = [ "${config.home.homeDirectory}/.npm/bin" ];
 
       home.packages = with pkgs; [
+        nodejs_26
         typescript
         prettierd
         eslint_d
