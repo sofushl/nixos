@@ -37,12 +37,10 @@
       users.${userconf.username} = {
         directories = [
           ".librewolf"
-          ".config/vesktop"
+          ".config/vesktop/sessionData/"
           ".config/Element"
           ".config/spotify"
           ".cache/spotify"
-
-          ".local/state/wireplumber"
 
           ".cache/rclone"
 
@@ -61,9 +59,6 @@
           ".local/state/opencode"
           ".config/opencode"
 
-          ".cursor"
-          ".config/Cursor"
-          ".config/cursor"
           ".local/share/docker"
         ];
 

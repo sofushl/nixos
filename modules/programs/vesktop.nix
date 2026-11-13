@@ -8,6 +8,9 @@
       lib,
       ...
     }:
+
+    # REQURIES PRESERVATION OF "$HOME/.config/vesktop/sessionData/"
+
     {
       home.file.".config/vesktop/state.json".text = ''{"firstLaunch": false}'';
 

@@ -28,12 +28,10 @@
       users.${userconf.username} = {
         directories = [
           ".librewolf"
-          ".config/vesktop"
+          ".config/vesktop/sessionData/"
           ".config/Element"
           ".config/spotify"
           ".cache/spotify"
-
-          ".local/state/wireplumber"
 
           ".local/share/opencode"
           ".local/state/opencode"

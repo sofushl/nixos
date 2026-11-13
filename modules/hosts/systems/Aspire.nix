@@ -31,16 +31,13 @@
     ];
 
     preservation.preserveAt."/persistent" = {
-      directories = [ "opt" ];
       users.${userconf.username} = {
         directories = [
           ".librewolf"
-          ".config/vesktop"
+          ".config/vesktop/sessionData/"
           ".config/Element"
           ".config/spotify"
           ".cache/spotify"
-
-          ".local/state/wireplumber"
 
           ".cache/rclone"
 

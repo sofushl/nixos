@@ -38,6 +38,7 @@
             inInitrd = true;
           }
           "/etc/ssh"
+          "/opt"
         ]
         ++ lib.optional config.networking.networkmanager.enable "/etc/NetworkManager";
 
@@ -56,7 +57,8 @@
             ".ssh"
             ".local/share/keyrings"
             ".config/Bitwarden CLI"
-          ];
+          ]
+          ++ lib.optional config.services.pipewire.enable ".local/state/wireplumber";
 
           files = [
             ".bash_history"

@@ -13,10 +13,6 @@
 
     home.packages = with pkgs; [
       libreoffice
-
-      cursor-cli
-      code-cursor
-
       wl-clicker
       postman
       geogebra6
