@@ -27,6 +27,7 @@
       yazi
       git
       claude
+      opencode
       bitwarden
 
       bash

@@ -13,23 +13,6 @@
 
     # REQURIES PRESERVATION OF "$HOME/.local/share/opencode" "$HOME/.local/state/opencode" "$HOME/.config/opencode"
 
-    let
-
-      ponytail = pkgs.fetchFromGitHub {
-        owner = "DietrichGebert";
-        repo = "ponytail";
-        rev = "e3ba2aa6f1e6f0bc4d69eb09c9f0d0a93af56156";
-        hash = "sha256-PES5XrSYx0VBXWVHEDRykGy0SAmJfV/luzy8Gfg0aAQ=";
-      };
-
-      agentSkills = pkgs.fetchFromGitHub {
-        owner = "addyosmani";
-        repo = "agent-skills";
-        rev = "dc27a9c2e13721158157632de61b4106c6c2a2a1";
-        hash = "sha256-mliEs4QGO3W1vm5i4PfTNXCGtYVNUmEedWVmt5l7sxY=";
-      };
-
-    in
     {
       programs.opencode = {
         enable = true;
@@ -42,13 +25,11 @@
         settings = {
           plugin = [
             "opencode-claude-auth@latest"
-            ponytail
-            agentSkills
           ];
 
           enabled_providers = [
             "litellm"
-            "omniroute"
+            "anthropic"
           ];
 
           provider.omniroute = {
@@ -100,6 +81,15 @@
                 "moonshotai/Kimi-K2.6" = model "Kimi K2.6" multimodal 174762;
               };
           };
+        };
+
+        cli.keybinds = {
+          "dialog.select.next" = "j,down,ctrl+n";
+          "dialog.select.prev" = "k,up,ctrl+p";
+          "dialog.select.home" = "g,home";
+          "dialog.select.end" = "shift+g,end";
+          "diff.down" = "j,down";
+          "diff.up" = "k,up";
         };
 
         enableMcpIntegration = true;
