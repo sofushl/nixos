@@ -30,7 +30,7 @@
     };
 
     work = {
-      cloud = "/home/soli/Onedrive";
+      cloud = "/home/soli/OneDrive";
       type = "work";
       username = "soli";
       path = "/home/soli/nixos";

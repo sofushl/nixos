@@ -63,7 +63,7 @@
 
     home.shellAliases =
       let
-        dir = "/home/soli/OneDrive/Workspace/";
+        dir = "/home/soli/OneDrive/Development/";
       in
       {
         "launch" = ''
@@ -77,7 +77,6 @@
           npm i --save-dev "${dir}shared/$tarball"
           npm run build:dev
         '';
-
       };
   };
 }
