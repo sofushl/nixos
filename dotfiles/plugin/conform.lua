@@ -9,8 +9,8 @@ require("conform").setup({
         lua = { "stylua" },
         python = { "black", "isort" },
         rust = { "rustfmt", "topcoat" },
-        javascript = { "prettierd" },
-        typescript = { "prettierd" },
+        javascript = { "oxfmt" },
+        typescript = { "oxfmt" },
         nix = { "nixfmt" },
         kdl = { "kdlfmt" },
         yaml = { "yamlfmt" },
@@ -19,6 +19,6 @@ require("conform").setup({
     },
     format_on_save = {
         timeout_ms = 5000,
-        lsp_format = "prefer",
+        lsp_format = "fallback",
     },
 })

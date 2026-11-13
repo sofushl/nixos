@@ -119,6 +119,7 @@
           lua
           nixd
           go
+          typescript
 
           # Formatter
           nixfmt
@@ -131,6 +132,8 @@
           google-java-format
           typstyle
           stylua
+          oxfmt
+          eslint_d
 
           # LSP
           pyright

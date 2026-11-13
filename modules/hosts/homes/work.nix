@@ -4,8 +4,6 @@
 { self, ... }:
 {
   flake.homeModules.work = { lib, pkgs, ... }: {
-    programs.hyprlock.enable = lib.mkForce false;
-
     home.packages = with pkgs; [
       postman
       spotify
@@ -33,10 +31,10 @@
       bash
       fonts
       fastfetch
-      node
     ];
 
     programs.niri.settings = {
+      spawn-at-startup = lib.mkForce [ ];
       outputs = {
         "eDP-1" = {
           position = {
@@ -60,6 +58,11 @@
           y = 0;
         };
       };
+    };
+
+    programs.npm = {
+      enable = true;
+      package = pkgs.nodejs_22;
     };
 
     home.shellAliases =

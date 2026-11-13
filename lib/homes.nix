@@ -1,7 +1,7 @@
 {
   default = rec {
     username = "sofushl";
-    displayname = "Sofus Lind";
+    displayname = "Sofus Højberg Lind";
     email = "sofushl@proton.me";
     type = null;
     ghname = username;

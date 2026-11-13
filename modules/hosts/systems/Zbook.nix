@@ -31,6 +31,7 @@
       rustWASM
       clangGTK
       javaFx
+      node
     ];
 
     preservation.preserveAt."/persistent" = {

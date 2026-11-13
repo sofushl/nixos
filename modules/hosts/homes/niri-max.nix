@@ -8,7 +8,7 @@
       obsidian
       vscodium
       rclone
-      node
+      bun
     ];
 
     home.packages = with pkgs; [

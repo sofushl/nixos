@@ -2,28 +2,38 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 {
-  flake.homeModules.node =
-    { pkgs, config, ... }:
+  flake.nixosModules.node =
+    {
+      pkgs,
+      config,
+      userconf,
+      ...
+    }:
 
     # RECOMMENDED PRESERVATION OF "$HOME/.npmrc" "$HOME/.npm/"
 
     {
-      programs.bun = {
+      programs.npm = {
         enable = true;
-        package = pkgs.bun;
-        enableGitIntegration = true;
-        settings = {
-          telemetry = false;
-        };
+        package = pkgs.nodejs_26;
+        npmrc = ''
+          prefix = ''${HOME}/.npm
+          init-license=LGPL-3.0-or-later
+          init-author-name=${userconf.displayname}
+          init-author-email=${userconf.email}
+          color=true
+          update-notifier=false
+          fund=false
+        '';
       };
-
-      home.sessionPath = [ "${config.home.homeDirectory}/.npm/bin" ];
-
-      home.packages = with pkgs; [
-        nodejs_26
-        typescript
-        prettierd
-        eslint_d
-      ];
     };
+
+  flake.homeModules.bun = { pkgs, ... }: {
+    programs.bun = {
+      enable = true;
+      package = pkgs.bun;
+      enableGitIntegration = true;
+      settings.telemetry = false;
+    };
+  };
 }

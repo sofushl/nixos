@@ -32,6 +32,7 @@
       rustWASM
       clangGTK
       javaFx
+      node
     ];
 
     environment.systemPackages = with pkgs; [
