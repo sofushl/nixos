@@ -10,7 +10,6 @@
     {
       userconf,
       pkgs,
-      stablepkgs,
       ...
     }:
     {

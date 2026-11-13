@@ -6,7 +6,6 @@
     {
       config,
       pkgs,
-      stablepkgs,
       lib,
       userconf,
       ...
@@ -22,7 +21,7 @@
     {
       services.ollama = {
         enable = true;
-        package = stablepkgs.ollama-cuda;
+        package = pkgs.ollama-cuda;
         loadModels = [
           "qwen3.8:latest"
         ];

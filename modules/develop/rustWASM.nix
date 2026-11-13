@@ -5,7 +5,6 @@
   flake.nixosModules.rustWASM =
     {
       lib,
-      stablepkgs,
       pkgs,
       ...
     }:

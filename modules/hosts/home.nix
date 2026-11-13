@@ -8,17 +8,16 @@ let
     inherit system;
     config.allowUnfree = true;
   };
-  pkgs = nixpkgs;
   homes = import ../../lib/homes.nix;
   resolvehome = builtins.mapAttrs (_: h: homes.default // h) homes.homes;
-  stablepkgs = import inputs.stablepkgs {
+  pkgs = import inputs.pkgs {
     system = pkgs.stdenv.hostPlatform.system;
     config.allowUnfree = true;
     config.cudaSupport = true;
   };
   sshkeys = import ../../lib/sshkeys.nix;
   theme = import ../../lib/theme.nix;
-  serverconf = import ../../lib/server.nix { inherit nixpkgs stablepkgs; };
+  serverconf = import ../../lib/server.nix { inherit nixpkgs pkgs; };
 in
 {
   flake.homeConfigurations = builtins.mapAttrs (
@@ -27,7 +26,7 @@ in
       inherit pkgs;
 
       extraSpecialArgs = {
-        inherit inputs stablepkgs;
+        inherit inputs pkgs;
         userconf = homeconf // theme // sshkeys // serverconf;
       };
 

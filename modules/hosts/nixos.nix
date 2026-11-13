@@ -10,7 +10,7 @@ let
   homes = import ../../lib/homes.nix;
   resolvehome = builtins.mapAttrs (_: h: homes.default // h) homes.homes;
   stripNulls = nixpkgs.lib.filterAttrs (_: v: v != null && v != "");
-  stablepkgs = import inputs.stablepkgs {
+  pkg = import inputs.stablepkgs {
     system = "x86_64-linux";
     config.allowUnfree = true;
     config.cudaSupport = true;
@@ -20,7 +20,7 @@ let
     config.allowUnfree = true;
     config.cudaSupport = true;
   };
-  serverconf = import ../../lib/server.nix { inherit nixpkgs stablepkgs; };
+  serverconf = import ../../lib/server.nix { inherit nixpkgs pkg; };
   secrets =
     if builtins.pathExists /etc/nixos/secrets.nix then
       import /etc/nixos/secrets.nix
@@ -38,7 +38,7 @@ in
       system = sysconf.system;
 
       specialArgs = {
-        inherit inputs stablepkgs;
+        inherit inputs pkg;
         userconf =
           sysconf // theme // sshkeys // stripNulls (resolvehome.${sysconf.home}) // serverconf // secrets;
       };

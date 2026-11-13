@@ -1,4 +1,4 @@
-{ nixpkgs, stablepkgs, ... }:
+{ nixpkgs, pkg, ... }:
 
 rec {
   topDom = "sofus.privatedns.org";
@@ -78,7 +78,7 @@ rec {
       domain = rgbDom;
       env = {
         CARGO_HOME = "/var/www/LightsUI/.cargo";
-        PKG_CONFIG_PATH = "${stablepkgs.openssl.dev}/lib/pkgconfig";
+        PKG_CONFIG_PATH = "${pkg.openssl.dev}/lib/pkgconfig";
       };
       pack = with nixpkgs; [
         cargo
@@ -109,9 +109,9 @@ rec {
       domain = emailApi;
       env = {
         CARGO_HOME = "/var/www/email-backend/.cargo";
-        PKG_CONFIG_PATH = "${stablepkgs.openssl.dev}/lib/pkgconfig";
+        PKG_CONFIG_PATH = "${pkg.openssl.dev}/lib/pkgconfig";
       };
-      pack = with stablepkgs; [
+      pack = with pkg; [
         cargo
         rustc
         stdenv.cc
