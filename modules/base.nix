@@ -39,11 +39,6 @@
       networking.hostName = userconf.host;
       system.stateVersion = userconf.state;
 
-      nixpkgs = {
-        hostPlatform = userconf.system;
-        config.allowUnfree = true;
-      };
-
       nix = {
         settings = {
           experimental-features = [
