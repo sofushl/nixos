@@ -23,10 +23,10 @@ in
   flake.homeConfigurations = builtins.mapAttrs (
     type: homeconf:
     inputs.home-manager.lib.homeManagerConfiguration {
-      inherit pkg;
+      pkgs = nixpkgs;
 
       extraSpecialArgs = {
-        inherit inputs pkg;
+        inherit inputs nixpkgs pkg;
         userconf = homeconf // theme // sshkeys // serverconf;
       };
 

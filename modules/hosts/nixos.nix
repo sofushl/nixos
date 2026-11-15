@@ -38,12 +38,15 @@ in
       system = sysconf.system;
 
       specialArgs = {
-        inherit inputs pkg;
+        inherit inputs nixpkgs pkg;
         userconf =
           sysconf // theme // sshkeys // stripNulls (resolvehome.${sysconf.home}) // serverconf // secrets;
       };
 
-      modules = [ self.nixosModules.${sysconf.host} ];
+      modules = [
+        { nixpkgs.pkgs = nixpkgs; }
+        self.nixosModules.${sysconf.host}
+      ];
     }
   ) resolved;
 }
