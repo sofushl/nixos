@@ -35,7 +35,6 @@ let
       config = {
         allowUnfree = true;
         cudaSupport = nvidia;
-        cudaCapabilities = [ "7.5" ];
       };
     };
     spkg = import inputs.stablepkgs {
@@ -43,7 +42,6 @@ let
       config = {
         allowUnfree = true;
         cudaSupport = nvidia;
-        cudaCapabilities = [ "7.5" ];
       };
     };
   };

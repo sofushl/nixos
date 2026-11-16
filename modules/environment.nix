@@ -78,6 +78,7 @@
       btop
       lazygit
       trash-cli
+      trickle
 
       wget
       curl
