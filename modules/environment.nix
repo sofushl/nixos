@@ -111,7 +111,6 @@
         home-pull = ''
           git -C ${userconf.path} pull
           home-switch
-          nix store optimise
         '';
 
         home-update = ''
@@ -125,6 +124,7 @@
       };
       sessionVariables = {
         NIXOS_OZONE_WL = "1";
+        NIXPKGS_ALLOW_UNFREE = 1;
       };
     };
   };

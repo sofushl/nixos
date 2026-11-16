@@ -104,8 +104,6 @@
       ...
     }:
     {
-      nixpkgs.config.allowUnfree = true;
-
       services.udiskie = {
         enable = true;
         automount = true;
