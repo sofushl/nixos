@@ -4,6 +4,7 @@
     displayname = "Sofus Højberg Lind";
     email = "sofushl@proton.me";
     type = null;
+    nvidia = false;
     ghname = username;
     cloud = "/home/${username}/Library";
     nextcloud = "cloud.sofus.privatedns.org";

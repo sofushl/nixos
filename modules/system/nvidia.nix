@@ -5,9 +5,6 @@
   flake.nixosModules.nvidia =
     { config, lib, ... }:
     {
-      nixpkgs.config.allowUnfree = true;
-      nixpkgs.config.cudaCapabilities = [ "7.5" ];
-
       nix.settings = {
         substituters = [
           "https://cache.nixos-cuda.org"

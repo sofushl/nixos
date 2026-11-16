@@ -37,15 +37,15 @@
       };
     };
 
-  flake.nixosModules.home = { userconf, stablepkgs, ... }: {
+  flake.nixosModules.home = { userconf, spkg, ... }: {
 
     imports = [ inputs.home-manager.nixosModules.home-manager ];
 
     home-manager = {
-      useGlobalPkgs = false;
+      useGlobalPkgs = true;
       useUserPackages = true;
       backupFileExtension = "back";
-      extraSpecialArgs = { inherit userconf inputs stablepkgs; };
+      extraSpecialArgs = { inherit userconf inputs spkg; };
       users.${userconf.username}.imports = [
         self.homeModules.${userconf.home}
       ]
@@ -59,8 +59,6 @@
       ...
     }:
     {
-      nixpkgs.config.allowUnfree = true;
-
       home = {
         username = userconf.username;
         stateVersion = userconf.state;

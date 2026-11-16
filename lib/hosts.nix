@@ -8,7 +8,7 @@ in
     username = homeconf.username;
     displayname = homeconf.displayname;
     key = null;
-
+    nvidia = false;
     host = "init";
     path = "/home/sofushl/nixos";
     state = "26.11";
@@ -29,7 +29,7 @@ in
       disk = "nvme0n1";
       wifiboard = "eth";
       key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMa7/X+I2BUnqYYtpIF33llzsJkU214MWAA7R5JOM94i sofushl@T2000";
-
+      nvidia = true;
       macaddress = "48:9e:bd:75:c0:68";
     };
     Aspire = {
@@ -40,7 +40,6 @@ in
       extra = [
         "obsidian"
         "vscodium"
-        "node"
       ];
     };
     Elitebook = {
@@ -60,6 +59,7 @@ in
       extra = [
         "homeMonitor"
       ];
+      nvidia = true;
       windows-esp-label = "7e3c9738-c768-454e-93b2-281d01df73db";
     };
 

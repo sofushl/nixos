@@ -72,6 +72,23 @@
       };
     };
 
+    boot.loader.systemd-boot = {
+      extraFiles = {
+        "efi/windows/shell.efi" = "${pkgs.edk2-uefi-shell}/shell.efi";
+        "efi/windows/startup.nsh" = pkgs.writeText "startup.nsh" ''
+          connect -r
+          map -r
+          HD1b:EFI\Microsoft\Boot\Bootmgfw.efi
+        '';
+      };
+      extraEntries."windows.conf" = ''
+        title Windows
+        efi /efi/windows/shell.efi
+        options -nointerrupt -noversion
+        sort-key o_windows
+      '';
+    };
+
     powerManagement.cpuFreqGovernor = "powersave";
   };
 
