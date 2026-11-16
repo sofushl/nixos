@@ -4,7 +4,7 @@
 { self, ... }:
 
 {
-  flake.nixosModules.Zbook = { pkgs, userconf, ... }: {
+  flake.nixosModules.Zbook = { userconf, ... }: {
     imports = with self.nixosModules; [
       base
       environment
@@ -72,22 +72,10 @@
       };
     };
 
-    boot.loader.systemd-boot = {
-      extraFiles = {
-        "efi/windows/shell.efi" = "${pkgs.edk2-uefi-shell}/shell.efi";
-        "efi/windows/startup.nsh" = pkgs.writeText "startup.nsh" ''
-          connect -r
-          map -r
-          HD1b:EFI\Microsoft\Boot\Bootmgfw.efi
-        '';
-      };
-      extraEntries."windows.conf" = ''
-        title Windows
-        efi /efi/windows/shell.efi
-        options -nointerrupt -noversion
-        sort-key o_windows
-      '';
-    };
+    environment.shellAliases.windows-reboot = ''
+      sudo efibootmgr -n "$(efibootmgr | sed -n 's/^Boot\([0-9A-F]*\)\* Windows Boot Manager.*/\1/p')" && systemctl reboot
+    '';
+    time.hardwareClockInLocalTime = true;
 
     powerManagement.cpuFreqGovernor = "powersave";
   };
