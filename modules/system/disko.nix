@@ -12,6 +12,16 @@
 
       boot.tmp.cleanOnBoot = true;
 
+      services.btrfs.autoScrub = {
+        enable = true;
+        fileSystems = [
+          "/nix"
+          "/persistent"
+          "/tmp"
+        ];
+        interval = "monthly";
+      };
+
       fileSystems."/nix".neededForBoot = true;
       fileSystems."/persistent".neededForBoot = true;
       systemd.suppressedSystemUnits = [ "systemd-machine-id-commit.service" ];

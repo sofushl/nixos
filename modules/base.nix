@@ -48,6 +48,15 @@
           sandbox = true;
           auto-optimise-store = true;
         };
+        gc = {
+          automatic = true;
+          dates = "weekly";
+          options = "--delete-older-than 7d";
+        };
+        optimise = {
+          automatic = true;
+          dates = [ "weekly" ];
+        };
       };
 
       services = {
@@ -66,6 +75,20 @@
 
         thermald.enable = true;
         udisks2.enable = true;
+
+        fstrim = {
+          enable = true;
+          interval = "weekly";
+        };
+
+        smartd = {
+          enable = true;
+          autodetect = true;
+        };
+
+        fwupd.enable = true;
+
+        journald.settings.Journal.SystemMaxUse = "500M";
       };
 
       programs = {

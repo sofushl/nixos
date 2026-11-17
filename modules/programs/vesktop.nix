@@ -12,7 +12,10 @@
     # REQURIES PRESERVATION OF "$HOME/.config/vesktop/sessionData/"
 
     {
-      home.file.".config/vesktop/state.json".text = ''{"firstLaunch": false}'';
+      home.file.".config/vesktop/state.json" = {
+        text = ''{"firstLaunch": false}'';
+        force = true;
+      };
 
       programs.vesktop = {
         enable = true;

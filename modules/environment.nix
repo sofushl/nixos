@@ -21,6 +21,8 @@
           efibootmgr
           mkpasswd
           sbctl
+          smartmontools
+          nvme-cli
         ];
 
         # Custom build commands for using the flake instead of configuration.nix
