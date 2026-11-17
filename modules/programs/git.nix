@@ -52,7 +52,7 @@
             init.defaultBranch = "main";
             pull.rebase = true;
             core.editor = "nvim";
-            help.autocorrect = "prompt";
+            help.autocorrect = "immediate";
             push = {
               autoSetupRemote = true;
               followTags = true;

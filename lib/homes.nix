@@ -10,7 +10,7 @@
     nextcloud = "cloud.sofus.privatedns.org";
     nextclouduser = username;
     key = "";
-    path = "/home/sofushl/nixos";
+    path = "/home/${username}/nixos";
     state = "26.11";
     system = "x86_64-linux";
     browser = "librewolf";

@@ -28,23 +28,19 @@
 
           nixos-switch = ''
             git -C ${userconf.path} add -N -A
-            sudo nixos-rebuild switch --flake ${userconf.path}/#${userconf.host}
-          '';
+            sudo nixos-rebuild switch --flake ${userconf.path}/#${userconf.host}'';
 
           nixos-boot = ''
             git -C ${userconf.path} add -N -A
-            sudo nixos-rebuild boot --flake ${userconf.path}/#${userconf.host}
-          '';
+            sudo nixos-rebuild boot --flake ${userconf.path}/#${userconf.host}'';
 
           nixos-update = ''
             sudo nix flake update --flake ${userconf.path}
-            nixos-switch
-          '';
+            nixos-switch'';
 
           nixos-pull = ''
             git -C ${userconf.path} pull
-            nixos-switch
-          '';
+            nixos-switch'';
 
           nixos-clean = ''
             sudo nix-collect-garbage -d
@@ -73,9 +69,8 @@
       };
 
       systemd.tmpfiles.rules = [
-        "d /etc/nixos 2775 root wheel -"
-        "Z /etc/nixos - root wheel -"
-        "A+ /etc/nixos - - - - group:wheel:rwX,default:group:wheel:rwX"
+        "d /etc/nixos 2775 ${userconf.username} wheel -"
+        "A+ /etc/nixos - - - - group:wheel:rwX,default:group:wheel:rwX,mask::rwX"
       ];
     };
 
@@ -105,8 +100,7 @@
       shellAliases = {
         home-switch = ''
           git -C ${userconf.path} add -N -A
-          nix run nixpkgs#home-manager -- switch --flake ${userconf.path}#${userconf.type} -b back
-        '';
+          nix run nixpkgs#home-manager -- switch --flake ${userconf.path}#${userconf.type}'';
 
         home-clean = ''
           nix-collect-garbage -d
@@ -117,15 +111,13 @@
 
         home-pull = ''
           git -C ${userconf.path} pull
-          home-switch
-        '';
+          home-switch'';
 
         home-update = ''
           yes | sudo apt update
           yes | sudo apt upgrade
           yes | sudo apt autopurge
-          home-pull
-        '';
+          home-pull'';
 
         home-manager = "home-manager --flake ${userconf.path}#${userconf.type}";
       };

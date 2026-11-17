@@ -1,7 +1,5 @@
 let
-  homes = import ./homes.nix;
-  resolvehome = builtins.mapAttrs (_: h: homes.default // h) homes.homes;
-  homeconf = resolvehome.laptop;
+  homeconf = (import ./homes.nix).default;
 in
 {
   default = {
@@ -10,7 +8,7 @@ in
     key = null;
     nvidia = false;
     host = "init";
-    path = "/home/sofushl/nixos";
+    path = "/etc/nixos";
     state = "26.11";
     wifiboard = "wlp0s20f3";
     disk = "sda";
@@ -21,10 +19,8 @@ in
   };
 
   hosts = {
-
     T2000 = {
       host = "T2000";
-      path = "/home/sofushl/nixos";
       state = "26.11";
       disk = "nvme0n1";
       wifiboard = "eth";

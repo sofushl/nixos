@@ -59,7 +59,7 @@ in
       specialArgs = {
         inherit inputs spkg;
         userconf =
-          sysconf // theme // sshkeys // stripNulls (resolvehome.${sysconf.home}) // serverconf // secrets;
+          theme // sshkeys // stripNulls (resolvehome.${sysconf.home}) // sysconf // serverconf // secrets;
       };
 
       modules = [

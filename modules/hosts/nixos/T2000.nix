@@ -34,7 +34,6 @@
       "/var/www"
       "/var/log"
       "/var/backup"
-      "/etc/nixos"
     ];
 
     preservation.preserveAt."/persistent".users.${userconf.username} = {
