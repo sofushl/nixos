@@ -25,6 +25,7 @@
 
         # Custom build commands for using the flake instead of configuration.nix
         shellAliases = {
+          nixos = "cd $NIXOS_CONFIG";
 
           nixos-switch = ''
             git -C ${userconf.path} add -N -A
@@ -66,6 +67,11 @@
             sudo systemctl restart NetworkManager-ensure-profiles.service
           '';
         };
+
+        variables = {
+          NIXPKGS_ALLOW_UNFREE = 1;
+          NIXOS_CONFIG = userconf.path;
+        };
       };
 
       systemd.tmpfiles.rules = [
@@ -98,6 +104,8 @@
 
     home = {
       shellAliases = {
+        home = "cd $HOME_MANAGER_CONFIG";
+
         home-switch = ''
           git -C ${userconf.path} add -N -A
           nix run nixpkgs#home-manager -- switch --flake ${userconf.path}#${userconf.type}'';
@@ -124,6 +132,7 @@
       sessionVariables = {
         NIXOS_OZONE_WL = "1";
         NIXPKGS_ALLOW_UNFREE = 1;
+        HOME_MANAGER_CONFIG = userconf.path;
       };
     };
   };
