@@ -34,9 +34,12 @@ rec {
       repo = "https://github.com/sofushl/portfolio.git";
       domain = topDom;
       build = ''
-        npm i
-        npm run build
+        bun ci
+        bun run build
       '';
+      pack = with pkgs; [
+        bun
+      ];
       locations = {
         "/" = {
           tryFiles = "$uri $uri/ /index.html";
@@ -57,7 +60,7 @@ rec {
       name = "AbaCordium";
       repo = "https://github.com/AbaCord/AbaCordium.git";
       build = ''
-        bun install
+        bun ci 
       '';
       start = ''
         bun run start

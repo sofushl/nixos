@@ -22,7 +22,7 @@
         build = "";
         start = null;
         env = { };
-        pack = [ pkgs.nodejs ];
+        pack = [ ];
         locations = { };
       };
       withDefaults = service: serviceDefaults // service;
