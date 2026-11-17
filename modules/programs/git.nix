@@ -52,14 +52,27 @@
             init.defaultBranch = "main";
             pull.rebase = true;
             core.editor = "nvim";
+            help.autocorrect = "prompt";
+            push = {
+              autoSetupRemote = true;
+              followTags = true;
+            };
+            fetch = {
+              pruneTags = true;
+            };
 
             alias = {
               ci = "commit";
               co = "checkout";
-              stat = "status";
+              st = "status -sb";
               res = "restore";
+              lg = "log --graph --oneline --decorate";
+              last = "log -1 HEAD --stat";
+              unstage = "restore --staged";
               filter-repo = "!${lib.getExe pkgs.git-filter-repo}";
             };
+
+            safe.directory = "/etc/nixos";
           };
 
           includes = [

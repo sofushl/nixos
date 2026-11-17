@@ -38,6 +38,7 @@
             inInitrd = true;
           }
           "/etc/ssh"
+          "/etc/nixos"
           "/opt"
         ]
         ++ lib.optional config.networking.networkmanager.enable "/etc/NetworkManager";

@@ -8,5 +8,7 @@ result-*
 # Ignore NixOS interactive test driver history
 **/.nixos-test-history
 .Trash*
+
 .claude
 .obsidian
+secrets.nix

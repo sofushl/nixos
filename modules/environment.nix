@@ -71,6 +71,12 @@
           '';
         };
       };
+
+      systemd.tmpfiles.rules = [
+        "d /etc/nixos 2775 root wheel -"
+        "Z /etc/nixos - root wheel -"
+        "A+ /etc/nixos - - - - group:wheel:rwX,default:group:wheel:rwX"
+      ];
     };
 
   flake.homeModules.environment = { pkgs, userconf, ... }: {
