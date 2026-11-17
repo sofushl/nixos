@@ -35,11 +35,15 @@ rec {
       domain = topDom;
       build = ''
         bun ci
+        bun run gen
         bun run build
       '';
       pack = with pkgs; [
         bun
+        gh
+        jq
       ];
+      envFile = "/var/lib/secrets/portfolio.env";
       locations = {
         "/" = {
           tryFiles = "$uri $uri/ /index.html";

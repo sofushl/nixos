@@ -21,6 +21,7 @@
         port = null;
         build = "";
         start = null;
+        envFile = null;
         env = { };
         pack = [ ];
         locations = { };
@@ -119,6 +120,7 @@
             '';
             serviceConfig = hardening service // {
               Type = "oneshot";
+              EnvironmentFile = lib.mkIf (service ? envFile) service.envFile;
             };
           };
         }) gitServices
@@ -141,6 +143,7 @@
               Type = "simple";
               Restart = "always";
               RestartSec = 5;
+              EnvironmentFile = lib.mkIf (service ? envFile) service.envFile;
             };
             wantedBy = [ "multi-user.target" ];
           };
