@@ -40,13 +40,13 @@ Boilerplate for nixosModules and/or homeModules:
   flake.nixosModules.MODULENAME = 
     {userconf, pkgs, ...}:
     {
-      # Your config here
+      # NixOS config here
     };
   
   flake.homeModules.HOMEMODULE = 
     {userconf, pkgs, ...}:
     {
-      # Your homemanager config heredd
+      # Home Manager config here
     };
 }
 ```
