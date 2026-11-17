@@ -82,6 +82,21 @@
             condition = "hasconfig:remote.*.url:${c.remote}";
             contents.user = { inherit (c) name email; };
           }) (lib.filter (v: v.remote != null) configs);
+
+          hooks.post-checkout = pkgs.writeShellScript "codeberg-pushurl" ''
+            git config remote.origin.pushurl >/dev/null && exit 0
+            url=$(git remote get-url origin 2>/dev/null) || exit 0
+
+            case "$url" in
+              *github.com*${userconf.ghname}/*) ;;
+              *) exit 0 ;;
+            esac
+
+            repo=$(basename "$url")
+
+            git remote set-url --add --push origin "$url"
+            git remote set-url --add --push origin "ssh://git@codeberg.org/${userconf.ghname}/$repo"
+          '';
         };
 
         delta = {
