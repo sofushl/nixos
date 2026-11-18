@@ -23,18 +23,9 @@
         enable = true;
 
         defaultFonts = {
-          monospace = [
-            mono
-            emoji
-          ];
-          sansSerif = [
-            sans
-            emoji
-          ];
-          serif = [
-            serif
-            emoji
-          ];
+          monospace = [ mono ];
+          sansSerif = [ sans ];
+          serif = [ serif ];
           emoji = [ emoji ];
         };
 
