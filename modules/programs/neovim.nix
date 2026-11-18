@@ -132,7 +132,7 @@
           google-java-format
           typstyle
           stylua
-          oxfmt
+          prettierd
           eslint_d
 
           # LSP

@@ -71,6 +71,8 @@
       };
     };
 
+    programs.hyprlock.package = lib.mkForce null;
+
     home.shellAliases =
       let
         dir = "/home/soli/OneDrive/Development/";

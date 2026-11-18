@@ -3,38 +3,38 @@ vim.g.maplocalleader = " "
 
 -- LSP enabling
 vim.lsp.enable({
-    "python",
-    "asm",
-    "nix",
-    "rust",
-    "java",
-    "css",
-    "eslint",
-    "html",
-    "json",
-    "lua",
-    "markdown",
-    "tailwind",
-    "typescript",
-    "yaml",
-    "c",
-    "tinymist",
-    "mcfunction",
-    "xml",
-    "go",
+	"python",
+	"asm",
+	"nix",
+	"rust",
+	"java",
+	"css",
+	"eslint",
+	"html",
+	"json",
+	"lua",
+	"markdown",
+	"tailwind",
+	"typescript",
+	"yaml",
+	"c",
+	"tinymist",
+	"mcfunction",
+	"xml",
+	"go",
 })
 
 vim.filetype.add({
-    extension = {
-        mcfunction = "mcfunction",
-    },
+	extension = {
+		mcfunction = "mcfunction",
+	},
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = "mcfunction",
-    callback = function(args)
-        vim.treesitter.start(args.buf, "mcfunction")
-    end,
+	pattern = "mcfunction",
+	callback = function(args)
+		vim.treesitter.start(args.buf, "mcfunction")
+	end,
 })
 
 -- Formatting option
@@ -45,14 +45,23 @@ vim.opt.expandtab = true
 vim.opt.smartindent = true
 
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = "java",
-    callback = function()
-        vim.bo.tabstop = 2
-        vim.bo.shiftwidth = 2
-        vim.bo.softtabstop = 2
-    end,
+	pattern = "java",
+	callback = function()
+		vim.bo.tabstop = 2
+		vim.bo.shiftwidth = 2
+		vim.bo.softtabstop = 2
+	end,
 })
 
 vim.cmd.colorscheme("vscode")
 vim.opt.number = true
 vim.opt.relativenumber = true
+
+vim.opt.backupcopy = "yes"
+vim.opt.writebackup = false
+vim.opt.directory = vim.fn.stdpath("state") .. "/swap//"
+vim.opt.autoread = true
+
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
+	command = "checktime",
+})
