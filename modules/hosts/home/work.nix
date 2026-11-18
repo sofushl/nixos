@@ -63,6 +63,12 @@
     programs.npm = {
       enable = true;
       package = pkgs.nodejs_22;
+      settings = {
+        prefix = "\${HOME}/.npm";
+        color = true;
+        update-notifier = false;
+        fund = false;
+      };
     };
 
     home.shellAliases =
