@@ -9,10 +9,7 @@
 
     let
 
-      xc8src = pkgs.fetchurl {
-        url = "https://ww1.microchip.com/downloads/aemDocuments/documents/DEV/ProductDocuments/SoftwareTools/xc8-v4.00-full-install-linux-x64-installer.run";
-        hash = "sha256-c11lurCPpDktqdubWmJNGzJ0Nq71fSNxkmWJIeiM/QY=";
-      };
+      inherit (import ../../lib/pkgs.nix pkgs) xc8src;
 
       libs = with pkgs; [
         libusb1

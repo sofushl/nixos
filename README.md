@@ -53,11 +53,13 @@ Boilerplate for nixosModules and/or homeModules:
 
 ## Library
 
-This system is meant for one single user and user configuration relies on ```./lib/sofushl.nix```
+`userconf` includes several parts from [`./lib`](./lib/) defined in [`hosts`](./modules/hosts/default.nix)
 
-userconf includes several parts from ```./lib``` defined in```.modules/hosts/*``` 
+This system is meant for one single user and user configuration relies on [`sofushl.nix`](.lib/sofushl.nix)
 
-The [homeserver](./modules/hosts/homeserver.nix) has a secret import ```/etc/nixos/secrets.nix``` like this:
+All build-time imported packages also reside in `./lib`, see [`pkgs.nix`](./lib/pkgs.nix)
+
+My [server host](./modules/hosts/nixos/T2000.nix) uses a secret import `/etc/nixos/secrets.nix` like this:
 
 ``` nix
 {

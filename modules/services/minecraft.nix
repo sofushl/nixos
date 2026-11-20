@@ -16,14 +16,9 @@
     let
       serverName = "comp";
 
-      githubDatapacks = {
-        achievementcomp = pkgs.fetchFromGitHub {
-          owner = "sofushl";
-          repo = "achievementcomp";
-          rev = "main";
-          hash = "sha256-OTC/y6v0SbDwCDrP8bNQdzPDcZUXNS93Uu1ULZKAnrg=";
-        };
-      };
+      inherit (import ../../lib/pkgs.nix) achievementcomp bluemapPlugin;
+
+      githubDatapacks = { inherit achievementcomp; };
 
       hocon = pkgs.formats.hocon { };
       bluemapMaps =
@@ -38,10 +33,6 @@
             end = "minecraft:the_end";
           };
 
-      bluemapPlugin = pkgs.fetchurl {
-        url = "https://github.com/BlueMap-Minecraft/BlueMap/releases/download/v5.29/bluemap-5.29-paper.jar";
-        hash = "sha256-e/R1k2wmEH1HbGMVHHbVtJ6GXuvq2hLJ59khVd6He58=";
-      };
       bluemapConf = {
         "plugins/BlueMap/core.conf" = hocon.generate "core.conf" { accept-download = true; };
         "plugins/BlueMap/webserver.conf" = hocon.generate "webserver.conf" {

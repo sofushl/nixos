@@ -5,6 +5,8 @@
   flake.homeModules.yazi =
     { pkgs, ... }:
     let
+      inherit (import ../../lib/pkgs.nix pkgs) yaziVscodeDarkPlus yaziBypass;
+
       dependencies = with pkgs; [
         ffmpeg
         jq
@@ -24,16 +26,7 @@
           enable = true;
           enableBashIntegration = true;
 
-          theme.mgr.syntect_theme =
-            let
-              src = pkgs.fetchFromGitHub {
-                owner = "956MB";
-                repo = "vscode-dark-plus.yazi";
-                rev = "e9f118a8572b8ee96624bc778b80337d8b9f8b96";
-                hash = "sha256-aYw4HuF8GaOhJEQDkgsdJn/uCdEme6kFrBkL80SFikA=";
-              };
-            in
-            "${src}/tmtheme.xml";
+          theme.mgr.syntect_theme = "${yaziVscodeDarkPlus}/tmtheme.xml";
 
           settings.mgr = {
             show_hidden = false;
@@ -43,12 +36,7 @@
           };
 
           plugins = {
-            bypass = pkgs.fetchFromGitHub {
-              owner = "Rolv-Apneseth";
-              repo = "bypass.yazi";
-              rev = "main";
-              hash = "sha256-kho114UcjV90BDghZxUn2gZXtjY0tsE+C9ttlQZli6U=";
-            };
+            bypass = yaziBypass;
           };
 
           keymap = {

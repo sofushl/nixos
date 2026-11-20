@@ -5,29 +5,7 @@
   flake.homeModules.neovim =
     { pkgs, lib, ... }:
     let
-      mcfunction-grammar = pkgs.tree-sitter.buildGrammar {
-        language = "mcfunction";
-        version = "0.4.0";
-        src = pkgs.fetchFromGitHub {
-          owner = "bbfh-dev";
-          repo = "tree-sitter-mcfunction";
-          rev = "d96ad2794d2f3b21f146e3203546ab5776874dac";
-          hash = "sha256-JznyZqkk3esSkF93IW5pb/dqLmu3UFwIn1uQWdVCsN4=";
-        };
-      };
-
-      mcfunction-lsp = pkgs.buildGoModule {
-        pname = "mcfunction-lsp";
-        version = "unstable-2024-03-20";
-        src = pkgs.fetchFromGitHub {
-          owner = "mend-lang";
-          repo = "mcfunction-lsp";
-          rev = "3bc37bc271dce1a3a3a331149cdb17447054ddb6";
-          hash = "sha256-xb0BU3MkklR4yzstOTfhy9mIsLv84u6Mpi9u2EjLvTQ=";
-        };
-        vendorHash = "sha256-qkBpSVLWZPRgS9bqOVUWHpyj8z/nheQJON3vJOwPUj4=";
-        subPackages = [ "." ];
-      };
+      inherit (import ../../lib/pkgs.nix pkgs) mcfunction-grammar mcfunction-lsp;
 
       dependencies = with pkgs; [
         fd
