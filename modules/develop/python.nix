@@ -8,33 +8,31 @@
     let
       py = pkgs.python314.withPackages (
         ps: with ps; [
-          pip
-          setuptools
+          debugpy
+          python-dotenv
+
+          openai
+          ollama
+          discordpy
+
+          folium
+          osmnx
 
           wheel
           virtualenv
           debugpy
 
           matplotlib
+          statsmodels
           numpy
-          pandas
           numba
+          scipy
 
           requests
+          beautifulsoup4
 
           pygame
           seaborn
-
-          jupyter
-          ipykernel
-          ipywidgets
-          notebook
-
-          scikit-learn
-          statsmodels
-
-          keyboard
-          kernels
         ]
       );
     in
