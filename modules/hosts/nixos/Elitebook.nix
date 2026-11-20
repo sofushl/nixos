@@ -14,11 +14,8 @@
       disko
       preservation
       lanzaboote
-
       audio
       niri
-
-      gaming
       fingerprint
 
       wifi

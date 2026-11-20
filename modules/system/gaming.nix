@@ -23,6 +23,7 @@
         ".var"
 
         "Games"
+        ".config/supertuxkart"
       ];
 
       programs.steam = {
@@ -43,6 +44,7 @@
         wine
         heroic
         r2modman
+        supertuxkart
 
         (
           if config.hardware.nvidia.enabled then
