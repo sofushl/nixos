@@ -16,7 +16,7 @@
     let
       serverName = "comp";
 
-      inherit (import ../../lib/pkgs.nix) achievementcomp bluemapPlugin;
+      inherit (import ../../lib/pkgs.nix pkgs) achievementcomp bluemapPlugin;
 
       githubDatapacks = { inherit achievementcomp; };
 
