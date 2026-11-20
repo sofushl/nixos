@@ -32,11 +32,6 @@
       node
     ];
 
-    environment.systemPackages = with pkgs; [
-      blender
-      prusa-slicer
-    ];
-
     preservation.preserveAt."/persistent" = {
       users.${userconf.username} = {
         directories = [

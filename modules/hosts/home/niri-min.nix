@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 { self, ... }: {
-  flake.homeModules.niriMin = { pkgs, ... }: {
+  flake.homeModules.niriMin = { ... }: {
     imports = with self.homeModules; [
       base
       environment
@@ -11,6 +11,7 @@
       niri
       mimeapps
       vesktop
+      element
 
       kitty
       browser
@@ -24,15 +25,6 @@
       bash
       fonts
       fastfetch
-
-      {
-        home.packages = with pkgs; [
-          spotify
-          element-desktop
-          vlc
-          loupe
-        ];
-      }
     ];
   };
 }

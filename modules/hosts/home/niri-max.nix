@@ -18,6 +18,9 @@
       geogebra6
       krita
       inkscape
+      blender
+      prusa-slicer
+      freecad
     ];
   };
 }

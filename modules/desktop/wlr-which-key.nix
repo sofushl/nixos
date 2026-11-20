@@ -23,6 +23,11 @@
       };
     in
     {
+      home.packages = with pkgs; [
+        spotify
+        vlc
+        loupe
+      ];
 
       programs.wlr-which-key = {
         enable = true;
