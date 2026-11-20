@@ -219,17 +219,7 @@
                   app-id = "${browser}$";
                   title = "^Picture-in-Picture$";
                 }
-              ];
-              open-floating = true;
-            }
-            {
-              matches = [
-                {
-                  app-id = "ui.App";
-                }
-                {
-                  app-id = "^org\\.testfx\\.";
-                }
+                { app-id = "^org\\.testfx\\."; }
               ];
               open-floating = true;
             }
