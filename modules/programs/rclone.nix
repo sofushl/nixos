@@ -14,9 +14,9 @@
       rcloneExe = lib.getExe config.programs.rclone.package;
       bisyncCmd = lib.concatStringsSep " --exclude " [
         "${rcloneExe} bisync nextcloud: ${userconf.cloud} --resilient --recover --conflict-resolve newer"
-        "'.venv/**'"
-        "'node_modules/**'"
-        "'Trash-1000/**'"
+        "'.venv'"
+        "'node_modules'"
+        "'.Trash-*'"
       ];
     in
     {
