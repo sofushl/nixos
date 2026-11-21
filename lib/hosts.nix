@@ -7,6 +7,7 @@ in
     displayname = homeconf.displayname;
     key = null;
     nvidia = false;
+    bisync = false;
     host = "init";
     path = "/etc/nixos";
     state = "26.11";
@@ -46,6 +47,7 @@ in
       extra = [
         "fingerprint"
       ];
+      bisync = true;
     };
     Zbook = {
       host = "Zbook";
@@ -55,6 +57,7 @@ in
       extra = [
         "homeMonitor"
       ];
+      bisync = true;
       nvidia = true;
       windows-esp-label = "7e3c9738-c768-454e-93b2-281d01df73db";
     };

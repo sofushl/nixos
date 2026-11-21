@@ -2,12 +2,12 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 {
-  flake.homeModules.obsidian = {
+  flake.homeModules.obsidian = { userconf, ... }: {
     programs.obsidian = {
       enable = true;
       cli.enable = true;
       vaults.NTNU = {
-        target = "Cloud/NTNU";
+        target = "${userconf.cloud}/Documents/NTNU";
       };
     };
   };

@@ -21,6 +21,7 @@
       claude
       opencode
       bitwarden
+      rclone
 
       bash
       fonts

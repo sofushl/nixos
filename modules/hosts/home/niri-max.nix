@@ -7,7 +7,6 @@
       niriMin
       obsidian
       vscodium
-      rclone
       bun
     ];
 

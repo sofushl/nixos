@@ -21,7 +21,7 @@
     in
     {
 
-      # REQUIRES PRESERVATION OF "$HOME/.config/rclone/nextcloud.pass" "$HOME/Cloud" "$HOME/.cache/rclone"
+      # REQUIRES PRESERVATION OF "$HOME/.config/rclone/nextcloud.pass" "$HOME/.cache/rclone"
 
       programs.rclone = {
         enable = true;
@@ -33,10 +33,22 @@
             user = userconf.nextclouduser;
           };
           secrets.pass = "${config.xdg.configHome}/rclone/nextcloud.pass";
+
+          mounts."" = {
+            enable = !userconf.bisync;
+            autoMount = true;
+            mountPoint = userconf.cloud;
+            options = {
+              vfs-cache-max-age = "24h";
+              vfs-cache-max-size = "10G";
+              dir-cache-time = "30s";
+              poll-interval = "0";
+            };
+          };
         };
       };
 
-      systemd.user.services."unit-status-failure-notify@" = {
+      systemd.user.services."unit-status-failure-notify@" = lib.mkIf userconf.bisync {
         Unit.Description = "Notify about failure of %i";
         Service = {
           Type = "oneshot";
@@ -53,7 +65,7 @@
         };
       };
 
-      systemd.user.services.rclone-bisync-nextcloud = {
+      systemd.user.services.rclone-bisync-nextcloud = lib.mkIf userconf.bisync {
         Unit = {
           Description = "Bisync ${userconf.cloud} with Nextcloud";
           OnFailure = [ "unit-status-failure-notify@%n.service" ];
@@ -66,7 +78,7 @@
         };
       };
 
-      systemd.user.timers.rclone-bisync-nextcloud = {
+      systemd.user.timers.rclone-bisync-nextcloud = lib.mkIf userconf.bisync {
         Unit.Description = "Run nextcloud bisync periodically";
         Timer = {
           OnBootSec = "1m";

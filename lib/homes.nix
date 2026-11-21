@@ -4,6 +4,7 @@
     displayname = "Sofus Højberg Lind";
     email = "sofushl@proton.me";
     type = null;
+    bisync = false;
     nvidia = false;
     ghname = username;
     cloud = "/home/${username}/Library";

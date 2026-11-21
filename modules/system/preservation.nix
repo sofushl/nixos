@@ -41,7 +41,8 @@
           "/etc/nixos"
           "/opt"
         ]
-        ++ lib.optional config.networking.networkmanager.enable "/etc/NetworkManager";
+        ++ lib.optional config.networking.networkmanager.enable "/etc/NetworkManager"
+        ++ lib.optional userconf.bisync userconf.cloud;
 
         files = [
           {
@@ -52,7 +53,6 @@
 
         users.${userconf.username} = {
           directories = [
-            "Library"
             "Downloads"
             "nixos"
             ".ssh"

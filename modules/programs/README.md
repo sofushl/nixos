@@ -22,7 +22,7 @@ rclone bisync nextcloud: ~/Library --resync --verbose
 ```
 
 
-After restarting the rclone service you should now be bisyncing to ~/Cloud
+After restarting the rclone service you should now be bisyncing to ~/Library
 
 
 #### [vscodium](./vscodium.nix)
