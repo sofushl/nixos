@@ -1,7 +1,7 @@
 # Copyright (C) 2026 Sofus Højberg Lind
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-{ self, inputs, ... }:
+{ self, ... }:
 
 # REQUIRES HOME AND NIXOS IMPORT "niri"
 
@@ -24,7 +24,6 @@
     {
 
       imports = with self.homeModules; [
-        inputs.niri.homeModules.niri
         waybar
         hyprlock
         fuzzel
@@ -43,7 +42,6 @@
           playerctl
           brightnessctl
           bibata-cursors
-          xwayland-satellite
           nirimon
           nautilus
         ];
@@ -74,10 +72,11 @@
         };
       };
 
-      programs.niri = {
+      wayland.windowManager.niri = {
         enable = true;
         package = pkgs.niri;
-
+        xwaylandSatellitePackage = pkgs.xwayland-satellite;
+        portalPackage = pkgs.xdg-desktop-portal-gnome;
         settings = {
           input = {
             keyboard.xkb = {
@@ -85,58 +84,61 @@
               variant = "nodeadkeys";
             };
             touchpad = {
-              tap = true;
+              tap = { };
+              natural-scroll = { };
               drag = true;
-              drag-lock = true;
+              drag-lock = { };
               scroll-method = "two-finger";
             };
-            warp-mouse-to-focus.enable = true;
-            focus-follows-mouse.max-scroll-amount = "0%";
+            warp-mouse-to-focus = { };
           };
 
           cursor = {
-            theme = "Bibata-Modern-Classic";
-            size = 20;
+            xcursor-theme = "Bibata-Modern-Classic";
+            xcursor-size = 20;
             hide-when-typing = true;
           };
 
           layout = {
             gaps = 2;
             center-focused-column = "never";
-            preset-column-widths = [
+            preset-column-widths._children = [
               { proportion = 0.5; }
               { proportion = 1.0; }
             ];
-            default-column-width = {
-              proportion = 0.5;
-            };
+            default-column-width.proportion = 0.5;
             focus-ring = {
               width = 2;
-              active.color = c.primary;
-              inactive.color = c.inactive;
+              active-color = c.primary;
+              inactive-color = c.inactive;
             };
             shadow = {
-              enable = true;
+              on = { };
               draw-behind-window = true;
               softness = 30;
               spread = 5;
-              offset = {
+              offset._props = {
                 x = 0;
                 y = 5;
               };
               color = "#0007";
             };
-            struts = { };
+            struts = {
+              left = 0;
+              right = 0;
+              top = 0;
+              bottom = 0;
+            };
           };
 
           prefer-no-csd = true;
 
           screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
 
-          spawn-at-startup = [
-            { command = [ "hyprlock" ]; }
+          _children = [
+            { spawn-at-startup = [ "hyprlock" ]; }
             {
-              command = [
+              spawn-at-startup = [
                 "element-desktop"
                 "--hidden"
               ];
@@ -148,113 +150,106 @@
             hide-not-bound = true;
           };
 
-          window-rules = [
+          window-rule._children = [
             {
-              matches = [
-                {
-                  app-id = "${browser}$";
-                  title = "^Picture-in-Picture$";
-                }
-                { app-id = "^org\\.testfx\\."; }
-              ];
-              open-floating = true;
+              match._props = {
+                app-id = "${browser}$";
+                title = "^Picture-in-Picture$";
+              };
             }
+            { match._props.app-id = "^org\\.testfx\\."; }
+            { open-floating = true; }
           ];
 
-          gestures.hot-corners = {
-            top-left = false;
-            top-right = true;
-            bottom-left = false;
-            bottom-right = false;
-          };
+          gestures.hot-corners.top-right = { };
 
-          switch-events.lid-close.action.spawn = [ "hyprlock" ];
+          switch-events.lid-close.spawn = [ "hyprlock" ];
 
           binds = {
             # Core apps
-            "Mod+T".action.spawn = [ term ];
-            "Mod+Return".action.spawn = [ term ];
-            "Mod+Space".action.spawn = [ launcher ];
-            "Mod+R".action.spawn = [ launcher ];
-            "Mod+E".action.spawn = [ launcher ];
-            "Mod+B".action.spawn = [ browser ];
-            "Mod+F".action.spawn = [ browser ];
+            "Mod+T".spawn = [ term ];
+            "Mod+Return".spawn = [ term ];
+            "Mod+Space".spawn = [ launcher ];
+            "Mod+R".spawn = [ launcher ];
+            "Mod+E".spawn = [ launcher ];
+            "Mod+B".spawn = [ browser ];
+            "Mod+F".spawn = [ browser ];
 
             # Toggle the laptop screen
-            "Mod+N".action.spawn-sh = "niri msg output eDP-1 on";
-            "Mod+Shift+N".action.spawn-sh = "niri msg output eDP-1 off";
+            "Mod+N".spawn-sh = "niri msg output eDP-1 on";
+            "Mod+Shift+N".spawn-sh = "niri msg output eDP-1 off";
 
-            "Mod+S".action.spawn = [
+            "Mod+S".spawn = [
               (lib.getExe pkgs.wlr-which-key)
               "apps.yaml"
             ];
-            "Mod+D".action.spawn = [
+            "Mod+D".spawn = [
               (lib.getExe pkgs.wlr-which-key)
               "system.yaml"
             ];
 
             # Window control
-            "Mod+Q".action.close-window = { };
+            "Mod+Q".close-window = { };
 
             # Column navigation
-            "Mod+H".action.focus-column-left = { };
-            "Mod+L".action.focus-column-right = { };
-            "Mod+Shift+H".action.move-column-left = { };
-            "Mod+Shift+L".action.move-column-right = { };
-            "Mod+Aring".action.focus-column-first = { };
-            "Mod+Diaeresis".action.focus-column-last = { };
-            "Mod+Shift+Aring".action.move-column-to-first = { };
-            "Mod+Shift+Diaeresis".action.move-column-to-last = { };
+            "Mod+H".focus-column-left = { };
+            "Mod+L".focus-column-right = { };
+            "Mod+Shift+H".move-column-left = { };
+            "Mod+Shift+L".move-column-right = { };
+            "Mod+Aring".focus-column-first = { };
+            "Mod+Diaeresis".focus-column-last = { };
+            "Mod+Shift+Aring".move-column-to-first = { };
+            "Mod+Shift+Diaeresis".move-column-to-last = { };
 
             # Inside columns
-            "Mod+Shift+J".action.move-window-down = { };
-            "Mod+Shift+K".action.move-window-up = { };
-            "Mod+J".action.focus-window-down = { };
-            "Mod+K".action.focus-window-up = { };
-            "Mod+Shift+U".action.consume-or-expel-window-left = { };
-            "Mod+Shift+I".action.consume-or-expel-window-right = { };
+            "Mod+Shift+J".move-window-down = { };
+            "Mod+Shift+K".move-window-up = { };
+            "Mod+J".focus-window-down = { };
+            "Mod+K".focus-window-up = { };
+            "Mod+Shift+U".consume-or-expel-window-left = { };
+            "Mod+Shift+I".consume-or-expel-window-right = { };
 
             # Special Column movements
-            "Mod+A".action.maximize-column = { };
-            "Mod+Shift+A".action.set-window-width = "50%";
-            "Mod+M".action.maximize-window-to-edges = { };
-            "Mod+Shift+M".action.fullscreen-window = { };
-            "Mod+X".action.center-column = { };
-            "Mod+Shift+X".action.reset-window-height = { };
+            "Mod+A".maximize-column = { };
+            "Mod+Shift+A".set-window-width = "50%";
+            "Mod+M".maximize-window-to-edges = { };
+            "Mod+Shift+M".fullscreen-window = { };
+            "Mod+X".center-column = { };
+            "Mod+Shift+X".reset-window-height = { };
 
             # Display+workspace switching
-            "Mod+Ctrl+H".action.focus-monitor-left = { };
-            "Mod+Ctrl+L".action.focus-monitor-right = { };
-            "Mod+Ctrl+J".action.focus-workspace-down = { };
-            "Mod+Ctrl+K".action.focus-workspace-up = { };
+            "Mod+Ctrl+H".focus-monitor-left = { };
+            "Mod+Ctrl+L".focus-monitor-right = { };
+            "Mod+Ctrl+J".focus-workspace-down = { };
+            "Mod+Ctrl+K".focus-workspace-up = { };
 
             # Display + Workspace movements
-            "Mod+Ctrl+Shift+H".action.move-column-to-monitor-left = { };
-            "Mod+Ctrl+Shift+L".action.move-column-to-monitor-right = { };
-            "Mod+Ctrl+Shift+J".action.move-column-to-workspace-down = { };
-            "Mod+Ctrl+Shift+K".action.move-column-to-workspace-up = { };
-            "Mod+Ctrl+U".action.move-workspace-to-monitor-left = { };
-            "Mod+Ctrl+I".action.move-workspace-to-monitor-right = { };
-            "Mod+Bar".action.toggle-overview = { };
+            "Mod+Ctrl+Shift+H".move-column-to-monitor-left = { };
+            "Mod+Ctrl+Shift+L".move-column-to-monitor-right = { };
+            "Mod+Ctrl+Shift+J".move-column-to-workspace-down = { };
+            "Mod+Ctrl+Shift+K".move-column-to-workspace-up = { };
+            "Mod+Ctrl+U".move-workspace-to-monitor-left = { };
+            "Mod+Ctrl+I".move-workspace-to-monitor-right = { };
+            "Mod+Bar".toggle-overview = { };
 
             # Finer height and width adjustments
-            "Mod+Minus".action.set-column-width = "-10%";
-            "Mod+Plus".action.set-column-width = "+10%";
-            "Mod+Shift+Minus".action.set-window-height = "-10%";
-            "Mod+Shift+Plus".action.set-window-height = "+10%";
+            "Mod+Minus".set-column-width = "-10%";
+            "Mod+Plus".set-column-width = "+10%";
+            "Mod+Shift+Minus".set-window-height = "-10%";
+            "Mod+Shift+Plus".set-window-height = "+10%";
 
             # Move the focused window between the floating and the tiling layout.
-            "Mod+V".action.switch-focus-between-floating-and-tiling = { };
-            "Mod+Shift+V".action.toggle-window-floating = { };
+            "Mod+V".switch-focus-between-floating-and-tiling = { };
+            "Mod+Shift+V".toggle-window-floating = { };
 
             # Toggle tabbed column display mode.
             # Windows in this column will appear as vertical tabs,
             # rather than stacked on top of each other.
-            "Mod+W".action.toggle-column-tabbed-display = { };
+            "Mod+W".toggle-column-tabbed-display = { };
 
-            "Print".action.screenshot = { };
-            "Ctrl+Print".action.screenshot-screen = { };
-            "Alt+Print".action.screenshot-window = { };
+            "Print".screenshot = { };
+            "Ctrl+Print".screenshot-screen = { };
+            "Alt+Print".screenshot-window = { };
 
             # Applications such as remote-desktop clients and software KVM switches may
             # request that niri stops processing the keyboard shortcuts defined here
@@ -262,36 +257,36 @@
             # It's a good idea to bind an escape hatch to toggle the inhibitor,
             # so a buggy application can't hold your session hostage.
             "Mod+Escape" = {
-              allow-inhibiting = false;
-              action.toggle-keyboard-shortcuts-inhibit = { };
+              _props.allow-inhibiting = false;
+              toggle-keyboard-shortcuts-inhibit = { };
             };
 
             # The quit action will show a confirmation dialog to avoid accidental exits.
-            "Mod+Shift+E".action.quit = { };
-            "Ctrl+Alt+Delete".action.quit = { };
+            "Mod+Shift+E".quit = { };
+            "Ctrl+Alt+Delete".quit = { };
 
             # Audio
             "XF86AudioRaiseVolume" = {
-              allow-when-locked = true;
-              action.spawn-sh = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+";
+              _props.allow-when-locked = true;
+              spawn-sh = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+";
             };
             "XF86AudioLowerVolume" = {
-              allow-when-locked = true;
-              action.spawn-sh = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-";
+              _props.allow-when-locked = true;
+              spawn-sh = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-";
             };
             "XF86AudioMute" = {
-              allow-when-locked = true;
-              action.spawn-sh = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+              _props.allow-when-locked = true;
+              spawn-sh = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
             };
             "XF86AudioMicMute" = {
-              allow-when-locked = true;
-              action.spawn-sh = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
+              _props.allow-when-locked = true;
+              spawn-sh = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
             };
 
             # Brightness
             "XF86MonBrightnessUp" = {
-              allow-when-locked = true;
-              action.spawn = [
+              _props.allow-when-locked = true;
+              spawn = [
                 "brightnessctl"
                 "--class=backlight"
                 "set"
@@ -299,8 +294,8 @@
               ];
             };
             "XF86MonBrightnessDown" = {
-              allow-when-locked = true;
-              action.spawn = [
+              _props.allow-when-locked = true;
+              spawn = [
                 "brightnessctl"
                 "--class=backlight"
                 "set"
@@ -310,33 +305,32 @@
 
             # Player
             "XF86AudioPlay" = {
-              allow-when-locked = true;
-              action.spawn-sh = "playerctl play-pause";
+              _props.allow-when-locked = true;
+              spawn-sh = "playerctl play-pause";
             };
             "XF86AudioStop" = {
-              allow-when-locked = true;
-              action.spawn-sh = "playerctl stop";
+              _props.allow-when-locked = true;
+              spawn-sh = "playerctl stop";
             };
             "XF86AudioPrev" = {
-              allow-when-locked = true;
-              action.spawn-sh = "playerctl previous";
+              _props.allow-when-locked = true;
+              spawn-sh = "playerctl previous";
             };
             "XF86AudioNext" = {
-              allow-when-locked = true;
-              action.spawn-sh = "playerctl next";
+              _props.allow-when-locked = true;
+              spawn-sh = "playerctl next";
             };
 
             # Sleep
-            "XF86Sleep".action.spawn = [
+            "XF86Sleep".spawn = [
               "hyprlock"
               "power-off-monitors"
             ];
 
-            "Mod+Shift+W".action.spawn = [
+            "Mod+Shift+W".spawn = [
               "hyprlock"
             ];
           };
-
         };
       };
     };

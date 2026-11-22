@@ -81,42 +81,38 @@
   };
 
   flake.homeModules.homeMonitor = { lib, pkgs, ... }: {
-    programs.niri.settings = {
-      outputs = {
-        "eDP-1" = {
-          enable = false;
-          mode = {
-            width = 1920;
-            height = 1080;
-          };
-          position = {
+    wayland.windowManager.niri.settings._children = [
+      {
+        output = {
+          _args = [ "eDP-1" ];
+          off = { };
+          mode = "1920x1080";
+          position._props = {
             x = 0;
             y = 0;
           };
         };
-
-        "DP-6" = {
-          mode = {
-            width = 1360;
-            height = 768;
-          };
-          position = {
+      }
+      {
+        output = {
+          _args = [ "DP-6" ];
+          mode = "1360x768";
+          position._props = {
             x = 1920;
             y = 0;
           };
         };
-
-        "DP-5" = {
-          mode = {
-            width = 2560;
-            height = 1440;
-          };
-          position = {
+      }
+      {
+        output = {
+          _args = [ "DP-5" ];
+          mode = "2560x1440";
+          position._props = {
             x = 3280;
             y = 0;
           };
         };
-      };
-    };
+      }
+    ];
   };
 }

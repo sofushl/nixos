@@ -44,9 +44,7 @@ in
       key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGAcSwH3R5VjlCT0zu2lpH9uMB9wjRbKhBY7uSsceQF2 sofushl@Elitebook";
       disk = "nvme0n1";
       home = "niriMax";
-      extra = [
-        "fingerprint"
-      ];
+      extra = [ "fingerprint" ];
       bisync = true;
     };
     Zbook = {
@@ -54,9 +52,7 @@ in
       key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBy09roMaMEGDDAw8M7eEjHbmxlyiPBAgoOxh6N5qou+ sofushl@Zbook";
       disk = "nvme1n1";
       home = "niriMax";
-      extra = [
-        "homeMonitor"
-      ];
+      extra = [ "homeMonitor" ];
       bisync = true;
       nvidia = true;
       windows-esp-label = "7e3c9738-c768-454e-93b2-281d01df73db";

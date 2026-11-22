@@ -31,32 +31,48 @@
 
     ];
 
-    programs.niri.settings = {
-      spawn-at-startup = lib.mkForce [ ];
-      outputs = {
-        "eDP-1" = {
-          position = {
+    wayland.windowManager.niri.settings._children = lib.mkForce [
+      {
+        output = {
+          _args = [ "eDP-1" ];
+          position._props = {
             x = 0;
             y = 0;
           };
           scale = 1.25;
         };
-
-        "DP-2".scale = 1.2;
-
-        "HDMI-A-1".scale = 2;
-
-        "DP-8".position = {
-          x = 1536;
-          y = 0;
+      }
+      {
+        output = {
+          _args = [ "DP-2" ];
+          scale = 1.2;
         };
-
-        "DP-9".position = {
-          x = 3456;
-          y = 0;
+      }
+      {
+        output = {
+          _args = [ "HDMI-A-1" ];
+          scale = 2;
         };
-      };
-    };
+      }
+      {
+        output = {
+          _args = [ "DP-8" ];
+          position._props = {
+            x = 1536;
+            y = 0;
+          };
+        };
+      }
+      {
+        output = {
+          _args = [ "DP-9" ];
+          position._props = {
+            x = 3456;
+            y = 0;
+          };
+        };
+      }
+    ];
 
     programs.npm = {
       enable = true;
