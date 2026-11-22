@@ -7,12 +7,13 @@
       base
       environment
       user
-      xdg
       niri
       mimeapps
+
+      bash
       vesktop
       element
-
+      fastfetch
       kitty
       browser
       neovim
@@ -22,10 +23,6 @@
       opencode
       bitwarden
       rclone
-
-      bash
-      fonts
-      fastfetch
     ];
   };
 }

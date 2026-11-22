@@ -31,74 +31,30 @@
         sunsetr
         mako
         wlrWhichKey
+        theme
+        xdg
       ];
-
-      xdg = {
-        enable = true;
-        portal = {
-          enable = true;
-          extraPortals = [
-            pkgs.xdg-desktop-portal-gtk
-            pkgs.xdg-desktop-portal-wlr
-            pkgs.xdg-desktop-portal-gnome
-          ];
-          config.common.default = [ "gtk" ];
-        };
-      };
-
-      gtk =
-        let
-          gtkConf = {
-            extraConfig.gtk-application-prefer-dark-theme = true;
-
-            extraCss = ''
-              @define-color accent_color ${c.primary}; 
-              @define-color accent_bg_color ${c.bg.selected};
-              @define-color accent_fg_color ${c.text.primary};
-            '';
-          };
-        in
-        {
-          enable = true;
-          colorScheme = "dark";
-
-          gtk3 = gtkConf;
-          gtk4 = gtkConf;
-        };
 
       home = {
         packages = with pkgs; [
           wl-clipboard
-
           bluetui
           pavucontrol
           playerctl
           brightnessctl
-
           bibata-cursors
-
           xwayland-satellite
-
           nirimon
           nautilus
         ];
 
         sessionVariables = {
           XDG_CURRENT_DESKTOP = "niri";
+          XDG_SESSION_TYPE = "wayland";
         };
       };
 
       services.blueman-applet.enable = true;
-
-      dconf = {
-        enable = true;
-        settings = {
-          "org/gnome/desktop/interface" = {
-            color-scheme = "prefer-dark";
-            accent-color = "red";
-          };
-        };
-      };
 
       systemd.user.services.polkit-gnome-authentication-agent-1 = {
         Unit = {
@@ -115,26 +71,6 @@
           Restart = "on-failure";
           RestartSec = 1;
           TimeoutStopSec = 10;
-        };
-      };
-
-      systemd.user.services.wayland-env = {
-        Unit = {
-          Description = "Import Wayland environment into systemd user session";
-          Before = [ "graphical-session.target" ];
-        };
-        Install.WantedBy = [ "graphical-session.target" ];
-        Service = {
-          Type = "oneshot";
-          RemainAfterExit = true;
-          ExecStart = "${pkgs.writeShellScript "wayland-env" ''
-            sock=$(ls -t "$XDG_RUNTIME_DIR"/wayland-[0-9]* 2>/dev/null | head -1)
-            [ -n "$sock" ] || exit 1
-            systemctl --user set-environment \
-              WAYLAND_DISPLAY="$(basename "$sock")" \
-              XDG_CURRENT_DESKTOP=niri \
-              XDG_SESSION_TYPE=wayland
-          ''}";
         };
       };
 

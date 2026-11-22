@@ -15,10 +15,11 @@
       base
       environment
       user
-      xdg
       niri
       mimeapps
 
+      bash
+      fastfetch
       kitty
       browser
       neovim
@@ -28,9 +29,6 @@
       opencode
       bitwarden
 
-      bash
-      fonts
-      fastfetch
     ];
 
     programs.niri.settings = {
