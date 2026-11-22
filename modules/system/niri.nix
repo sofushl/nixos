@@ -13,6 +13,12 @@
       ...
     }:
     {
+      programs.niri = {
+        enable = true;
+        package = pkgs.niri;
+        useNautilus = true;
+      };
+
       services.greetd = {
         enable = true;
         settings.default_session = {
