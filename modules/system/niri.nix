@@ -21,12 +21,21 @@
         };
       };
 
-      programs.niri = {
-        enable = true;
-        package = pkgs.niri;
-        useNautilus = true;
-      };
-
       xdg.icons.fallbackCursorThemes = [ "Bibata-Modern-Classic" ];
+
+      preservation.preserveAt."/persistent" = {
+        users.${userconf.username} = {
+          directories = [
+            ".local/share/keyrings"
+            ".local/state/wireplumber"
+
+            ".librewolf"
+            ".config/vesktop/sessionData/"
+            ".config/Element"
+            ".config/spotify"
+            ".cache/spotify"
+          ];
+        };
+      };
     };
 }

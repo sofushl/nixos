@@ -52,18 +52,8 @@
         ];
 
         users.${userconf.username} = {
-          directories = [
-            "Downloads"
-            "nixos"
-            ".ssh"
-            ".local/share/keyrings"
-            ".config/Bitwarden CLI"
-          ]
-          ++ lib.optional config.services.pipewire.enable ".local/state/wireplumber";
-
-          files = [
-            ".bash_history"
-          ];
+          directories = [ ".ssh" ];
+          files = [ ".bash_history" ];
         };
       };
     };

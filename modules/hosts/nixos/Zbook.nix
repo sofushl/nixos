@@ -37,12 +37,7 @@
     preservation.preserveAt."/persistent" = {
       users.${userconf.username} = {
         directories = [
-          ".librewolf"
-          ".config/vesktop/sessionData/"
-          ".config/Element"
-          ".config/spotify"
-          ".cache/spotify"
-
+          ".config/Bitwarden CLI"
           ".cache/rclone"
 
           ".config/libreoffice"
