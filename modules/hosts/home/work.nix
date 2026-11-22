@@ -31,6 +31,9 @@
 
     ];
 
+    programs.hyprlock.package = lib.mkForce null;
+    wayland.windowManager.niri.settings.spawn-at-startup = lib.mkForce [ ];
+
     wayland.windowManager.niri.settings._children = lib.mkForce [
       {
         output = {
@@ -84,8 +87,6 @@
         fund = false;
       };
     };
-
-    programs.hyprlock.package = lib.mkForce null;
 
     home.shellAliases =
       let

@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 {
-  flake.homeModules.element = { pkgs, ... }: {
+  flake.homeModules.element = { pkgs, lib, ... }: {
 
     # RECCOMENDED PRESERVATION OF "$HOME/.config/Element"
 
@@ -36,6 +36,16 @@
           "https://matrix-client.matrix.org" = false;
         };
       };
+    };
+
+    systemd.user.services.element = {
+      Unit = {
+        Description = "Element";
+        PartOf = [ "graphical-session.target" ];
+        After = [ "graphical-session.target" ];
+      };
+      Service.ExecStart = "${lib.getExe pkgs.element-desktop} --hidden";
+      Install.WantedBy = [ "graphical-session.target" ];
     };
   };
 }

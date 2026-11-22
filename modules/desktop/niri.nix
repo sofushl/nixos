@@ -135,15 +135,7 @@
 
           screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
 
-          _children = [
-            { spawn-at-startup = [ "hyprlock" ]; }
-            {
-              spawn-at-startup = [
-                "element-desktop"
-                "--hidden"
-              ];
-            }
-          ];
+          spawn-at-startup = [ (lib.getExe pkgs.hyprlock) ];
 
           hotkey-overlay = {
             skip-at-startup = true;
