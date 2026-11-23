@@ -32,6 +32,8 @@
       preservation.preserveAt."/persistent" = {
         users.${userconf.username} = {
           directories = [
+            "Downloads"
+
             ".local/share/keyrings"
             ".local/state/wireplumber"
 
