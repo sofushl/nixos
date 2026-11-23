@@ -6,7 +6,6 @@
     {
       pkgs,
       userconf,
-      config,
       ...
     }:
 
@@ -45,22 +44,7 @@
         heroic
         r2modman
         supertuxkart
-
-        (
-          if config.hardware.nvidia.enabled then
-            (pkgs.symlinkJoin {
-              name = "prismlauncher-nvidia";
-              paths = [ pkgs.prismlauncher ];
-              nativeBuildInputs = [ pkgs.makeWrapper ];
-              postBuild = ''
-                wrapProgram $out/bin/prismlauncher \
-                  --set __NV_PRIME_RENDER_OFFLOAD 1 \
-                  --set __GLX_VENDOR_LIBRARY_NAME nvidia
-              '';
-            })
-          else
-            pkgs.prismlauncher
-        )
+        prismlauncher
       ];
 
       imports = [ inputs.nix-flatpak.nixosModules.nix-flatpak ];

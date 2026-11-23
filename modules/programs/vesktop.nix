@@ -34,7 +34,7 @@
           splashColor = "#ffffff";
           splashTheming = true;
           staticTitle = true;
-          hardwareAcceleration = true;
+          hardwareAcceleration = false;
           discordBranch = "stable";
         };
 
